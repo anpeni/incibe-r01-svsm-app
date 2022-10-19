@@ -33,6 +33,7 @@
 ## Bump package verions
 
 ```sh
+yarn backstage-cli versions:check --fix  
 yarn backstage-cli versions:bump
 ```
 
