@@ -38,7 +38,10 @@ import { catalogEntityCreatePermission } from '@backstage/plugin-catalog-common/
 import { ThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import LightIcon from '@material-ui/icons/WbSunny';
-import { NeorisTheme } from './themes'
+import { NeorisTheme } from './themes';
+
+// .--  Custom icons --
+import { BitbucketIcon } from './assets/bitbucket';
 
 // .-- home page --
 import { HomepageCompositionRoot } from '@backstage/plugin-home';
@@ -47,7 +50,11 @@ import { HomePage } from './components/home/HomePage';
 
 const app = createApp({
   apis,
-  // .--  themes --
+  // .-- icons --
+  icons: {
+    bitbucket: BitbucketIcon,
+  },
+  // .-- themes --
   themes: [{
     id: 'neoris-theme',
     title: 'Neoris Theme',
