@@ -13,5 +13,6 @@ metadata:
 spec:
   type: test
   lifecycle: production
+  system: testops
   owner: neoris
   consumesApis: ['component:petclinic-angular']

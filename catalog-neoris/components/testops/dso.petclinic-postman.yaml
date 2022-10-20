@@ -14,5 +14,6 @@ metadata:
 spec:
   type: test robotframework
   lifecycle: production
+  system: testops
   owner: neoris
   consumesApis: ['api:petclinic-rest']

@@ -1,0 +1,9 @@
+apiVersion: backstage.io/v1alpha1
+kind: Location
+metadata:
+  name: neoris-systems
+  description: A collection of all Neoris systems
+spec:
+  targets:
+    - ./systems/infrastructure.yaml
+    - ./systems/testops.yaml

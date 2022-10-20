@@ -1,0 +1,18 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: dso-iac
+  description: Infrastructure multi cloud (aws and gcloud)
+  tags:
+    - terragunt
+    - terraform 
+    - yaml
+  links:
+    - url: https://bitbucket.org/neoris-global/dso.iac
+      title: Bitbucket Repo
+      icon: bitbucket
+spec:
+  type: Infrastructure
+  lifecycle: production
+  system: infrastructure
+  owner: neoris

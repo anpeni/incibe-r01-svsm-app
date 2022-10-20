@@ -15,5 +15,6 @@ metadata:
 spec:
   type: website
   lifecycle: production
+  system: testops
   owner: neoris
   consumesApis: ['api:petclinic-rest']

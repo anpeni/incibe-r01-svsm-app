@@ -6,7 +6,11 @@ metadata:
 spec:
   targets:
     - ./components/petstore-web.yaml
-    - ./components/dso.petclinic-angular.yaml
-    - ./components/dso.petclinic-jmeter.yaml
-    - ./components/dso.petclinic-postman.yaml
-    - ./components/dso.petclinic-robotframework.yaml
+    - ./components/infrastructure/dso.iac.yaml
+    - ./components/infrastructure/dso.k8s-fleets.yaml
+    - ./components/infrastructure/dso.k8s-charts.yaml
+    - ./components/infrastructure/dso.k8s-tenants.yaml
+    - ./components/testops/dso.petclinic-angular.yaml
+    - ./components/testops/dso.petclinic-jmeter.yaml
+    - ./components/testops/dso.petclinic-postman.yaml
+    - ./components/testops/dso.petclinic-robotframework.yaml

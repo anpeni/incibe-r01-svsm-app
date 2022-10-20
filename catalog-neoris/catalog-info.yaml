@@ -7,5 +7,6 @@ metadata:
   description: A collection of all Neoris entities, except users, groups, and templates
 spec:
   targets:
+    - ./all-systems.yaml
     - ./all-apis.yaml
     - ./all-components.yaml

@@ -21,6 +21,7 @@ spec:
   type: openapi
   lifecycle: experimental
   owner: neoris
+  system: testops
   definition: |
     openapi: 3.0.1
     info:
