@@ -1,0 +1,19 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: petclinic-angular
+  description: Pet Clinic main website
+  tags:
+    - angular
+  links:
+    - url: https://petclinic-angular.aws.neoris.cloud/
+      title: Web dev
+      icon: code
+    - url: https://bitbucket.org/neoris-global/dso.petclinic-angular
+      title: Bitbucket Repo
+      icon: bitbucket
+spec:
+  type: website
+  lifecycle: production
+  owner: neoris
+  consumesApis: ['api:petclinic-rest']

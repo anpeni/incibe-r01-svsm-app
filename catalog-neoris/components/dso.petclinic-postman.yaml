@@ -1,0 +1,18 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: petclinic-postman
+  description: Pet Clinic Postman test proyect
+  tags:
+    - test
+    - json 
+    - newman
+  links:
+    - url: https://bitbucket.org/neoris-global/dso.petclinic-postman
+      title: Bitbucket Repo
+      icon: bitbucket
+spec:
+  type: test robotframework
+  lifecycle: production
+  owner: neoris
+  consumesApis: ['api:petclinic-rest']

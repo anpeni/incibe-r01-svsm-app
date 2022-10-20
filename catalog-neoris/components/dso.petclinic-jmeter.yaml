@@ -1,0 +1,16 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: petclinic-jmeter
+  description: Pet Clinic JMeter test proyect
+  tags:
+    - test
+  links:
+    - url: https://bitbucket.org/neoris-global/dso.petclinic-jmeter
+      title: Bitbucket Repo
+      icon: bitbucket
+spec:
+  type: test
+  lifecycle: production
+  owner: neoris
+  consumesApis: ['api:petclinic-rest']

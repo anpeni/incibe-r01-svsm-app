@@ -1,0 +1,12 @@
+apiVersion: backstage.io/v1alpha1
+kind: Location
+metadata:
+  name: neoris-components
+  description: A collection of all neoris components
+spec:
+  targets:
+    - ./components/petstore-web.yaml
+    - ./components/dso.petclinic-angular.yaml
+    - ./components/dso.petclinic-jmeter.yaml
+    - ./components/dso.petclinic-postman.yaml
+    - ./components/dso.petclinic-robotframework.yaml

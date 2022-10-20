@@ -1,0 +1,12 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: petstore-web
+  description: Petstore main website
+  tags:
+    - angular
+spec:
+  type: website
+  lifecycle: production
+  owner: neoris
+  consumesApis: ['api:petstore']

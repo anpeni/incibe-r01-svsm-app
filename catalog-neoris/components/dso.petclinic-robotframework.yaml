@@ -1,0 +1,17 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: petclinic-robotframework
+  description: Pet Clinic robotframework test proyect
+  tags:
+    - test
+    - robotframework
+  links:
+    - url: https://bitbucket.org/neoris-global/dso.petclinic-robotframework
+      title: Bitbucket Repo
+      icon: bitbucket
+spec:
+  type: test
+  lifecycle: production
+  owner: neoris
+  consumesApis: ['component:petclinic-angular']

@@ -1,0 +1,9 @@
+apiVersion: backstage.io/v1alpha1
+kind: Location
+metadata:
+  name: neoris-apis
+  description: A collection of all Neoris example APIs
+spec:
+  targets:
+    - ./apis/petstore-api.yaml
+    - ./apis/dso.petclinic-rest.yaml

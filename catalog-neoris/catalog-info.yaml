@@ -1,0 +1,11 @@
+
+
+apiVersion: backstage.io/v1alpha1
+kind: Location
+metadata:
+  name: neoris-all
+  description: A collection of all Neoris entities, except users, groups, and templates
+spec:
+  targets:
+    - ./all-apis.yaml
+    - ./all-components.yaml
