@@ -3,6 +3,8 @@ kind: Component
 metadata:
   name: petclinic-postman
   description: Pet Clinic Postman test proyect
+  annotations:
+    backstage.io/source-location: url:https://bitbucket.org/neoris-global/dso.petclinic-postman
   tags:
     - test
     - json 

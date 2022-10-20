@@ -3,12 +3,14 @@ kind: Component
 metadata:
   name: dso-k8s-fleets
   description: kubernete fleets for multi cloud (EKS and GKS)
+  annotations:
+    backstage.io/source-location: url:https://bitbucket.org/neoris-global/dso.k8s-fleets
   tags:
     - fluxcd
     - kubernete 
     - yaml
   links:
-    - url: https://bitbucket.org/neoris-global/dso.dso.k8s-fleets
+    - url: https://bitbucket.org/neoris-global/dso.k8s-fleets
       title: Bitbucket Repo
       icon: bitbucket
 spec:

@@ -3,6 +3,8 @@ kind: Component
 metadata:
   name: petclinic-angular
   description: Pet Clinic main website
+  annotations:
+    backstage.io/source-location: url:https://bitbucket.org/neoris-global/dso.petclinic-angular
   tags:
     - angular
   links:

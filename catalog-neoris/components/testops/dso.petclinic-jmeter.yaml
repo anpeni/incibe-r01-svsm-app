@@ -3,6 +3,8 @@ kind: Component
 metadata:
   name: petclinic-jmeter
   description: Pet Clinic JMeter test proyect
+  annotations:
+    backstage.io/source-location: url:https://bitbucket.org/neoris-global/dso.petclinic-jmeter
   tags:
     - test
   links:

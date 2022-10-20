@@ -3,6 +3,8 @@ kind: API
 metadata:
   name: petclinic-rest
   description: The Pet Clinic API
+  annotations:
+    backstage.io/source-location: url:https://bitbucket.org/neoris-global/dso.petclinic-rest
   tags:
     - rest
     - spring-boot
