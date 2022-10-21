@@ -4,7 +4,7 @@ metadata:
   name: dso-iac
   description: Infrastructure multi cloud (aws and gcloud)
   annotations:
-    backstage.io/source-location: url:https://bitbucket.org/neoris-global/dso.iac
+    backstage.io/source-location: url:https://bitbucket.org/neoris-global/dso.iac/src/master/
   tags:
     - terragunt
     - terraform 

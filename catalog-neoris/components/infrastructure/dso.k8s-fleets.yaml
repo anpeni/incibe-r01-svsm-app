@@ -4,7 +4,7 @@ metadata:
   name: dso-k8s-fleets
   description: kubernete fleets for multi cloud (EKS and GKS)
   annotations:
-    backstage.io/source-location: url:https://bitbucket.org/neoris-global/dso.k8s-fleets
+    backstage.io/source-location: url:https://bitbucket.org/neoris-global/dso.k8s-fleets/src/master/
   tags:
     - fluxcd
     - kubernete 

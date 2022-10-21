@@ -4,7 +4,7 @@ metadata:
   name: petclinic-jmeter
   description: Pet Clinic JMeter test proyect
   annotations:
-    backstage.io/source-location: url:https://bitbucket.org/neoris-global/dso.petclinic-jmeter
+    backstage.io/source-location: url:https://bitbucket.org/neoris-global/dso.petclinic-jmeter/src/master/
   tags:
     - test
   links:

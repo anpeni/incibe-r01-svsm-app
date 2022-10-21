@@ -4,7 +4,7 @@ metadata:
   name: dso-k8s-tenants
   description: kubernete tenants for multi cloud (EKS and GKS)
   annotations:
-    backstage.io/source-location: url:https://bitbucket.org/neoris-global/dso.k8s-tenants
+    backstage.io/source-location: url:https://bitbucket.org/neoris-global/dso.k8s-tenants/src/master/
   tags:
     - fluxcd
     - kubernete 

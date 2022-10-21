@@ -4,7 +4,7 @@ metadata:
   name: petclinic-robotframework
   description: Pet Clinic robotframework test proyect
   annotations:
-    backstage.io/source-location: url:https://bitbucket.org/neoris-global/dso.petclinic-robotframework
+    backstage.io/source-location: url:https://bitbucket.org/neoris-global/dso.petclinic-robotframework/src/master/
   tags:
     - test
     - robotframework
