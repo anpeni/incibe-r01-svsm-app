@@ -5,6 +5,7 @@ metadata:
   description: Pet Clinic main website
   annotations:
     backstage.io/source-location: url:https://bitbucket.org/neoris-global/dso.petclinic-angular/src/master/
+    sonarqube.org/project-key: com.neoris.ddc.devsecops.aws:web-angular # YOUR_PROJECT_KEY
   tags:
     - angular
   links:

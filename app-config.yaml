@@ -104,3 +104,7 @@ catalog:
     #   target: https://github.com/backstage/backstage/blob/master/packages/catalog-model/examples/acme-corp.yaml
     #   rules:
     #     - allow: [User, Group]
+
+sonarqube:
+  baseUrl: https://sonarcloud.io
+  apiKey: a640b7f678e350836b9d451abdf005bd371c6889 # ${SONARQUBE_APIKEY}

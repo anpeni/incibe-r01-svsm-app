@@ -71,6 +71,9 @@ import {
 import { TechDocsAddons } from '@backstage/plugin-techdocs-react';
 import { ReportIssue } from '@backstage/plugin-techdocs-module-addons-contrib';
 
+// .--  plugin-sonarqube --
+import { EntitySonarQubeCard, isSonarQubeAvailable } from '@backstage/plugin-sonarqube';
+
 const techdocsContent = (
   <EntityTechdocsContent>
     <TechDocsAddons>
@@ -132,6 +135,16 @@ const overviewContent = (
     <Grid item md={6}>
       <EntityAboutCard variant="gridItem" />
     </Grid>
+
+    {/* Sonar Card */}
+    <EntitySwitch>
+      <EntitySwitch.Case if={isSonarQubeAvailable}>
+        <Grid item md={6}>
+          <EntitySonarQubeCard variant="gridItem" />
+        </Grid>
+      </EntitySwitch.Case>
+    </EntitySwitch>
+
     <Grid item md={6} xs={12}>
       <EntityCatalogGraphCard variant="gridItem" height={400} />
     </Grid>
@@ -251,6 +264,14 @@ const apiPage = (
         <Grid item md={6}>
           <EntityAboutCard />
         </Grid>
+        {/* Sonar Card */}
+        <EntitySwitch>
+          <EntitySwitch.Case if={isSonarQubeAvailable}>
+            <Grid item md={6}>
+              <EntitySonarQubeCard variant="gridItem" />
+            </Grid>
+          </EntitySwitch.Case>
+        </EntitySwitch>
         <Grid item md={6} xs={12}>
           <EntityCatalogGraphCard variant="gridItem" height={400} />
         </Grid>

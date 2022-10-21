@@ -5,6 +5,7 @@ metadata:
   description: The Pet Clinic API
   annotations:
     backstage.io/source-location: url:https://bitbucket.org/neoris-global/dso.petclinic-rest/src/master/
+    sonarqube.org/project-key: com.neoris.ddc.devsecops.aws.api-java # YOUR_PROJECT_KEY
   tags:
     - rest
     - spring-boot
