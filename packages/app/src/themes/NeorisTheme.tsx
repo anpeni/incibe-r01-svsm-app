@@ -14,7 +14,9 @@ import SegoeuiSemiLightTff from './fonts/Segoeui-SemiLight.ttf';*/
 const white = "#FFFFFF";
 const black = "#1B242A";
 const grey = "#1E242B";
-const blue = "#89D2E6";
+const blue = "#89D2E6";  
+const blueDark = "#00B0F0";
+const blueDark06 = "rgba(0,176,240,0.6)";
 const yellow = "#F6CE3C";
 const yellow06 = "rgba(246,206,60,0.6)";
 const green = "#009D4E";
@@ -78,9 +80,9 @@ const baseTheme = createTheme({
       ...lightTheme.palette.navigation,
       background: grey , //'#172B4D',
       color: white,
-      indicator: yellow, //'#2684FF',
+      indicator: blueDark, //'#2684FF',
       navItem: {
-        hoverBackground: yellow06, // 'rgba(116,118,121,0.6)',
+        hoverBackground: blueDark06, // 'rgba(116,118,121,0.6)',
       },
     },
     text: {
