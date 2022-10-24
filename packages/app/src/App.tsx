@@ -47,9 +47,13 @@ import { BitbucketIcon } from './assets/bitbucket';
 import { HomepageCompositionRoot } from '@backstage/plugin-home';
 import { HomePage } from './components/home/HomePage';
 
+// .-- Plugins --
+import * as plugins from './plugins';
 
 const app = createApp({
   apis,
+  // .--  pliugins --
+  plugins: Object.values(plugins),
   // .-- icons --
   icons: {
     bitbucket: BitbucketIcon,

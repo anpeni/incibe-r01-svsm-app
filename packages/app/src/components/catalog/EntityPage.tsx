@@ -74,6 +74,11 @@ import { ReportIssue } from '@backstage/plugin-techdocs-module-addons-contrib';
 // .--  plugin-sonarqube --
 import { EntitySonarQubeCard, isSonarQubeAvailable } from '@backstage/plugin-sonarqube';
 
+// .--  plugin-grafana --
+import { EntityGrafanaDashboardsCard, isDashboardSelectorAvailable } from '@k-phoen/backstage-plugin-grafana';
+
+
+
 const techdocsContent = (
   <EntityTechdocsContent>
     <TechDocsAddons>
@@ -141,6 +146,15 @@ const overviewContent = (
       <EntitySwitch.Case if={isSonarQubeAvailable}>
         <Grid item md={6}>
           <EntitySonarQubeCard variant="gridItem" />
+        </Grid>
+      </EntitySwitch.Case>
+    </EntitySwitch>
+
+    {/* Grafana card */}
+    <EntitySwitch>
+      <EntitySwitch.Case if={isDashboardSelectorAvailable}>
+        <Grid item md={6}>
+          <EntityGrafanaDashboardsCard />
         </Grid>
       </EntitySwitch.Case>
     </EntitySwitch>

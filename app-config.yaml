@@ -50,6 +50,11 @@ proxy:
   '/test':
     target: 'https://example.com'
     changeOrigin: true
+  '/grafana/api':
+    # May be a public or an internal DNS
+    target: https://grafana.aws.neoris.cloud
+    headers:
+      Authorization: Bearer eyJrIjoic0J2eDhabTZOT1BHMDhBVTR5OXRJZVF2Tkk5SFVpREYiLCJuIjoiYmFja3N0YWdlIiwiaWQiOjF9
 
 # Reference documentation http://backstage.io/docs/features/techdocs/configuration
 # Note: After experimenting with basic setup, use CI/CD to generate docs
@@ -78,32 +83,15 @@ catalog:
   locations:
     - type: file
       target: ../../catalog-neoris/catalog-info.yaml
-      
-    ## Local example data, file locations are relative to the backend process, typically `packages/backend`
-    #- type: file
-    #  target: ../../examples/entities.yaml
 
-    ## Local example template
-    #- type: file
-    #  target: ../../examples/template/template.yaml
-    #  rules:
-    #    - allow: [Template]
+grafana:
+  # Publicly accessible domain
+  domain: https://grafana.aws.neoris.cloud
 
-    ## Local example organizational data
-    #- type: file
-    #  target: ../../examples/org.yaml
-    #  rules:
-    #    - allow: [User, Group]
-
-    ## Uncomment these lines to add more example data
-    #- type: url
-    #  target: https://github.com/backstage/backstage/blob/master/packages/catalog-model/examples/all.yaml
-
-    ## Uncomment these lines to add an example org
-    # - type: url
-    #   target: https://github.com/backstage/backstage/blob/master/packages/catalog-model/examples/acme-corp.yaml
-    #   rules:
-    #     - allow: [User, Group]
+  # Is unified alerting enabled in Grafana?
+  # See: https://grafana.com/blog/2021/06/14/the-new-unified-alerting-system-for-grafana-everything-you-need-to-know/
+  # Optional. Default: false
+  unifiedAlerting: false
 
 sonarqube:
   baseUrl: https://sonarcloud.io
