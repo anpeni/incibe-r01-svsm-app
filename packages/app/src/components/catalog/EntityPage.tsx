@@ -77,6 +77,9 @@ import { EntitySonarQubeCard, isSonarQubeAvailable } from '@backstage/plugin-son
 // .--  plugin-grafana --
 import { EntityGrafanaDashboardsCard, isDashboardSelectorAvailable } from '@k-phoen/backstage-plugin-grafana';
 
+// .--  plugin-grafana --
+import { EntityPrometheusContent } from '@roadiehq/backstage-plugin-prometheus';
+
 
 
 const techdocsContent = (
@@ -193,6 +196,10 @@ const serviceEntityPage = (
       </Grid>
     </EntityLayout.Route>
 
+    <EntityLayout.Route path="/prometheus" title="Prometheus">
+      <EntityPrometheusContent />
+    </EntityLayout.Route>
+
     <EntityLayout.Route path="/dependencies" title="Dependencies">
       <Grid container spacing={3} alignItems="stretch">
         <Grid item md={6}>
@@ -218,6 +225,10 @@ const websiteEntityPage = (
 
     <EntityLayout.Route path="/ci-cd" title="CI/CD">
       {cicdContent}
+    </EntityLayout.Route>
+
+    <EntityLayout.Route path="/prometheus" title="Prometheus">
+      <EntityPrometheusContent />
     </EntityLayout.Route>
 
     <EntityLayout.Route path="/dependencies" title="Dependencies">
