@@ -80,6 +80,9 @@ import { EntityGrafanaDashboardsCard, isDashboardSelectorAvailable } from '@k-ph
 // .--  plugin-grafana --
 import { EntityPrometheusContent } from '@roadiehq/backstage-plugin-prometheus';
 
+// .--  plugin-todo --
+import { EntityTodoContent } from '@backstage/plugin-todo';
+
 
 
 const techdocsContent = (
@@ -211,6 +214,10 @@ const serviceEntityPage = (
       </Grid>
     </EntityLayout.Route>
 
+    <EntityLayout.Route path="/todo" title="Todo">
+      <EntityTodoContent />
+    </EntityLayout.Route>
+
     <EntityLayout.Route path="/docs" title="Docs">
       {techdocsContent}
     </EntityLayout.Route>
@@ -320,6 +327,10 @@ const apiPage = (
           <EntityApiDefinitionCard />
         </Grid>
       </Grid>
+    </EntityLayout.Route>
+
+    <EntityLayout.Route path="/todo" title="Todo">
+      <EntityTodoContent />
     </EntityLayout.Route>
   </EntityLayout>
 );

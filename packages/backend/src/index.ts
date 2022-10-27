@@ -30,6 +30,7 @@ import techdocs from './plugins/techdocs';
 import search from './plugins/search';
 // .-- add new plugins --
 import sonarqube from './plugins/sonarqube';
+import todo from './plugins/todo';
 import { PluginEnvironment } from './types';
 import { ServerPermissionClient } from '@backstage/plugin-permission-node';
 import { DefaultIdentityClient } from '@backstage/plugin-auth-node';
@@ -89,6 +90,7 @@ async function main() {
   const appEnv = useHotMemoize(module, () => createEnv('app'));
   // .-- Add new plugins --
   const sonarqubeEnv = useHotMemoize(module, () => createEnv('sonarqube'));
+  const todoEnv = useHotMemoize(module, () => createEnv('todo'));
 
   const apiRouter = Router();
   apiRouter.use('/catalog', await catalog(catalogEnv));
@@ -99,6 +101,7 @@ async function main() {
   apiRouter.use('/search', await search(searchEnv));
   // .-- Add new plugins --
   apiRouter.use('/sonarqube', await sonarqube(sonarqubeEnv));
+  apiRouter.use('/todo', await todo(todoEnv));
 
   // Add backends ABOVE this line; this 404 handler is the catch-all fallback
   apiRouter.use(notFoundHandler());
