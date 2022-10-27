@@ -57,7 +57,7 @@ proxy:
       Authorization: Bearer eyJrIjoic0J2eDhabTZOT1BHMDhBVTR5OXRJZVF2Tkk5SFVpREYiLCJuIjoiYmFja3N0YWdlIiwiaWQiOjF9
   '/prometheus/api':
     # url to the api and path of your hosted prometheus instance
-    target: https://prometheus.aws.neoris.cloud/api/v1/
+    target: https://thanos-query.aws.neoris.cloud/api/v1 # https://prometheus.aws.neoris.cloud/api/v1
     #changeOrigin: true
     #secure: true
     #headers:
