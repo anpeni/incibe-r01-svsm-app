@@ -83,7 +83,8 @@ import { EntityPrometheusContent } from '@roadiehq/backstage-plugin-prometheus';
 // .--  plugin-todo --
 import { EntityTodoContent } from '@backstage/plugin-todo';
 
-
+// .--  plugin-bitbucket --
+import { isBitbucketAvailable, EntityBitbucketContent } from '@internal/backstage-plugin-bitbucket';
 
 const techdocsContent = (
   <EntityTechdocsContent>
@@ -188,6 +189,10 @@ const serviceEntityPage = (
       {cicdContent}
     </EntityLayout.Route>
 
+    <EntityLayout.Route if={isBitbucketAvailable} path="/bitbucket" title="Bitbucket">
+       <EntityBitbucketContent />
+    </EntityLayout.Route>
+
     <EntityLayout.Route path="/api" title="API">
       <Grid container spacing={3} alignItems="stretch">
         <Grid item md={6}>
@@ -232,6 +237,10 @@ const websiteEntityPage = (
 
     <EntityLayout.Route path="/ci-cd" title="CI/CD">
       {cicdContent}
+    </EntityLayout.Route>
+
+    <EntityLayout.Route if={isBitbucketAvailable} path="/bitbucket" title="Bitbucket">
+       <EntityBitbucketContent />
     </EntityLayout.Route>
 
     <EntityLayout.Route path="/prometheus" title="Prometheus">
