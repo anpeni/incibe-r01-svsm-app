@@ -86,6 +86,9 @@ import { EntityTodoContent } from '@backstage/plugin-todo';
 // .--  plugin-bitbucket --
 import { isBitbucketAvailable, EntityBitbucketContent } from '@internal/backstage-plugin-bitbucket';
 
+// .--  plugin-kubernete --
+import { EntityKubernetesContent } from '@backstage/plugin-kubernetes';
+
 const techdocsContent = (
   <EntityTechdocsContent>
     <TechDocsAddons>
@@ -204,6 +207,10 @@ const serviceEntityPage = (
       </Grid>
     </EntityLayout.Route>
 
+    <EntityLayout.Route path="/kubernetes" title="Kubernetes">
+      <EntityKubernetesContent refreshIntervalMs={30000} />
+    </EntityLayout.Route>
+
     <EntityLayout.Route path="/prometheus" title="Prometheus">
       <EntityPrometheusContent />
     </EntityLayout.Route>
@@ -241,6 +248,10 @@ const websiteEntityPage = (
 
     <EntityLayout.Route if={isBitbucketAvailable} path="/bitbucket" title="Bitbucket">
        <EntityBitbucketContent />
+    </EntityLayout.Route>
+
+    <EntityLayout.Route path="/kubernetes" title="Kubernetes">
+      <EntityKubernetesContent refreshIntervalMs={30000} />
     </EntityLayout.Route>
 
     <EntityLayout.Route path="/prometheus" title="Prometheus">

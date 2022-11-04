@@ -103,4 +103,15 @@ prometheus:
 
 sonarqube:
   baseUrl: https://sonarcloud.io
-  apiKey: a640b7f678e350836b9d451abdf005bd371c6889 # ${SONARQUBE_APIKEY}
+  apiKey: ${SONARQUBE_APIKEY}
+
+kubernetes:
+  serviceLocatorMethod:
+    type: 'multiTenant'
+  clusterLocatorMethods:
+    - type: 'config'
+      clusters:
+        - url: ${AWS_K8S_URL}
+          name: devsecops
+          authProvider: 'aws'
+          caData: ${AWS_K8S_CADATA}

@@ -176,7 +176,7 @@
     "@azure/abort-controller" "^1.0.0"
     tslib "^2.2.0"
 
-"@azure/identity@^2.0.1":
+"@azure/identity@^2.0.1", "@azure/identity@^2.0.4":
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/@azure/identity/-/identity-2.1.0.tgz#89f0bfc1d1264dfd3d0cb19837c33a9c6706d548"
   integrity sha512-BPDz1sK7Ul9t0l9YKLEa8PHqWU4iCfhGJ+ELJl6c8CP3TpJt2urNCbm0ZHsthmxRsYoMPbz2Dvzj30zXZVmAFw==
@@ -1940,6 +1940,69 @@
     lodash "^4.17.21"
     react-use "^17.2.4"
 
+"@backstage/plugin-kubernetes-backend@^0.7.3":
+  version "0.7.3"
+  resolved "https://registry.yarnpkg.com/@backstage/plugin-kubernetes-backend/-/plugin-kubernetes-backend-0.7.3.tgz#40ae89b55158dccb01d59833dae96492786dd9ee"
+  integrity sha512-eIjkzQdZCf+1mFDBTLTE+ySRSQMUsUKJ38k0jJT3enecidof/24SGhbQhJv+JbUFZJX9Jo6gpeoTpICPOo2guQ==
+  dependencies:
+    "@azure/identity" "^2.0.4"
+    "@backstage/backend-common" "^0.15.2"
+    "@backstage/catalog-client" "^1.1.1"
+    "@backstage/catalog-model" "^1.1.2"
+    "@backstage/config" "^1.0.3"
+    "@backstage/errors" "^1.1.2"
+    "@backstage/plugin-auth-node" "^0.2.6"
+    "@backstage/plugin-kubernetes-common" "^0.4.3"
+    "@google-cloud/container" "^4.0.0"
+    "@kubernetes/client-node" "^0.17.0"
+    "@types/express" "^4.17.6"
+    "@types/luxon" "^3.0.0"
+    aws-sdk "^2.840.0"
+    aws4 "^1.11.0"
+    compression "^1.7.4"
+    cors "^2.8.5"
+    express "^4.17.1"
+    express-promise-router "^4.1.0"
+    fs-extra "10.1.0"
+    helmet "^6.0.0"
+    lodash "^4.17.21"
+    luxon "^3.0.0"
+    morgan "^1.10.0"
+    stream-buffers "^3.0.2"
+    winston "^3.2.1"
+    yn "^4.0.0"
+
+"@backstage/plugin-kubernetes-common@^0.4.3":
+  version "0.4.3"
+  resolved "https://registry.yarnpkg.com/@backstage/plugin-kubernetes-common/-/plugin-kubernetes-common-0.4.3.tgz#f5cc4d74122bf08e03455dac684ac5b3b6a922a4"
+  integrity sha512-hoUBbIHhx4HdUOXYD+Lr+C5B8TjQBPQl1TXtt1qqd/VpaE4X/leETRLWli5yEw0WNWuDfGpBRzsWtENm2AS/jA==
+  dependencies:
+    "@backstage/catalog-model" "^1.1.2"
+    "@kubernetes/client-node" "^0.17.0"
+
+"@backstage/plugin-kubernetes@^0.7.3":
+  version "0.7.3"
+  resolved "https://registry.yarnpkg.com/@backstage/plugin-kubernetes/-/plugin-kubernetes-0.7.3.tgz#9418cac7143042b867092f4e1e5dd6a3b8345be8"
+  integrity sha512-IV/jV+PcEEkOu+rGDRXh6/L3OpbBm19eAkPY48ltsSLr2aaVp339bg+OHv55Wn37gtIQp50fxHz1wpBLVJrLtw==
+  dependencies:
+    "@backstage/catalog-model" "^1.1.2"
+    "@backstage/config" "^1.0.3"
+    "@backstage/core-components" "^0.11.2"
+    "@backstage/core-plugin-api" "^1.0.7"
+    "@backstage/plugin-catalog-react" "^1.2.0"
+    "@backstage/plugin-kubernetes-common" "^0.4.3"
+    "@backstage/theme" "^0.2.16"
+    "@kubernetes/client-node" "^0.17.0"
+    "@material-ui/core" "^4.12.2"
+    "@material-ui/icons" "^4.9.1"
+    "@material-ui/lab" "4.0.0-alpha.57"
+    "@types/react" "^16.13.1 || ^17.0.0"
+    cronstrue "^2.2.0"
+    js-yaml "^4.0.0"
+    lodash "^4.17.21"
+    luxon "^3.0.0"
+    react-use "^17.2.4"
+
 "@backstage/plugin-org@^0.5.10":
   version "0.5.10"
   resolved "https://registry.yarnpkg.com/@backstage/plugin-org/-/plugin-org-0.5.10.tgz#c3809e99ef65c1c885dc47132674f94a66ce85af"
@@ -2763,6 +2826,13 @@
     form-data "^4.0.0"
     qs "^6.10.1"
     xcase "^2.0.1"
+
+"@google-cloud/container@^4.0.0":
+  version "4.3.0"
+  resolved "https://registry.yarnpkg.com/@google-cloud/container/-/container-4.3.0.tgz#975a4f0e1b85b71a02d675f4691b4a5ac8200256"
+  integrity sha512-6kdAn3YG4RvKzzK0HDxw8IkkHOoGnNdQvZJTlaSJ2N96J+KGoxAPkpuZdytgeZHY2N44kp8ll0nsu/K36xVksg==
+  dependencies:
+    google-gax "^3.3.0"
 
 "@google-cloud/firestore@^6.0.0":
   version "6.4.0"
@@ -5699,7 +5769,7 @@
   resolved "https://registry.yarnpkg.com/@types/range-parser/-/range-parser-1.2.4.tgz#cd667bcfdd025213aafb7ca5915a932590acdcdc"
   integrity sha512-EEhsLsD6UsDM1yFhAvy0Cjr6VwmpMWqFBCb9w07wVugF7w9nfajxLuVmngTIpgS6svCnm6Vaw+MZhoDCKnOfsw==
 
-"@types/react-dom@*", "@types/react-dom@<18.0.0", "@types/react-dom@^17":
+"@types/react-dom@*", "@types/react-dom@<18.0.0":
   version "17.0.18"
   resolved "https://registry.yarnpkg.com/@types/react-dom/-/react-dom-17.0.18.tgz#8f7af38f5d9b42f79162eea7492e5a1caff70dc2"
   integrity sha512-rLVtIfbwyur2iFKykP2w0pl/1unw26b5td16d5xMgp7/yjTHomkyxPYChFoCr/FtEX1lN9wY6lFj1qvKdS5kDw==
@@ -6430,6 +6500,7 @@ anymatch@^3.0.3, anymatch@~3.1.2:
     "@backstage/plugin-catalog-react" "^1.2.0"
     "@backstage/plugin-github-actions" "^0.5.10"
     "@backstage/plugin-home" "^0.4.26"
+    "@backstage/plugin-kubernetes" "^0.7.3"
     "@backstage/plugin-org" "^0.5.10"
     "@backstage/plugin-permission-react" "^0.4.6"
     "@backstage/plugin-scaffolder" "^1.7.0"
@@ -6754,7 +6825,7 @@ aws-sign2@~0.7.0:
   resolved "https://registry.yarnpkg.com/aws-sign2/-/aws-sign2-0.7.0.tgz#b46e890934a9591f2d2f6f86d7e6a9f1b3fe76a8"
   integrity sha512-08kcGqnYf/YmjoRhfxyu+CLxBjUtHLXLXX/vUfx9l2LYzG3c1m61nrpyFUZI6zeS+Li/wWMMidD9KgrqtGq3mA==
 
-aws4@^1.8.0:
+aws4@^1.11.0, aws4@^1.8.0:
   version "1.11.0"
   resolved "https://registry.yarnpkg.com/aws4/-/aws4-1.11.0.tgz#d61f46d83b2519250e2784daf5b09479a8b41c59"
   integrity sha512-xh1Rl34h6Fi1DC2WWKfxUTVqRsNnr6LsKz2+hfwDxQJWmrx8+c7ylaqBMcHfl1U1r2dsifOvKX3LQuLNZ+XSvA==
@@ -8270,6 +8341,11 @@ cron@^2.0.0:
   integrity sha512-Hq7u3P8y7UWYvsZbSKHHJDVG0VO9O7tp2qljxzTScelcTODBfCme8AIhnZsFwmQ9NchZ3hr2uNr+s3DSms7q6w==
   dependencies:
     luxon "^1.23.x"
+
+cronstrue@^2.2.0:
+  version "2.14.0"
+  resolved "https://registry.yarnpkg.com/cronstrue/-/cronstrue-2.14.0.tgz#7dcbebc9befc6fbc584403cc9c52b10772308a1e"
+  integrity sha512-rUTXOwOYrw7o4iV+Wg7fUXjMXDuqAMnhU007LrvaGbfVx73aiZz2e5SYjsAt6Q7ML2/z7Gq3qTncy3GKO9MLSQ==
 
 cross-env@^7.0.0:
   version "7.0.3"
@@ -11025,7 +11101,7 @@ google-auth-library@^8.0.0, google-auth-library@^8.0.1, google-auth-library@^8.0
     jws "^4.0.0"
     lru-cache "^6.0.0"
 
-google-gax@^3.5.1:
+google-gax@^3.3.0, google-gax@^3.5.1:
   version "3.5.2"
   resolved "https://registry.yarnpkg.com/google-gax/-/google-gax-3.5.2.tgz#7c3ad61dbf366a55527b803caead276668b160d8"
   integrity sha512-AyP53w0gHcWlzxm+jSgqCR3Xu4Ld7EpSjhtNBnNhzwwWaIUyphH9kBGNIEH+i4UGkTUXOY29K/Re8EiAvkBRGw==

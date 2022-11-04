@@ -37,6 +37,21 @@ yarn backstage-cli versions:check --fix
 yarn backstage-cli versions:bump
 ```
 
+## Environment Variable Substitution
+  https://backstage.io/docs/conf
+# Doc
+  https://backstage.io/docs/conf/writing#environment-variable-substitution
+
+# Variables
+```
+  GRAFANA_TOKEN_ACCESS
+  BITBUCKET_CLOUD_USERNAME
+  BITBUCKET_CLOUD_APP_PASSWORD
+  SONARQUBE_APIKEY
+  AWS_K8S_URL
+  AWS_K8S_CADATA
+```
+
 ## Run local
   https://demo.backstage.io/docs/default/component/backstage/getting-started/running-backstage-locally/
 
