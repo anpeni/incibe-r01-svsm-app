@@ -37,15 +37,15 @@ backend:
 
 integrations:
   bitbucketCloud:
-    - username: raulmartind #${BITBUCKET_CLOUD_USERNAME}
-      appPassword: ATBBVPqGe8bcq968EM2EnUNh8V7eAD034584 #${BITBUCKET_CLOUD_APP_PASSWORD}
+    - username: ${BITBUCKET_CLOUD_USERNAME}
+      appPassword: ${BITBUCKET_CLOUD_APP_PASSWORD}
 
 proxy:
   '/grafana/api':
     # May be a public or an internal DNS
     target: https://grafana.aws.neoris.cloud
     headers:
-      Authorization: Bearer eyJrIjoic0J2eDhabTZOT1BHMDhBVTR5OXRJZVF2Tkk5SFVpREYiLCJuIjoiYmFja3N0YWdlIiwiaWQiOjF9
+      Authorization: Bearer ${GRAFANA_TOKEN_ACCESS}
   '/prometheus/api':
     # url to the api and path of your hosted prometheus instance
     target: https://thanos-query.aws.neoris.cloud/api/v1 # https://prometheus.aws.neoris.cloud/api/v1
@@ -58,7 +58,7 @@ proxy:
     target: https://api.bitbucket.org/2.0/
     headers:
       # Basic base64(${BITBUCKET_CLOUD_USERNAME}:${BITBUCKET_CLOUD_APP_PASSWORD})
-      Authorization: Basic cmF1bG1hcnRpbmQ6QVRCQlZQcUdlOGJjcTk2OEVNMkVuVU5oOFY3ZUFEMDM0NTg0
+      Authorization: Basic ${BITBUCKETCI_TOKEN_ACCESS}
 
 # Reference documentation http://backstage.io/docs/features/techdocs/configuration
 # Note: After experimenting with basic setup, use CI/CD to generate docs
