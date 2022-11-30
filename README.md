@@ -33,8 +33,8 @@
 ## Bump package verions
 
 ```sh
-yarn backstage-cli versions:check --fix  
-yarn backstage-cli versions:bump
+  $ npx backstage-cli versions:check --fix
+  $ npx backstage-cli versions:bump
 ```
 
 ## Environment Variable Substitution
@@ -57,6 +57,8 @@ yarn backstage-cli versions:bump
   https://demo.backstage.io/docs/default/component/backstage/getting-started/running-backstage-locally/
 
 ```sh
+$ kill `lsof -t -i:3000`
+$ kill `lsof -t -i:7007`
 $ yarn install
 $ yarn dev
 
