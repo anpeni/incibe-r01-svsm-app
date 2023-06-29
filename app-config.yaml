@@ -36,7 +36,19 @@ backend:
       port: ${POSTGRES_PORT}
       user: ${POSTGRES_USER}
       password: ${POSTGRES_PASSWORD}
+    # TODO: Revisar y descomentar
+    # plugin:
+    #   auth:
+    #     connection:
+    #       database: backstage_plugin_auth
+    #   catalog:
+    #     connection:
+    #       database: backstage_plugin_catalog
+    #   scaffolder:
+    #     connection:
+    #       database: backstage_plugin_scaffolder
   # workingDirectory: /tmp # Use this to configure a working directory for the scaffolder, defaults to the OS temp-dir
+  
 
 integrations:
   bitbucketCloud:
@@ -69,9 +81,9 @@ proxy:
 # and an external cloud storage when deploying TechDocs for production use-case.
 # https://backstage.io/docs/features/techdocs/how-to-guides#how-to-migrate-from-techdocs-basic-to-recommended-deployment-approach
 techdocs:
-  builder: 'local' # Alternatives - 'external'
+  builder: 'external' # Alternatives - 'external'
   generator:
-    runIn: 'docker' # Alternatives - 'local'
+    runIn: 'local' # Alternatives - 'local'
   publisher:
     type: 'local' # Alternatives - 'googleGcs' or 'awsS3'. Read documentation for using alternatives.
 
