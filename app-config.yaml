@@ -1,6 +1,6 @@
 app:
   title: Neoris monitor
-  baseUrl: https://backstage.aws.neoris.cloud:7007
+  baseUrl: https://backstage.aws.neoris.cloud:3000
 
 organization:
   name: Neoris
@@ -12,7 +12,7 @@ backend:
   # auth:
   #   keys:
   #     - secret: ${BACKEND_SECRET}
-  baseUrl: https://backstage.aws.neoris.cloud
+  baseUrl: https://backstage.aws.neoris.cloud:7007
   listen:
     port: 7007
     # Uncomment the following host directive to bind to all IPv4 interfaces and
