@@ -43,12 +43,13 @@ integrations:
 proxy:
   '/grafana/api':
     # May be a public or an internal DNS
-    target: https://grafana.aws.neoris.cloud
+    target: ${URL_GRAFANA}
     headers:
       Authorization: Bearer ${GRAFANA_TOKEN_ACCESS}
   '/prometheus/api':
     # url to the api and path of your hosted prometheus instance
-    target: https://thanos-query.aws.neoris.cloud/api/v1 # https://prometheus.aws.neoris.cloud/api/v1
+    target: ${URL_PROMETHEUS}
+    secure: false
     #changeOrigin: true
     #secure: true
     #headers:
@@ -90,7 +91,7 @@ catalog:
 
 grafana:
   # Publicly accessible domain
-  domain: https://grafana.aws.neoris.cloud
+  domain: ${URL_GRAFANA_DOMAIN}
 
   # Is unified alerting enabled in Grafana?
   # See: https://grafana.com/blog/2021/06/14/the-new-unified-alerting-system-for-grafana-everything-you-need-to-know/
