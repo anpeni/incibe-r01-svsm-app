@@ -1,6 +1,6 @@
 app:
   title: Neoris monitor
-  baseUrl: http://localhost:3000
+  baseUrl: http://localhost:3000 # TODO: CAMBIAR A ENV EJ: APP_BASE_URL
 
 organization:
   name: Neoris
@@ -12,7 +12,7 @@ backend:
   # auth:
   #   keys:
   #     - secret: ${BACKEND_SECRET}
-  baseUrl: http://localhost:7007
+  baseUrl: http://localhost:7007  # TODO: CAMBIAR A ENV EJ: BACKEND_BASE_URL
   listen:
     port: 7007
     # Uncomment the following host directive to bind to all IPv4 interfaces and
@@ -23,7 +23,7 @@ backend:
     # Content-Security-Policy directives follow the Helmet format: https://helmetjs.github.io/#reference
     # Default Helmet Content-Security-Policy values can be removed by setting the key to false
   cors:
-    origin: http://localhost:3000
+    origin: http://localhost:3000  # TODO: CAMBIAR A ENV EJ: BACKEND_CORS_BASE_URL
     methods: [GET, HEAD, PATCH, POST, PUT, DELETE]
     credentials: true
   # This is for local development only, it is not recommended to use this in production
@@ -35,6 +35,17 @@ backend:
       port: ${POSTGRES_PORT}
       user: ${POSTGRES_USER}
       password: ${POSTGRES_PASSWORD}
+    # TODO: Revisar y descomentar
+    # plugin:
+    #   auth:
+    #     connection:
+    #       database: backstage_plugin_auth
+    #   catalog:
+    #     connection:
+    #       database: backstage_plugin_catalog
+    #   scaffolder:
+    #     connection:
+    #       database: backstage_plugin_scaffolder
   # workingDirectory: /tmp # Use this to configure a working directory for the scaffolder, defaults to the OS temp-dir
 
 integrations:
@@ -68,9 +79,9 @@ proxy:
 # and an external cloud storage when deploying TechDocs for production use-case.
 # https://backstage.io/docs/features/techdocs/how-to-guides#how-to-migrate-from-techdocs-basic-to-recommended-deployment-approach
 techdocs:
-  builder: 'local' # Alternatives - 'external'
+  builder: 'external' # Alternatives - 'external'
   generator:
-    runIn: 'docker' # Alternatives - 'local'
+    runIn: 'local' # Alternatives - 'local'
   publisher:
     type: 'local' # Alternatives - 'googleGcs' or 'awsS3'. Read documentation for using alternatives.
 
