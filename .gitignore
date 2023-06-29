@@ -46,3 +46,7 @@ site
 
 # Sensitive credentials
 *-credentials.yaml
+
+# Visual studio settings
+.vscode/*
+.vscode
