@@ -91,7 +91,7 @@ catalog:
 
 grafana:
   # Publicly accessible domain
-  domain: ${URL_GRAFANA_DOMAIN}
+  domain: https://grafana.aws.neoris.cloud/
 
   # Is unified alerting enabled in Grafana?
   # See: https://grafana.com/blog/2021/06/14/the-new-unified-alerting-system-for-grafana-everything-you-need-to-know/
