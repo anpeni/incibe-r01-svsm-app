@@ -1,6 +1,6 @@
 app:
   title: Neoris monitor
-  baseUrl: https://backstage.aws.neoris.cloud:3000
+  baseUrl: https://backstage.aws.neoris.cloud
 
 organization:
   name: Neoris
@@ -17,14 +17,14 @@ backend:
     port: 7007
     # Uncomment the following host directive to bind to all IPv4 interfaces and
     # not just the baseUrl hostname.
-    # host: 0.0.0.0
+    host: 0.0.0.0
   csp:
     connect-src: ["'self'", 'http:', 'https:']
     img-src: ["'self'", 'data:', 'https://backstage.io']
     # Content-Security-Policy directives follow the Helmet format: https://helmetjs.github.io/#reference
     # Default Helmet Content-Security-Policy values can be removed by setting the key to false
   cors:
-    origin: https://backstage.aws.neoris.cloud:7007
+    origin: https://backstage.aws.neoris.cloud
     methods: [GET, POST, PUT, DELETE]
     credentials: true
   # This is for local development only, it is not recommended to use this in production
@@ -94,14 +94,42 @@ scaffolder:
   # see https://backstage.io/docs/features/software-templates/configuration for software template options
 
 catalog:
-  import:
-    entityFilename: catalog-info.yaml
-    pullRequestBranchName: backstage-integration
+  readonly: false
   rules:
-    - allow: [Component, System, API, Resource, Location]
+    - allow: [Component, API, System, Domain, Resource, Location, User, Group]
   locations:
-    - type: file
-      target: ../../catalog-neoris/catalog-info.yaml
+    # Backstage example components
+    - type: url
+      target: https://github.com/backstage/backstage/blob/master/packages/catalog-model/examples/all-components.yaml
+
+    # Backstage example systems
+    - type: url
+      target: https://github.com/backstage/backstage/blob/master/packages/catalog-model/examples/all-systems.yaml
+
+    # Backstage example APIs
+    - type: url
+      target: https://github.com/backstage/backstage/blob/master/packages/catalog-model/examples/all-apis.yaml
+
+    # Backstage example organization groups
+    - type: url
+      target: https://github.com/backstage/backstage/blob/master/packages/catalog-model/examples/acme/org.yaml
+
+    # Backstage example domains
+    - type: url
+      target: https://github.com/backstage/backstage/blob/master/packages/catalog-model/examples/all-domains.yaml
+
+    # Backstage example resources
+    - type: url
+      target: https://github.com/backstage/backstage/blob/master/packages/catalog-model/examples/all-resources.yaml
+
+    # The backstage demo deployment (this)
+    - type: url
+      target: https://github.com/backstage/demo/blob/master/catalog-info.yaml
+
+    # The backstage library repository
+    - type: url
+      target: https://github.com/backstage/backstage/blob/master/catalog-info.yaml
+
 
 grafana:
   # Publicly accessible domain
