@@ -92,13 +92,13 @@ catalog:
     - allow: [Component, System, API, Resource, Location]
   locations:
     - type: file
-      target: ./catalog-neoris/catalog-info.yaml
+      target: ../catalog-neoris/catalog-info.yaml
     - type: file
-      target: ./catalog-neoris/all-systems.yaml
+      target: ../catalog-neoris/all-systems.yaml
     - type: file
-      target: ./catalog-neoris/all-compoents.yaml
+      target: ../catalog-neoris/all-compoents.yaml
     - type: file
-      target: ./catalog-neoris/all-apis.yaml
+      target: ../catalog-neoris/all-apis.yaml
 
 grafana:
   # Publicly accessible domain
