@@ -77,8 +77,15 @@ techdocs:
     type: 'local' # Alternatives - 'googleGcs' or 'awsS3'. Read documentation for using alternatives.
 
 auth:
-  # see https://backstage.io/docs/auth/ to learn about auth providers
-  providers: {}
+  environment: development
+  session:
+    secret: ${SESSION_SECRET}
+  providers:
+    auth.dex:
+      development:
+        metadataUrl: https://example.com/.well-known/openid-configuration
+        clientId: backstage
+        clientSecret: ${SECRET_BACKSTAGE_OAUTH_CLIENT_SECRET} 
 
 scaffolder:
   # see https://backstage.io/docs/features/software-templates/configuration for software template options
