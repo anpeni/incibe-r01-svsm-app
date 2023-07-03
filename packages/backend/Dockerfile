@@ -25,6 +25,9 @@ ENV NODE_ENV production
 COPY --chown=node:node yarn.lock package.json packages/backend/dist/skeleton.tar.gz ./
 RUN tar xzf skeleton.tar.gz && rm skeleton.tar.gz
 
+
+COPY --chown=node:node catalog-neoris/. ./catalog-neoris/
+
 RUN --mount=type=cache,target=/home/node/.cache/yarn,sharing=locked,uid=1000,gid=1000 \
     yarn install --frozen-lockfile --production --network-timeout 300000
 
