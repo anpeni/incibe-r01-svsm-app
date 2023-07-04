@@ -21,7 +21,7 @@ import { OAuth2 } from '@backstage/core-app-api';
 export const dexOIDCAuthApiRef: ApiRef<
   OpenIdConnectApi & ProfileInfoApi & BackstageIdentityApi & SessionApi
 > = createApiRef({
-  id: 'auth.dex-provider',
+  id: 'dex-provider',
 });
 
 export const apis: AnyApiFactory[] = [
@@ -37,7 +37,7 @@ export const apis: AnyApiFactory[] = [
         discoveryApi,
         oauthRequestApi,
         provider: {
-          id: 'auth.dex',
+          id: 'dex',
           title: 'Dex auth provider',
           icon: () => null,
         },

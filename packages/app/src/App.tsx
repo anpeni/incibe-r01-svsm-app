@@ -60,7 +60,7 @@ const app = createApp({
         providers={[
           'guest',
           {
-            id: 'auth.dex',
+            id: 'dex',
             title: 'Dex',
             message: 'Sign in using Azure AD',
             apiRef: dexOIDCAuthApiRef,

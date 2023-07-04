@@ -18,7 +18,7 @@ export default async function createPlugin(
     tokenManager: env.tokenManager,
     providerFactories: {
       ...defaultAuthProviderFactories,
-      'auth.dex': providers.oidc.create({
+      'dex': providers.oidc.create({
         signIn: {
           resolver(info, ctx) {
             const userRef = stringifyEntityRef({
