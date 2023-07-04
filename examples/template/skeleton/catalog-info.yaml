@@ -1,0 +1,28 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: ${{values.component_id | dump}}
+  {%- if values.description %}
+  description: ${{values.description | dump}}
+  {%- endif %}
+  annotations:
+    github.com/project-slug: ${{values.destination.owner + "/" + values.destination.repo}}
+    backstage.io/techdocs-ref: dir:.
+    # grafana/overview-dashboard: 'http://grafana/d/qSfS51a4z/some-dashboard?orgId=1&kiosk'
+    grafana/alert-label-selector: "service=awesome-service"
+    # grafana/dashboard-selector: micrometer
+    grafana/tag-selector: "micrometer"
+    # grafana/dashboard-selector: "title == JVM (Micrometer)"
+    grafana/overview-dashboard: 'http://localhost:4000/d/e4b2f8d4-8aed-4dab-a5fd-2cd3ddaa6893/jvm-micrometer?orgId=1&refresh=30s&from=1687354096754&to=1687440496754'
+    # grafana/overview-dashboard: "http://localhost:4000/d/e4b2f8d4-8aed-4dab-a5fd-2cd3ddaa6893/jvm-micrometer?orgId=1&refresh=30s"
+    # prometheus.io/scrape: "true"             # Habilita la recolección de métricas de Prometheus
+    # prometheus.io/path: "/prometheus/api"           # Ruta relativa al punto de enlace de métricas
+    # prometheus.io/port: "9090" 
+    # prometheus.io/alert: all
+    prometheus.io/rule: 'catalog_relations_count'
+    prometheus.io/alert: 'Excessive Memory Usage'
+    # grafana/dashboard-selector: "(tags @> 'my-service' || tags @> 'my-service-slo') && tags @> 'generated'"
+spec:
+  type: service
+  lifecycle: experimental
+  owner: ${{values.owner | dump}}
