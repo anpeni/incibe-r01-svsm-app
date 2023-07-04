@@ -78,12 +78,10 @@ techdocs:
 
 auth:
   environment: development
-  session:
-    secret: ${SESSION_SECRET}
   providers:
     auth.dex:
       development:
-        metadataUrl: https://example.com/.well-known/openid-configuration
+        metadataUrl: https://dex.aws.neoris.cloud/.well-known/openid-configuration
         clientId: backstage
         clientSecret: ${SECRET_BACKSTAGE_OAUTH_CLIENT_SECRET} 
 
