@@ -121,6 +121,12 @@ prometheus:
 sonarqube:
   baseUrl: https://sonarcloud.io
   apiKey: ${SONARQUBE_APIKEY}
+  instances: 
+    - name: tracing
+      baseUrl: https://sonarcloud.io
+      apiKey: ${SONARQUBE_APIKEY}
+
+
 
 kubernetes:
   serviceLocatorMethod:
