@@ -1,10 +1,10 @@
 app:
-  title: Neoris monitor
+  title: NEORIS monitor
   # Should be the same as backend.baseUrl when using the `app-backend` plugin.
   baseUrl: https://backstage.aws.neoris.cloud
 
 organization:
-  name: Neoris
+  name: NEORIS
 
 backend:
   # Note that the baseUrl should be the URL that the browser and other clients
@@ -12,7 +12,7 @@ backend:
   # reachable not just from within the backend host, but from all of your
   # callers. When its value is "http://localhost:7007", it's strictly private
   # and can't be reached by others.
-  baseUrl:  https://backstage.aws.neoris.cloud
+  baseUrl: https://backstage.aws.neoris.cloud
   listen:
     port: 7007
     # The following host directive binds to all IPv4 interfaces when its value
@@ -20,7 +20,7 @@ backend:
     # on your specific deployment. If you remove the host line entirely, the
     # backend will bind on the interface that corresponds to the backend.baseUrl
     # hostname.
-    host: 0.0.0.0
+    # host: 0.0.0.0
   cors:
     origin: https://backstage.aws.neoris.cloud
     methods: [GET, HEAD, PATCH, POST, PUT, DELETE]

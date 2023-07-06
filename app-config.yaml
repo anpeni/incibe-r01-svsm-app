@@ -1,6 +1,6 @@
 app:
-  title: NEORIS monitor
-  baseUrl: ${APP_BASE_URL}
+  title: Neoris monitor
+  baseUrl: http://localhost # https://backstage.aws.neoris.cloud
 
 organization:
   name: NEORIS
@@ -12,7 +12,7 @@ backend:
   # auth:
   #   keys:
   #     - secret: ${BACKEND_SECRET}
-  baseUrl: ${BACKEND_BASE_URL}
+  baseUrl: http://localhost # https://backstage.aws.neoris.cloud
   listen:
     port: 7007
     # Uncomment the following host directive to bind to all IPv4 interfaces and
@@ -24,7 +24,7 @@ backend:
   #   # Content-Security-Policy directives follow the Helmet format: https://helmetjs.github.io/#reference
   #   # Default Helmet Content-Security-Policy values can be removed by setting the key to false
   cors:
-    origin: ${APP_BASE_URL}
+    origin: http://localhost # https://backstage.aws.neoris.cloud
     methods: [GET, POST, PUT, DELETE]
     credentials: true
   # This is for local development only, it is not recommended to use this in production
