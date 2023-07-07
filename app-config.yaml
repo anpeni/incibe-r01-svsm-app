@@ -37,7 +37,6 @@ backend:
       user: ${POSTGRES_USER}
       password: ${POSTGRES_PASSWORD}
   # workingDirectory: /tmp # Use this to configure a working directory for the scaffolder, defaults to the OS temp-dir
-  
 
 integrations:
   bitbucketCloud:
@@ -45,12 +44,12 @@ integrations:
       appPassword: ${BITBUCKET_CLOUD_APP_PASSWORD}
 
 proxy:
-  '/grafana/api':
+  "/grafana/api":
     # May be a public or an internal DNS
     target: ${URL_GRAFANA}
     headers:
       Authorization: Bearer ${GRAFANA_TOKEN_ACCESS}
-  '/prometheus/api':
+  "/prometheus/api":
     # url to the api and path of your hosted prometheus instance
     target: ${URL_PROMETHEUS}
     secure: false
@@ -58,7 +57,7 @@ proxy:
     #secure: true
     #headers:
     #  Authorization: $YOUR_AUTH_TOKEN_IF_PROMETHEUS_IS_SECURED
-  '/bitbucketci':
+  "/bitbucketci":
     # May be a public or an internal DNS
     target: https://api.bitbucket.org/2.0/
     headers:
@@ -70,11 +69,11 @@ proxy:
 # and an external cloud storage when deploying TechDocs for production use-case.
 # https://backstage.io/docs/features/techdocs/how-to-guides#how-to-migrate-from-techdocs-basic-to-recommended-deployment-approach
 techdocs:
-  builder: 'external' # Alternatives - 'external'
+  builder: "external" # Alternatives - 'external'
   generator:
-    runIn: 'local' # Alternatives - 'local'
+    runIn: "local" # Alternatives - 'local'
   publisher:
-    type: 'local' # Alternatives - 'googleGcs' or 'awsS3'. Read documentation for using alternatives.
+    type: "local" # Alternatives - 'googleGcs' or 'awsS3'. Read documentation for using alternatives.
 
 auth:
   environment: development
@@ -83,7 +82,7 @@ auth:
       development:
         metadataUrl: https://dex.aws.neoris.cloud/.well-known/openid-configuration
         clientId: backstage
-        clientSecret: ${SECRET_BACKSTAGE_OAUTH_CLIENT_SECRET} 
+        clientSecret: ${SECRET_BACKSTAGE_OAUTH_CLIENT_SECRET}
 
 scaffolder:
   # see https://backstage.io/docs/features/software-templates/configuration for software template options
@@ -121,20 +120,18 @@ prometheus:
 sonarqube:
   baseUrl: https://sonarcloud.io
   apiKey: ${SONARQUBE_APIKEY}
-  instances: 
+  instances:
     - name: tracing
       baseUrl: https://sonarcloud.io
       apiKey: ${SONARQUBE_APIKEY}
 
-
-
 kubernetes:
   serviceLocatorMethod:
-    type: 'multiTenant'
+    type: "multiTenant"
   clusterLocatorMethods:
-    - type: 'config'
+    - type: "config"
       clusters:
         - url: ${AWS_K8S_URL}
           name: devsecops
-          authProvider: 'aws'
+          authProvider: "aws"
           caData: ${AWS_K8S_CADATA}
