@@ -77,6 +77,9 @@ techdocs:
 
 auth:
   environment: development
+  ### Providing an auth.session.secret will enable session support in the auth-backend
+  session:
+    secret: ${SESSION_SECRET}
   providers:
     dex:
       development:
