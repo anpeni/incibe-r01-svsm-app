@@ -1,6 +1,6 @@
 # [Backstage](https://backstage.io)
 
-## Docs.
+## Docs
   https://backstage.io/docs
   https://demo.backstage.io/docs/default/component/backstage
 
