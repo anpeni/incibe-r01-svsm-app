@@ -19,4 +19,7 @@ RUN yarn install --frozen-lockfile --production --network-timeout 300000 && rm -
 COPY --chown=node:node packages/backend/dist/bundle.tar.gz app-config*.yaml ./
 RUN tar xzf bundle.tar.gz && rm bundle.tar.gz
 
+# Copy the catalogs
+COPY --chown=node:node catalog-neoris/ ./catalog-neoris/
+
 CMD ["node", "packages/backend", "--config", "app-config.yaml", "--config", "app-config.production.yaml"]
