@@ -1,4 +1,4 @@
-FROM node:16-bullseye-slim
+FROM public.ecr.aws/docker/library/node:16-bullseye-slim
 
 # From here on we use the least-privileged `node` user to run the backend.
 USER node
