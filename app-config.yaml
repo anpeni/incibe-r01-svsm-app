@@ -101,7 +101,6 @@ catalog:
     - type: file
       target: /app/catalog-neoris/catalog-info.yaml
 
-
 grafana:
   # Publicly accessible domain
   domain: https://grafana.aws.neoris.cloud/
@@ -133,3 +132,8 @@ kubernetes:
           name: devsecops
           authProvider: "aws"
           caData: ${AWS_K8S_CADATA}
+
+jenkins:
+  baseUrl: ${URL_JENKINS}
+  username: backstage-bot
+  apiKey: ${JENKINS_APIKEY}

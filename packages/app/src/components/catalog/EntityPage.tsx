@@ -89,6 +89,13 @@ import { isBitbucketAvailable, EntityBitbucketContent } from '@internal/backstag
 // .--  plugin-kubernete --
 import { EntityKubernetesContent } from '@backstage/plugin-kubernetes';
 
+// plugin-jenkins
+import {
+  EntityJenkinsContent,
+  EntityLatestJenkinsRunCard,
+  isJenkinsAvailable,
+} from '@backstage/plugin-jenkins';
+
 const techdocsContent = (
   <EntityTechdocsContent>
     <TechDocsAddons>
@@ -186,9 +193,24 @@ const serviceEntityPage = (
   <EntityLayout>
     <EntityLayout.Route path="/" title="Overview">
       {overviewContent}
+      <EntitySwitch>
+        <EntitySwitch.Case if={isJenkinsAvailable}>
+          <Grid item sm={6}>
+            <EntityLatestJenkinsRunCard
+              branch="main,master"
+              variant="gridItem"
+            />
+          </Grid>
+        </EntitySwitch.Case>
+      </EntitySwitch>
     </EntityLayout.Route>
 
     <EntityLayout.Route path="/ci-cd" title="CI/CD">
+      <EntitySwitch>
+        <EntitySwitch.Case if={isJenkinsAvailable}>
+          <EntityJenkinsContent />
+        </EntitySwitch.Case>
+      </EntitySwitch>
       {cicdContent}
     </EntityLayout.Route>
 
