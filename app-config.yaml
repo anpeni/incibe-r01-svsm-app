@@ -98,12 +98,7 @@ catalog:
   locations:
     - type: file
       target: ../../catalog-neoris/catalog-info.yaml
-    - type: file
-      target: ../../catalog-neoris/all-systems.yaml
-    - type: file
-      target: ../../catalog-neoris/all-components.yaml
-    - type: file
-      target: ../../catalog-neoris/all-apis.yaml
+
 
 grafana:
   # Publicly accessible domain
@@ -138,3 +133,8 @@ kubernetes:
           name: devsecops
           authProvider: 'aws'
           caData: ${AWS_K8S_CADATA}
+
+jenkins:
+  baseUrl: ${URL_JENKINS}
+  username: backstage-bot
+  apiKey: ${JENKINS_APIKEY}
