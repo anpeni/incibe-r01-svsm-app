@@ -1,0 +1,43 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: "spring-service"
+  annotations:
+    github.com/project-slug: anpeni/ backstage2206-06
+    # backstage.io/techdocs-ref: dir:.
+    # grafana/overview-dashboard: 'http://grafana/d/qSfS51a4z/some-dashboard?orgId=1&kiosk'
+    # grafana/alert-label-selector: "alertname=alerta1"
+    grafana/alert-name: "alerta1"
+    # grafana/dashboard-selector: micrometer
+    grafana/tag-selector: "micrometer"
+    # sonarqube.org/project-key: "com.neoris:tracing"
+    sonarqube.org/project-key: "tracing/nuevaorganizacion_proyectotracing"
+    # sonarqube.org/project-key: "nuevaorganizacion_proyectotracing"
+    # grafana/tag-selector: "cost"
+    # grafana/tag-selector: "alerta1"
+    grafana/alert-label-selector: "alertname=rate"
+    # grafana/dashboard-selector: "title == JVM (Micrometer)"
+    grafana/overview-dashboard: 'http://localhost:4000/d/e4b2f8d4-8aed-4dab-a5fd-2cd3ddaa6893/jvm-micrometer?orgId=1&refresh=30s&from=1687354096754&to=1687440496754'
+    # grafana/overview-dashboard: 'https://grafana.aws.neoris.cloud/d/cluster-costs/cluster-cost-and-utilization-metrics?orgId=1&refresh=15m'
+    # grafana/overview-dashboard: "http://localhost:4000/d/da0d3dfb-1b81-4eba-b174-4314c5755710/jvm-micrometer?orgId=1&refresh=30s"
+    # prometheus.io/scrape: "true"             # Habilita la recolección de métricas de Prometheus
+    # prometheus.io/path: "/prometheus/api"           # Ruta relativa al punto de enlace de métricas
+    # prometheus.io/port: "9090" 
+    # prometheus.io/alert: all
+    # prometheus.io/rule: memUsage|component,node_memory_active_bytes|instance,sum by (instance) (node_cpu_seconds_total)  
+    # prometheus.io/rule: 'catalog_relations_count | entities, catalog_relations_count | entities'
+    prometheus.io/rule: 'jvm_memory_used_bytes, jvm_gc_pause_seconds_max'
+    prometheus.io/alert: 'TestAlert'
+    # grafana/dashboard-selector: "(tags @> 'my-service' || tags @> 'my-service-slo') && tags @> 'generated'"
+    # prometheus.io/scrape: "true"             # Habilita la recolección de métricas de Prometheus
+    # prometheus.io/path: "/actuator/prometheus"           # Ruta relativa al punto de enlace de métricas
+    # prometheus.io/port: "8080"
+spec:
+  type: service
+  lifecycle: experimental
+  owner: "group:default/guests"
+  links:
+    - url: https://antonioperezn@bitbucket.org/backstage-dex/spring-service
+      title: Bitbucket Repo
+      icon: bitbucket
+ 

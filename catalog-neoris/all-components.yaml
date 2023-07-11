@@ -14,3 +14,4 @@ spec:
     - ./components/testops/dso.petclinic-jmeter.yaml
     - ./components/testops/dso.petclinic-postman.yaml
     - ./components/testops/dso.petclinic-robotframework.yaml
+    - ./components/testops/service-spring.yaml
