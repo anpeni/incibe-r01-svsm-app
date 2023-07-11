@@ -31,7 +31,6 @@ metadata:
     # grafana/dashboard-selector: "(tags @> 'my-service' || tags @> 'my-service-slo') && tags @> 'generated'"
     # prometheus.io/scrape: "true"             # Habilita la recolección de métricas de Prometheus
     # prometheus.io/path: "/actuator/prometheus"           # Ruta relativa al punto de enlace de métricas
-    # prometheus.io/port: "8080"
 spec:
   type: service
   lifecycle: experimental
