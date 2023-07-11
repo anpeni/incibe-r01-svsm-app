@@ -192,26 +192,30 @@ const overviewContent = (
 const serviceEntityPage = (
   <EntityLayout>
     <EntityLayout.Route path="/" title="Overview">
-      {overviewContent}
-      <EntitySwitch>
-        <EntitySwitch.Case if={isJenkinsAvailable}>
-          <Grid item sm={6}>
-            <EntityLatestJenkinsRunCard
-              branch="main,master"
-              variant="gridItem"
-            />
-          </Grid>
-        </EntitySwitch.Case>
-      </EntitySwitch>
+      <React.Fragment>
+        {overviewContent}
+        <EntitySwitch>
+          <EntitySwitch.Case if={isJenkinsAvailable}>
+            <Grid item sm={6}>
+              <EntityLatestJenkinsRunCard
+                branch="main,master"
+                variant="gridItem"
+              />
+            </Grid>
+          </EntitySwitch.Case>
+        </EntitySwitch>
+      </React.Fragment>
     </EntityLayout.Route>
 
     <EntityLayout.Route path="/ci-cd" title="CI/CD">
+    <React.Fragment>
       <EntitySwitch>
         <EntitySwitch.Case if={isJenkinsAvailable}>
           <EntityJenkinsContent />
         </EntitySwitch.Case>
       </EntitySwitch>
       {cicdContent}
+      </React.Fragment>
     </EntityLayout.Route>
 
     <EntityLayout.Route if={isBitbucketAvailable} path="/bitbucket" title="Bitbucket">
