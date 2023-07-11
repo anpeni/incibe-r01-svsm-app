@@ -1,12 +1,13 @@
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
-  name: "spring-service"
+  name: "service-spring"
   annotations:
-    github.com/project-slug: anpeni/ backstage2206-06
+    # github.com/project-slug: anpeni/ backstage2206-06
     # backstage.io/techdocs-ref: dir:.
     # grafana/overview-dashboard: 'http://grafana/d/qSfS51a4z/some-dashboard?orgId=1&kiosk'
     # grafana/alert-label-selector: "alertname=alerta1"
+    backstage.io/source-location: url:https://bitbucket.org/backstage-dex/spring-service/src/master/
     grafana/alert-name: "alerta1"
     # grafana/dashboard-selector: micrometer
     grafana/tag-selector: "micrometer"
@@ -31,12 +32,12 @@ metadata:
     # grafana/dashboard-selector: "(tags @> 'my-service' || tags @> 'my-service-slo') && tags @> 'generated'"
     # prometheus.io/scrape: "true"             # Habilita la recolección de métricas de Prometheus
     # prometheus.io/path: "/actuator/prometheus"           # Ruta relativa al punto de enlace de métricas
+    # prometheus.io/port: "8080"
+  links:
+    - url: https://antonioperezn@bitbucket.org/backstage-dex/spring-service
+      title: Bitbucket Repo
+      icon: bitbucket    
 spec:
   type: service
   lifecycle: experimental
   owner: "group:default/guests"
-  links:
-    - url: https://antonioperezn@bitbucket.org/backstage-dex/spring-service
-      title: Bitbucket Repo
-      icon: bitbucket
- 
