@@ -123,6 +123,12 @@ sonarqube:
       baseUrl: https://sonarcloud.io
       apiKey: ${SONARQUBE_APIKEY}
 
+tekton:
+  - name: cluster1   
+    baseUrl: ${AWS_K8S_URL}
+    authorizationBearerToken: ${AWS_K8S_CADATA}
+    dashboardBaseUrl: https://tekton-dashboard.aws.neoris.cloud/
+
 kubernetes:
   serviceLocatorMethod:
     type: "multiTenant"

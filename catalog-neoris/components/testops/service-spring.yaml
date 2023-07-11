@@ -3,6 +3,8 @@ kind: Component
 metadata:
   name: "service-spring"
   annotations:
+    tektonci/build-namespace: cicd
+    tektonci/pipeline-label-selector: 'kustomize.toolkit.fluxcd.io/name: cluster-tools-cicd-pipelines'
     # github.com/project-slug: anpeni/ backstage2206-06
     # backstage.io/techdocs-ref: dir:.
     # grafana/overview-dashboard: 'http://grafana/d/qSfS51a4z/some-dashboard?orgId=1&kiosk'
