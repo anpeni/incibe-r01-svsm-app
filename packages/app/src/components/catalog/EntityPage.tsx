@@ -95,6 +95,7 @@ import {
   EntityLatestJenkinsRunCard,
   isJenkinsAvailable,
 } from '@backstage/plugin-jenkins';
+import { EntityTektonPipelinesContent, isTektonCiAvailable } from '@jquad-group/plugin-tekton-pipelines';
 
 const techdocsContent = (
   <EntityTechdocsContent>
@@ -206,6 +207,26 @@ const serviceEntityPage = (
         </EntitySwitch>
       </React.Fragment>
     </EntityLayout.Route>
+    <EntityLayout.Route path="/tekton-pipelines-plugin" title="Tekton Pipelines">
+   
+      <EntitySwitch>
+
+        <EntitySwitch.Case if={e => Boolean(isTektonCiAvailable(e))}>
+          <EntityTektonPipelinesContent />
+        </EntitySwitch.Case>
+
+        <EntitySwitch.Case>
+          <EmptyState
+            title="No Tekton Pipelines available for this entity"
+            missing="info"
+            description="You need to add the annotation 'tektonci/build-namespace' to your component if you want to enable the Tekton Pipelines for it."
+          />
+        </EntitySwitch.Case>
+
+      </EntitySwitch>
+
+    </EntityLayout.Route>
+    
 
     <EntityLayout.Route path="/ci-cd" title="CI/CD">
     <React.Fragment>

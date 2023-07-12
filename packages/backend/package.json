@@ -37,6 +37,8 @@
     "@backstage/plugin-sonarqube-backend": "^0.2.0",
     "@backstage/plugin-techdocs-backend": "^1.6.3",
     "@backstage/plugin-todo-backend": "^0.1.43",
+    "@jquad-group/plugin-tekton-pipelines-backend": "0.3.3",
+    "@jquad-group/plugin-tekton-pipelines-common": "0.3.3",
     "app": "link:../app",
     "better-sqlite3": "^7.5.0",
     "dockerode": "^3.3.1",

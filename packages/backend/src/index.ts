@@ -36,6 +36,7 @@ import { PluginEnvironment } from './types';
 import { ServerPermissionClient } from '@backstage/plugin-permission-node';
 import { DefaultIdentityClient } from '@backstage/plugin-auth-node';
 import jenkins from './plugins/jenkins';
+import tekton from './plugins/tekton-pipelines';
 
 function makeCreateEnv(config: Config) {
   const root = getRootLogger();
@@ -91,10 +92,12 @@ async function main() {
   const techdocsEnv = useHotMemoize(module, () => createEnv('techdocs'));
   const searchEnv = useHotMemoize(module, () => createEnv('search'));
   const appEnv = useHotMemoize(module, () => createEnv('app'));
+  const tektonEnv = useHotMemoize(module, () => createEnv('tekton'))
   // .-- Add new plugins --
   const sonarqubeEnv = useHotMemoize(module, () => createEnv('sonarqube'));
   const todoEnv = useHotMemoize(module, () => createEnv('todo'));
   const kubernetesEnv = useHotMemoize(module, () => createEnv('kubernetes'));
+  
 
   const apiRouter = Router();
   apiRouter.use('/catalog', await catalog(catalogEnv));
@@ -104,10 +107,12 @@ async function main() {
   apiRouter.use('/techdocs', await techdocs(techdocsEnv));
   apiRouter.use('/proxy', await proxy(proxyEnv));
   apiRouter.use('/search', await search(searchEnv));
+  apiRouter.use('/tekton-pipelines', await tekton(tektonEnv) )
   // .-- Add new plugins --
   apiRouter.use('/sonarqube', await sonarqube(sonarqubeEnv));
   apiRouter.use('/todo', await todo(todoEnv));
   apiRouter.use('/kubernetes', await kubernetes(kubernetesEnv));
+  
 
   // Add backends ABOVE this line; this 404 handler is the catch-all fallback
   apiRouter.use(notFoundHandler());
