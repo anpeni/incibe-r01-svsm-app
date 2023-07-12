@@ -1,10 +1,15 @@
+# ====================================================================================
+#  Backstage frontend configuration
+# ====================================================================================
 app:
   title: Neoris monitor
-  baseUrl: http://localhost # https://backstage.aws.neoris.cloud
+  baseUrl: http://localhost:3000
 
 organization:
   name: NEORIS
-
+# ====================================================================================
+#  Backstage backend configuration
+# ====================================================================================
 backend:
   # Used for enabling authentication, secret is shared by all backend plugins
   # See https://backstage.io/docs/tutorials/backend-to-backend-auth for
@@ -12,7 +17,7 @@ backend:
   # auth:
   #   keys:
   #     - secret: ${BACKEND_SECRET}
-  baseUrl: http://localhost # https://backstage.aws.neoris.cloud
+  baseUrl: http://localhost:7007
   listen:
     port: 7007
     # Uncomment the following host directive to bind to all IPv4 interfaces and
@@ -24,11 +29,9 @@ backend:
   #   # Content-Security-Policy directives follow the Helmet format: https://helmetjs.github.io/#reference
   #   # Default Helmet Content-Security-Policy values can be removed by setting the key to false
   cors:
-    origin: http://localhost # https://backstage.aws.neoris.cloud
+    origin: http://localhost:3000
     methods: [GET, POST, PUT, DELETE]
     credentials: true
-  # This is for local development only, it is not recommended to use this in production
-  # The production database configuration is stored in app-config.production.yaml
   database:
     client: pg
     connection:
@@ -38,31 +41,6 @@ backend:
       password: ${POSTGRES_PASSWORD}
   # workingDirectory: /tmp # Use this to configure a working directory for the scaffolder, defaults to the OS temp-dir
 
-integrations:
-  bitbucketCloud:
-    - username: ${BITBUCKET_CLOUD_USERNAME}
-      appPassword: ${BITBUCKET_CLOUD_APP_PASSWORD}
-
-proxy:
-  "/grafana/api":
-    # May be a public or an internal DNS
-    target: ${URL_GRAFANA}
-    headers:
-      Authorization: Bearer ${GRAFANA_TOKEN_ACCESS}
-  "/prometheus/api":
-    # url to the api and path of your hosted prometheus instance
-    target: ${URL_PROMETHEUS}
-    secure: false
-    #changeOrigin: true
-    #secure: true
-    #headers:
-    #  Authorization: $YOUR_AUTH_TOKEN_IF_PROMETHEUS_IS_SECURED
-  "/bitbucketci":
-    # May be a public or an internal DNS
-    target: https://api.bitbucket.org/2.0/
-    headers:
-      # Basic base64(${BITBUCKET_CLOUD_USERNAME}:${BITBUCKET_CLOUD_APP_PASSWORD})
-      Authorization: Basic ${BITBUCKETCI_TOKEN_ACCESS}
 
 # Reference documentation http://backstage.io/docs/features/techdocs/configuration
 # Note: After experimenting with basic setup, use CI/CD to generate docs
@@ -75,9 +53,11 @@ techdocs:
   publisher:
     type: "local" # Alternatives - 'googleGcs' or 'awsS3'. Read documentation for using alternatives.
 
+# ====================================================================================
+#  Backstage authentication configuration
+# ====================================================================================
 auth:
   environment: development
-  ### Providing an auth.session.secret will enable session support in the auth-backend
   session:
     secret: ${SESSION_SECRET}
   providers:
@@ -90,6 +70,9 @@ auth:
 scaffolder:
   # see https://backstage.io/docs/features/software-templates/configuration for software template options
 
+# ====================================================================================
+#  Backstage catalog configuration
+# ====================================================================================
 catalog:
   readonly: false
   import:
@@ -99,22 +82,46 @@ catalog:
     - allow: [Component, System, API, Resource, Location]
   locations:
     - type: file
-      target: /app/catalog-neoris/catalog-info.yaml
+      target: /../../catalog-neoris/catalog-info.yaml
 
+# ====================================================================================
+#  Backstage proxy configuration
+# ====================================================================================
+proxy:
+  "/grafana/api":
+    target: ${URL_GRAFANA}
+    headers:
+      Authorization: Bearer ${GRAFANA_TOKEN_ACCESS}
+  "/prometheus/api":
+    target: ${URL_PROMETHEUS}
+    secure: false
+    #changeOrigin: true
+    #secure: true
+    #headers:
+    #  Authorization: $YOUR_AUTH_TOKEN_IF_PROMETHEUS_IS_SECURED
+  "/bitbucketci":
+    target: https://api.bitbucket.org/2.0/
+    headers:
+      # Basic base64(${BITBUCKET_CLOUD_USERNAME}:${BITBUCKET_CLOUD_APP_PASSWORD})
+      Authorization: Basic ${BITBUCKETCI_TOKEN_ACCESS}
 
+# ====================================================================================
+#  Backstage integrations configuration
+# ====================================================================================
+integrations:
+  bitbucketCloud:
+    - username: ${BITBUCKET_CLOUD_USERNAME}
+      appPassword: ${BITBUCKET_CLOUD_APP_PASSWORD}
 grafana:
   # Publicly accessible domain
   domain: https://grafana.aws.neoris.cloud/
-
   # Is unified alerting enabled in Grafana?
   # See: https://grafana.com/blog/2021/06/14/the-new-unified-alerting-system-for-grafana-everything-you-need-to-know/
   # Optional. Default: false
   unifiedAlerting: false
-
 # Defaults to /prometheus/api and can be omitted if proxy is configured for that url
 prometheus:
   proxyPath: /prometheus/api
-
 sonarqube:
   baseUrl: https://sonarcloud.io
   apiKey: ${SONARQUBE_APIKEY}
@@ -122,13 +129,11 @@ sonarqube:
     - name: tracing
       baseUrl: https://sonarcloud.io
       apiKey: ${SONARQUBE_APIKEY}
-
 tekton:
   - name: cluster1   
     baseUrl: ${AWS_K8S_URL}
     authorizationBearerToken: ${AWS_K8S_CADATA}
     dashboardBaseUrl: https://tekton-dashboard.aws.neoris.cloud/
-
 kubernetes:
   serviceLocatorMethod:
     type: "multiTenant"
