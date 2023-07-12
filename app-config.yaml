@@ -82,7 +82,7 @@ catalog:
     - allow: [Component, System, API, Resource, Location]
   locations:
     - type: file
-      target: /../../catalog-neoris/catalog-info.yaml
+      target: ../../catalog-neoris/catalog-info.yaml
 
 # ====================================================================================
 #  Backstage proxy configuration
