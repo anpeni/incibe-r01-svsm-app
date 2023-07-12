@@ -99,7 +99,7 @@ catalog:
     - allow: [Component, System, API, Resource, Location]
   locations:
     - type: file
-      target: /app/catalog-neoris/catalog-info.yaml
+      target: ../../catalog-neoris/catalog-info.yaml
 
 grafana:
   # Publicly accessible domain
@@ -133,7 +133,8 @@ kubernetes:
           authProvider: "aws"
           caData: ${AWS_K8S_CADATA}
 
-jenkins:
-  baseUrl: ${URL_JENKINS}
-  username: backstage-bot
-  apiKey: ${JENKINS_APIKEY}
+# Descomentar cuando este disponible en el Cluster
+# jenkins:
+#   baseUrl: ${URL_JENKINS}
+#   username: backstage-bot
+#   apiKey: ${JENKINS_APIKEY}
