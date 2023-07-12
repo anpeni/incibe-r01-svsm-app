@@ -85,8 +85,8 @@ kubernetes:
   clusterLocatorMethods:
     - type: "config"
       clusters:
-        - url: ${KUBERNETES_CLUSTER_0_URL}
-          name: ${KUBERNETES_CLUSTER_0_NAME}
-          authProvider: "${KUBERNETES_CLUSTER_0_PROVIDER}"
+        - url: ${AWS_K8S_URL}
+          name: ${AWS_K8S_NAME}
+          authProvider: "${AWS_K8S_PROVIDER}"
           caData: ${AWS_K8S_CADATA}
 
