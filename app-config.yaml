@@ -144,11 +144,7 @@ kubernetes:
           name: devsecops
           authProvider: "aws"
           caData: ${AWS_K8S_CADATA}
-tekton:
-  - name: cluster1   
-    baseUrl: ${AWS_K8S_URL}
-    authorizationBearerToken: ${AWS_K8S_CADATA}
-    dashboardBaseUrl: https://tekton-dashboard.aws.neoris.cloud/
+
 
 # Descomentar cuando este disponible en el Cluster
 # jenkins:
