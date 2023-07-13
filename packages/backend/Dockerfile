@@ -1,4 +1,4 @@
-FROM public.ecr.aws/docker/library/node:16-bullseye-slim
+FROM nikolaik/python-nodejs:python3.9-nodejs16-bullseye
 
 # From here on we use the least-privileged `node` user to run the backend.
 USER node
