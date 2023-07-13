@@ -4,7 +4,7 @@ FROM nikolaik/python-nodejs:python3.9-nodejs16-bullseye
 RUN useradd -ms /bin/bash node
 
 # Cambiar el propietario de los archivos al usuario 'node'
-RUN chown -R node:node /app
+RUN chown -R node:node
 
 # From here on we use the least-privileged `node` user to run the backend.
 USER node
