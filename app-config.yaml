@@ -2,7 +2,7 @@
 #  Backstage frontend configuration
 # ====================================================================================
 app:
-  title: Neoris monitor
+  title: NEORIS monitor
   baseUrl: http://localhost:3000
 
 organization:
@@ -150,5 +150,5 @@ kubernetes:
 # Descomentar cuando este disponible en el Cluster
 # jenkins:
 #   baseUrl: ${URL_JENKINS}
-#   username: backstage-bot
+#   username: ${JENKINS_USERNAME}
 #   apiKey: ${JENKINS_APIKEY}

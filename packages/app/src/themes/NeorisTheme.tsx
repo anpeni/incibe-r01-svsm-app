@@ -76,15 +76,15 @@ const baseTheme = createTheme({
       light: '#4C9AFF',
       dark: '#0747A6',
     },
-    navigation: {
-      ...lightTheme.palette.navigation,
-      background: grey , //'#172B4D',
-      color: white,
-      indicator: blueDark, //'#2684FF',
-      navItem: {
-        hoverBackground: blueDark06, // 'rgba(116,118,121,0.6)',
-      },
-    },
+    // navigation: {
+    //   ...lightTheme.palette.navigation,
+    //   background: grey , //'#172B4D',
+    //   color: white,
+    //   indicator: blueDark, //'#2684FF',
+    //   navItem: {
+    //     hoverBackground: blueDark06, // 'rgba(116,118,121,0.6)',
+    //   },
+    // },
     text: {
       primary: grey , //'#172B48',
     },
