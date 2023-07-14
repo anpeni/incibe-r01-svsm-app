@@ -104,6 +104,10 @@ proxy:
     headers:
       # Basic base64(${BITBUCKET_CLOUD_USERNAME}:${BITBUCKET_CLOUD_APP_PASSWORD})
       Authorization: Basic ${BITBUCKETCI_TOKEN_ACCESS}
+  "/circleci/api":
+    target: https://circleci.com/api/v1.1
+    headers:
+      Circle-Token: ${CIRCLECI_AUTH_TOKEN}
 
 # ====================================================================================
 #  Backstage integrations configuration
@@ -149,5 +153,5 @@ kubernetes:
 # Descomentar cuando este disponible en el Cluster
 # jenkins:
 #   baseUrl: ${URL_JENKINS}
-#   username: backstage-bot
+#   username: ${JENKINS_USERNAME}
 #   apiKey: ${JENKINS_APIKEY}
