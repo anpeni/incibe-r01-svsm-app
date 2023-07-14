@@ -131,8 +131,8 @@ sonarqube:
       apiKey: ${SONARQUBE_APIKEY}
 tekton:
   - name: devsecops   
-    baseUrl: https://tekton-dashboard.aws.neoris.cloud/
-    authorizationBearerToken: ${SESSION_SECRET}
+    baseUrl: ${AWS_K8S_URL}
+    # authorizationBearerToken: ${SECRET_BACKSTAGE_OAUTH_CLIENT_SECRET}
     dashboardBaseUrl: https://tekton-dashboard.aws.neoris.cloud/
 kubernetes:
   serviceLocatorMethod:

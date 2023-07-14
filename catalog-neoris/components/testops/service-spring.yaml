@@ -3,8 +3,8 @@ kind: Component
 metadata:
   name: "service-spring"
   annotations:
-    tektonci/build-namespace: cicd
-    tektonci/pipeline-label-selector: 'kustomize.toolkit.fluxcd.io/name: cluster-tools-cicd-pipelines'
+    tektonci/build-namespace: 'neoris-testops-cicd'
+    tektonci/pipeline-label-selector: 'app.kubernetes.io/instance=cicd-petclinic-angular'
     # github.com/project-slug: anpeni/ backstage2206-06
     # backstage.io/techdocs-ref: dir:.
     # grafana/overview-dashboard: 'http://grafana/d/qSfS51a4z/some-dashboard?orgId=1&kiosk'
