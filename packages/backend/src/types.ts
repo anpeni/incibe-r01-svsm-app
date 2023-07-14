@@ -19,6 +19,7 @@ export type PluginEnvironment = {
   reader: UrlReader;
   discovery: PluginEndpointDiscovery;
   tokenManager: TokenManager;
+  // token: TokenManager["getToken"]
   scheduler: PluginTaskScheduler;
   permissions: PermissionEvaluator;
   identity: IdentityApi;

@@ -5,6 +5,8 @@ metadata:
   annotations:
     tektonci/build-namespace: 'neoris-testops-cicd'
     tektonci/pipeline-label-selector: 'app.kubernetes.io/instance=cicd-petclinic-angular'
+    backstage.io/kubernetes-label-selector: 'app.kubernetes.io/instance=cicd-petclinic-angular'
+    backstage.io/kubernetes-namespace: 'neoris-testops-cicd'
     # github.com/project-slug: anpeni/ backstage2206-06
     # backstage.io/techdocs-ref: dir:.
     # grafana/overview-dashboard: 'http://grafana/d/qSfS51a4z/some-dashboard?orgId=1&kiosk'

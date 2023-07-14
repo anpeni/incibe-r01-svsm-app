@@ -76,9 +76,9 @@ grafana:
   domain: ${URL_GRAFANA_DOMAIN}
 tekton:
   - name: devsecops   
-    baseUrl: ${URL_TEKTON_DASHBOARD}
-    authorizationBearerToken: ${SESSION_SECRET}
-    dashboardBaseUrl: ${URL_TEKTON_DASHBOARD}
+    baseUrl: https://tekton-dashboard.aws.neoris.cloud/
+    # authorizationBearerToken: ${SECRET_BACKSTAGE_OAUTH_CLIENT_SECRET}
+    dashboardBaseUrl: https://tekton-dashboard.aws.neoris.cloud/
 kubernetes:
   serviceLocatorMethod:
     type: "multiTenant"
