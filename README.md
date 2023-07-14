@@ -1,4 +1,4 @@
-# [Backstage](https://backstage.io)
+# [Backstage](https://backstage.io).
 
 ## Docs
   https://backstage.io/docs
@@ -60,6 +60,9 @@
   POSTGRES_PASSWORD
   APP_BASE_URL
   BACKEND_BASE_URL
+  URL_JENKINS
+  JENKINS_APIKEY
+  JENKINS_USERNAME
 ```
 
 ## Run local
