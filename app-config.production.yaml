@@ -76,7 +76,7 @@ grafana:
   domain: ${URL_GRAFANA_DOMAIN}
 tekton:
   - name: devsecops   
-    baseUrl: https://tekton-dashboard.aws.neoris.cloud/
+    baseUrl: ${AWS_K8S_URL}
     # authorizationBearerToken: ${SECRET_BACKSTAGE_OAUTH_CLIENT_SECRET}
     dashboardBaseUrl: https://tekton-dashboard.aws.neoris.cloud/
 kubernetes:
