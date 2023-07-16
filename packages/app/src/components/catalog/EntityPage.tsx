@@ -204,7 +204,7 @@ const serviceEntityPage = (
           <EntitySwitch.Case if={isJenkinsAvailable}>
             <Grid item sm={6}>
               <EntityLatestJenkinsRunCard
-                branch="main,master"
+                branch=""
                 variant="gridItem"
               />
             </Grid>
@@ -235,7 +235,7 @@ const serviceEntityPage = (
           <EntityJenkinsContent />
         </EntitySwitch.Case>
       </EntitySwitch>
-      {cicdContent}
+      {/* {cicdContent} */}
       </React.Fragment>
     </EntityLayout.Route>
 

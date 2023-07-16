@@ -147,8 +147,7 @@ kubernetes:
           caData: ${AWS_K8S_CADATA}
 
 
-# Descomentar cuando este disponible en el Cluster
-# jenkins:
-#   baseUrl: ${URL_JENKINS}
-#   username: ${JENKINS_USERNAME}
-#   apiKey: ${JENKINS_APIKEY}
+jenkins:
+  baseUrl: ${URL_JENKINS}
+  username: ${JENKINS_USERNAME}
+  apiKey: ${JENKINS_APIKEY}
