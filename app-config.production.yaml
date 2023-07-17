@@ -76,7 +76,7 @@ grafana:
   domain: ${URL_GRAFANA_DOMAIN}
 tekton:
   - name: devsecops   
-    baseUrl: https://tekton-dashboard.tekton-pipelines.svc.cluster.local:9097
+    baseUrl: http://tekton-dashboard.tekton-pipelines.svc.cluster.local:9097
     # authorizationBearerToken: ${AWS_K8S_CADATA}
     dashboardBaseUrl: https://tekton-dashboard.aws.neoris.cloud/
 kubernetes:
