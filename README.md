@@ -1,4 +1,4 @@
-# [Backstage](https://backstage.io).
+# [Backstage](https://backstage.io)
 
 ## Docs
   https://backstage.io/docs
