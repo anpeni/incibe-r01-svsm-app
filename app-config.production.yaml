@@ -78,7 +78,7 @@ tekton:
   - name: devsecops   
     baseUrl: http://tekton-dashboard.tekton-pipelines.svc.cluster.local:9097
     # authorizationBearerToken: ${AWS_K8S_CADATA}
-    dashboardBaseUrl: https://tekton-dashboard.aws.neoris.cloud/
+    dashboardBaseUrl: http://tekton-dashboard.aws.neoris.cloud/
 kubernetes:
   serviceLocatorMethod:
     type: "multiTenant"
