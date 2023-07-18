@@ -148,6 +148,6 @@ kubernetes:
 
 
 jenkins:
-  baseUrl: http://jenkins.jenkins.svc.cluster.local:8080
+  baseUrl: ${URL_JENKINS}
   username: ${JENKINS_USERNAME}
   apiKey: ${JENKINS_APIKEY}
