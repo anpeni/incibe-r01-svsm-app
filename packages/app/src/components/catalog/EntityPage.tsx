@@ -203,7 +203,7 @@ const serviceEntityPage = (
         <EntitySwitch>
           <EntitySwitch.Case if={isJenkinsAvailable}>
             <Grid item sm={6}>
-              <EntityLatestJenkinsRunCard
+            <EntityLatestJenkinsRunCard
                 branch=""
                 variant="gridItem"
               />
@@ -227,16 +227,14 @@ const serviceEntityPage = (
         </EntitySwitch.Case>
       </EntitySwitch>
     </EntityLayout.Route>
-    
+
     <EntityLayout.Route path="/ci-cd" title="CI/CD">
-    <React.Fragment>
-      <EntitySwitch>
-        <EntitySwitch.Case if={isJenkinsAvailable}>
+      {cicdContent}
+    </EntityLayout.Route>
+
+
+    <EntityLayout.Route if={isJenkinsAvailable} path="/jenkins" title="Jenkins">
           <EntityJenkinsContent />
-        </EntitySwitch.Case>
-      </EntitySwitch>
-      {/* {cicdContent} */}
-      </React.Fragment>
     </EntityLayout.Route>
 
     <EntityLayout.Route if={isBitbucketAvailable} path="/bitbucket" title="Bitbucket">
