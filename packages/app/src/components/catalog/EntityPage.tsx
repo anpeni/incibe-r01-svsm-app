@@ -90,17 +90,13 @@ import { isBitbucketAvailable, EntityBitbucketContent } from '@internal/backstag
 import { EntityKubernetesContent } from '@backstage/plugin-kubernetes';
 
 // plugin-jenkins
-import {
-  EntityJenkinsContent,
-  EntityLatestJenkinsRunCard,
-  isJenkinsAvailable,
-} from '@backstage/plugin-jenkins';
+import { EntityJenkinsContent, EntityLatestJenkinsRunCard, isJenkinsAvailable } from '@backstage/plugin-jenkins';
 
+// .--  plugin-tekton --
+import { EntityTektonPipelinesContent, isTektonCiAvailable } from '@jquad-group/plugin-tekton-pipelines';
 
-import { 
-  EntityTektonPipelinesContent, 
-  isTektonCiAvailable 
-} from '@jquad-group/plugin-tekton-pipelines';
+// .--  plugin-circleci --
+import { EntityCircleCIContent, isCircleCIAvailable } from '@backstage/plugin-circleci';
 
 const techdocsContent = (
   <EntityTechdocsContent>
@@ -114,9 +110,13 @@ const cicdContent = (
   // This is an example of how you can implement your company's logic in entity page.
   // You can for example enforce that all components of type 'service' should use GitHubActions
   <EntitySwitch>
-    <EntitySwitch.Case if={isGithubActionsAvailable}>
-      <EntityGithubActionsContent />
+    <EntitySwitch.Case if={isCircleCIAvailable}>
+      <EntityCircleCIContent />
     </EntitySwitch.Case>
+    
+    {/* <EntitySwitch.Case if={isGithubActionsAvailable}>
+      <EntityGithubActionsContent />
+    </EntitySwitch.Case> */}
 
     <EntitySwitch.Case>
       <EmptyState

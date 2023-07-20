@@ -104,6 +104,10 @@ proxy:
     headers:
       # Basic base64(${BITBUCKET_CLOUD_USERNAME}:${BITBUCKET_CLOUD_APP_PASSWORD})
       Authorization: Basic ${BITBUCKETCI_TOKEN_ACCESS}
+  "/circleci/api":
+    target: https://circleci.com/api/v1.1
+    headers:
+      Circle-Token: ${CIRCLECI_AUTH_TOKEN}
 
 # ====================================================================================
 #  Backstage integrations configuration
@@ -145,8 +149,6 @@ kubernetes:
           name: devsecops
           authProvider: "aws"
           caData: ${AWS_K8S_CADATA}
-
-
 jenkins:
   baseUrl: ${URL_JENKINS}
   username: ${JENKINS_USERNAME}
