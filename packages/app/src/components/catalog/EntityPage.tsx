@@ -75,9 +75,9 @@ import { ReportIssue } from '@backstage/plugin-techdocs-module-addons-contrib';
 import { EntitySonarQubeCard, isSonarQubeAvailable } from '@backstage/plugin-sonarqube';
 
 // .--  plugin-grafana --
-import { EntityGrafanaDashboardsCard, isDashboardSelectorAvailable } from '@k-phoen/backstage-plugin-grafana';
+import { EntityGrafanaDashboardsCard, isDashboardSelectorAvailable, EntityOverviewDashboardViewer } from '@k-phoen/backstage-plugin-grafana';
 
-// .--  plugin-grafana --
+// .--  plugin-prometheus --
 import { EntityPrometheusContent } from '@roadiehq/backstage-plugin-prometheus';
 
 // .--  plugin-todo --
@@ -174,13 +174,11 @@ const overviewContent = (
     </EntitySwitch>
 
     {/* Grafana card */}
-    <EntitySwitch>
-      <EntitySwitch.Case if={isDashboardSelectorAvailable}>
+    
         <Grid item md={6}>
-          <EntityGrafanaDashboardsCard />
+          <EntityOverviewDashboardViewer />
         </Grid>
-      </EntitySwitch.Case>
-    </EntitySwitch>
+
 
     <Grid item md={6} xs={12}>
       <EntityCatalogGraphCard variant="gridItem" height={400} />
