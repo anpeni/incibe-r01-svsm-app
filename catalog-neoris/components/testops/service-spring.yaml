@@ -20,7 +20,7 @@ metadata:
     # grafana/tag-selector: "alerta1"
     grafana/alert-label-selector: "alertname=rate"
     # grafana/dashboard-selector: "title == JVM (Micrometer)"
-    grafana/overview-dashboard: 'http://localhost:4000/d/e4b2f8d4-8aed-4dab-a5fd-2cd3ddaa6893/jvm-micrometer?orgId=1&refresh=30s&from=1687354096754&to=1687440496754'
+    grafana/overview-dashboard: 'http://localhost:4000/d/e4b2f8d4-8aed-4dab-a5fd-2cd3ddaa6893/micrometer?orgId=1&refresh=30s&kiosk=true'
     # grafana/overview-dashboard: 'https://grafana.aws.neoris.cloud/d/cluster-costs/cluster-cost-and-utilization-metrics?orgId=1&refresh=15m'
     # grafana/overview-dashboard: "http://localhost:4000/d/da0d3dfb-1b81-4eba-b174-4314c5755710/jvm-micrometer?orgId=1&refresh=30s"
     # prometheus.io/scrape: "true"             # Habilita la recolección de métricas de Prometheus
