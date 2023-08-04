@@ -58,7 +58,7 @@ const app = createApp({
         {...props}
         auto
         providers={[
-          // 'guest',
+           'guest',
           {
             id: 'dex',
             title: 'Dex',

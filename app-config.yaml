@@ -4,6 +4,8 @@
 app:
   title: NEORIS monitor
   baseUrl: http://localhost:3000
+  csp:
+    frame-src: ["'self'", '*.aws.neoris.cloud']
 
 organization:
   name: NEORIS
