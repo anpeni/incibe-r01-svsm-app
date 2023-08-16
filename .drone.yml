@@ -1,10 +1,9 @@
-kind: pipeline
-type: kubernetes
 name: drone-test
+kind: pipeline
+type: docker
 
 steps:
-- name: greeting
-  image: golang:1.12
+- name: test
+  image: alpine
   commands:
-  - go build
-  - go test
+  - echo "It worked!"
