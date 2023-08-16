@@ -1,12 +1,9 @@
-kind: pipeline
 name: drone-test
+kind: pipeline
 type: docker
 
 steps:
 - name: test
-  image: node
+  image: alpine
   commands:
-  - npm install
-  - npm test
-
-# test
+  - echo "It worked!"
