@@ -9,7 +9,22 @@ type: docker
 #   - echo "It worked!"
 steps:
 - name: test
-  image: node
+  image: docker:dind
+  volumes:
+  - name: dockersock
+    path: /var/run
   commands:
-  - npm install
-  - npm test
+  - sleep 5 # give docker enough time to start
+  - docker ps -a
+
+services:
+- name: docker
+  image: docker:dind
+  privileged: true
+  volumes:
+  - name: dockersock
+    path: /var/run
+
+volumes:
+- name: dockersock
+  temp: {}
