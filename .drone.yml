@@ -7,13 +7,15 @@
 #   image: alpine
 #   commands:
 #   - echo "It worked!"
+
+#-----------------------------------
 kind: pipeline
 type: exec
 name: default
 
-platform:
-  os: linux
-  arch: amd64
+# platform:
+#   os: linux
+#   arch: amd64
 
 steps:
 - name: drone-test-2
