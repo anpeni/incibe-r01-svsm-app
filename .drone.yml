@@ -10,19 +10,19 @@
 
 #-----------------------------------
 
-# kind: pipeline
-# type: docker
-# name: default
+kind: pipeline
+type: docker
+name: default
 
-# platform:
-#   os: linux
-#   arch: amd64
+platform:
+  os: linux
+  arch: amd64
 
-# steps:
-# - name: drone-test-2
-#   image: alpine
-#   commands:
-#   - echo hello world! Second test!
+steps:
+- name: drone-test-2
+  image: alpine
+  commands:
+  - echo hello world! Second test!
 
 
 # -----------------------------------------
@@ -51,13 +51,15 @@
 
 # ---------------------------------------------
 
-kind: pipeline
-type: kubernetes
-name: default
+# PRUEBA: NO PERMITE EJECUTAR 'type: kubernetes', SE QUEDA PENSANDO Y NO AVANZA.
 
-steps:
-- name: greeting
-  image: golang:1.12
-  commands:
-  - go build
-  - go test
+# kind: pipeline
+# type: kubernetes
+# name: default
+
+# steps:
+# - name: greeting
+#   image: golang:1.12
+#   commands:
+#   - go build
+#   - go test
