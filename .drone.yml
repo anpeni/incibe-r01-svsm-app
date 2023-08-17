@@ -9,15 +9,17 @@
 #   - echo "It worked!"
 
 #-----------------------------------
+
 kind: pipeline
-type: exec
+type: docker
 name: default
 
-# platform:
-#   os: linux
-#   arch: amd64
+platform:
+  os: linux
+  arch: amd64
 
 steps:
 - name: drone-test-2
+  image: alpine
   commands:
   - echo hello world! Second test!
