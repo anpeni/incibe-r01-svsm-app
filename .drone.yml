@@ -10,16 +10,37 @@
 
 #-----------------------------------
 
-kind: pipeline
+# kind: pipeline
+# type: docker
+# name: default
+
+# platform:
+#   os: linux
+#   arch: amd64
+
+# steps:
+# - name: drone-test-2
+#   image: alpine
+#   commands:
+#   - echo hello world! Second test!
+
+
+# -----------------------------------------
+
 type: docker
+kind: pipeline
 name: default
 
-platform:
-  os: linux
-  arch: amd64
-
 steps:
-- name: drone-test-2
-  image: alpine
+- name: test
+  image: docker:dind
+  volumes:
+  - name: dockersock
+    path: /var/run/docker.sock
   commands:
-  - echo hello world! Second test!
+  - docker ps -a
+
+volumes:
+- name: dockersock
+  host:
+    path: /var/run/docker.sock
