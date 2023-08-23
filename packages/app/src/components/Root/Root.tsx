@@ -40,9 +40,14 @@ import {
   SidebarScrollWrapper,
   SidebarSpace,
   useSidebarOpenState,
+  SidebarSubmenuItem,
+  SidebarExpandButton,
 } from '@backstage/core-components';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
+import ViewModuleIcon from '@material-ui/icons/ViewModule'
+
+const backgroundImageUrl = require('../../assets/Incibe-Background.png');
 
 const useSidebarLogoStyles = makeStyles({
   root: {
@@ -78,37 +83,75 @@ const SidebarLogo = () => {
   );
 };
 
-export const Root = ({ children }: PropsWithChildren<{}>) => (
-  <SidebarPage>
-    <Sidebar>
-      <SidebarLogo />
-      <SidebarGroup label="Search" icon={<SearchIcon />} to="/search">
-        <SidebarSearchModal />
-      </SidebarGroup>
-      <SidebarDivider />
-      <SidebarGroup label="Menu" icon={<MenuIcon />}>
-        {/* Global nav, not org-specific */}
-        <SidebarItem icon={HomeIcon} to="/" text="Home" />
-        <SidebarItem icon={CategoryIcon} to="catalog" text="Catalog" />
-        <SidebarItem icon={ExtensionIcon} to="api-docs" text="APIs" />
-        <SidebarItem icon={LibraryBooks} to="docs" text="Docs" />
-        <SidebarItem icon={CreateComponentIcon} to="create" text="Create..." />
-        {/* End global nav */}
-        <SidebarDivider />
-        <SidebarScrollWrapper>
-          <SidebarItem icon={MapIcon} to="tech-radar" text="Tech Radar" />
-        </SidebarScrollWrapper>
-      </SidebarGroup>
-      <SidebarSpace />
-      <SidebarDivider />
-      <SidebarGroup
-        label="Settings"
-        icon={<UserSettingsSignInAvatar />}
-        to="/settings"
-      >
-        <SidebarSettings />
-      </SidebarGroup>
-    </Sidebar>
-    {children}
-  </SidebarPage>
-);
+const useStyles = makeStyles({
+  sidebarContainer: {
+    borderRadius: '12px',
+    overflow: 'hidden', // Para que el contenido no se desborde
+  },
+});
+
+export const Root = ({ children }: PropsWithChildren<{}>) => {
+  const classes = useStyles();
+
+  const rootStyle = {
+    backgroundImage: `url(${backgroundImageUrl})`, // Establece la imagen de fondo
+    backgroundSize: 'cover', // Otras propiedades de estilo según tu preferencia
+    backgroundRepeat: 'no-repeat',
+    backgroundPosition: 'center',
+  };
+
+  return (
+    <div className={classes.sidebarContainer} style={rootStyle}>
+      <SidebarPage>
+        <Sidebar disableExpandOnHover>
+          <SidebarLogo />
+          <SidebarGroup label="Search" icon={<SearchIcon />} to="/search">
+            <SidebarSearchModal />
+          </SidebarGroup>
+          <SidebarDivider />
+          <SidebarGroup label="Menu" icon={<MenuIcon />}>
+            {/* Global nav, not org-specific */}
+            <SidebarSubmenuItem icon={ViewModuleIcon} to="/" title="Control Panel" 
+            dropdownItems={[
+              {
+                title: 'Actividad',
+                to: '/7',
+              },
+              {
+                title: 'Tráfico',
+                to: '/8',
+              },
+            ]}
+            
+            />
+            <SidebarItem icon={HomeIcon} to="/" text="Home" />
+            <SidebarItem icon={CategoryIcon} to="catalog" text="Catalog" />
+            <SidebarItem icon={ExtensionIcon} to="api-docs" text="APIs" />
+            <SidebarItem icon={LibraryBooks} to="docs" text="Docs" />
+            <SidebarItem
+              icon={CreateComponentIcon}
+              to="create"
+              text="Create..."
+            />
+            {/* End global nav */}
+            <SidebarDivider />
+            <SidebarScrollWrapper>
+              <SidebarItem icon={MapIcon} to="tech-radar" text="Tech Radar" />
+            </SidebarScrollWrapper>
+          </SidebarGroup>
+          <SidebarSpace />
+          <SidebarExpandButton />
+          <SidebarDivider />
+          <SidebarGroup
+            label="Settings"
+            icon={<UserSettingsSignInAvatar />}
+            to="/settings"
+          >
+            <SidebarSettings />
+          </SidebarGroup>
+        </Sidebar>
+        {children}
+      </SidebarPage>
+    </div>
+  );
+};

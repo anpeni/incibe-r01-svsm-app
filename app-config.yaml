@@ -2,7 +2,7 @@
 #  Backstage frontend configuration
 # ====================================================================================
 app:
-  title: Neoris monitor
+  title: NEORIS monitor
   baseUrl: http://localhost:3000
 
 organization:
