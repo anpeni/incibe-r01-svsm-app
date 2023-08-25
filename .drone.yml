@@ -1,12 +1,28 @@
-name: drone-test
 kind: pipeline
-type: docker
+type: kubernetes
+name: default
 
 steps:
-- name: test
-  image: alpine
+- name: build
+  image: golang
   commands:
-  - echo "It worked!"
+  - go build
+  - go test
+
+
+
+#---------------------------------
+
+
+# name: drone-test
+# kind: pipeline
+# type: docker
+
+# steps:
+# - name: test
+#   image: alpine
+#   commands:
+#   - echo "It worked!"
 
 #-----------------------------------
 
