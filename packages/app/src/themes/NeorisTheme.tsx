@@ -1,27 +1,54 @@
 import { BackstageOverrides } from '@backstage/core-components';
 import { BackstageOverrides as CatalogReactOverrides } from '@backstage/plugin-catalog-react';
+
 import { BackstageTheme, createTheme, lightTheme } from '@backstage/theme';
+
+
+
 
 import { AutocompleteClassKey } from '@material-ui/lab/Autocomplete';
 import { AlertClassKey } from '@material-ui/lab/Alert';
 
+
+
+
 /*import SegoeuiTff from './fonts/Segoeui.ttf';
+
 import SegoeuiBoldTff from './fonts/Segoeui-Bold.ttf';
+
 import SegoeuiSemiBoldTff from './fonts/Segoeui-SemiBold.ttf';
+
 import SegoeuiLightTff from './fonts/Segoeui-Light.ttf';
+
 import SegoeuiSemiLightTff from './fonts/Segoeui-SemiLight.ttf';*/
 
+
+
+
 const white = "#FFFFFF";
+
 const black = "#1B242A";
+
 const grey = "#1E242B";
+
 const blue = "#89D2E6";  
+
 const blueDark = "#00B0F0";
+
 const blueDark06 = "rgba(0,176,240,0.6)";
+
 const yellow = "#F6CE3C";
+
 const yellow06 = "rgba(246,206,60,0.6)";
+
 const green = "#009D4E";
+
 const purple = "#EF3FA9";
+
 const purpleLight = "#F294CD";
+
+
+
 
 // Labs types not included in overrides; https://github.com/mui/material-ui/issues/19427
 declare module '@material-ui/core/styles/overrides' {
@@ -77,7 +104,9 @@ const baseTheme = createTheme({
       dark: '#0747A6',
     },
     // navigation: {
+
     //   ...lightTheme.palette.navigation,
+
     //   background: grey , //'#172B4D',
     //   color: white,
     //   indicator: blueDark, //'#2684FF',
@@ -86,13 +115,17 @@ const baseTheme = createTheme({
     //   },
     // },
     text: {
+
       primary: grey , //'#172B48',
+
     },
     background: {
       default: white,
     },
   },
+
   fontFamily: 'Roboto, sans-serif',
+
   defaultPageTheme: 'home',
 });
 

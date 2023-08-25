@@ -38,6 +38,7 @@ import { catalogEntityCreatePermission } from '@backstage/plugin-catalog-common/
 import { ThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import LightIcon from '@material-ui/icons/WbSunny';
+import DarkIcon from '@material-ui/icons/NightsStay';
 import { NeorisTheme } from './themes';
 
 // .--  Custom icons --
@@ -49,6 +50,11 @@ import { HomePage } from './components/home/HomePage';
 
 // .-- Plugins --
 import * as plugins from './plugins';
+
+// .-- Theme Override --
+import { BackstageTheme, darkTheme, lightTheme, themes, UnifiedThemeProvider } from '@backstage/theme';
+import { BackstageOverrides } from '@backstage/core-components';
+import { neorisDarkTheme } from './themes/NeorisDark';
 
 const app = createApp({
   apis,
@@ -76,17 +82,47 @@ const app = createApp({
     bitbucket: BitbucketIcon,
   },
   // .-- themes --
-  themes: [{
-    id: 'neoris-theme',
-    title: 'Neoris Theme',
+  themes: [
+  //   {
+  //   id: 'neoris-theme',
+  //   title: 'Neoris Theme',
+  //   variant: 'light',
+  //   icon: <LightIcon />,
+  //   Provider: ({ children }) => (
+  //     <ThemeProvider theme={NeorisTheme}>
+  //       <CssBaseline>{children}</CssBaseline>
+  //     </ThemeProvider>
+  //   ),
+  // },
+  // {
+  //   id: 'light',
+  //   title: 'Light',
+  //   variant: 'light',
+  //   Provider: ({ children }) => (
+  //     <UnifiedThemeProvider theme={themes.light} children={children} />
+  //   ),
+  // },
+  // {
+  //   id: 'dark',
+  //   title: 'Dark',
+  //   variant: 'dark',
+  //   Provider: ({ children }) => (
+  //     <UnifiedThemeProvider theme={themes.dark} children={children} />
+  //   ),
+  // },
+  {
+    id: 'neoris',
+    title: 'NEORIS Dark',
     variant: 'light',
-    icon: <LightIcon />,
+    icon: <DarkIcon />,
     Provider: ({ children }) => (
-      <ThemeProvider theme={NeorisTheme}>
-        <CssBaseline>{children}</CssBaseline>
-      </ThemeProvider>
+      <UnifiedThemeProvider theme={neorisDarkTheme} noCssBaseline>
+        <CssBaseline />
+        {children}
+      </UnifiedThemeProvider>
     ),
-  }],
+  },
+],
   // .-- routes bind --
   bindRoutes({ bind }) {
     bind(catalogPlugin.externalRoutes, {
