@@ -15,10 +15,13 @@
  */
 
 import React, { PropsWithChildren } from 'react';
-import { Link, makeStyles } from '@material-ui/core';
+import { Link, Typography, makeStyles } from '@material-ui/core';
 import HomeIcon from '@material-ui/icons/Home';
 import ExtensionIcon from '@material-ui/icons/Extension';
 import MapIcon from '@material-ui/icons/MyLocation';
+import HelpIcon from '@material-ui/icons/HeadsetMic';
+import NightIcon from '@material-ui/icons/NightsStay';
+import DayIcon from '@material-ui/icons/WbSunny';
 import LibraryBooks from '@material-ui/icons/LibraryBooks';
 import CreateComponentIcon from '@material-ui/icons/AddCircleOutline';
 import CategoryIcon from '@material-ui/icons/Category';
@@ -88,6 +91,16 @@ const useStyles = makeStyles({
     borderRadius: '12px',
     overflow: 'hidden', // Para que el contenido no se desborde
   },
+  sectionTitle: {
+    fontSize: '12px',
+    color: 'rgba(255, 255, 255, 0.30)', 
+    fontFamily: "Inter, sans-serif",
+    fontWeight: 500,
+    lineHeight: 'normal',
+    marginLeft: '15px',
+    marginTop: '15px',
+    marginBottom: '10px'
+  },
 });
 
 export const Root = ({ children }: PropsWithChildren<{}>) => {
@@ -108,7 +121,7 @@ export const Root = ({ children }: PropsWithChildren<{}>) => {
           <SidebarGroup label="Search" icon={<SearchIcon />} to="/search">
             <SidebarSearchModal />
           </SidebarGroup>
-          <SidebarDivider />
+          <Typography className={classes.sectionTitle}>PRINCIPAL</Typography>
           <SidebarGroup label="Menu" icon={<MenuIcon />}>
             {/* Global nav, not org-specific */}
             <SidebarSubmenuItem icon={ViewModuleIcon} to="/" title="Control Panel" 
@@ -135,8 +148,11 @@ export const Root = ({ children }: PropsWithChildren<{}>) => {
             />
             {/* End global nav */}
             <SidebarDivider />
+          <Typography className={classes.sectionTitle}>ADMINISTRADOR</Typography>
             <SidebarScrollWrapper>
               <SidebarItem icon={MapIcon} to="tech-radar" text="Tech Radar" />
+              <SidebarItem icon={HelpIcon} to="catalog" text="Ayuda" />
+              <SidebarItem icon={NightIcon} to="catalog" text="Tema" />
             </SidebarScrollWrapper>
           </SidebarGroup>
           <SidebarSpace />

@@ -37,6 +37,7 @@ Object.keys(defaultPageThemes).map(key => {
 // TODO(awanlin): Continuing to use the deprecated `createTheme` for now
 // will come back to clean this up when we have a better solution for this
 
+
 // eslint-disable-next-line
 const baseTheme = createTheme({
   ...createBaseThemeOptions({
@@ -86,7 +87,7 @@ const baseTheme = createTheme({
       },
       background: {
         default: bgColor, // General
-        paper: 'rgba(6, 11, 40, 0.5)' // Tarjetas
+        paper: 'rgba(6, 11, 40, 0.7)' // Tarjetas
       },
       navigation: {
         ...palettes.light.navigation,
@@ -235,7 +236,15 @@ const createCustomThemeOverrides = (
         borderRadius: "12px",
         textTransform: 'none',
         color: theme.page.fontColor,
-        TextSize: "13px"
+        TextSize: "13px",
+      },
+      outlinedPrimary: {
+        border: 'none',
+        backgroundColor: 'rgba(6, 11, 40, 1)',
+        '&:hover': {
+          background: "rgba(6, 11, 40, 0.5) !important",
+          border: 'none',
+        },
       },
       label: {
         justifyContent: "none",
@@ -244,7 +253,6 @@ const createCustomThemeOverrides = (
         fontFamily: "Inter, sans-serif",
         fontWeight: 600, // Semibold
         background: bgColor,
-        // boxShadow: '0px 4px 4px 0px rgba(0, 0, 0, 0.25)',
         '&:hover': {
           background: "linear-gradient(90deg, rgba(6,11,40,0.35) 50%, rgba(6,11,40,0.3) 100%) !important",
         },
@@ -304,7 +312,7 @@ const createCustomThemeOverrides = (
       },
     },
     MuiInputBase: {
-      root: {
+      root: { // Select and Filters
         color: theme.page.fontColor,
         background: bgColor,
         fontWeight: 100, // Thin
