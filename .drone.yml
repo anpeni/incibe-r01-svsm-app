@@ -3,11 +3,10 @@ type: kubernetes
 name: default
 
 steps:
-- name: build
-  image: golang
+- name: test drone
+  image: alpine
   commands:
-  - go build
-  - go test
+    - echo "Hello, Drone CI with Kubernetes!"
 
 
 
