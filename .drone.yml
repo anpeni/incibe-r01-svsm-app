@@ -1,21 +1,3 @@
-# kind: pipeline
-# type: kubernetes
-# name: default
-
-# # metadata:
-# #   namespace: drone
-
-# steps:
-# - name: test drone
-#   image: alpine
-#   commands:
-#     - echo "Hello, Drone CI with Kubernetes!"
-
-
-
-
-
-
 kind: pipeline
 type: kubernetes
 name: default
@@ -26,34 +8,3 @@ steps:
   commands:
   - go build
   - go test
-
-
-
-#---------------------------------
-
-
-# name: drone-test
-# kind: pipeline
-# type: docker
-
-# steps:
-# - name: test
-#   image: alpine
-#   commands:
-#   - echo "It worked!"
-
-#-----------------------------------
-
-# kind: pipeline
-# type: docker
-# name: default
-
-# platform:
-#   os: linux
-#   arch: amd64
-
-# steps:
-# - name: drone-test-2
-#   image: alpine
-#   commands:
-#   - echo hello world! Second test!
