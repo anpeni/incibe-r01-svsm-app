@@ -1,15 +1,31 @@
+# kind: pipeline
+# type: kubernetes
+# name: default
+
+# # metadata:
+# #   namespace: drone
+
+# steps:
+# - name: test drone
+#   image: alpine
+#   commands:
+#     - echo "Hello, Drone CI with Kubernetes!"
+
+
+
+
+
+
 kind: pipeline
 type: kubernetes
 name: default
 
-# metadata:
-#   namespace: drone
-
 steps:
-- name: test drone
-  image: alpine
+- name: greeting
+  image: golang:1.12
   commands:
-    - echo "Hello, Drone CI with Kubernetes!"
+  - go build
+  - go test
 
 
 
