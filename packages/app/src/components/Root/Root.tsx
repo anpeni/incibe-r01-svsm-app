@@ -23,6 +23,7 @@ import HelpIcon from '@material-ui/icons/HeadsetMic';
 import NightIcon from '@material-ui/icons/NightsStay';
 import DayIcon from '@material-ui/icons/WbSunny';
 import LibraryBooks from '@material-ui/icons/LibraryBooks';
+import NotifIcon from '@material-ui/icons/Notifications';
 import CreateComponentIcon from '@material-ui/icons/AddCircleOutline';
 import CategoryIcon from '@material-ui/icons/Category';
 import LogoFull from './LogoFull';
@@ -88,18 +89,31 @@ const SidebarLogo = () => {
 
 const useStyles = makeStyles({
   sidebarContainer: {
-    borderRadius: '12px',
     overflow: 'hidden', // Para que el contenido no se desborde
   },
   sectionTitle: {
     fontSize: '12px',
-    color: 'rgba(255, 255, 255, 0.30)', 
+    color: 'rgba(255, 255, 255, 0.30)',
     fontFamily: "Inter, sans-serif",
     fontWeight: 500,
     lineHeight: 'normal',
     marginLeft: '15px',
     marginTop: '15px',
     marginBottom: '10px'
+  },
+  circleBadge: {
+    display: 'inline-flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: '30px',
+    height: '20px',
+    borderRadius: '50%',
+    backgroundColor: '#EE3131',
+    marginLeft: '8px', // Espacio entre el texto y el círculo
+  },
+  number: {
+    color: 'white',
+    fontSize: '12px',
   },
 });
 
@@ -113,6 +127,17 @@ export const Root = ({ children }: PropsWithChildren<{}>) => {
     backgroundPosition: 'center',
   };
 
+  const CircleBadge = ({ count }: { count: number }) => {
+    const classes = useStyles();
+  
+    return (
+      <div className={classes.circleBadge}>
+        {count > 0 && <div className={classes.number}>{count}</div>}
+      </div>
+    );
+  };
+
+  
   return (
     <div className={classes.sidebarContainer} style={rootStyle}>
       <SidebarPage>
@@ -146,13 +171,20 @@ export const Root = ({ children }: PropsWithChildren<{}>) => {
               to="create"
               text="Create..."
             />
+            <SidebarItem
+              icon={NotifIcon}
+              to="notifications"
+              text="Notifications"
+            >
+            <CircleBadge count={3} /> {/* Cambia el número según tus necesidades */}
+          </SidebarItem>
             {/* End global nav */}
             <SidebarDivider />
           <Typography className={classes.sectionTitle}>ADMINISTRADOR</Typography>
             <SidebarScrollWrapper>
               <SidebarItem icon={MapIcon} to="tech-radar" text="Tech Radar" />
-              <SidebarItem icon={HelpIcon} to="catalog" text="Ayuda" />
-              <SidebarItem icon={NightIcon} to="catalog" text="Tema" />
+              <SidebarItem icon={HelpIcon} to="/ayuda" text="Ayuda" />
+              <SidebarItem icon={NightIcon} to="/tema" text="Tema" />
             </SidebarScrollWrapper>
           </SidebarGroup>
           <SidebarSpace />
