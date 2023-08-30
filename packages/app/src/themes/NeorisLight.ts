@@ -24,7 +24,8 @@ declare module '@material-ui/core/styles/overrides' {
 }
 
 const aoundImageUrl = require('../assets/Incibe-Background.png');
-const bgColor = 'linear-gradient(90deg, rgba(6,11,40,0.75) 50%, rgba(6,11,40,0.7) 100%)';
+const bgColor =
+  'linear-gradient(90deg, rgba(224,241,255,0.5) 50%, rgba(224,241,255,0.4) 100%)';
 
 const pageThemesFontColorOverride: Record<string, PageTheme> = {};
 Object.keys(defaultPageThemes).map(key => {
@@ -36,7 +37,6 @@ Object.keys(defaultPageThemes).map(key => {
 
 // TODO(awanlin): Continuing to use the deprecated `createTheme` for now
 // will come back to clean this up when we have a better solution for this
-
 
 // eslint-disable-next-line
 const baseTheme = createTheme({
@@ -68,26 +68,23 @@ const baseTheme = createTheme({
       error: {
         main: '#FF5630',
         light: '#FF8F73',
-        dark: '#DE350B',
       },
       warning: {
         main: '#FFAB00',
         light: '#FFE380',
-        dark: '#FF8B00',
       },
       success: {
         main: '#36B37E',
         light: '#79F2C0',
-        dark: '#006644',
       },
       info: {
         main: '#0065FF',
         light: '#4C9AFF',
-        dark: '#0747A6',
       },
       background: {
         default: bgColor, // General
-        paper: 'rgba(6, 11, 40, 0.7)' // Tarjetas
+        paper: 'rgba(224, 241, 255, 0.5)', // Tarjetas
+        boxShadow: '0px 0px 4px 0px rgba(0, 0, 0, 0.25)',
       },
       navigation: {
         ...palettes.light.navigation,
@@ -119,8 +116,8 @@ const createCustomThemeOverrides = (
       },
       title: {
         color: theme.page.fontColor,
-        fontFamily: "Inter, sans-serif",
-        fontWeight: "bold",
+        fontFamily: 'Inter, sans-serif',
+        fontWeight: 'bold',
       },
       subtitle: {
         color: theme.page.fontColor,
@@ -133,15 +130,15 @@ const createCustomThemeOverrides = (
       textColorInherit: {
         color: theme.page.fontColor,
         opacity: 0.8,
-      }
+      },
     },
     BackstageSidebar: {
       drawer: {
         // backgroundImage: `url(${backgroundImageUrl})`,
         borderRadius: '12px',
         boxShadow: '0px 4px 4px 0px rgba(0, 0, 0, 0.25)',
-        background: bgColor
-      }
+        background: bgColor,
+      },
     },
     // TODO: Remove after https://github.com/backstage/backstage/pull/16853 is available here
     BackstageHeaderLabel: {
@@ -156,6 +153,16 @@ const createCustomThemeOverrides = (
       defaultTab: {
         fontSize: 'inherit',
         textTransform: 'none',
+        padding: '5px',
+        backgroundColor: 'rgba(224, 241, 255, 0.5)',
+      },
+      tabsWrapper: {
+        backgroundColor: 'none',
+        borderRadius: '12px',
+      },
+      selected: {
+        borderRadius: '12px',
+        backgroundColor: 'white',
       },
     },
     BackstageOpenedDropdown: {
@@ -167,13 +174,14 @@ const createCustomThemeOverrides = (
     },
     BackstageTable: {
       root: {
+        // background: bgColor,
         '&> :first-child': {
           borderBottom: '1px solid #D5D5D5',
           boxShadow: 'none',
         },
         '& th': {
           borderTop: 'none',
-          textTransform: 'none !important',
+          // textTransform: 'none !important',
         },
       },
     },
@@ -215,19 +223,6 @@ const createCustomThemeOverrides = (
         },
       },
     },
-    MuiAutocomplete: {
-      root: {
-        '&[aria-expanded=true]': {
-          color: theme.page.fontColor,
-        },
-        '&[aria-expanded=true] path': {
-          fill: theme.page.fontColor,
-        },
-      },
-      tagSizeSmall: {
-        background: 'var(--color-dark, linear-gradient(180deg, rgba(6, 11, 40, 0.75) 0%, rgba(6, 11, 40, 0.70) 100%))',
-      }
-    },
     MuiBackdrop: {
       root: {
         backgroundColor: 'rgba(9,30,69,0.54)',
@@ -235,35 +230,34 @@ const createCustomThemeOverrides = (
     },
     MuiButton: {
       root: {
-        borderRadius: "12px",
+        borderRadius: '12px',
         textTransform: 'none',
         color: theme.page.fontColor,
-        TextSize: "13px",
+        TextSize: '13px',
       },
       outlinedPrimary: {
-        border: 'none',
-        backgroundColor: 'rgba(6, 11, 40, 1)',
+        // Buttons on login page
+        border: '1px solid #66BFDC',
+        backgroundColor: 'rgba(224, 241, 255, 0.5)',
+        color: '#FFFFFF',
         '&:hover': {
-          background: "rgba(6, 11, 40, 0.5) !important",
+          background: 'rgba(6, 11, 40, 0.5) !important',
           border: 'none',
         },
       },
       label: {
-        justifyContent: "none",
+        justifyContent: 'none',
+        color: 'white',
       },
       contained: {
-        fontFamily: "Inter, sans-serif",
+        fontFamily: 'Inter, sans-serif',
         fontWeight: 600, // Semibold
         background: bgColor,
         '&:hover': {
-          background: "linear-gradient(90deg, rgba(6,11,40,0.35) 50%, rgba(6,11,40,0.3) 100%) !important",
+          background:
+            'linear-gradient(90deg, rgba(224,241,255,0.5) 50%, rgba(224,241,255,0.4) 100%) !important',
         },
       },
-    },
-    MuiButtonBase: {
-      root: {
-        color: "white !important",
-      }
     },
     MuiChip: {
       root: {
@@ -275,8 +269,9 @@ const createCustomThemeOverrides = (
     },
     MuiSelect: {
       root: {
-        '&[aria-expanded]': { // Select abierto
-          // backgroundColor: bgColor, 
+        '&[aria-expanded]': {
+          // Select abierto
+          // backgroundColor: bgColor,
           // color: 'black',
         },
       },
@@ -304,7 +299,7 @@ const createCustomThemeOverrides = (
     },
     MuiTypography: {
       colorPrimary: {
-        color: theme.page.fontColor,        
+        color: theme.page.fontColor,
       },
       colorTextSecondary: {
         color: theme.page.fontColor,
@@ -314,37 +309,94 @@ const createCustomThemeOverrides = (
       },
     },
     MuiInputBase: {
-      root: { // Select and Filters
+      root: {
+        // Select and Filters
         color: theme.page.fontColor,
         background: bgColor,
         fontWeight: 100, // Thin
-      }
+      },
     },
     MuiFormLabel: {
       root: {
         color: theme.page.fontColor,
-      }
+      },
     },
     MuiStepLabel: {
       label: {
         color: theme.page.fontColor,
         fontWeight: 100, // Thin
-      }
+      },
     },
     MuiFormHelperText: {
       root: {
         color: theme.page.fontColor,
-      }
+      },
     },
-    MuiMenuItem: { // Selects abiertos
+    BackstageSidebarDivider: {
       root: {
-        background: 'var(--color-dark, linear-gradient(180deg, rgba(6, 11, 40, 0.75) 0%, rgba(6, 11, 40, 0.70) 100%))',
-      }
+        background: 'white',
+        opacity: 0.3,
+        width: '100%',
+      },
     },
+    // News In Light Theme
+    BackstageTableHeader: {
+      header: {
+        background: '#FFFFFF',
+        color: 'rgba(51, 51, 51, 0.80) !important',
+      },
+    },
+    MuiTable: {
+      root: {
+        borderRadius: '12px',
+      },
+    },
+    MuiTableRow: {
+      root: {
+        // background: 'blue',
+        borderRadius: '12px',
+      },
+    },
+    MuiMenu: {
+      // Desplegables
+      list: {
+        background: '#FFFFFF',
+        color: '#000000',
+      },
+    },
+    MuiAutocomplete: {
+      tagSizeSmall: {
+        // Tags en desplegables
+        background:
+          'var(--color-dark, linear-gradient(180deg, rgba(6, 11, 40, 0.75) 0%, rgba(6, 11, 40, 0.70) 100%))',
+          borderRadius: '12px',
+      },
+      paper: {
+        // Desplegables con varias opciones
+        color: '#000000',
+        background: '#FFFFFF',
+      },
+    },
+    MuiOutlinedInput: {
+      // Casilla del desplegable
+      root: {
+        background: '#FFFFFF',
+      },
+    },
+    BackstageSelectInputBase: {
+      input: {
+        backgroundColor: '#FFFFFF',
+        color: '#000000',
+        '&:focus': {
+          background: '#FFFFFF', // Cambia el fondo a blanco cuando está enfocado
+        },
+      },
+
+    }
   };
 };
 
-export const neorisDarkTheme: UnifiedTheme = createUnifiedThemeFromV4({
+export const neorisLightTheme: UnifiedTheme = createUnifiedThemeFromV4({
   ...baseTheme,
   overrides: {
     ...baseTheme.overrides,
