@@ -55,6 +55,7 @@ import * as plugins from './plugins';
 import { BackstageTheme, darkTheme, lightTheme, themes, UnifiedThemeProvider } from '@backstage/theme';
 import { BackstageOverrides } from '@backstage/core-components';
 import { neorisDarkTheme } from './themes/NeorisDark';
+import { neorisLightTheme } from './themes/NeorisLight';
 
 const app = createApp({
   apis,
@@ -111,12 +112,24 @@ const app = createApp({
   //   ),
   // },
   {
-    id: 'neoris',
+    id: 'neoris-dark',
     title: 'NEORIS Dark',
-    variant: 'light',
+    variant: 'dark',
     icon: <DarkIcon />,
     Provider: ({ children }) => (
       <UnifiedThemeProvider theme={neorisDarkTheme} noCssBaseline>
+        <CssBaseline />
+        {children}
+      </UnifiedThemeProvider>
+    ),
+  },
+  {
+    id: 'neoris-light',
+    title: 'NEORIS Light',
+    variant: 'light',
+    icon: <LightIcon />,
+    Provider: ({ children }) => (
+      <UnifiedThemeProvider theme={neorisLightTheme} noCssBaseline>
         <CssBaseline />
         {children}
       </UnifiedThemeProvider>
