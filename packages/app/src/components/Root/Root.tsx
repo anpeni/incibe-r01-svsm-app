@@ -115,6 +115,10 @@ const useStyles = makeStyles({
     color: 'white',
     fontSize: '12px',
   },
+  sidebarDivider: {
+    background: '#FFFFFF',
+    opacity: 0.3,
+  }
 });
 
 export const Root = ({ children }: PropsWithChildren<{}>) => {
@@ -179,7 +183,7 @@ export const Root = ({ children }: PropsWithChildren<{}>) => {
             <CircleBadge count={3} /> {/* Cambia el número según tus necesidades */}
           </SidebarItem>
             {/* End global nav */}
-            <SidebarDivider />
+            <SidebarDivider className={classes.sidebarDivider}/>
           <Typography className={classes.sectionTitle}>ADMINISTRADOR</Typography>
             <SidebarScrollWrapper>
               <SidebarItem icon={MapIcon} to="tech-radar" text="Tech Radar" />
@@ -189,7 +193,7 @@ export const Root = ({ children }: PropsWithChildren<{}>) => {
           </SidebarGroup>
           <SidebarSpace />
           <SidebarExpandButton />
-          <SidebarDivider />
+          <SidebarDivider className={classes.sidebarDivider}/>
           <SidebarGroup
             label="Settings"
             icon={<UserSettingsSignInAvatar />}

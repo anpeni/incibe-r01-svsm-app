@@ -155,15 +155,20 @@ const createCustomThemeOverrides = (
         textTransform: 'none',
         padding: '5px',
         backgroundColor: 'rgba(224, 241, 255, 0.5)',
+
       },
       tabsWrapper: {
         backgroundColor: 'none',
-        borderRadius: '12px',
       },
       selected: {
-        borderRadius: '12px',
         backgroundColor: 'white',
+        color: 'black',
       },
+      tabRoot: {
+        '&:hover': {
+          color: 'black',
+        }
+      }
     },
     BackstageOpenedDropdown: {
       icon: {
@@ -296,6 +301,9 @@ const createCustomThemeOverrides = (
       indicator: {
         transition: 'none',
       },
+      flexContainer: {
+        borderRadius: '12px',
+      }
     },
     MuiTypography: {
       colorPrimary: {
@@ -333,11 +341,12 @@ const createCustomThemeOverrides = (
       },
     },
     BackstageSidebarDivider: {
-      root: {
-        background: 'white',
-        opacity: 0.3,
-        width: '100%',
-      },
+      // root: {}
+    //     background: 'white',
+    //     opacity: 0.3,
+    //     width: '100%',
+      // },
+      
     },
     // News In Light Theme
     BackstageTableHeader: {
@@ -391,7 +400,12 @@ const createCustomThemeOverrides = (
           background: '#FFFFFF', // Cambia el fondo a blanco cuando está enfocado
         },
       },
-
+    },
+    MuiListItem: {
+      container: {
+        background: '#FFFFFF',
+        color: '#000000'
+      }
     }
   };
 };
