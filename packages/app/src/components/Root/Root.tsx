@@ -31,7 +31,8 @@ import LogoIcon from './LogoIcon';
 import { NavLink } from 'react-router-dom';
 import {
   Settings as SidebarSettings,
-  UserSettingsSignInAvatar,
+  UserSettingsSignInAvatar, UserSettingsProfileNew,
+  UserSettingsThemeToggleTema
 } from '@backstage/plugin-user-settings';
 import { SidebarSearchModal } from '@backstage/plugin-search';
 import {
@@ -200,7 +201,12 @@ export const Root = ({ children }: PropsWithChildren<{}>) => {
             to="/settings"
           >
             <SidebarSettings />
+            <UserSettingsThemeToggleTema />
           </SidebarGroup>
+          <SidebarGroup>
+      <UserSettingsProfileNew />
+
+      </SidebarGroup>
         </Sidebar>
         {children}
       </SidebarPage>
