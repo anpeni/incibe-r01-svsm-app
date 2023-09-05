@@ -23,7 +23,7 @@ declare module '@material-ui/core/styles/overrides' {
   }
 }
 
-const aoundImageUrl = require('../assets/Incibe-Background.png');
+const ndImageUrl = require('../assets/Incibe-Background.png');
 const bgColor =
   'linear-gradient(90deg, rgba(224,241,255,0.5) 50%, rgba(224,241,255,0.4) 100%)';
 
@@ -126,18 +126,13 @@ const createCustomThemeOverrides = (
         color: alpha(theme.page.fontColor, 0.8),
       },
     },
-    MuiTab: {
-      textColorInherit: {
-        color: theme.page.fontColor,
-        opacity: 0.8,
-      },
-    },
     BackstageSidebar: {
       drawer: {
         // backgroundImage: `url(${backgroundImageUrl})`,
         borderRadius: '12px',
         boxShadow: '0px 4px 4px 0px rgba(0, 0, 0, 0.25)',
         background: bgColor,
+        backdropFilter: 'blur(120px)',
       },
     },
     // TODO: Remove after https://github.com/backstage/backstage/pull/16853 is available here
@@ -154,21 +149,25 @@ const createCustomThemeOverrides = (
         fontSize: 'inherit',
         textTransform: 'none',
         padding: '5px',
-        backgroundColor: 'rgba(224, 241, 255, 0.5)',
-
+        // backgroundColor: 'rgba(224, 241, 255, 0.5)',
+        color: '#E0F1FF',
       },
       tabsWrapper: {
         backgroundColor: 'none',
       },
       selected: {
         backgroundColor: 'white',
-        color: 'black',
+        color: '#333333',
+        borderRadius: '12px',
+        '&:hover': {
+          color: '#333333 !important',
+        },
       },
       tabRoot: {
         '&:hover': {
-          color: 'black',
-        }
-      }
+          color: 'white',
+        },
+      },
     },
     BackstageOpenedDropdown: {
       icon: {
@@ -231,6 +230,19 @@ const createCustomThemeOverrides = (
     MuiBackdrop: {
       root: {
         backgroundColor: 'rgba(9,30,69,0.54)',
+      },
+    },
+    MuiAutocomplete: {
+      tagSizeSmall: {
+        // Tags en desplegables
+        background:
+          'var(--color-dark, linear-gradient(180deg, rgba(6, 11, 40, 0.75) 0%, rgba(6, 11, 40, 0.70) 100%))',
+        borderRadius: '12px',
+      },
+      paper: {
+        // Desplegables con varias opciones
+        color: '#000000',
+        background: '#FFFFFF',
       },
     },
     MuiButton: {
@@ -297,13 +309,24 @@ const createCustomThemeOverrides = (
         borderRadius: 9,
       },
     },
+    MuiTab: {
+      textColorInherit: {
+        color: theme.page.fontColor,
+        opacity: 0.8,
+      },
+    },
     MuiTabs: {
       indicator: {
         transition: 'none',
+        background: 'none',
       },
-      flexContainer: {
+      scrollButtons: {
         borderRadius: '12px',
-      }
+      },
+      scrollable: {
+        borderRadius: '12px',
+        backgroundColor: 'rgba(224, 241, 255, 0.5)',
+      },
     },
     MuiTypography: {
       colorPrimary: {
@@ -340,24 +363,17 @@ const createCustomThemeOverrides = (
         color: theme.page.fontColor,
       },
     },
-    BackstageSidebarDivider: {
-      // root: {}
+    // BackstageSidebarDivider: {
+    //   root: {
     //     background: 'white',
     //     opacity: 0.3,
-    //     width: '100%',
-      // },
-      
-    },
-    // News In Light Theme
-    BackstageTableHeader: {
-      header: {
-        background: '#FFFFFF',
-        color: 'rgba(51, 51, 51, 0.80) !important',
-      },
-    },
+    //     width: '10px',
+    //   },
+    // },
+    // News In Light Themewh
     MuiTable: {
       root: {
-        borderRadius: '12px',
+        backdropFilter: 'blur(120px)',
       },
     },
     MuiTableRow: {
@@ -371,19 +387,6 @@ const createCustomThemeOverrides = (
       list: {
         background: '#FFFFFF',
         color: '#000000',
-      },
-    },
-    MuiAutocomplete: {
-      tagSizeSmall: {
-        // Tags en desplegables
-        background:
-          'var(--color-dark, linear-gradient(180deg, rgba(6, 11, 40, 0.75) 0%, rgba(6, 11, 40, 0.70) 100%))',
-          borderRadius: '12px',
-      },
-      paper: {
-        // Desplegables con varias opciones
-        color: '#000000',
-        background: '#FFFFFF',
       },
     },
     MuiOutlinedInput: {
@@ -403,10 +406,20 @@ const createCustomThemeOverrides = (
     },
     MuiListItem: {
       container: {
-        background: '#FFFFFF',
-        color: '#000000'
-      }
-    }
+        // background: '#FFFFFF',
+        color: '#000000',
+      },
+    },
+    BackstageInfoCard: {
+      header: {
+        backdropFilter: 'blur(120px)',
+      },
+    },
+    MuiCard: {
+      root: {
+        backdropFilter: 'blur(120px)',
+      },
+    },
   };
 };
 
