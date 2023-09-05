@@ -323,9 +323,10 @@ const createCustomThemeOverrides = (
       scrollButtons: {
         borderRadius: '12px',
       },
-      scrollable: {
+      scroller: {
         borderRadius: '12px',
         backgroundColor: 'rgba(224, 241, 255, 0.5)',
+        flex: 'none',
       },
     },
     MuiTypography: {
