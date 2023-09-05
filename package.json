@@ -35,9 +35,9 @@
     "@spotify/prettier-config": "^12.0.0",
     "concurrently": "^6.0.0",
     "lerna": "^4.0.0",
+    "node-gyp": "^9.0.0",
     "prettier": "^2.3.2",
-    "typescript": "~4.6.4",
-    "node-gyp": "^9.0.0"
+    "typescript": "~4.6.4"
   },
   "resolutions": {
     "@types/react": "^17",
@@ -52,5 +52,10 @@
     "*.{json,md}": [
       "prettier --write"
     ]
+  },
+  "dependencies": {
+    "@ant-design/icons": "^5.2.6",
+    "@types/zen-observable": "^0.8.4",
+    "zen-observable": "^0.10.0"
   }
 }
