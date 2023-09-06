@@ -50,7 +50,7 @@ import {
 } from '@backstage/core-components';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
-import ViewModuleIcon from '@material-ui/icons/ViewModule'
+import ViewModuleIcon from '@material-ui/icons/GridView'
 
 const backgroundImageUrl = require('../../assets/Incibe-Background.png');
 
