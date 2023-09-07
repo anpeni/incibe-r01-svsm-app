@@ -53,10 +53,6 @@ import {
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import ViewModuleIcon from '@material-ui/icons/ViewModule'
-import GridViewIcon from '@mui/icons-material/GridView';
-import { IconComponent } from '@backstage/core-plugin-api';
-
-// const MiIcono: IconComponent = GridViewIcon as unknown as IconComponent;
 
 const backgroundImageUrl = require('../../assets/Incibe-Background.png');
 

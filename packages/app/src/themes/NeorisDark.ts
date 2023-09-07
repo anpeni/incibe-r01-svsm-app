@@ -157,12 +157,8 @@ const createCustomThemeOverrides = (
         backgroundColor: 'none',
       },
       selected: {
-        // backgroundColor: 'white',
-        // color: '#333333',
+        backgroundColor: 'rgba(6, 11, 40, 0.8)',
         borderRadius: '12px',
-        '&:hover': {
-          // color: '#333333 !important',
-        },
       },
       tabRoot: {
         '&:hover': {
@@ -327,9 +323,10 @@ const createCustomThemeOverrides = (
       scrollButtons: {
         borderRadius: '12px',
       },
-      scrollable: {
+      scroller: {
         borderRadius: '12px',
         backgroundColor: 'rgba(6, 11, 40, 0.4)',
+        flex: 'none',
       },
     },
     MuiTypography: {
