@@ -28,6 +28,8 @@ import { SidebarItemWithSubmenuContext } from './config';
 import { isLocationMatch } from './utils';
 import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
+import { OverridableComponent } from '@mui/material/OverridableComponent';
+import { SvgIconTypeMap } from '@mui/material';
 
 const useStyles = makeStyles<BackstageTheme>(
   theme => ({
@@ -128,7 +130,7 @@ export type SidebarSubmenuItemProps = {
   title: string;
   subtitle?: string;
   to?: string;
-  icon?: IconComponent;
+  icon?: IconComponent | OverridableComponent<SvgIconTypeMap>;
   dropdownItems?: SidebarSubmenuItemDropdownItem[];
   exact?: boolean;
 };
