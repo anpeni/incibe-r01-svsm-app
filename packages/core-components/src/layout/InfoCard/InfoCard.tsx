@@ -47,7 +47,11 @@ const useStyles = makeStyles(
       padding: theme.spacing(2, 2, 2, 2.5),
     },
     headerTitle: {
+<<<<<<< HEAD
       fontWeight: theme.typography.fontWeightBold as any,
+=======
+      fontWeight: theme.typography.fontWeightBold,
+>>>>>>> c410b3123ad7338d6a4ba70bb591807e3671ae31
     },
     headerSubheader: {
       paddingTop: theme.spacing(1),

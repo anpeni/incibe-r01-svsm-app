@@ -106,7 +106,11 @@ const StyledMTableHeader = withStyles(
       borderTop: `1px solid ${theme.palette.grey.A100}`,
       borderBottom: `1px solid ${theme.palette.grey.A100}`,
       // withStyles hasn't a generic overload for theme
+<<<<<<< HEAD
       fontWeight: theme.typography.fontWeightBold as any,
+=======
+      fontWeight: theme.typography.fontWeightBold,
+>>>>>>> c410b3123ad7338d6a4ba70bb591807e3671ae31
       position: 'static',
       wordBreak: 'normal',
     },
@@ -144,7 +148,11 @@ const useFilterStyles = makeStyles<BackstageTheme>(
       justifyContent: 'space-between',
     },
     title: {
+<<<<<<< HEAD
       fontWeight: theme.typography.fontWeightBold as any,
+=======
+      fontWeight: theme.typography.fontWeightBold,
+>>>>>>> c410b3123ad7338d6a4ba70bb591807e3671ae31
       fontSize: 18,
       whiteSpace: 'nowrap',
     },

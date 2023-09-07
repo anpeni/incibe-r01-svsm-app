@@ -18,7 +18,11 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CardHeader from '@material-ui/core/CardHeader';
 import Divider from '@material-ui/core/Divider';
+<<<<<<< HEAD
 import { makeStyles, withStyles, Theme } from '@material-ui/core/styles';
+=======
+import { makeStyles, withStyles } from '@material-ui/core/styles';
+>>>>>>> c410b3123ad7338d6a4ba70bb591807e3671ae31
 import Tab, { TabProps } from '@material-ui/core/Tab';
 import Tabs from '@material-ui/core/Tabs';
 import React, {
@@ -30,7 +34,10 @@ import React, {
 import { BottomLink, BottomLinkProps } from '../BottomLink';
 import { ErrorBoundary, ErrorBoundaryProps } from '../ErrorBoundary';
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> c410b3123ad7338d6a4ba70bb591807e3671ae31
 export type TabbedCardClassKey = 'root' | 'indicator';
 
 const useTabsStyles = makeStyles(
@@ -131,7 +138,11 @@ export function TabbedCard(props: PropsWithChildren<Props>) {
 /** @public */
 export type CardTabClassKey = 'root' | 'selected';
 
+<<<<<<< HEAD
 const useCardTabStyles = makeStyles<Theme>(
+=======
+const useCardTabStyles = makeStyles(
+>>>>>>> c410b3123ad7338d6a4ba70bb591807e3671ae31
   theme => ({
     root: {
       minWidth: theme.spacing(6),
@@ -142,11 +153,19 @@ const useCardTabStyles = makeStyles<Theme>(
       '&:hover': {
         opacity: 1,
         backgroundColor: 'transparent',
+<<<<<<< HEAD
         color: 'bold',
       },
     },
     selected: {
       fontWeight: theme.typography.fontWeightBold as any,
+=======
+        color: theme.palette.text.primary,
+      },
+    },
+    selected: {
+      fontWeight: theme.typography.fontWeightBold,
+>>>>>>> c410b3123ad7338d6a4ba70bb591807e3671ae31
     },
   }),
   { name: 'BackstageCardTab' },
