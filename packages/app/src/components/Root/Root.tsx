@@ -32,8 +32,10 @@ import { NavLink } from 'react-router-dom';
 import {
   Settings as SidebarSettings,
   UserSettingsSignInAvatar, UserSettingsProfileNew,
-  UserSettingsThemeToggleTema
+  UserSettingsThemeToggleTema, UserSettingsTema, UserSettingsSalir 
 } from '@backstage/plugin-user-settings';
+
+
 import { SidebarSearchModal } from '@backstage/plugin-search';
 import {
   Sidebar,
@@ -51,6 +53,10 @@ import {
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import ViewModuleIcon from '@material-ui/icons/ViewModule'
+import GridViewIcon from '@mui/icons-material/GridView';
+import { IconComponent } from '@backstage/core-plugin-api';
+
+// const MiIcono: IconComponent = GridViewIcon as unknown as IconComponent;
 
 const backgroundImageUrl = require('../../assets/Incibe-Background.png');
 
@@ -134,7 +140,7 @@ export const Root = ({ children }: PropsWithChildren<{}>) => {
 
   const CircleBadge = ({ count }: { count: number }) => {
     const classes = useStyles();
-  
+
     return (
       <div className={classes.circleBadge}>
         {count > 0 && <div className={classes.number}>{count}</div>}
@@ -142,7 +148,7 @@ export const Root = ({ children }: PropsWithChildren<{}>) => {
     );
   };
 
-  
+
   return (
     <div className={classes.sidebarContainer} style={rootStyle}>
       <SidebarPage>
@@ -154,18 +160,18 @@ export const Root = ({ children }: PropsWithChildren<{}>) => {
           <Typography className={classes.sectionTitle}>PRINCIPAL</Typography>
           <SidebarGroup label="Menu" icon={<MenuIcon />}>
             {/* Global nav, not org-specific */}
-            <SidebarSubmenuItem icon={ViewModuleIcon} to="/" title="Control Panel" 
-            dropdownItems={[
-              {
-                title: 'Actividad',
-                to: '/7',
-              },
-              {
-                title: 'Tráfico',
-                to: '/8',
-              },
-            ]}
-            
+            <SidebarSubmenuItem icon={ViewModuleIcon} to="/" title="Control Panel"
+              dropdownItems={[
+                {
+                  title: 'Actividad',
+                  to: '/7',
+                },
+                {
+                  title: 'Tráfico',
+                  to: '/8',
+                },
+              ]}
+
             />
             <SidebarItem icon={HomeIcon} to="/" text="Home" />
             <SidebarItem icon={CategoryIcon} to="catalog" text="Catalog" />
@@ -181,20 +187,24 @@ export const Root = ({ children }: PropsWithChildren<{}>) => {
               to="notifications"
               text="Notifications"
             >
-            <CircleBadge count={3} /> {/* Cambia el número según tus necesidades */}
-          </SidebarItem>
+              <CircleBadge count={3} /> {/* Cambia el número según tus necesidades */}
+            </SidebarItem>
             {/* End global nav */}
-            <SidebarDivider className={classes.sidebarDivider}/>
-          <Typography className={classes.sectionTitle}>ADMINISTRADOR</Typography>
+            <SidebarDivider className={classes.sidebarDivider} />
+            <Typography className={classes.sectionTitle}>ADMINISTRADOR</Typography>
             <SidebarScrollWrapper>
               <SidebarItem icon={MapIcon} to="tech-radar" text="Tech Radar" />
-              <SidebarItem icon={HelpIcon} to="/ayuda" text="Ayuda" />
-              <SidebarItem icon={NightIcon} to="/tema" text="Tema" />
+              <SidebarItem icon={HelpIcon} to="/ayuda" text="Ayuda" />                          
+              <SidebarItem 
+              icon={NightIcon} 
+              to="/tema" 
+              text="Tema" />
+
             </SidebarScrollWrapper>
           </SidebarGroup>
           <SidebarSpace />
           <SidebarExpandButton />
-          <SidebarDivider className={classes.sidebarDivider}/>
+          <SidebarDivider className={classes.sidebarDivider} />
           <SidebarGroup
             label="Settings"
             icon={<UserSettingsSignInAvatar />}
@@ -202,11 +212,12 @@ export const Root = ({ children }: PropsWithChildren<{}>) => {
           >
             <SidebarSettings />
             <UserSettingsThemeToggleTema />
+            {/* <UserSettingsTema /> */}
           </SidebarGroup>
           <SidebarGroup>
-      <UserSettingsProfileNew />
-
-      </SidebarGroup>
+            <UserSettingsProfileNew />
+            <UserSettingsSalir />
+          </SidebarGroup>
         </Sidebar>
         {children}
       </SidebarPage>

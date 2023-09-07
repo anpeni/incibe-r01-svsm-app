@@ -17,7 +17,7 @@
 import { Grid, Typography } from '@material-ui/core';
 import React from 'react';
 import { UserSettingsSignInAvatar } from './UserSettingsSignInAvatar';
-//import { UserSettingsMenu } from './UserSettingsMenu';
+import { UserSettingsSalir } from './UserSettingsSalir';
 import { UserSettingsMenuSalir } from './UserSettingsMenuSalir';
 import { useUserProfile } from '../useUserProfileInfo';
 //import { InfoCard } from '@backstage/core-components';
@@ -48,9 +48,7 @@ export const UserSettingsProfileNew = () => {
           )}
         </div>
       </div>
-      <div style={{ marginTop: '5px', textAlign: 'center' }}> {/* Añadido textAlign: 'center' */}
-        <UserSettingsMenuSalir />
-      </div>
+
     </div>
   );
   

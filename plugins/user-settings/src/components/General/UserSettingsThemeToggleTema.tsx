@@ -6,8 +6,12 @@ import SettingsIcon from '@material-ui/icons/Settings'; // Icono para la configu
 import { Switch, ListItem, ListItemSecondaryAction, makeStyles, Typography } from '@material-ui/core';
 import { appThemeApiRef, useApi } from '@backstage/core-plugin-api';
 import { MaterialUISwitch } from './UserSettingsAppearanceSwitch';
+import ContrastIcon from '@mui/icons-material/Contrast';
 
 const useStyles = makeStyles(theme => ({
+  home: {
+    borderLeft: 'solid 3px #2684FF'
+  },
   container: {
     //display: 'flex',
     //justifyContent: 'space-between',
@@ -62,17 +66,18 @@ export const UserSettingsThemeToggleTema = () => {
   };
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
-      <div style={{ marginLeft: '27px' }}>
-        <SettingsIcon />
+    <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center', borderLeft: 'solid 3px #2684FF', height: '48px'}}>
+      {/* <div style={{ marginLeft: '27px' }}> */}
+      <div style={{ fontSize: '2rem' }}>
+        <ContrastIcon />
       </div>
-      <div style={{ marginLeft: '2px' }}>
-        <Typography variant="subtitle1">Temas</Typography>
+      <div style={{ marginLeft: '2px', fontWeight: 'bold'}}>
+        <span >Temas</span>
       </div>
-      <div style={{ marginLeft: '10px' }}>
+      {/* <div style={{ marginLeft: '10px'}}>
         <ListItem >
           <ListItemSecondaryAction>
-            {/* <MaterialUISwitch sx={{ m: 1 }} defaultChecked /> */}
+            
             <Switch
               checked={themeId === 'neoris-dark'}
               onChange={handleSetTheme}
@@ -85,7 +90,7 @@ export const UserSettingsThemeToggleTema = () => {
             
           </ListItemSecondaryAction>
         </ListItem>
-      </div>
+      </div> */}
     </div>
   );
 };
