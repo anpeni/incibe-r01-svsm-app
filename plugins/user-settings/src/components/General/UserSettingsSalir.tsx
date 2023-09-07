@@ -5,6 +5,7 @@ import {
   SidebarItem,
 } from '@backstage/core-components';
 import PowerSettingsNew from '@material-ui/icons/PowerSettingsNew';
+import { PowerSettingsNewOutlined } from '@material-ui/icons';
 
 export const UserSettingsSalir = () => {
   const errorApi = useApi(errorApiRef);
@@ -16,7 +17,7 @@ export const UserSettingsSalir = () => {
 
   return (
     <SidebarItem       
-      icon={PowerSettingsNew} // Asegúrate de importar este icono
+      icon={PowerSettingsNewOutlined} // Asegúrate de importar este icono
       text="Cerrar sesión" 
       onClick={handleSignOut}
     />

@@ -21,9 +21,6 @@ import ExtensionIcon from '@material-ui/icons/Extension';
 import MapIcon from '@material-ui/icons/MyLocation';
 import HelpIcon from '@material-ui/icons/HeadsetMic';
 import NightIcon from '@material-ui/icons/NightsStay';
-import DayIcon from '@material-ui/icons/WbSunny';
-import LibraryBooks from '@material-ui/icons/LibraryBooks';
-import NotifIcon from '@material-ui/icons/Notifications';
 import CreateComponentIcon from '@material-ui/icons/AddCircleOutline';
 import CategoryIcon from '@material-ui/icons/Category';
 import LogoFull from './LogoFull';
@@ -52,7 +49,8 @@ import {
 } from '@backstage/core-components';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
-import ViewModuleIcon from '@material-ui/icons/ViewModule'
+import {GridView, SettingsOutlined, SearchOutlined, NotificationsOutlined} from '@mui/icons-material'
+import { DescriptionOutlined } from '@material-ui/icons';
 
 const backgroundImageUrl = require('../../assets/Incibe-Background.png');
 
@@ -150,13 +148,13 @@ export const Root = ({ children }: PropsWithChildren<{}>) => {
       <SidebarPage>
         <Sidebar disableExpandOnHover>
           <SidebarLogo />
-          <SidebarGroup label="Search" icon={<SearchIcon />} to="/search">
+          <SidebarGroup label="Search" icon={<SearchOutlined />} to="/search">
             <SidebarSearchModal />
           </SidebarGroup>
           <Typography className={classes.sectionTitle}>PRINCIPAL</Typography>
           <SidebarGroup label="Menu" icon={<MenuIcon />}>
             {/* Global nav, not org-specific */}
-            <SidebarSubmenuItem icon={ViewModuleIcon} to="/" title="Control Panel"
+            <SidebarSubmenuItem icon={GridView} to="/" title="Control Panel"
               dropdownItems={[
                 {
                   title: 'Actividad',
@@ -172,14 +170,14 @@ export const Root = ({ children }: PropsWithChildren<{}>) => {
             <SidebarItem icon={HomeIcon} to="/" text="Home" />
             <SidebarItem icon={CategoryIcon} to="catalog" text="Catalog" />
             <SidebarItem icon={ExtensionIcon} to="api-docs" text="APIs" />
-            <SidebarItem icon={LibraryBooks} to="docs" text="Docs" />
+            <SidebarItem icon={DescriptionOutlined} to="docs" text="Docs" />
             <SidebarItem
               icon={CreateComponentIcon}
               to="create"
               text="Create..."
             />
             <SidebarItem
-              icon={NotifIcon}
+              icon={NotificationsOutlined}
               to="notifications"
               text="Notifications"
             >
@@ -203,7 +201,7 @@ export const Root = ({ children }: PropsWithChildren<{}>) => {
           <SidebarDivider className={classes.sidebarDivider} />
           <SidebarGroup
             label="Settings"
-            icon={<UserSettingsSignInAvatar />}
+            icon={<SettingsOutlined />}
             to="/settings"
           >
             <SidebarSettings />

@@ -60,13 +60,14 @@ import {
   SidebarConfigContext,
   SidebarItemWithSubmenuContext,
 } from './config';
-import DoubleArrowLeft from './icons/DoubleArrowLeft';
-import DoubleArrowRight from './icons/DoubleArrowRight';
 import { useSidebarOpenState } from './SidebarOpenStateContext';
 import { SidebarSubmenu, SidebarSubmenuProps } from './SidebarSubmenu';
 import { SidebarSubmenuItemProps } from './SidebarSubmenuItem';
 import { isLocationMatch } from './utils';
 import Button from '@material-ui/core/Button';
+import { OverridableComponent } from '@mui/material/OverridableComponent';
+import { SvgIconTypeMap } from '@mui/material';
+import { ChevronLeftOutlined, ChevronRightOutlined } from '@material-ui/icons';
 
 /** @public */
 export type SidebarItemClassKey =
@@ -263,7 +264,7 @@ const useLocationMatch = (
   );
 
 type SidebarItemBaseProps = {
-  icon: IconComponent;
+  icon: IconComponent | OverridableComponent<SvgIconTypeMap>;
   text?: string;
   hasNotifications?: boolean;
   hasSubmenu?: boolean;
@@ -389,7 +390,7 @@ const SidebarItemBase = forwardRef<any, SidebarItemProps>((props, ref) => {
   const displayItemIcon = (
     <Box style={divStyle}>
       <Icon fontSize="small" />
-      {!isOpen && hasSubmenu ? <ArrowRightIcon fontSize="small" /> : <></>}
+      {!isOpen && hasSubmenu ? <ChevronRightOutlined fontSize="small" /> : <></>}
     </Box>
   );
 
@@ -738,7 +739,7 @@ export const SidebarExpandButton = () => {
       data-testid="sidebar-expand-button"
     >
       <Box className={classes.arrows}>
-        {isOpen ? <DoubleArrowLeft /> : <DoubleArrowRight />}
+        {isOpen ? <ChevronLeftOutlined /> : <ChevronRightOutlined />}
       </Box>
     </Button>
   );
