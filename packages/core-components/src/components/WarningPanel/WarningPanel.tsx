@@ -92,11 +92,7 @@ const useStyles = makeStyles<BackstageTheme>(
           severity as NonNullable<WarningProps['severity']>,
           theme,
         ),
-<<<<<<< HEAD
       fontWeight: theme.typography.fontWeightBold as any,
-=======
-      fontWeight: theme.typography.fontWeightBold,
->>>>>>> c410b3123ad7338d6a4ba70bb591807e3671ae31
     },
     message: {
       width: '100%',

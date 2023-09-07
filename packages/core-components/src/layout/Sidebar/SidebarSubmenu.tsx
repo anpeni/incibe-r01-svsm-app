@@ -79,11 +79,7 @@ const useStyles = makeStyles<
     }),
     title: {
       fontSize: theme.typography.h5.fontSize,
-<<<<<<< HEAD
       fontWeight: theme.typography.fontWeightMedium as any,
-=======
-      fontWeight: theme.typography.fontWeightMedium,
->>>>>>> c410b3123ad7338d6a4ba70bb591807e3671ae31
       color: theme.palette.common.white,
       padding: theme.spacing(2.5),
       [theme.breakpoints.down('xs')]: {

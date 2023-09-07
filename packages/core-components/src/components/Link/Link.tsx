@@ -31,13 +31,8 @@ import {
 } from 'react-router-dom';
 
 export function isReactRouterBeta(): boolean {
-<<<<<<< HEAD
   const [obj] = createRoutesFromChildren(<Route caseSensitive element={<div />} />);
   return !obj.caseSensitive;
-=======
-  const [obj] = createRoutesFromChildren(<Route index element={<div />} />);
-  return !obj.index;
->>>>>>> c410b3123ad7338d6a4ba70bb591807e3671ae31
 }
 
 const useStyles = makeStyles(

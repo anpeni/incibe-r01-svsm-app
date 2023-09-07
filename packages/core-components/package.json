@@ -32,7 +32,6 @@
     "start": "backstage-cli package start"
   },
   "dependencies": {
-<<<<<<< HEAD
     "@backstage/config": "^1.0.8",
     "@backstage/core-plugin-api": "^1.5.2",
     "@backstage/errors": "^1.2.0",
@@ -41,16 +40,6 @@
     "@date-io/core": "^1.3.13",
     "@material-table/core": "^3.1.0",
     "@material-ui/core": "^4.12.4",
-=======
-    "@backstage/config": "workspace:^",
-    "@backstage/core-plugin-api": "workspace:^",
-    "@backstage/errors": "workspace:^",
-    "@backstage/theme": "workspace:^",
-    "@backstage/version-bridge": "workspace:^",
-    "@date-io/core": "^1.3.13",
-    "@material-table/core": "^3.1.0",
-    "@material-ui/core": "^4.12.2",
->>>>>>> c410b3123ad7338d6a4ba70bb591807e3671ae31
     "@material-ui/icons": "^4.9.1",
     "@material-ui/lab": "4.0.0-alpha.61",
     "@react-hookz/web": "^20.0.0",
@@ -91,15 +80,9 @@
     "react-router-dom": "6.0.0-beta.0 || ^6.3.0"
   },
   "devDependencies": {
-<<<<<<< HEAD
     "@backstage/cli": "^0.22.8",
     "@backstage/core-app-api": "^1.8.1",
     "@backstage/test-utils": "^1.4.0",
-=======
-    "@backstage/cli": "workspace:^",
-    "@backstage/core-app-api": "workspace:^",
-    "@backstage/test-utils": "workspace:^",
->>>>>>> c410b3123ad7338d6a4ba70bb591807e3671ae31
     "@testing-library/dom": "^8.0.0",
     "@testing-library/jest-dom": "^5.10.1",
     "@testing-library/react": "^12.1.3",
@@ -112,10 +95,6 @@
     "@types/d3-zoom": "^3.0.1",
     "@types/dagre": "^0.7.44",
     "@types/google-protobuf": "^3.7.2",
-<<<<<<< HEAD
-=======
-    "@types/node": "^16.11.26",
->>>>>>> c410b3123ad7338d6a4ba70bb591807e3671ae31
     "@types/react-helmet": "^6.1.0",
     "@types/react-syntax-highlighter": "^15.0.0",
     "@types/react-virtualized-auto-sizer": "^1.0.1",

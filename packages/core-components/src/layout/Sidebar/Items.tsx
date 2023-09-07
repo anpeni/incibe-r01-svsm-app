@@ -93,11 +93,7 @@ const makeSidebarStyles = (sidebarConfig: SidebarConfig) =>
   makeStyles<BackstageTheme>(
     theme => ({
       root: {
-<<<<<<< HEAD
         color: theme.palette.navigation.color ,
-=======
-        color: theme.palette.navigation.color,
->>>>>>> c410b3123ad7338d6a4ba70bb591807e3671ae31
         display: 'flex',
         flexFlow: 'row nowrap',
         alignItems: 'center',
@@ -115,11 +111,7 @@ const makeSidebarStyles = (sidebarConfig: SidebarConfig) =>
         textTransform: 'none',
       },
       closed: {
-<<<<<<< HEAD
         width: sidebarConfig.drawerWidthClosed ,
-=======
-        width: sidebarConfig.drawerWidthClosed,
->>>>>>> c410b3123ad7338d6a4ba70bb591807e3671ae31
         justifyContent: 'center',
       },
       open: {
@@ -130,20 +122,12 @@ const makeSidebarStyles = (sidebarConfig: SidebarConfig) =>
       highlightable: {
         '&:hover': {
           background:
-<<<<<<< HEAD
             theme.palette.navigation.navItem?.hoverBackground ?? '#404040' ,
-=======
-            theme.palette.navigation.navItem?.hoverBackground ?? '#404040',
->>>>>>> c410b3123ad7338d6a4ba70bb591807e3671ae31
         },
       },
       highlighted: {
         background:
-<<<<<<< HEAD
           theme.palette.navigation.navItem?.hoverBackground ?? '#404040' ,
-=======
-          theme.palette.navigation.navItem?.hoverBackground ?? '#404040',
->>>>>>> c410b3123ad7338d6a4ba70bb591807e3671ae31
       },
       label: {
         // XXX (@koroeskohr): I can't seem to achieve the desired font-weight from the designs
@@ -170,11 +154,7 @@ const makeSidebarStyles = (sidebarConfig: SidebarConfig) =>
       },
       searchField: {
         color: '#b5b5b5',
-<<<<<<< HEAD
         fontWeight: theme.typography.fontWeightBold as any,
-=======
-        fontWeight: theme.typography.fontWeightBold,
->>>>>>> c410b3123ad7338d6a4ba70bb591807e3671ae31
         fontSize: theme.typography.fontSize,
       },
       searchFieldHTMLInput: {
@@ -371,11 +351,7 @@ export const WorkaroundNavLink = React.forwardRef<
       aria-current={ariaCurrent}
       style={{ ...style, ...(isActive ? activeStyle : undefined) }}
       className={classnames([
-<<<<<<< HEAD
         className as string,
-=======
-        className,
->>>>>>> c410b3123ad7338d6a4ba70bb591807e3671ae31
         isActive ? activeClassName : undefined,
       ])}
     />
