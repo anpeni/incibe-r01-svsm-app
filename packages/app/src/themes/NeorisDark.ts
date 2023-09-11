@@ -296,12 +296,16 @@ const createCustomThemeOverrides = (
     MuiSwitch: {
       root: {
         padding: 10,
+        
       },
       switchBase: {
         padding: 12,
+        
+        
       },
       thumb: {
         // backgroundColor: bgColor,
+        
         height: 14,
         width: 14,
       },
@@ -311,7 +315,7 @@ const createCustomThemeOverrides = (
         opacity: '1'
       },
       colorPrimary: {
-        backgroundColor: 'white',
+        //backgroundColor: 'white', en este sale el circulo blanco
         opacity: '1'
       },
       checked: {
@@ -399,8 +403,8 @@ const createCustomThemeOverrides = (
       },
     },
     // Mui: {
-    //   checked: {
-    //     backgroundColor: 'white',
+    //   root: {
+        
     //   },
     // },
 
