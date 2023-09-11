@@ -14,36 +14,46 @@
  * limitations under the License.
  */
 
-import { Grid, Typography } from '@material-ui/core';
+
 import React from 'react';
 import { UserSettingsSignInAvatar } from './UserSettingsSignInAvatar';
 import { UserSettingsSalir } from './UserSettingsSalir';
 import { UserSettingsMenuSalir } from './UserSettingsMenuSalir';
 import { useUserProfile } from '../useUserProfileInfo';
+import { makeStyles} from '@material-ui/core';
 //import { InfoCard } from '@backstage/core-components';
 //import Avatar from '@material-ui/core/Avatar';
+
+
 /** @public */
+
+const useStyles = makeStyles({
+  developerText: {
+    color: 'grey',
+    fontSize: '10px',
+  },
+});
 export const UserSettingsProfileNew = () => {
   const { profile, displayName } = useUserProfile();
-
+  const classes = useStyles();
   return (
-    <div style={{ marginTop: '25px' , alignItems: 'center' }}>
+    <div style={{ marginTop: '3px' , marginBottom: '-8px',marginLeft: '7px',  alignItems: 'center' }}>
       <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
         <div style={{ margin: '10px' }}>
-          <UserSettingsSignInAvatar size={50} />
+          <UserSettingsSignInAvatar size={40} />
         </div>
   
-        <div style={{ display: 'flex', flexDirection: 'column' }}>
-          <div style={{ marginBottom: '8px' }}>
-            <Typography variant="subtitle1">
-              {displayName}
-            </Typography>
-          </div>
+        <div style={{ display: 'flex', flexDirection: 'column', marginBottom: '-17px', fontWeight: 'bold' }}>
+
+            <span className={classes.developerText}>
+              DEVELOPER
+            </span>
+
           {profile.email && (
-            <div style={{ color: 'textSecondary', marginBottom: '8px' }}>
-              <Typography variant="body2" color="textSecondary">
-                {profile.email}
-              </Typography>
+            <div style={{marginBottom: '8px' }}>
+              <span >
+              {displayName}
+              </span>
             </div>
           )}
         </div>

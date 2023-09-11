@@ -7,50 +7,29 @@ import { Switch, ListItem, ListItemSecondaryAction, makeStyles, Typography } fro
 import { appThemeApiRef, useApi } from '@backstage/core-plugin-api';
 import { MaterialUISwitch } from './UserSettingsAppearanceSwitch';
 import ContrastIcon from '@mui/icons-material/Contrast';
+import NightIcon from '@material-ui/icons/NightsStay';
 
-const useStyles = makeStyles(theme => ({
-  home: {
-    borderLeft: 'solid 3px #2684FF'
-  },
-  container: {
-    //display: 'flex',
-    //justifyContent: 'space-between',
-    //alignItems: 'center',
-    //width: '100%',
-    // paddingBottom: 8,
-    // paddingRight: 16,
-    paddingleft: 10
-  },
-  list: {
-    width: 'initial',
-    [theme.breakpoints.down('xs')]: {
-      width: '100%',
-      padding: `0 0 12px`,
+const useStyles = makeStyles({
+  customSwitch: {
+    marginTop: '4px',
+    color: 'transparent !important',
+    width: '70px',
+    height: '40px',
+    padding: '6px',
+    '& .MuiSwitch-thumb': {
+      width: '28px',
+      height: '28px',
+      borderRadius: '50%'
+    },
+    '& .MuiSwitch-track': {
+      height: '24px',
+      borderRadius: '24px',
+      color: '#FFFFFF !important'
+      
     },
   },
-  listItemText: {
-    paddingRight: 0,
-    paddingLeft: 0,
-  },
-  listItemSecondaryAction: {
-    position: 'relative',
-    transform: 'unset',
-    top: 'auto',
-    right: 'auto',
-    paddingLeft: 16,
-    [theme.breakpoints.down('xs')]: {
-      paddingLeft: 0,
-    },
-  },
-  textAndIconContainer: {
-    display: 'flex',
-    alignItems: 'center',
-    marginRight: '20px'
-  },
-  settingsIcon: {
-    marginRight: theme.spacing(1),
-  },
-}));
+});
+
 
 /** @public */
 export const UserSettingsThemeToggleTema = () => {
@@ -66,31 +45,78 @@ export const UserSettingsThemeToggleTema = () => {
   };
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center', borderLeft: 'solid 3px #2684FF', height: '48px'}}>
-      {/* <div style={{ marginLeft: '27px' }}> */}
-      <div style={{ fontSize: '2rem' }}>
-        <ContrastIcon />
-      </div>
-      <div style={{ marginLeft: '2px', fontWeight: 'bold'}}>
-        <span >Temas</span>
-      </div>
-      {/* <div style={{ marginLeft: '10px'}}>
-        <ListItem >
-          <ListItemSecondaryAction>
-            
-            <Switch
-              checked={themeId === 'neoris-dark'}
-              onChange={handleSetTheme}
-              name="checkedTheme"
-              
-              icon={<Brightness7Icon />}
-              checkedIcon={<Brightness4Icon />}
+    <a style={{ display: 'flex', flexFlow: 'row nowrap', marginLeft: '-3px',justifyContent: 'center', alignItems: 'center', height: '48px', width: '224px' }}>
+      <div style={{
+        marginLeft: '-20px', width: '72px',
+        height: '100%',
+        display: 'flex',
+        boxSizing: 'border-box',
+        alignItems: 'center',
+        lineHeight: '0',
+        marginRight: '-16px',
+        justifyContent: 'center',
 
-            />
-            
-          </ListItemSecondaryAction>
-        </ListItem>
-      </div> */}
-    </div>
+      }}>
+        <span style={{
+          display: 'flex',  // Cambiado a 'flex'
+          alignItems: 'center',
+          position: 'relative',
+          flexShrink: '0',
+          verticalAlign: 'middle'
+
+        }}>
+          <div >
+            <ContrastIcon style={{
+              fill: 'currentColor',
+              width: '0.75em',
+              height: '0.75em',
+              display: 'inline-block',
+              fontSize: '1.5rem',
+              transition: 'fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
+              flexShrink: '0',
+              userSelect: 'none',
+
+            }} />
+          </div>
+          <span style={{ marginLeft: '10px', fontWeight: 'bold', alignItems: 'center' }}>Tema</span>
+          <div style={{ marginLeft: '25px' }}>
+            {/* <ListItem > */}
+              {/* <ListItemSecondaryAction> */}
+                <Switch
+                  checked={themeId === 'neoris-dark'}
+                  onChange={handleSetTheme}
+                  name="checkedTheme"
+                  className={classes.customSwitch}
+                  icon={<Brightness7Icon
+                    style={{
+                      width: '1.2em',
+                      height: '1.2em',
+                      position: 'absolute',
+                      top: '75%',
+                      left: '10%',
+                      transform: 'translateY(-50%)',
+                      color: 'grey'
+                    }}
+                  />}
+                  checkedIcon={<NightIcon
+                    style={{
+                      width: '1.2em',
+                      height: '1.2em',
+                      position: 'absolute',
+                      top: '75%',
+                      right: '-90%',
+                      transform: 'translateY(-50%)',
+                      color: 'grey'
+                    }}
+                  />}
+
+                />
+              {/* </ListItemSecondaryAction> */}
+            {/* </ListItem> */}
+          </div>
+        </span>
+      </div>
+
+    </a>
   );
 };

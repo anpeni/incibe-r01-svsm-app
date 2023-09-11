@@ -307,6 +307,7 @@ const createCustomThemeOverrides = (
       },
       track: {
         borderRadius: 9,
+        backgroundColor: 'white', 
       },
     },
     MuiTab: {

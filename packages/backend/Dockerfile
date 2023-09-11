@@ -7,7 +7,7 @@ RUN useradd -ms /bin/bash node
 USER node
 WORKDIR /app
 
-# This switches many Node.js dependencies to production mode.
+## This switches many Node.js dependencies to production mode.
 ENV NODE_ENV production
 
 # Set NODE_OPTIONS to increase memory limit
