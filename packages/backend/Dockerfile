@@ -10,7 +10,8 @@ WORKDIR /app
 # This switches many Node.js dependencies to production mode.
 ENV NODE_ENV production
 
-ENV NODE_OPTIONS="--max_old_space_size=4096"
+# Set NODE_OPTIONS to increase memory limit
+ENV NODE_OPTIONS=--max_old_space_size=8192
 
 # Copy repo skeleton first, to avoid unnecessary docker cache invalidation.
 # The skeleton contains the package.json of each package in the monorepo,
