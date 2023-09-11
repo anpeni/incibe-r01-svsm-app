@@ -86,7 +86,7 @@ const baseTheme = createTheme({
       },
       background: {
         default: bgColor, // General
-        paper: 'rgba(6, 11, 40, 0.7)' ,// Tarjetas
+        paper: 'rgba(6, 11, 40, 0.7)',// Tarjetas
         backdropFilter: 'blur(120px)',
       },
       navigation: {
@@ -307,7 +307,18 @@ const createCustomThemeOverrides = (
       },
       track: {
         borderRadius: 9,
+        backgroundColor: 'white',
+        opacity: '1'
       },
+      colorPrimary: {
+        backgroundColor: 'white',
+        opacity: '1'
+      },
+      checked: {
+        backgroundColor: 'white',
+        opacity: '1'
+      },
+
     },
     MuiTab: {
       textColorInherit: {
@@ -387,6 +398,18 @@ const createCustomThemeOverrides = (
         backdropFilter: 'blur(120px)',
       },
     },
+    // Mui: {
+    //   checked: {
+    //     backgroundColor: 'white',
+    //   },
+    // },
+
+
+
+
+
+
+
   };
 };
 

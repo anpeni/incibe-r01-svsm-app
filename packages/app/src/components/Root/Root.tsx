@@ -210,6 +210,7 @@ export const Root = ({ children }: PropsWithChildren<{}>) => {
             <UserSettingsThemeToggleTema />
             {/* <UserSettingsTema /> */}
           </SidebarGroup>
+          <SidebarDivider className={classes.sidebarDivider} />
           <SidebarGroup>
             <UserSettingsProfileNew />
             <UserSettingsSalir />
