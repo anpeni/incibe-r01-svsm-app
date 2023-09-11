@@ -23,7 +23,6 @@ declare module '@material-ui/core/styles/overrides' {
   }
 }
 
-const aoundImageUrl = require('../assets/Incibe-Background.png');
 const bgColor = 'linear-gradient(90deg, rgba(6,11,40,0.75) 50%, rgba(6,11,40,0.7) 100%)';
 
 const pageThemesFontColorOverride: Record<string, PageTheme> = {};
@@ -36,6 +35,7 @@ Object.keys(defaultPageThemes).map(key => {
 
 // TODO(awanlin): Continuing to use the deprecated `createTheme` for now
 // will come back to clean this up when we have a better solution for this
+
 
 // eslint-disable-next-line
 const baseTheme = createTheme({
@@ -86,7 +86,8 @@ const baseTheme = createTheme({
       },
       background: {
         default: bgColor, // General
-        paper: 'rgba(6, 11, 40, 0.5)' // Tarjetas
+        paper: 'rgba(6, 11, 40, 0.7)' ,// Tarjetas
+        backdropFilter: 'blur(120px)',
       },
       navigation: {
         ...palettes.light.navigation,
@@ -118,8 +119,8 @@ const createCustomThemeOverrides = (
       },
       title: {
         color: theme.page.fontColor,
-        fontFamily: "Inter, sans-serif",
-        fontWeight: "bold",
+        fontFamily: 'Inter, sans-serif',
+        fontWeight: 'bold',
       },
       subtitle: {
         color: theme.page.fontColor,
@@ -128,19 +129,14 @@ const createCustomThemeOverrides = (
         color: alpha(theme.page.fontColor, 0.8),
       },
     },
-    MuiTab: {
-      textColorInherit: {
-        color: theme.page.fontColor,
-        opacity: 0.8,
-      }
-    },
     BackstageSidebar: {
       drawer: {
         // backgroundImage: `url(${backgroundImageUrl})`,
         borderRadius: '12px',
         boxShadow: '0px 4px 4px 0px rgba(0, 0, 0, 0.25)',
-        background: bgColor
-      }
+        background: bgColor,
+        backdropFilter: 'blur(120px)',
+      },
     },
     // TODO: Remove after https://github.com/backstage/backstage/pull/16853 is available here
     BackstageHeaderLabel: {
@@ -155,6 +151,19 @@ const createCustomThemeOverrides = (
       defaultTab: {
         fontSize: 'inherit',
         textTransform: 'none',
+        padding: '5px',
+      },
+      tabsWrapper: {
+        backgroundColor: 'none',
+      },
+      selected: {
+        backgroundColor: 'rgba(6, 11, 40, 0.8)',
+        borderRadius: '12px',
+      },
+      tabRoot: {
+        '&:hover': {
+          color: 'white',
+        },
       },
     },
     BackstageOpenedDropdown: {
@@ -214,46 +223,58 @@ const createCustomThemeOverrides = (
         },
       },
     },
+    MuiBackdrop: {
+      root: {
+        backgroundColor: 'rgba(9,30,69,0.54)',
+      },
+    },
     MuiAutocomplete: {
       root: {
         '&[aria-expanded=true]': {
-          backgroundColor: '#26385A',
           color: theme.page.fontColor,
         },
         '&[aria-expanded=true] path': {
           fill: theme.page.fontColor,
         },
       },
-    },
-    MuiBackdrop: {
-      root: {
-        backgroundColor: 'rgba(9,30,69,0.54)',
+      tagSizeSmall: {
+        background:
+          'var(--color-dark, linear-gradient(180deg, rgba(6, 11, 40, 0.75) 0%, rgba(6, 11, 40, 0.70) 100%))',
       },
     },
     MuiButton: {
       root: {
-        borderRadius: "12px",
+        borderRadius: '12px',
         textTransform: 'none',
         color: theme.page.fontColor,
-        TextSize: "13px"
+        TextSize: '13px',
+      },
+      outlinedPrimary: {
+        border: 'none',
+        backgroundColor: 'rgba(6, 11, 40, 1)',
+        '&:hover': {
+          background: 'rgba(6, 11, 40, 0.5) !important',
+          border: 'none',
+        },
       },
       label: {
-        justifyContent: "none",
+        justifyContent: 'none',
       },
       contained: {
-        fontFamily: "Inter, sans-serif",
+        fontFamily: 'Inter, sans-serif',
         fontWeight: 600, // Semibold
         background: bgColor,
-        // boxShadow: '0px 4px 4px 0px rgba(0, 0, 0, 0.25)',
+        backdropFilter: 'blur(120px)',
         '&:hover': {
-          background: "linear-gradient(90deg, rgba(6,11,40,0.35) 50%, rgba(6,11,40,0.3) 100%) !important",
+          background:
+            'linear-gradient(90deg, rgba(6,11,40,0.35) 50%, rgba(6,11,40,0.3) 100%) !important',
         },
       },
     },
     MuiButtonBase: {
       root: {
-        color: "white !important",
-      }
+        color: 'white !important',
+      },
     },
     MuiChip: {
       root: {
@@ -265,8 +286,9 @@ const createCustomThemeOverrides = (
     },
     MuiSelect: {
       root: {
-        '&[aria-expanded]': { // Select abierto
-          // backgroundColor: bgColor, 
+        '&[aria-expanded]': {
+          // Select abierto
+          // backgroundColor: bgColor,
           // color: 'black',
         },
       },
@@ -287,14 +309,29 @@ const createCustomThemeOverrides = (
         borderRadius: 9,
       },
     },
+    MuiTab: {
+      textColorInherit: {
+        color: theme.page.fontColor,
+        opacity: 0.8,
+      },
+    },
     MuiTabs: {
       indicator: {
         transition: 'none',
+        background: 'none',
+      },
+      scrollButtons: {
+        borderRadius: '12px',
+      },
+      scroller: {
+        borderRadius: '12px',
+        backgroundColor: 'rgba(6, 11, 40, 0.4)',
+        flex: 'none',
       },
     },
     MuiTypography: {
       colorPrimary: {
-        color: theme.page.fontColor,        
+        color: theme.page.fontColor,
       },
       colorTextSecondary: {
         color: theme.page.fontColor,
@@ -305,26 +342,50 @@ const createCustomThemeOverrides = (
     },
     MuiInputBase: {
       root: {
+        // Select and Filters
         color: theme.page.fontColor,
         background: bgColor,
+        backdropFilter: 'blur(120px)',
         fontWeight: 100, // Thin
-      }
+      },
     },
     MuiFormLabel: {
       root: {
         color: theme.page.fontColor,
-      }
+      },
     },
     MuiStepLabel: {
       label: {
         color: theme.page.fontColor,
         fontWeight: 100, // Thin
-      }
+      },
     },
     MuiFormHelperText: {
       root: {
         color: theme.page.fontColor,
-      }
+      },
+    },
+    MuiTable: {
+      root: {
+        backdropFilter: 'blur(120px)',
+      },
+    },
+    MuiMenuItem: {
+      // Selects abiertos<
+      root: {
+        background:
+          'var(--color-dark, linear-gradient(180deg, rgba(6, 11, 40, 0.75) 0%, rgba(6, 11, 40, 0.70) 100%))',
+      },
+    },
+    BackstageInfoCard: {
+      header: {
+        backdropFilter: 'blur(120px)',
+      },
+    },
+    MuiCard: {
+      root: {
+        backdropFilter: 'blur(120px)',
+      },
     },
   };
 };
