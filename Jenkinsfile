@@ -81,7 +81,7 @@ pipeline {
   stages {
     stage ('Ejecutar echo'){
       steps{
-        sh 'echo "Funciona la pipeline"'
+        sh 'echo "Funciona la pipeline con la URL"'
       }
     }
 
