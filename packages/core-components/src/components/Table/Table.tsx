@@ -116,6 +116,7 @@ const StyledMTableHeader = withStyles(
 
 export type TableToolbarClassKey = 'root' | 'title' | 'searchField';
 
+
 const StyledMTableToolbar = withStyles(
   theme => ({
     root: {
