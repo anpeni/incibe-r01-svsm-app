@@ -23,7 +23,6 @@ declare module '@material-ui/core/styles/overrides' {
   }
 }
 
-const ndImageUrl = require('../assets/Incibe-Background.png');
 const bgColor =
   'linear-gradient(90deg, rgba(224,241,255,0.5) 50%, rgba(224,241,255,0.4) 100%)';
 
@@ -421,6 +420,11 @@ const createCustomThemeOverrides = (
       root: {
         backdropFilter: 'blur(120px)',
       },
+    },
+    MuiTableSortLabel: {
+      root: {
+        color: 'rgba(51, 51, 51, 0.80)'
+      }
     },
   };
 };
