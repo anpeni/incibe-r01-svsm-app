@@ -102,10 +102,55 @@ pipeline {
         }
       }
     }
+
+    stage('Ejecutar echo en git-node') {
+      steps {
+        container(name: 'git-node') {
+            sh 'echo "It\'s working in git-node"'
+        }
+      }
+    }
+        
+    stage('Ejecutar echo en npm') {
+      steps {
+        container(name: 'npm') {
+            sh 'echo "It\'s working in npm"'
+        }
+      }
+    }
+        
+    stage('Ejecutar echo en npm-tests') {
+      steps {
+        container(name: 'npm-tests') {
+            sh 'echo "It\'s working in npm-tests"'
+        }
+      }
+    }
+        
+    stage('Ejecutar echo en trivy') {
+      steps {
+        container(name: 'trivy') {
+            sh 'echo "It\'s working in trivy"'
+        }
+      }
+    }
+        
+    stage('Ejecutar echo en sonar-scanner') {
+      steps {
+        container(name: 'sonar-scanner') {
+            sh 'echo "It\'s working in sonar-scanner"'
+        }
+      }
+    }
+        
+    stage('Ejecutar echo en kaniko') {
+      steps {
+        container(name: 'kaniko') {
+            sh 'echo "It\'s working in kaniko"'
+        }
+      }
+    }
   }
-
-  
-
 }
   //   stage('dependencies') {
   //     steps {
