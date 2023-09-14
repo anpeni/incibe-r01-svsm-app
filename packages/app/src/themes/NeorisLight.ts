@@ -308,6 +308,7 @@ const createCustomThemeOverrides = (
       track: {
         borderRadius: 9,
         backgroundColor: 'white', 
+        opacity: '1 !important',
       },
     },
     MuiTab: {
@@ -339,6 +340,12 @@ const createCustomThemeOverrides = (
       },
       button: {
         textTransform: 'none',
+      },
+      subtitle2: {
+        fontSize: '16px',//16px
+        fontFamily: 'Inter, sans-serif',//inter
+        // fontWeight: '500',//regular
+        lineHeight: '1.57',
       },
     },
     MuiInputBase: {
@@ -421,6 +428,50 @@ const createCustomThemeOverrides = (
       root: {
         backdropFilter: 'blur(120px)',
       },
+    },
+    BackstageSidebarItem: {
+      selected: {
+        //backdropFilter: 'blur(120px)',
+        backgroundColor: 'rgba(6, 11, 40, 0.8)',
+        borderRadius: '12px',
+        borderLeft: 'none !important',
+        width: '100%',
+        color: '#FFF !important'
+      },
+
+      root: {
+        //backdropFilter: 'blur(120px)',
+        //backgroundColor: 'rgba(6, 11, 40, 0.8)',
+        //borderRadius: '12px'
+        borderLeft: 'none !important',
+        color: 'rgba(255, 255, 255, 0.60) !important'
+      },
+      highlightable: {
+        //backdropFilter: 'blur(120px)',
+        //backgroundColor: 'rgba(6, 11, 40, 0.8)',
+        //borderRadius: '12px'
+        '&:hover': { // Añade esta parte para el efecto de hover
+          backgroundColor: 'rgba(6, 11, 40, 0.8)',
+          borderRadius: '12px',
+
+        }
+      },
+      label: {
+        flex: '3 1 auto',
+        width: '110px',
+        overflow: 'hidden',
+        fontWeight: 500,
+        lineHeight: 'auto',
+        whiteSpace: 'nowrap',
+        textOverflow: 'ellipsis',
+
+
+      }
+
+
+
+
+
     },
   };
 };

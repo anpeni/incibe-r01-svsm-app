@@ -296,33 +296,38 @@ const createCustomThemeOverrides = (
     MuiSwitch: {
       root: {
         padding: 10,
-        
+        "&$checked": {
+          backgroundColor: "white",
+          opacity: "1"
+
+        }
       },
       switchBase: {
         padding: 12,
-        
-        
+
+
       },
       thumb: {
         // backgroundColor: bgColor,
-        
+
         height: 14,
         width: 14,
       },
       track: {
         borderRadius: 9,
-        backgroundColor: 'white',
-        opacity: '1'
+        backgroundColor: 'white !important',
+        opacity: '1 !important',
       },
       colorPrimary: {
         //backgroundColor: 'white', en este sale el circulo blanco
-        opacity: '1'
+        opacity: '1 !important',
+        mui: {
+          checked: {
+            //backgroundColor: 'white !important',
+            opacity: '1 !important',
+          }
+        }
       },
-      checked: {
-        backgroundColor: 'white',
-        opacity: '1'
-      },
-
     },
     MuiTab: {
       textColorInherit: {
@@ -353,6 +358,12 @@ const createCustomThemeOverrides = (
       },
       button: {
         textTransform: 'none',
+      },
+      subtitle2: {
+        fontSize: '16px',//16px
+        fontFamily: 'Inter, sans-serif',//inter
+        // fontWeight: '500',//regular
+        lineHeight: '1.57',
       },
     },
     MuiInputBase: {
@@ -397,16 +408,50 @@ const createCustomThemeOverrides = (
         backdropFilter: 'blur(120px)',
       },
     },
-    MuiCard: {
-      root: {
-        backdropFilter: 'blur(120px)',
+    BackstageSidebarItem: {
+      selected: {
+        //backdropFilter: 'blur(120px)',
+        backgroundColor: 'rgba(6, 11, 40, 0.8)',
+        borderRadius: '12px',
+        borderLeft: 'none !important',
+        width: '100%',
+        color: '#FFF !important'
       },
+
+      root: {
+        //backdropFilter: 'blur(120px)',
+        //backgroundColor: 'rgba(6, 11, 40, 0.8)',
+        //borderRadius: '12px'
+        borderLeft: 'none !important',
+        color: 'rgba(255, 255, 255, 0.60) !important'
+      },
+      highlightable: {
+        //backdropFilter: 'blur(120px)',
+        //backgroundColor: 'rgba(6, 11, 40, 0.8)',
+        //borderRadius: '12px'
+        '&:hover': { // Añade esta parte para el efecto de hover
+          backgroundColor: 'rgba(6, 11, 40, 0.8)',
+          borderRadius: '12px',
+        }
+      },
+      label: {
+        flex: '3 1 auto',
+        width: '110px',
+        overflow: 'hidden',
+        fontWeight: 500,
+        lineHeight: 'auto',
+        whiteSpace: 'nowrap',
+        textOverflow: 'ellipsis',
+      },
+      
     },
-    // Mui: {
-    //   root: {
-        
-    //   },
-    // },
+
+
+
+
+
+    
+
 
 
 
