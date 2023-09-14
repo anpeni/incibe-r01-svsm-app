@@ -106,7 +106,9 @@ pipeline {
     stage('Ejecutar echo en git-node') {
       steps {
         container(name: 'git-node') {
+          script {
             sh 'echo "It\'s working in git-node"'
+          }  
         }
       }
     }
@@ -114,7 +116,9 @@ pipeline {
     stage('Ejecutar echo en npm') {
       steps {
         container(name: 'npm') {
+          script{
             sh 'echo "It\'s working in npm"'
+          }
         }
       }
     }
@@ -122,7 +126,9 @@ pipeline {
     stage('Ejecutar echo en npm-tests') {
       steps {
         container(name: 'npm-tests') {
+          script{
             sh 'echo "It\'s working in npm-tests"'
+          }
         }
       }
     }
@@ -130,7 +136,9 @@ pipeline {
     stage('Ejecutar echo en trivy') {
       steps {
         container(name: 'trivy') {
+          script{
             sh 'echo "It\'s working in trivy"'
+          }
         }
       }
     }
@@ -138,7 +146,9 @@ pipeline {
     stage('Ejecutar echo en sonar-scanner') {
       steps {
         container(name: 'sonar-scanner') {
+          script{
             sh 'echo "It\'s working in sonar-scanner"'
+          }
         }
       }
     }
@@ -146,7 +156,9 @@ pipeline {
     stage('Ejecutar echo en kaniko') {
       steps {
         container(name: 'kaniko') {
+          script{
             sh 'echo "It\'s working in kaniko"'
+          }
         }
       }
     }
