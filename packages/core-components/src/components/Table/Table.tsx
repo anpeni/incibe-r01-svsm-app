@@ -54,6 +54,7 @@ import React, {
 import { SelectProps } from '../Select/Select';
 import { Filter, Filters, SelectedFilters, Without } from './Filters';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import { Card } from '@material-ui/core';
 
 // Material-table is not using the standard icons available in in material-ui. https://github.com/mbrn/material-table/issues/51
 const tableIcons: Icons = {
@@ -160,6 +161,14 @@ const useTableStyles = makeStyles<BackstageTheme>(
       display: 'flex',
       alignItems: 'start',
     },
+    cardContainer: {
+      background: 'linear-gradient(173deg, rgba(6, 11, 40, 0.75) 5.57%, rgba(6, 11, 40, 0.70) 166.22%)',
+      borderRadius: 12,
+      paddingLeft: 20,
+      paddingRight: 20,
+      paddingBottom: 20,
+      backdropFilter: 'blur(120px)',
+    }
   }),
   { name: 'BackstageTable' },
 );
@@ -519,6 +528,7 @@ export function Table<T extends object = {}>(props: TableProps<T>) {
           onChangeFilters={setSelectedFilters}
         />
       )}
+      <Card className={tableClasses.cardContainer}>
       <MTable<T>
         components={{
           Header: StyledMTableHeader,
@@ -548,6 +558,7 @@ export function Table<T extends object = {}>(props: TableProps<T>) {
         }}
         {...restProps}
       />
+      </Card>
     </Box>
   );
 }
