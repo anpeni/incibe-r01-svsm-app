@@ -88,7 +88,6 @@ pipeline {
             sh 'echo "It\'s working"'
           }
         }
-        
       }
     }
   }
