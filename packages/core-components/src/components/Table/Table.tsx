@@ -160,6 +160,9 @@ const useTableStyles = makeStyles<BackstageTheme>(
       display: 'flex',
       alignItems: 'start',
     },
+    evenRow: {
+      backgroundColor: '#f2f2f2', // Puedes usar el color que prefieras
+    },
   }),
   { name: 'BackstageTable' },
 );
@@ -532,11 +535,11 @@ export function Table<T extends object = {}>(props: TableProps<T>) {
         title={
           <>
             <Typography variant="h5" component="h2">
-              {title}
+              dfdfdfdf
             </Typography>
             {subtitle && (
               <Typography color="textSecondary" variant="body1">
-                {subtitle}
+                ererere
               </Typography>
             )}
           </>

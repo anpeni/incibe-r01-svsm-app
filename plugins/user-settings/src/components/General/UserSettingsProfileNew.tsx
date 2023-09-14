@@ -21,6 +21,7 @@ import { UserSettingsSalir } from './UserSettingsSalir';
 import { UserSettingsMenuSalir } from './UserSettingsMenuSalir';
 import { useUserProfile } from '../useUserProfileInfo';
 import { makeStyles} from '@material-ui/core';
+import { useSidebarOpenState } from '@backstage/core-components';
 //import { InfoCard } from '@backstage/core-components';
 //import Avatar from '@material-ui/core/Avatar';
 
@@ -36,7 +37,10 @@ const useStyles = makeStyles({
 export const UserSettingsProfileNew = () => {
   const { profile, displayName } = useUserProfile();
   const classes = useStyles();
+  const { isOpen } = useSidebarOpenState();
   return (
+    <>
+    {isOpen ? (
     <div style={{ marginTop: '3px' , marginBottom: '-8px',marginLeft: '7px',  alignItems: 'center' }}>
       <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
         <div style={{ margin: '10px' }}>
@@ -60,6 +64,12 @@ export const UserSettingsProfileNew = () => {
       </div>
 
     </div>
+    ) : (
+      <div style={{ margin: '16px' }}>
+      <UserSettingsSignInAvatar size={40} />
+    </div>
+      )}
+      </>
   );
   
   

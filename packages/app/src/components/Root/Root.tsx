@@ -29,7 +29,7 @@ import { NavLink } from 'react-router-dom';
 import {
   Settings as SidebarSettings,
   UserSettingsSignInAvatar, UserSettingsProfileNew,
-  UserSettingsThemeToggleTema, UserSettingsTema, UserSettingsSalir 
+  UserSettingsThemeToggleTema, UserSettingsTema, UserSettingsSalir
 } from '@backstage/plugin-user-settings';
 
 
@@ -46,11 +46,15 @@ import {
   useSidebarOpenState,
   SidebarSubmenuItem,
   SidebarExpandButton,
+  SidebarSubmenu,
+  Titulos
 } from '@backstage/core-components';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
-import {GridView, SettingsOutlined, SearchOutlined, NotificationsOutlined} from '@mui/icons-material'
+import { GridView, SettingsOutlined, SearchOutlined, NotificationsOutlined } from '@mui/icons-material'
 import { DescriptionOutlined } from '@material-ui/icons';
+import { useApp } from '@backstage/core-plugin-api';
+
 
 const backgroundImageUrl = require('../../assets/Incibe-Background.png');
 
@@ -93,7 +97,7 @@ const useStyles = makeStyles({
     overflow: 'hidden', // Para que el contenido no se desborde
   },
   sectionTitle: {
-    fontSize: '12px',
+    fontSize: '8px',
     color: 'rgba(255, 255, 255, 0.30)',
     fontFamily: "Inter, sans-serif",
     fontWeight: 500,
@@ -101,6 +105,20 @@ const useStyles = makeStyles({
     marginLeft: '15px',
     marginTop: '15px',
     marginBottom: '10px'
+  },
+  sectionTitleCerrado: {
+    fontSize: '8px',
+    color: 'rgba(255, 255, 255, 0.30)',
+    fontFamily: "Inter, sans-serif",
+    fontWeight: 500,
+    lineHeight: 'normal',
+    marginLeft: 'auto',  // Centrado horizontal (requiere un contenedor flex)
+    marginRight: 'auto',
+    marginTop: '15px',
+    marginBottom: '10px'
+  },
+  titulos: {
+
   },
   circleBadge: {
     display: 'inline-flex',
@@ -124,7 +142,8 @@ const useStyles = makeStyles({
 
 export const Root = ({ children }: PropsWithChildren<{}>) => {
   const classes = useStyles();
-
+  const { isOpen } = useSidebarOpenState();
+  //console.log('Is Sidebar Open:', isOpen);
   const rootStyle = {
     backgroundImage: `url(${backgroundImageUrl})`, // Establece la imagen de fondo
     backgroundSize: 'cover', // Otras propiedades de estilo según tu preferencia
@@ -151,9 +170,13 @@ export const Root = ({ children }: PropsWithChildren<{}>) => {
           <SidebarGroup label="Search" icon={<SearchOutlined />} to="/search">
             <SidebarSearchModal />
           </SidebarGroup>
-          <Typography className={classes.sectionTitle}>PRINCIPAL</Typography>
+          <Titulos text={'PRINCIPAL'} ></Titulos>
+          {/* <Typography className={classes.sectionTitle}>PRINCIPAL</Typography> */}
           <SidebarGroup label="Menu" icon={<MenuIcon />}>
             {/* Global nav, not org-specific */}
+
+
+
             <SidebarSubmenuItem icon={GridView} to="/" title="Control Panel"
               dropdownItems={[
                 {
@@ -162,6 +185,14 @@ export const Root = ({ children }: PropsWithChildren<{}>) => {
                 },
                 {
                   title: 'Tráfico',
+                  to: '/8',
+                },
+                {
+                  title: 'Prueba1',
+                  to: '/8',
+                },
+                {
+                  title: 'Prueba2',
                   to: '/8',
                 },
               ]}
@@ -185,14 +216,16 @@ export const Root = ({ children }: PropsWithChildren<{}>) => {
             </SidebarItem>
             {/* End global nav */}
             <SidebarDivider className={classes.sidebarDivider} />
-            <Typography className={classes.sectionTitle}>ADMINISTRADOR</Typography>
+
+            <Titulos text={'ADMINISTRADOR'} ></Titulos>
+
             <SidebarScrollWrapper>
               <SidebarItem icon={MapIcon} to="tech-radar" text="Tech Radar" />
-              <SidebarItem icon={HelpIcon} to="/ayuda" text="Ayuda" />                          
-              <SidebarItem 
-              icon={NightIcon} 
-              to="/tema" 
-              text="Tema" />
+              <SidebarItem icon={HelpIcon} to="/ayuda" text="Ayuda" />
+              <SidebarItem
+                icon={NightIcon}
+                to="/tema"
+                text="Tema" />
 
             </SidebarScrollWrapper>
           </SidebarGroup>
