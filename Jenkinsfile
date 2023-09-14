@@ -83,7 +83,12 @@ pipeline {
   stages {
     stage ('test'){
       steps {
-        sh 'echo "It\'s working"'
+        container('git-node'){
+          script {
+            sh 'echo "It\'s working"'
+          }
+        }
+        
       }
     }
   }
