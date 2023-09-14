@@ -77,16 +77,17 @@ pipeline {
               name: jenkins-docker-cfg
         """.stripIndent()
     }
-}
-  stages {
-    stage ('Ejecutar echo'){
-      steps{
-        sh 'echo "It\'s working"'
-      }
-    }
 
   }
 
+  stages {
+    stage ('test'){
+      steps {
+        sh 'echo "It\'s working"'
+      }
+    }
+  }
+}
   // stages {
   //   stage('environment') {
   //     steps {
@@ -266,4 +267,3 @@ pipeline {
   //     }
   //   }
   // }
-}
