@@ -80,39 +80,33 @@ pipeline {
 
   }
 
+  
+
   stages {
-    stage ('test'){
+    stage('environment') {
       steps {
-        container('git-node'){
+        container('git-node') {
           script {
-            sh 'echo "It\'s working"'
+            sh """
+                git config --global --add safe.directory ${WORKSPACE}
+                git config --global user.email "jenkins@neoris.com"
+                git config --global user.name "jenkins"
+              """
+            env.revision = sh(script: 'git log -1 --format=\'%h.%ad\' --date=format:%Y%m%d-%H%M | cat', returnStdout: true).trim()
+            env.branch = env.BRANCH_NAME.take(20).replaceAll('/', '_')
+            if (env.branch != 'master') {
+              env.revision += "-${branch}"
+            }
+            sh "echo Building revision: ${revision}"
           }
         }
       }
     }
   }
-}
-  // stages {
-  //   stage('environment') {
-  //     steps {
-  //       container('git-node') {
-  //         script {
-  //           sh """
-  //               git config --global --add safe.directory ${WORKSPACE}
-  //               git config --global user.email "jenkins@neoris.com"
-  //               git config --global user.name "jenkins"
-  //             """
-  //           env.revision = sh(script: 'git log -1 --format=\'%h.%ad\' --date=format:%Y%m%d-%H%M | cat', returnStdout: true).trim()
-  //           env.branch = env.BRANCH_NAME.take(20).replaceAll('/', '_')
-  //           if (env.branch != 'master') {
-  //             env.revision += "-${branch}"
-  //           }
-  //           sh "echo Building revision: ${revision}"
-  //         }
-  //       }
-  //     }
-  //   }
 
+  
+
+}
   //   stage('dependencies') {
   //     steps {
   //       container('npm') {
