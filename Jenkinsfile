@@ -1,10 +1,10 @@
 
 pipeline{
-  // agent {
-  //   kubernetes {
-  //     yamlFile 'JenkinsKubernetesPod.yaml'
-  //   }
-  // }  
+  agent {
+    kubernetes {
+      yamlFile 'JenkinsKubernetesPod.yaml'
+    }
+  }  
     
   stages{
     stage('Build'){
