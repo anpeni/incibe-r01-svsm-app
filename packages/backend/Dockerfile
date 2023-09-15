@@ -1,4 +1,4 @@
-FROM nikolaik/python-nodejs:python3.9-nodejs16-bullseye
+FROM nikolaik/python-nodejs:python3.11-nodejs16-bullseye
 
 # Crear el usuario 'node' y establecer el directorio de trabajo
 RUN useradd -ms /bin/bash node
