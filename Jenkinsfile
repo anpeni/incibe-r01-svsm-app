@@ -103,6 +103,26 @@ pipeline {
       }
     }
 
+    stage('dependencies') {
+      steps {
+        container('npm') {
+          script {
+            sh "npm install"
+          }
+        }
+      }
+    }
+
+    stage('npm-build') {
+      steps {
+        container('npm') {
+          script {
+            sh "npm run build"
+          }
+        }
+      }
+    }
+
     stage('Ejecutar echo en git-node') {
       steps {
         container(name: 'git-node') {
@@ -111,78 +131,9 @@ pipeline {
           }  
         }
       }
-    }
-        
-    stage('Ejecutar echo en npm') {
-      steps {
-        container(name: 'npm') {
-          script{
-            sh 'echo "It\'s working in npm"'
-          }
-        }
-      }
-    }
-        
-    stage('Ejecutar echo en npm-tests') {
-      steps {
-        container(name: 'npm-tests') {
-          script{
-            sh 'echo "It\'s working in npm-tests"'
-          }
-        }
-      }
-    }
-        
-    stage('Ejecutar echo en trivy') {
-      steps {
-        container(name: 'trivy') {
-          script{
-            sh 'echo "It\'s working in trivy"'
-          }
-        }
-      }
-    }
-        
-    stage('Ejecutar echo en sonar-scanner') {
-      steps {
-        container(name: 'sonar-scanner') {
-          script{
-            sh 'echo "It\'s working in sonar-scanner"'
-          }
-        }
-      }
-    }
-        
-    stage('Ejecutar echo en kaniko') {
-      steps {
-        container(name: 'kaniko') {
-          script{
-            sh 'echo "It\'s working in kaniko"'
-          }
-        }
-      }
-    }
+    }     
   }
-}
-  //   stage('dependencies') {
-  //     steps {
-  //       container('npm') {
-  //         script {
-  //           sh "npm install"
-  //         }
-  //       }
-  //     }
-  //   }
-
-  //   stage('npm-build') {
-  //     steps {
-  //       container('npm') {
-  //         script {
-  //           sh "npm run build"
-  //         }
-  //       }
-  //     }
-  //   }
+}   
 
   //   stage('unit test') {
   //     steps {
