@@ -1,5 +1,8 @@
 pipeline{
-    agent any
+    agent {label "linux"}
+    options{
+        skipStagesAfterUnstable()
+    }
     stages{
         stage('Build'){
             steps{
