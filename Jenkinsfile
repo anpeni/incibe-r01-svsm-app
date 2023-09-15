@@ -4,7 +4,7 @@ pipeline{
     kubernetes {
       yamlFile 'JenkinsKubernetesPod.yaml'
     }
-  }  
+    
     
   stages{
     stage('Build'){
