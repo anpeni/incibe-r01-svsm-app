@@ -2,7 +2,7 @@
 pipeline{
   agent {
     kubernetes {
-      cloud 'devtools'
+      cloud 'dev'
       yamlFile 'JenkinsKubernetesPod.yaml'
     }
   }  
