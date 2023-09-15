@@ -1,23 +1,27 @@
+
 pipeline{
-    agent {label "linux"}
-    options{
-        skipStagesAfterUnstable()
+  agent {
+    kubernetes {
+      yamlFile 'JenkinsKubernetesPod.yaml'
     }
-    stages{
-        stage('Build'){
-            steps{
-                echo 'Building the app'
-            }
-        }
-        stage('Test'){
-            steps{
-                echo 'Testing the app'
-            }
-        }
-        stage('Deploy'){
-            steps{
-                echo 'Deploying the app'
-            }
-        }
+  }  
+    
+  stages{
+    stage('Build'){
+      steps{
+        echo 'Building the app'
+      }
     }
+    stage('Test'){
+      steps{
+        echo 'Testing the app'
+      }
+    }
+    stage('Deploy'){
+      steps{
+        echo 'Deploying the app'
+      }
+    }
+  }
+
 }
