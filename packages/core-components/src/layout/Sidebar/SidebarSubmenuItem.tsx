@@ -24,24 +24,20 @@ const useStyles = makeStyles<BackstageTheme>(
     item: {
       fontSize: '16px',//16px
       fontFamily: 'Inter, sans-serif',//inter
-      // fontWeight: '500',//regular
-      //color: 'rgba(255, 255, 255, 0.60)',
       lineHeight: '1.57',
       height: 48,
       width: '100%',
-      // '&:hover': {
-      //   background:
-      //   theme.palette.navigation.navItem?.hoverBackground || '#6f6f6f',
-      //   color: theme.palette.navigation.selectedColor,
-      // },
       display: 'flex',
       alignItems: 'center',
       color: theme.palette.navigation.color,
       padding: theme.spacing(2.5),
       cursor: 'pointer',
       position: 'relative',
-      //background: 'none',
       border: 'none',
+      '&:hover': {
+        background:'var(--Color-Dark, linear-gradient(173deg, rgba(6, 11, 40, 0.75) 5.57%, rgba(6, 11, 40, 0.70) 166.22%))',
+      },
+      
     },
     itemContainer: {
       width: '100%',
@@ -49,14 +45,12 @@ const useStyles = makeStyles<BackstageTheme>(
     },
     selected: {
       background: 'rgba(6, 11, 40, 0.8)',
-      //color: theme.palette.common.white,
       color: '#FFF',
 
     },
     label: {
       margin: theme.spacing(1.75),
       marginLeft: theme.spacing(1),
-      //fontSize: theme.typography.body2.fontSize,
       fontSize: 16,
       whiteSpace: 'nowrap',
       overflow: 'hidden',
@@ -67,7 +61,6 @@ const useStyles = makeStyles<BackstageTheme>(
     labelSelected: {
       margin: theme.spacing(1.75),
       marginLeft: theme.spacing(1),
-      //fontSize: theme.typography.body2.fontSize,
       fontSize: 16,
       whiteSpace: 'nowrap',
       overflow: 'hidden',
@@ -107,7 +100,6 @@ const useStyles = makeStyles<BackstageTheme>(
       padding: '10px 0 10px 0',
       '&:hover': {
         background:'var(--Color-Dark, linear-gradient(173deg, rgba(6, 11, 40, 0.75) 5.57%, rgba(6, 11, 40, 0.70) 166.22%))',
-        //color: 'white',
       },
     },
     icono: {
@@ -119,10 +111,7 @@ const useStyles = makeStyles<BackstageTheme>(
       marginLeft: '6px',
     },
     iconocentrado: {
-
       marginLeft: '6px',
-
-      //background: 'rgba(6, 11, 40, 0.8)',
     },
     textContent: {
       color: 'rgba(255, 255, 255, 0.60)',
