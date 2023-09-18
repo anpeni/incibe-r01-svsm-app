@@ -268,7 +268,7 @@ export function useReaderState(
 
       return entityDocs;
     } catch (e) {
-      dispatch({ type: 'content', contentError: e, path });
+      dispatch({ type: 'content', contentError: e as Error, path });
     }
 
     return undefined;
@@ -326,7 +326,7 @@ export function useReaderState(
           break;
       }
     } catch (e) {
-      dispatch({ type: 'sync', state: 'ERROR', syncError: e });
+      dispatch({ type: 'sync', state: 'ERROR', syncError: e as Error});
     } finally {
       // Cancel the timer that sets the state "BUILDING"
       clearTimeout(buildingTimeout);

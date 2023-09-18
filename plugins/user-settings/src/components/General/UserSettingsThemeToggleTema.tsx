@@ -32,21 +32,21 @@ const useStyles = makeStyles({
   iconLight: {
     width: '1.2em',
     height: '1.2em',
-    position: 'absolute',
-    top: '75%',
-    left: '10%',
-    transform: 'translateY(-50%)',
-    color: 'grey'
+    position: 'relative',
+    // top: '75%',
+    // left: '10%',
+    // transform: 'translateY(-50%)',
+    color: 'rgba(255, 255, 255, 0.60)'
 
   },
   iconDark: {
     width: '1.2em',
     height: '1.2em',
-    position: 'absolute',
-    top: '75%',
-    right: '-90%',
-    transform: 'translateY(-50%)',
-    color: 'grey'
+    position: 'relative',
+    // top: '55%',
+    // right: '-10%',
+    // transform: 'translateY(-50%)',
+    color: '#FFFFFF'
   },
   contrastIcon: {
     fill: 'currentColor',
@@ -65,6 +65,28 @@ const useStyles = makeStyles({
     color: 'rgba(255, 255, 255, 0.60)',
     alignItems: 'center',
     fontSize: '16px'
+  },
+  circuloicondark: {
+    width: '1.25em',
+    height: '1.25em',
+    position: 'absolute',
+    top: '75%',
+    left: '80%',
+    //right: '90%',
+    transform: 'translateY(-50%)',
+    backgroundColor: '#192A3E', // color del círculo
+    borderRadius: '50%', // redondea las esquinas para hacerlo un círcul
+  },
+  circuloiconlight: {
+    width: '1.25em',
+    height: '1.25em',
+    position: 'absolute',
+    top: '75%',
+    //left: '90%',
+    right: '-25%',
+    transform: 'translateY(-50%)',
+    backgroundColor: '#192A3E', // color del círculo
+    borderRadius: '50%', // redondea las esquinas para hacerlo un círcul
   },
 });
 
@@ -109,14 +131,26 @@ export const UserSettingsThemeToggleTema = () => {
               </div>
               <span className={classes.tema}>Tema</span>
               <div style={{ marginLeft: '25px' }}>
+                {/* <div className={classes.circleBehind}> */}
                 <Switch
                   checked={themeId === 'neoris-dark'}
                   onChange={handleSetTheme}
                   name="checkedTheme"
                   className={classes.customSwitch}
-                  icon={<Brightness7Icon className={classes.iconLight} />}
-                  checkedIcon={<NightIcon className={classes.iconDark} />}
+                  icon={
+                    <div className={classes.circuloiconlight}>
+                      <Brightness7Icon className={classes.iconLight} />
+                    </div>
+                  }
+
+                  checkedIcon={
+                    <div className={classes.circuloicondark}>
+                      <NightIcon className={classes.iconDark} />
+                    </div>
+                  }
                 />
+                {/* </div> */}
+
               </div>
             </span>
           </div>
@@ -128,8 +162,16 @@ export const UserSettingsThemeToggleTema = () => {
             onChange={handleSetTheme}
             name="checkedTheme"
             className={classes.customSwitch}
-            icon={<Brightness7Icon className={classes.iconLight} />}
-            checkedIcon={<NightIcon className={classes.iconDark} />}
+            icon={
+              <div className={classes.circuloiconlight}>
+                <Brightness7Icon className={classes.iconLight} />
+              </div>
+            }
+            checkedIcon={
+              <div className={classes.circuloicondark}>
+                <NightIcon className={classes.iconDark} />
+              </div>
+            }
           />
         </div>
       )}

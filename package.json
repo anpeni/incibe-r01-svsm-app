@@ -33,7 +33,9 @@
   "devDependencies": {
     "@backstage/cli": "^0.22.8",
     "@spotify/prettier-config": "^12.0.0",
+    "@types/git-url-parse": "^9.0.1",
     "@types/pluralize": "^0.0.30",
+    "@types/swagger-ui-react": "^4.18.0",
     "concurrently": "^6.0.0",
     "lerna": "^4.0.0",
     "node-gyp": "^9.0.0",

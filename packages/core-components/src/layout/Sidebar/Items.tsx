@@ -68,6 +68,7 @@ import Button from '@material-ui/core/Button';
 import { OverridableComponent } from '@mui/material/OverridableComponent';
 import { SvgIconTypeMap } from '@mui/material';
 import { ChevronLeftOutlined, ChevronRightOutlined } from '@material-ui/icons';
+import { colorBrewer } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 
 /** @public */
 export type SidebarItemClassKey =
@@ -94,7 +95,7 @@ const makeSidebarStyles = (sidebarConfig: SidebarConfig) =>
   makeStyles<BackstageTheme>(
     theme => ({
       root: {
-        color: theme.palette.navigation.color ,
+        color: theme.palette.navigation.color,
         display: 'flex',
         flexFlow: 'row nowrap',
         alignItems: 'center',
@@ -112,7 +113,7 @@ const makeSidebarStyles = (sidebarConfig: SidebarConfig) =>
         textTransform: 'none',
       },
       closed: {
-        width: sidebarConfig.drawerWidthClosed ,
+        width: sidebarConfig.drawerWidthClosed,
         justifyContent: 'center',
       },
       open: {
@@ -123,12 +124,12 @@ const makeSidebarStyles = (sidebarConfig: SidebarConfig) =>
       highlightable: {
         '&:hover': {
           background:
-            theme.palette.navigation.navItem?.hoverBackground ?? '#404040' ,
+            theme.palette.navigation.navItem?.hoverBackground ?? '#404040',
         },
       },
       highlighted: {
         background:
-          theme.palette.navigation.navItem?.hoverBackground ?? '#404040' ,
+          theme.palette.navigation.navItem?.hoverBackground ?? '#404040',
       },
       label: {
         // XXX (@koroeskohr): I can't seem to achieve the desired font-weight from the designs
@@ -186,9 +187,39 @@ const makeSidebarStyles = (sidebarConfig: SidebarConfig) =>
         height: 48,
       },
       arrows: {
-        position: 'absolute',
-        right: 10,
+        position: 'relative',
+        // right: 3,
+        // bottom: 
+        // -3.8,
+
       },
+      arrowslight: {
+        position: 'relative',
+        color: 'red',
+        // right: 3,
+        // bottom: 
+        // -3.8,
+
+      },
+      circuloarrow: {
+        position: 'absolute',
+        right: -1,
+        //bottom: 10, // mover el círculo hacia arriba
+        width: '25px',  // tamaño del círculo en anchura
+        height: '25px', // tamaño del círculo en altura
+        backgroundColor: '#192A3E', // color del círculo
+        borderRadius: '50%', // redondea las esquinas para hacerlo un círcul
+      },
+      circuloarrowclaro: {
+        position: 'absolute',
+        right: -1,
+        //bottom: 10, // mover el círculo hacia arriba
+        width: '25px',  // tamaño del círculo en anchura
+        height: '25px', // tamaño del círculo en altura
+        backgroundColor: 'white', // color del círculo       
+        borderRadius: '50%', // redondea las esquinas para hacerlo un círcul
+      },
+
       selected: {
         '&$root': {
           borderLeft: `solid ${sidebarConfig.selectedIndicatorWidth}px ${theme.palette.navigation.indicator}`,
@@ -247,8 +278,8 @@ const useLocationMatch = (
               if (dropdownItems?.length) {
                 dropdownItems.forEach(
                   ({ to: _to }) =>
-                    (active =
-                      active || isLocationMatch(location, resolvePath(_to))),
+                  (active =
+                    active || isLocationMatch(location, resolvePath(_to))),
                 );
                 return;
               }
@@ -717,6 +748,7 @@ export const SidebarExpandButton = () => {
   const { sidebarConfig } = useContext(SidebarConfigContext);
   const classes = useMemoStyles(sidebarConfig);
   const { isOpen, setOpen } = useSidebarOpenState();
+  const isDarkMode = localStorage.getItem('theme') === 'neoris-dark';
   const isSmallScreen = useMediaQuery<BackstageTheme>(
     theme => theme.breakpoints.down('md'),
     { noSsr: true },
@@ -731,16 +763,39 @@ export const SidebarExpandButton = () => {
   };
 
   return (
-    <Button
+    <>
+    {isDarkMode ? (
+      <Button
+        role="button"
+        onClick={handleClick}
+        className={classes.expandButton}
+        aria-label="Expand Sidebar"
+        data-testid="sidebar-expand-button"
+      >
+        
+        <div className={classes.circuloarrow}>
+          
+        <Box className={classes.arrows}>
+          {isOpen ? <ChevronLeftOutlined /> : <ChevronRightOutlined />}
+          
+        </Box>
+        </div>
+      </Button>
+    ):(
+      <Button
       role="button"
       onClick={handleClick}
       className={classes.expandButton}
       aria-label="Expand Sidebar"
       data-testid="sidebar-expand-button"
     >
+      <div className={classes.circuloarrowclaro}>
       <Box className={classes.arrows}>
-        {isOpen ? <ChevronLeftOutlined /> : <ChevronRightOutlined />}
+        {isOpen ? <ChevronLeftOutlined style={{color:'rgba(51, 51, 51, 0.80)'}} /> : <ChevronRightOutlined style={{color:'rgba(51, 51, 51, 0.80)'}}/>}
       </Box>
+      </div>
     </Button>
+    )}
+    </>
   );
 };

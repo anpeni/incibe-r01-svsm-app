@@ -543,11 +543,11 @@ export function Table<T extends object = {}>(props: TableProps<T>) {
         title={
           <>
             <Typography variant="h5" component="h2">
-              dfdfdfdf
+            {title}
             </Typography>
             {subtitle && (
               <Typography color="textSecondary" variant="body1">
-                ererere
+                {subtitle}
               </Typography>
             )}
           </>

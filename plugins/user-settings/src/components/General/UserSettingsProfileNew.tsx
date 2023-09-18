@@ -65,7 +65,7 @@ export const UserSettingsProfileNew = () => {
 
     </div>
     ) : (
-      <div style={{ margin: '16px' }}>
+      <div style={{ marginLeft: '17px', marginBottom:'10px', marginTop:'10px'}}>
       <UserSettingsSignInAvatar size={40} />
     </div>
       )}
