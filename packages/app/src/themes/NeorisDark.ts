@@ -345,11 +345,11 @@ const createCustomThemeOverrides = (
       track: {
         borderRadius: 9,
         backgroundColor: 'white !important',
-        opacity: '1 !important',,
+        opacity: '1 !important',
       },
       colorPrimary: {
         //backgroundColor: 'white', en este sale el circulo blanco
-        opacity: '1 !important',,
+        opacity: '1 !important',
         mui: {
           checked: {
             //backgroundColor: 'white !important',
