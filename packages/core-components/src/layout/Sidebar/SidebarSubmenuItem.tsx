@@ -106,9 +106,8 @@ const useStyles = makeStyles<BackstageTheme>(
       width: '100%',
       padding: '10px 0 10px 0',
       '&:hover': {
-        background:
-          theme.palette.navigation.navItem?.hoverBackground || '#6f6f6f',
-        color: theme.palette.navigation.selectedColor,
+        background:'var(--Color-Dark, linear-gradient(173deg, rgba(6, 11, 40, 0.75) 5.57%, rgba(6, 11, 40, 0.70) 166.22%))',
+        //color: 'white',
       },
     },
     icono: {
