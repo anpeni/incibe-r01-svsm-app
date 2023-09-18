@@ -23,7 +23,8 @@ declare module '@material-ui/core/styles/overrides' {
   }
 }
 
-const bgColor = 'linear-gradient(90deg, rgba(6,11,40,0.75) 50%, rgba(6,11,40,0.7) 100%)';
+const bgColor =
+  'linear-gradient(90deg, rgba(6,11,40,0.75) 50%, rgba(6,11,40,0.7) 100%)';
 
 const pageThemesFontColorOverride: Record<string, PageTheme> = {};
 Object.keys(defaultPageThemes).map(key => {
@@ -35,7 +36,6 @@ Object.keys(defaultPageThemes).map(key => {
 
 // TODO(awanlin): Continuing to use the deprecated `createTheme` for now
 // will come back to clean this up when we have a better solution for this
-
 
 // eslint-disable-next-line
 const baseTheme = createTheme({
@@ -85,8 +85,8 @@ const baseTheme = createTheme({
         dark: '#0747A6',
       },
       background: {
-        default: bgColor, // General
-        paper: 'rgba(6, 11, 40, 0.7)',// Tarjetas
+        default: 'none', // General
+        paper: 'none', // Tarjetas
         backdropFilter: 'blur(120px)',
       },
       navigation: {
@@ -173,17 +173,48 @@ const createCustomThemeOverrides = (
         },
       },
     },
-    BackstageTable: {
+    MuiTable: {
       root: {
-        '&> :first-child': {
-          borderBottom: '1px solid #D5D5D5',
-          boxShadow: 'none',
-        },
         '& th': {
-          borderTop: 'none',
-          textTransform: 'none !important',
+          // Cabecera
+          border: 'none',
+          textTransform: 'uppercase',
         },
       },
+    },
+    MuiTableRow: {
+      root: {
+        background: 'none',
+        // background:
+        //   'linear-gradient(173deg, rgba(6, 11, 40, 0.45) 5.57%, rgba(6, 11, 40, 0.40) 166.22%)',
+        '&:nth-of-type(even)': {
+          background:
+            'linear-gradient(173deg, rgba(6, 11, 40, 0.25) 5.57%, rgba(6, 11, 40, 0.23) 166.22%)',
+        },
+      },
+      head: {
+        color: '#FFFFFF',
+        fontFamily: 'Inter',
+        fontSize: '13px',
+        fontWeight: 'bold',
+        background: 'linear-gradient(171deg, rgba(6, 11, 40, 0.75) 6.87%, rgba(6, 11, 40, 0.70) 129.64%)',
+      },
+    },
+    MuiPaper: {
+      rounded: {
+        borderRadius: '12px',
+      },
+      elevation2: {
+        boxShadow: 'none',
+      },
+    },
+    BackstageTableToolbar: { // Filter
+      searchField: {
+        paddingRight: 0,
+      },
+      root: {
+        marginBottom: 15,
+      }
     },
     CatalogReactUserListPicker: {
       title: {
@@ -299,16 +330,14 @@ const createCustomThemeOverrides = (
         "&$checked": {
           backgroundColor: "white",
           opacity: "1"
-
         }
       },
       switchBase: {
         padding: 12,
-
-
       },
       thumb: {
         // backgroundColor: bgColor,
+
 
         height: 14,
         width: 14,
@@ -316,17 +345,17 @@ const createCustomThemeOverrides = (
       track: {
         borderRadius: 9,
         backgroundColor: 'white !important',
-        opacity: '1 !important',
+        opacity: '1 !important',,
       },
       colorPrimary: {
         //backgroundColor: 'white', en este sale el circulo blanco
-        opacity: '1 !important',
+        opacity: '1 !important',,
         mui: {
           checked: {
             //backgroundColor: 'white !important',
             opacity: '1 !important',
           }
-        }
+        },
       },
     },
     MuiTab: {
@@ -365,6 +394,9 @@ const createCustomThemeOverrides = (
         // fontWeight: '500',//regular
         lineHeight: '1.57',
       },
+      h5: {
+        marginBottom: 0,
+      }
     },
     MuiInputBase: {
       root: {
@@ -391,11 +423,6 @@ const createCustomThemeOverrides = (
         color: theme.page.fontColor,
       },
     },
-    MuiTable: {
-      root: {
-        backdropFilter: 'blur(120px)',
-      },
-    },
     MuiMenuItem: {
       // Selects abiertos<
       root: {
@@ -417,7 +444,6 @@ const createCustomThemeOverrides = (
         width: '100%',
         color: '#FFF !important'
       },
-
       root: {
         //backdropFilter: 'blur(120px)',
         //backgroundColor: 'rgba(6, 11, 40, 0.8)',
@@ -445,20 +471,6 @@ const createCustomThemeOverrides = (
       },
       
     },
-
-
-
-
-
-    
-
-
-
-
-
-
-
-
   };
 };
 

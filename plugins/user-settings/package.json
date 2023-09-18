@@ -33,7 +33,6 @@
   },
   "dependencies": {
     "@backstage/core-app-api": "^1.8.1",
-    "@backstage/core-components": "^0.13.2",
     "@backstage/core-plugin-api": "^1.5.2",
     "@backstage/errors": "^1.2.0",
     "@backstage/plugin-catalog-react": "^1.7.0",
