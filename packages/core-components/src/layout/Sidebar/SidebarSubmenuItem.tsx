@@ -35,9 +35,9 @@ const useStyles = makeStyles<BackstageTheme>(
       position: 'relative',
       border: 'none',
       '&:hover': {
-        background:'var(--Color-Dark, linear-gradient(173deg, rgba(6, 11, 40, 0.75) 5.57%, rgba(6, 11, 40, 0.70) 166.22%))',
+        background: 'var(--Color-Dark, linear-gradient(173deg, rgba(6, 11, 40, 0.75) 5.57%, rgba(6, 11, 40, 0.70) 166.22%))',
       },
-      
+
     },
     itemContainer: {
       width: '100%',
@@ -57,6 +57,10 @@ const useStyles = makeStyles<BackstageTheme>(
       'text-overflow': 'ellipsis',
       lineHeight: 1,
       color: 'rgba(255, 255, 255, 0.60)',
+    },
+
+    sombreadoItem: {
+      boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.25)',
     },
     labelSelected: {
       margin: theme.spacing(1.75),
@@ -99,7 +103,7 @@ const useStyles = makeStyles<BackstageTheme>(
       width: '100%',
       padding: '10px 0 10px 0',
       '&:hover': {
-        background:'var(--Color-Dark, linear-gradient(173deg, rgba(6, 11, 40, 0.75) 5.57%, rgba(6, 11, 40, 0.70) 166.22%))',
+        background: 'var(--Color-Dark, linear-gradient(173deg, rgba(6, 11, 40, 0.75) 5.57%, rgba(6, 11, 40, 0.70) 166.22%))',
       },
     },
     icono: {
@@ -273,14 +277,16 @@ export const SidebarSubmenuItem = (props: SidebarSubmenuItemProps) => {
                             }}>
 
                             </div>)}
-                          <Typography component="span"
-                            className={classnames(
-                              //showDropDown ? classes.textContentSelected : classes.textContent,
-                              classes.textContent
-                            )}
-                          >
-                            {object.title}
-                          </Typography>
+                          <div className={classnames(classes.sombreadoItem)}>
+                            <Typography component="span"
+                              className={classnames(
+                                //showDropDown ? classes.textContentSelected : classes.textContent,
+                                classes.textContent
+                              )}
+                            >
+                              {object.title}
+                            </Typography>
+                          </div>
 
                         </div>
                       </Link>
@@ -367,7 +373,7 @@ export const SidebarSubmenuItem = (props: SidebarSubmenuItemProps) => {
 
             )} */}
 
-          </Box>         
+          </Box>
         )}
       </>
     );

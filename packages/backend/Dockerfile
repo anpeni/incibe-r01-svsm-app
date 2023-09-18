@@ -1,5 +1,8 @@
 FROM nikolaik/python-nodejs:python3.11-nodejs16-bullseye
 
+RUN sudo apt-get install pkg-config
+RUN apt-get install libcairo2-dev libjpeg-dev libgif-dev
+
 # Crear el usuario 'node' y establecer el directorio de trabajo
 RUN useradd -ms /bin/bash node
 
