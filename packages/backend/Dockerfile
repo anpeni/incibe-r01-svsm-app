@@ -7,7 +7,6 @@ RUN apt-get update && apt-get install -y pkg-config node-gyp libcairo2-dev libjp
 RUN sudo apt reinstall pangocairo
 
 
-
 #RUN apt-get update && \
     #apt-get install -y pangocairo pkg-config node-gyp libcairo2-dev libjpeg-dev libpango1.0-dev libgif-dev build-essential g++ && \
     #apt-get clean && \
