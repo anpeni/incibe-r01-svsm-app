@@ -24,8 +24,9 @@ ENV NODE_OPTIONS=--max_old_space_size=16384
 COPY --chown=node:node yarn.lock package.json packages/backend/dist/skeleton.tar.gz ./
 RUN tar xzf skeleton.tar.gz && rm skeleton.tar.gz
 
-#Instalado Pangocairo
+#Instalado Pangocairo y habilitando paquetes de terceros para pangocairo
 
+RUN apt-get update && apt-get install -y apt-transport-https
 RUN apt update && apt install -y pangocairo
 
 
