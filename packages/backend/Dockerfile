@@ -5,7 +5,7 @@ FROM nikolaik/python-nodejs:python3.11-nodejs16-bullseye
 #RUN apt-get update && apt-get install -y pkg-config node-gyp libcairo2-dev libjpeg-dev libpango1.0-dev libgif-dev build-essential g++ &&
 #Reinstalar Pangocairo
 #RUN sudo apt install pangocairo-1.42
-
+#Actualizar y revisar fallos
 
 #RUN apt-get update && \
     #apt-get install -y pangocairo pkg-config node-gyp libcairo2-dev libjpeg-dev libpango1.0-dev libgif-dev build-essential g++ && \
