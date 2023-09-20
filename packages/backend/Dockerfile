@@ -1,5 +1,9 @@
 FROM nikolaik/python-nodejs:python3.11-nodejs16-bullseye
 
+#Añadir el repo para poder descargar la libreria
+RUN echo "deb http://deb.debian.org/debian/ buster main" > /etc/apt/sources.list
+
+RUN apt update && apt install pangocairo
 #RUN apt-get update && \
 #    apt-get install -y pkg-config libcairo2-dev libjpeg-dev libpango1.0-dev libgif-dev build-essential g++ && \
 #    apt-get clean && \
@@ -23,10 +27,6 @@ ENV NODE_OPTIONS=--max_old_space_size=16384
 # and along with yarn.lock and the root package.json, that's enough to run yarn install.
 COPY --chown=node:node yarn.lock package.json packages/backend/dist/skeleton.tar.gz ./
 RUN tar xzf skeleton.tar.gz && rm skeleton.tar.gz
-
-#Instalado la prueba desde apk
-
-apk --update --upgrade add gcc musl-dev jpeg-dev zlib-dev libffi-dev cairo-dev pango-dev gdk-pixbuf-dev
 
 
 
