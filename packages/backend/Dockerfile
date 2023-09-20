@@ -3,14 +3,18 @@ FROM nikolaik/python-nodejs:python3.11-nodejs16-bullseye
 RUN export PKG_CONFIG_PATH=/usr/lib/x86_64-linux-gnu/pkgconfig:$PKG_CONFIG_PATH
 #instalar librerias
 RUN apt-get update && apt-get install -y pkg-config node-gyp libcairo2-dev libjpeg-dev libpango1.0-dev libgif-dev build-essential g++ && \
-#Añadir desde github pango para poder instalar la libreria
-#RUN git clone https://github.com/pango/pango.git
-#RUN patch -p1 < /path/to/patch
-#RUN cd pango && ./configure && make && make install
+#Reinstalar Pangocairo
+RUN sudo apt reinstall pangocairo
+
+
+
 #RUN apt-get update && \
     #apt-get install -y pangocairo pkg-config node-gyp libcairo2-dev libjpeg-dev libpango1.0-dev libgif-dev build-essential g++ && \
     #apt-get clean && \
     #rm -rf /var/lib/apt/lists/*
+
+
+
 # Crear el usuario 'node' y establecer el directorio de trabajo
 RUN useradd -ms /bin/bash node
 
