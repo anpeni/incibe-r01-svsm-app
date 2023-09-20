@@ -1,10 +1,10 @@
 FROM nikolaik/python-nodejs:python3.11-nodejs16-bullseye
 #Agregar el patch
-RUN export PKG_CONFIG_PATH=/usr/lib/x86_64-linux-gnu/pkgconfig:$PKG_CONFIG_PATH
+#RUN export PKG_CONFIG_PATH=/usr/lib/x86_64-linux-gnu/pkgconfig:$PKG_CONFIG_PATH
 #instalar librerias
-RUN apt-get update && apt-get install -y pkg-config node-gyp libcairo2-dev libjpeg-dev libpango1.0-dev libgif-dev build-essential g++ && \
+#RUN apt-get update && apt-get install -y pkg-config node-gyp libcairo2-dev libjpeg-dev libpango1.0-dev libgif-dev build-essential g++ &&
 #Reinstalar Pangocairo
-RUN sudo apt reinstall pangocairo
+#RUN sudo apt install pangocairo-1.42
 
 
 #RUN apt-get update && \
@@ -33,15 +33,15 @@ ENV NODE_OPTIONS=--max_old_space_size=16384
 COPY --chown=node:node yarn.lock package.json packages/backend/dist/skeleton.tar.gz ./
 RUN tar xzf skeleton.tar.gz && rm skeleton.tar.gz
 #Añadir la librería pangocairo
-RUN apt-get install pangocairo
+#RUN apt-get install pangocairo
 #Actualizar el paquete node-gyp
-RUN npm install node-gyp@latest
+#RUN npm install node-gyp@latest
 
 #Limpiar el caché de node-gyp
-RUN rm -rf ~/.cache/node-gyp
+#RUN rm -rf ~/.cache/node-gyp
 
 #Instalar el paquete canvas con la opción --build-from-source
-RUN npm install canvas --build-from-source
+#RUN npm install canvas --build-from-source
 
 RUN yarn install --frozen-lockfile --production --network-timeout 300000 && rm -rf "$(yarn cache dir)"
 
