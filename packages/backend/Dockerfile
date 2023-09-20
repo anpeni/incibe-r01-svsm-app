@@ -1,11 +1,12 @@
 FROM nikolaik/python-nodejs:python3.11-nodejs16-bullseye
-
+#instalar librerias
+RUN apt-get update && apt-get install -y build-essential cmake pkg-config libcairo2-dev libpango1.0-dev libpangocairo-dev
 #Añadir desde github pango para poder instalar la libreria
-RUN git clone https://github.com/pango/pango.git
+#RUN git clone https://github.com/pango/pango.git
 
-RUN patch -p1 < /path/to/patch
+#RUN patch -p1 < /path/to/patch
 
-RUN cd pango && ./configure && make && make install
+#RUN cd pango && ./configure && make && make install
 #RUN apt-get update && \
 #    apt-get install -y pkg-config libcairo2-dev libjpeg-dev libpango1.0-dev libgif-dev build-essential g++ && \
 #    apt-get clean && \
