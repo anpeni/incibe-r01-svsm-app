@@ -10,7 +10,7 @@ RUN export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig:$PKG_CONFIG_PATH
 
 RUN cd pango && ./configure && make && make install
 RUN apt-get update && \
-    apt-get install -y pkg-config libcairo2-dev libjpeg-dev libpango1.0-dev libgif-dev build-essential g++ && \
+    apt-get install -y pkg-config node-gyp libcairo2-dev libjpeg-dev libpango1.0-dev libgif-dev build-essential g++ && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
