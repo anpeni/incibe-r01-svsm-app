@@ -3,7 +3,7 @@ FROM nikolaik/python-nodejs:python3.11-nodejs16-bullseye
 #Añadir el repo para poder descargar la libreria
 RUN echo "deb http://deb.debian.org/debian/ buster main" > /etc/apt/sources.list
 
-RUN apt update && apt install pangocairo
+RUN apt update && apt install -y pangocairo node-gyp
 #RUN apt-get update && \
 #    apt-get install -y pkg-config libcairo2-dev libjpeg-dev libpango1.0-dev libgif-dev build-essential g++ && \
 #    apt-get clean && \
