@@ -1,4 +1,6 @@
 FROM nikolaik/python-nodejs:python3.11-nodejs16-bullseye
+#Agregar el patch
+RUN export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig:$PKG_CONFIG_PATH
 #instalar librerias
 RUN apt-get update && apt-get install -y build-essential cmake pkg-config libcairo2-dev libpango1.0-dev libpangocairo-dev
 #Añadir desde github pango para poder instalar la libreria
