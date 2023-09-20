@@ -24,21 +24,26 @@ ENV NODE_ENV production
 # Set NODE_OPTIONS to increase memory limit
 ENV NODE_OPTIONS=--max_old_space_size=16384
 
+# Cambiar a la última versión de node-gyp
+RUN npm install node-gyp@latest
+
+# Limpiar el caché de node-gyp
+RUN rm -rf ~/.cache/node-gyp
+
+# Instalar el paquete canvas con la opción --build-from-source
+RUN npm install canvas --build-from-source
+
+# Instalar pangocairo
+RUN apt-get update && apt-get install -y libpangocairo-1.0-0
+# Actualizar el sistema de paquetes y limpiar el caché
+RUN apt-get clean && rm -rf /var/lib/apt/lists/*
+
+
 # Copy repo skeleton first, to avoid unnecessary docker cache invalidation.
 # The skeleton contains the package.json of each package in the monorepo,
 # and along with yarn.lock and the root package.json, that's enough to run yarn install.
 COPY --chown=node:node yarn.lock package.json packages/backend/dist/skeleton.tar.gz ./
 RUN tar xzf skeleton.tar.gz && rm skeleton.tar.gz
-#Añadir la librería pangocairo
-RUN apt-get install pangocairo
-#Actualizar el paquete node-gyp
-RUN npm install node-gyp@latest
-
-#Limpiar el caché de node-gyp
-RUN rm -rf ~/.cache/node-gyp
-
-#Instalar el paquete canvas con la opción --build-from-source
-RUN npm install canvas --build-from-source
 
 RUN yarn install --frozen-lockfile --production --network-timeout 300000 && rm -rf "$(yarn cache dir)"
 
