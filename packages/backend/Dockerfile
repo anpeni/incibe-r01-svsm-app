@@ -1,9 +1,11 @@
 FROM nikolaik/python-nodejs:python3.11-nodejs16-bullseye
 
-#Añadir el repo para poder descargar la libreria
-RUN echo "deb http://deb.debian.org/debian/ buster main" > /etc/apt/sources.list
+#Añadir desde github pango para poder instalar la libreria
+RUN git clone https://github.com/pango/pango.git
 
-RUN apt update && apt install -y pangocairo node-gyp
+RUN patch -p1 < /path/to/patch
+
+RUN cd pango && ./configure && make && make install
 #RUN apt-get update && \
 #    apt-get install -y pkg-config libcairo2-dev libjpeg-dev libpango1.0-dev libgif-dev build-essential g++ && \
 #    apt-get clean && \
