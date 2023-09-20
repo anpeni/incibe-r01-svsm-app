@@ -24,10 +24,10 @@ ENV NODE_OPTIONS=--max_old_space_size=16384
 COPY --chown=node:node yarn.lock package.json packages/backend/dist/skeleton.tar.gz ./
 RUN tar xzf skeleton.tar.gz && rm skeleton.tar.gz
 
-#Instalado Pangocairo y habilitando paquetes de terceros para pangocairo y forzar pkg-config
+#Instalado la prueba desde apk
 
-RUN yarn add -D pkg-config
-RUN yarn add pangocairo
+apk --update --upgrade add gcc musl-dev jpeg-dev zlib-dev libffi-dev cairo-dev pango-dev gdk-pixbuf-dev
+
 
 
 RUN yarn install --frozen-lockfile --production --network-timeout 300000 && rm -rf "$(yarn cache dir)"
