@@ -158,6 +158,3 @@ jenkins:
   username: ${JENKINS_USERNAME}
   apiKey: ${JENKINS_APIKEY}
 
-command:
-  - yarn install
-  - pangocairo
