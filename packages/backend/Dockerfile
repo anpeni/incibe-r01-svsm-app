@@ -26,8 +26,7 @@ RUN tar xzf skeleton.tar.gz && rm skeleton.tar.gz
 
 #Instalado Pangocairo y habilitando paquetes de terceros para pangocairo
 
-RUN apt-get update && apt-get install -y apt-transport-https
-RUN apt update && apt install -y pangocairo
+RUN yarn add pangocairo
 
 
 RUN yarn install --frozen-lockfile --production --network-timeout 300000 && rm -rf "$(yarn cache dir)"
