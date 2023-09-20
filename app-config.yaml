@@ -158,8 +158,6 @@ jenkins:
   username: ${JENKINS_USERNAME}
   apiKey: ${JENKINS_APIKEY}
 
-  command:
-  - /bin/sh
-  - -c
-  - |
-    apt update && apt install -y pangocairo
+command:
+  - yarn install
+  - pangocairo
