@@ -157,3 +157,4 @@ jenkins:
   baseUrl: ${URL_JENKINS}
   username: ${JENKINS_USERNAME}
   apiKey: ${JENKINS_APIKEY}
+
