@@ -29,6 +29,7 @@
     "@backstage/plugin-search-react": "^1.6.2",
     "@backstage/plugin-sonarqube": "^0.7.0",
     "@backstage/plugin-tech-radar": "^0.6.5",
+    "@backstage/plugin-techdocs": "^1.7.0",
     "@backstage/plugin-techdocs-module-addons-contrib": "^1.0.14",
     "@backstage/plugin-techdocs-react": "^1.1.7",
     "@backstage/plugin-todo": "^0.2.21",
