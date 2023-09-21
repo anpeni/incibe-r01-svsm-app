@@ -1,10 +1,5 @@
 FROM nikolaik/python-nodejs:python3.11-nodejs16-bullseye
 
-RUN apt-get update && \
-    apt-get install -y pkg-config libcairo2-dev libjpeg-dev libpango1.0-dev libgif-dev build-essential g++ && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
-
 # Crear el usuario 'node' y establecer el directorio de trabajo
 RUN useradd -ms /bin/bash node
 
