@@ -41,6 +41,8 @@ export type SidebarClassKey = 'drawer' | 'drawerOpen';
 const useStyles = makeStyles<BackstageTheme, { sidebarConfig: SidebarConfig }>(
   theme => ({
     drawer: {
+      borderRadius: '12px',
+      //backdropFilter: 'blur(120px)',
       display: 'flex',
       flexFlow: 'column nowrap',
       alignItems: 'flex-start',
@@ -51,6 +53,7 @@ const useStyles = makeStyles<BackstageTheme, { sidebarConfig: SidebarConfig }>(
       zIndex: theme.zIndex.appBar,
       background: theme.palette.navigation.background,
       overflowX: 'hidden',
+      overflowY: 'hidden',
       msOverflowStyle: 'none',
       scrollbarWidth: 'none',
       transition: theme.transitions.create('width', {
@@ -68,9 +71,11 @@ const useStyles = makeStyles<BackstageTheme, { sidebarConfig: SidebarConfig }>(
       },
     },
     drawerWidth: props => ({
+      //width: '134px',
       width: props.sidebarConfig.drawerWidthClosed,
     }),
     drawerOpen: props => ({
+      //width: '286px',
       width: props.sidebarConfig.drawerWidthOpen,
       transition: theme.transitions.create('width', {
         easing: theme.transitions.easing.sharp,

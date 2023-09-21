@@ -20,8 +20,10 @@ export type { MobileSidebarProps } from './MobileSidebar';
 export { SidebarGroup } from './SidebarGroup';
 export type { SidebarGroupProps } from './SidebarGroup';
 export { SidebarSubmenuItem } from './SidebarSubmenuItem';
+export { SidebarSubmenuItemModificado } from './SidebarSubmenuItemModificado';
 export { Titulos } from './Titulos';
 export { SidebarSubmenu } from './SidebarSubmenu';
+export { SidebarSubmenuModificado } from './SidebarSubmenuModificado';
 export type { SidebarSubmenuProps } from './SidebarSubmenu';
 export type {
   SidebarSubmenuItemProps,

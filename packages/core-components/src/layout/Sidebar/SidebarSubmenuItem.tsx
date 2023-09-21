@@ -16,8 +16,10 @@ import Button from '@material-ui/core/Button';
 import { OverridableComponent } from '@mui/material/OverridableComponent';
 import { SvgIconTypeMap } from '@mui/material';
 import { useSidebarOpenState } from './SidebarOpenStateContext';
-import { ExpandLess, ExpandLessOutlined } from '@material-ui/icons';
+import { ExpandLess, ExpandLessOutlined, Height } from '@material-ui/icons';
 import { ExpandMore, ExpandMoreOutlined } from '@material-ui/icons';
+import { SidebarSubmenu } from './SidebarSubmenu';
+import { SidebarSubmenuItemModificado } from './SidebarSubmenuItemModificado';
 
 const useStyles = makeStyles<BackstageTheme>(
   theme => ({
@@ -36,6 +38,11 @@ const useStyles = makeStyles<BackstageTheme>(
       border: 'none',
       '&:hover': {
         background: 'var(--Color-Dark, linear-gradient(173deg, rgba(6, 11, 40, 0.75) 5.57%, rgba(6, 11, 40, 0.70) 166.22%))',
+      },
+      contenedorSubmenuFlotante: {
+        position: 'fixed',
+        top: '0',
+        left: '0',
       },
 
     },
@@ -104,7 +111,18 @@ const useStyles = makeStyles<BackstageTheme>(
       padding: '10px 0 10px 0',
       '&:hover': {
         background: 'var(--Color-Dark, linear-gradient(173deg, rgba(6, 11, 40, 0.75) 5.57%, rgba(6, 11, 40, 0.70) 166.22%))',
+        borderRadius: '12px',
       },
+    },
+    dropdownItemSeleccionado: {
+      width: '100%',
+      padding: '10px 20px 10px 0',
+      '&:hover': {
+        background: 'var(--Color-Dark, linear-gradient(173deg, rgba(6, 11, 40, 0.75) 5.57%, rgba(6, 11, 40, 0.70) 166.22%))',
+        borderRadius: '12px',
+      },
+      background: 'var(--Color-Dark, linear-gradient(173deg, rgba(6, 11, 40, 0.75) 5.57%, rgba(6, 11, 40, 0.70) 166.22%))',
+      borderRadius: '12px',
     },
     icono: {
       color: 'rgba(255, 255, 255, 0.30)',
@@ -137,35 +155,41 @@ const useStyles = makeStyles<BackstageTheme>(
       whiteSpace: 'nowrap',
       overflow: 'hidden',
       'text-overflow': 'ellipsis',
+      marginLeft: '-18px',
     },
+    divMenu: {
+      height: 'auto',
+      padding: '0',
+      position: 'relative',
+      marginLeft: '35px'
+    },
+    lineaVertical: {
+      height: 'calc(100% - 19px)',  // 20px menos que el contenedor
+      borderLeft: '2px solid rgba(255, 255, 255, 0.30)',
+      position: 'absolute',  // Posicionado de manera absoluta dentro del div padre
+      top: '0'  // Alineado con la parte superior del div padre
+    },
+    lineaHorizontal: {
+      width: '10px',
+      borderBottom: '2px solid rgba(255, 255, 255, 0.30)',
+      marginLeft: '6.5px'
+    },
+    divLineaHorizontalItem: {
+      display: 'flex',
+      flexDirection: 'row',
+      alignItems: 'center',
+    }
 
   }),
   { name: 'BackstageSidebarSubmenuItem' },
 );
 
-/**
- * Clickable item displayed when submenu item is clicked.
- * title: Text content of item
- * to: Path to navigate to when item is clicked
- *
- * @public
- */
+
 export type SidebarSubmenuItemDropdownItem = {
   title: string;
   to: string;
 };
-/**
- * Holds submenu item content.
- *
- * @remarks
- * title: Text content of submenu item
- * subtitle: A subtitle displayed under the main title
- * to: Path to navigate to when item is clicked
- * icon: Icon displayed on the left of text content
- * dropdownItems: Optional array of dropdown items displayed when submenu item is clicked.
- *
- * @public
- */
+
 export type SidebarSubmenuItemProps = {
   title: string;
   subtitle?: string;
@@ -173,13 +197,10 @@ export type SidebarSubmenuItemProps = {
   icon?: IconComponent | OverridableComponent<SvgIconTypeMap>;
   dropdownItems?: SidebarSubmenuItemDropdownItem[];
   exact?: boolean;
+  selectedObject?: any;
 };
 
-/**
- * Item used inside a submenu within the sidebar.
- *
- * @public
- */
+
 export const SidebarSubmenuItem = (props: SidebarSubmenuItemProps) => {
   const { title, subtitle, to, icon: Icon, dropdownItems, exact } = props;
   const classes = useStyles();
@@ -187,14 +208,27 @@ export const SidebarSubmenuItem = (props: SidebarSubmenuItemProps) => {
   const closeSubmenu = () => {
     setIsHoveredOn(false);
   };
+
   const toLocation = useResolvedPath(to ?? '');
   const currentLocation = useLocation();
+  const [selectedObject, setSelectedObject] = useState(null);
   let isActive = isLocationMatch(currentLocation, toLocation, exact);
 
   const [showDropDown, setShowDropDown] = useState(false);
   const handleClickDropdown = () => {
     setShowDropDown(!showDropDown);
   };
+
+  const handleObjectClick = (object: { title: any; to?: string; }) => {
+    setSelectedObject(object.title);
+  };
+
+  const handleSelectedObjectChange = (newSelectedObject: any) => {
+    console.log("newSelectedObject.title: " + newSelectedObject.title);
+    setSelectedObject(newSelectedObject.title );
+
+  };
+
   if (dropdownItems !== undefined) {
     dropdownItems.some(item => {
       const resolvedPath = resolvePath(item.to);
@@ -211,8 +245,6 @@ export const SidebarSubmenuItem = (props: SidebarSubmenuItemProps) => {
               <Button
                 role="button"
                 onClick={handleClickDropdown}
-                //onMouseEnter={handleClickDropdown}
-                //onMouseLeave={handleClickDropdown}
                 onTouchStart={e => e.stopPropagation()}
                 className={classnames(
                   classes.item,
@@ -246,51 +278,37 @@ export const SidebarSubmenuItem = (props: SidebarSubmenuItemProps) => {
               </Button>
             </Tooltip>
             {dropdownItems && showDropDown && (
-              <div style={{ height: 'auto', padding: '0', position: 'relative', marginLeft: '35px' }}>
-                {showDropDown && (<div style={{
-                  height: 'calc(100% - 19px)',  // 20px menos que el contenedor
-                  borderLeft: '2px solid rgba(255, 255, 255, 0.30)',
-                  position: 'absolute',  // Posicionado de manera absoluta dentro del div padre
-                  top: '0'  // Alineado con la parte superior del div padre
-                }}></div>)}
+              <div className={classes.divMenu}>
+                {showDropDown && (<div className={classes.lineaVertical}></div>)}
                 <Box className={classes.dropdown}>
                   {dropdownItems.map((object, key) => (
-                    <Tooltip
-                      key={key}
-                      title={object.title}
-                      enterDelay={500}
-                      enterNextDelay={500}
+                    <Link
+                      to={object.to}
+                      underline="none"
+                      className={
+                        selectedObject === object.title // Comprobar si el objeto está seleccionado
+                          ? classes.dropdownItemSeleccionado
+                          : classes.dropdownItem
+                      }
+                      onClick={() => handleObjectClick(object)}
+                      onTouchStart={e => e.stopPropagation()}
                     >
-                      <Link
-                        to={object.to}
-                        underline="none"
-                        className={classes.dropdownItem}
-                        onClick={closeSubmenu}
-                        onTouchStart={e => e.stopPropagation()}
-                      >
-                        <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', }}>
-                          {showDropDown &&
-                            (<div style={{
-                              width: '10px',
-                              borderBottom: '2px solid rgba(255, 255, 255, 0.30)',
-                              marginLeft: '6.5px'
-                            }}>
-
-                            </div>)}
-                          <div className={classnames(classes.sombreadoItem)}>
-                            <Typography component="span"
-                              className={classnames(
-                                //showDropDown ? classes.textContentSelected : classes.textContent,
-                                classes.textContent
-                              )}
-                            >
-                              {object.title}
-                            </Typography>
-                          </div>
-
+                      <div className={classes.divLineaHorizontalItem}>
+                        {showDropDown &&
+                          (<div className={classes.lineaHorizontal}></div>)}
+                        <div className={classnames(classes.sombreadoItem)}>
+                          <Typography component="span"
+                            className={
+                              selectedObject === object.title // Comprobar si el objeto está seleccionado
+                                ? classes.textContentSelected
+                                : classes.textContent
+                            }
+                          >
+                            {object.title}
+                          </Typography>
                         </div>
-                      </Link>
-                    </Tooltip>
+                      </div>
+                    </Link>
                   ))}
                 </Box>
               </div>
@@ -300,79 +318,63 @@ export const SidebarSubmenuItem = (props: SidebarSubmenuItemProps) => {
           </Box>
         ) : (
           <Box className={classes.itemContainer}>
-            <Tooltip title={title} enterDelay={500} enterNextDelay={500}>
-              <Button
-                role="button"
-                onClick={handleClickDropdown}
-                onTouchStart={e => e.stopPropagation()}
-                className={classnames(
-                  classes.item,
-                  showDropDown ? classes.selected : undefined,
-                )}
-              >
-                {Icon &&
-                  <Icon
-                    fontSize="small"
-                    className={classnames(
-                      showDropDown ? classes.iconoSelect : classes.icono,
-                      showDropDown ? classes.iconocentrado : classes.iconocentrado,
-                    )} />}
-
-
-              </Button>
-
-            </Tooltip>
-            {showDropDown && (<div style={{ height: '100px', borderLeft: '2px solid rgba(255, 255, 255, 0.30)', marginLeft: '35px' }}></div>)}
-            {/* {dropdownItems && showDropDown && (
-              <div style={{ height: 'auto', padding: '0', position: 'relative', marginLeft: '35px' }}>
-                {showDropDown && (<div style={{
-                  height: 'calc(100% - 19px)',  // 20px menos que el contenedor
-                  borderLeft: '2px solid rgba(255, 255, 255, 0.30)',
-                  position: 'absolute',  // Posicionado de manera absoluta dentro del div padre
-                  top: '0'  // Alineado con la parte superior del div padre
-                }}></div>)}
+            <Button
+              role="button"
+              onClick={handleClickDropdown}
+              onTouchStart={e => e.stopPropagation()}
+              className={classnames(
+                classes.item,
+                showDropDown ? classes.selected : undefined,
+              )}
+            >
+              {Icon &&
+                <Icon
+                  fontSize="small"
+                  className={classnames(
+                    showDropDown ? classes.iconoSelect : classes.icono,
+                    showDropDown ? classes.iconocentrado : classes.iconocentrado,
+                  )} />}
+            </Button>
+            {dropdownItems && showDropDown && (
+              <div className={classes.divMenu}>
+                {showDropDown && (<div className={classes.lineaVertical}></div>)}
                 <Box className={classes.dropdown}>
                   {dropdownItems.map((object, key) => (
-                    <Tooltip
-                      key={key}
-                      title={object.title}
-                      enterDelay={500}
-                      enterNextDelay={500}
+                    <Link
+                      to={object.to}
+                      underline="none"
+                      className={classes.dropdownItem}
+                      onClick={closeSubmenu}
+                      onTouchStart={e => e.stopPropagation()}
                     >
-                      <Link
-                        to={object.to}
-                        underline="none"
-                        className={classes.dropdownItem}
-                        onClick={closeSubmenu}
-                        onTouchStart={e => e.stopPropagation()}
-                      >
-                        <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', }}>
-                          {showDropDown &&
-                            (<div style={{
-                              width: '10px',
-                              borderBottom: '2px solid rgba(255, 255, 255, 0.30)',
-                              marginLeft: '6.5px'
-                            }}>
-
-                            </div>)}
+                      <div className={classes.divLineaHorizontalItem}>
+                        {showDropDown &&
+                          (<div className={classes.lineaHorizontal}>
+                          </div>)}
+                        <div className={classnames(classes.sombreadoItem)}>
                           <Typography component="span"
                             className={classnames(
                               //showDropDown ? classes.textContentSelected : classes.textContent,
                               classes.textContent
                             )}
                           >
-                            {object.title}
                           </Typography>
-
                         </div>
-                      </Link>
-                    </Tooltip>
+                      </div>
+                    </Link>
                   ))}
                 </Box>
+                <div className={classnames(classes.contenedorSubmenuFlotante)}>
+                  <SidebarSubmenu >
+                    <SidebarSubmenuItemModificado
+                      selectedFromParent={selectedObject}
+                      dropdownItems={dropdownItems}
+                      onSelectedObjectChange={handleSelectedObjectChange}
+                    />
+                  </SidebarSubmenu>
+                </div>
               </div>
-
-            )} */}
-
+            )}
           </Box>
         )}
       </>
