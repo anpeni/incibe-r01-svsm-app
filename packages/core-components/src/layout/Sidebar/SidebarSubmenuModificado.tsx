@@ -77,15 +77,15 @@ const useStyles = makeStyles<
         top: 0,
       },
     }),
-    title: {
-      fontSize: theme.typography.h5.fontSize,
-      fontWeight: theme.typography.fontWeightMedium,
-      color: theme.palette.common.white,
-      padding: theme.spacing(2.5),
-      [theme.breakpoints.down('xs')]: {
-        display: 'none',
-      },
-    },
+    // title: {
+    //   fontSize: theme.typography.h5.fontSize,
+    //   fontWeight: theme.typography.fontWeightMedium,
+    //   color: theme.palette.common.white,
+    //   padding: theme.spacing(2.5),
+    //   [theme.breakpoints.down('xs')]: {
+    //     display: 'none',
+    //   },
+    // },
   }),
   { name: 'BackstageSidebarSubmenuModificado' },
 );
@@ -127,7 +127,7 @@ export const SidebarSubmenuModificado = (props: SidebarSubmenuProps) => {
         [classes.drawerOpen]: isSubmenuOpen,
       })}
     >
-      <Typography variant="h5" component="span" className={classes.title}>
+      <Typography variant="h5" component="span" >
         {props.title}
       </Typography>
       {props.children}
