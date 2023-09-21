@@ -494,6 +494,7 @@ const createCustomThemeOverrides = (
       root: {
         background:
           'var(--Color-Dark, linear-gradient(173deg, rgba(6, 11, 40, 0.75) 5.57%, rgba(6, 11, 40, 0.70) 166.22%));',
+        backdropFilter: 'blur(120px)',
       },
     },
     BackstageSelectInputBase: {
@@ -506,6 +507,11 @@ const createCustomThemeOverrides = (
         borderRadius: '12px',
       },
     },
+    MuiListItemIcon: {
+      root: {
+        color: 'white',
+      }
+    }
   };
 };
 
