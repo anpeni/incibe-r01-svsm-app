@@ -1,7 +1,8 @@
+/* groovylint-disable-next-line CompileStatic */
 pipeline {
   agent {
     kubernetes {
-        yaml """
+        yaml '''
         apiVersion: v1
         kind: Pod
         metadata:
@@ -14,47 +15,48 @@ pipeline {
             command:
             - cat
             tty: true
-        """
+        '''
     }
   }
   stages {
     stage('Checkout') {
-        steps {
-            checkout scm
-        }
+      steps {
+        checkout scm
+      }
     }
     stage('Install dependencies') {
-        steps {
-            container('node') {
-              script{
-                sh 'npm install'
-              }
-            }
+      steps {
+        container('node') {
+          script {
+            sh 'npm install'
+          }
         }
+      }
     }
     stage('Build') {
-        steps {
-            container('node') {
-              script{
-                sh 'npm run build'
-              }
-            }
+      steps {
+        container('node') {
+          script {
+            sh 'npm run build'
+          }
         }
+      }
     }
     stage('Test') {
-        steps {
-            container('node') {
-              script{
-                sh 'npm test'
-            }
+      steps {
+        /* groovylint-disable-next-line DuplicateStringLiteral */
+        container('node') {
+          script {
+            sh 'npm test'
+          }
         }
+      }
     }
   }
 }
 
-
 // pipeline {
-//   agent { 
+//   agent {
 //     kubernetes {
 //       yaml """
 //         apiVersion: v1
@@ -71,13 +73,13 @@ pipeline {
 //             resources:
 //               requests:
 //                 cpu: "200m"
-//                 memory: "128Mi"        
+//                 memory: "128Mi"
 //           - name: npm
 //             image: node:12-alpine
 //             command:
 //             - cat
 //             tty: true
-//             securityContext: 
+//             securityContext:
 //               priviledged: true
 //             resources:
 //               requests:
@@ -88,7 +90,7 @@ pipeline {
 //             command:
 //             - cat
 //             tty: true
-//             securityContext: 
+//             securityContext:
 //               priviledged: true
 //             resources:
 //               requests:
@@ -112,7 +114,7 @@ pipeline {
 //             resources:
 //               requests:
 //                 cpu: "200m"
-//                 memory: "128Mi"            
+//                 memory: "128Mi"
 //           - name: kaniko
 //             image: gcr.io/kaniko-project/executor:debug
 //             imagePullPolicy: Always
@@ -122,7 +124,7 @@ pipeline {
 //             resources:
 //               requests:
 //                 cpu: "200m"
-//                 memory: "128Mi"            
+//                 memory: "128Mi"
 //             volumeMounts:
 //             - name: jenkins-docker-cfg
 //               mountPath: /kaniko/.docker/
@@ -134,8 +136,6 @@ pipeline {
 //     }
 
 //   }
-
-  
 
 //   stages {
 //     stage('environment') {
@@ -294,8 +294,8 @@ pipeline {
 //         container('git-node') {
 //           script {
 //             def imageValue = "061496817474.dkr.ecr.eu-west-1.amazonaws.com/cicd/backstage:${revision}"
-//             checkout changelog: false, poll: false, scm: [$class: 'GitSCM', branches: [[name: '*/master-config']], 
-//                     doGenerateSubmoduleConfigurations: false, extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'gitops']], submoduleCfg: [], 
+//             checkout changelog: false, poll: false, scm: [$class: 'GitSCM', branches: [[name: '*/master-config']],
+//                     doGenerateSubmoduleConfigurations: false, extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'gitops']], submoduleCfg: [],
 //                     userRemoteConfigs: [[credentialsId: 'bitbucket-bot-neoris-devsecops-http', url: 'https://neoris-devsecops@bitbucket.org/neoris-global/dso.backstage.git']]]
 //             dir('gitops') {
 //               sh """
