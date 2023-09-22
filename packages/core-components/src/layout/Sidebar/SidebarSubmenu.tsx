@@ -70,24 +70,23 @@ const useStyles = makeStyles<
       // },
     }),
     drawerOpen: props => ({
-      //width: 120,
-      //borderRadius: '16px',
-      // [theme.breakpoints.down('xs')]: {
-      //   width: '100%',
-      //   position: 'relative',
-      //   //paddingLeft: theme.spacing(3),
-      //   //left: 0,
-      //   //top: 0,
-      // },
+      width: props.submenuConfig.drawerWidthOpen,
+      [theme.breakpoints.down('xs')]: {
+        width: '100%',
+        position: 'relative',
+        paddingLeft: theme.spacing(3),
+        left: 0,
+        top: 0,
+      },
     }),
     title: {
-      // fontSize: theme.typography.h5.fontSize,
-      // fontWeight: theme.typography.fontWeightMedium as any,
-      // color: theme.palette.common.white,
-      // padding: theme.spacing(2.5),
-      // [theme.breakpoints.down('xs')]: {
-      //   display: 'none',
-      // },
+      fontSize: theme.typography.h5.fontSize,
+      fontWeight: theme.typography.fontWeightMedium as any,
+      color: theme.palette.common.white,
+      padding: theme.spacing(2.5),
+      [theme.breakpoints.down('xs')]: {
+        display: 'none',
+      },
     },
   }),
   { name: 'BackstageSidebarSubmenu' },
@@ -99,14 +98,16 @@ const bgColor =
 export type SidebarSubmenuProps = {
   title?: string;
   children: ReactNode;
-
 };
 
-
+/**
+ * Used inside SidebarItem to display an expandable Submenu
+ *
+ * @public
+ */
 export const SidebarSubmenu = (props: SidebarSubmenuProps) => {
   const { isOpen } = useSidebarOpenState();
   const { sidebarConfig, submenuConfig } = useContext(SidebarConfigContext);
-
   const left = isOpen
     ? sidebarConfig.drawerWidthOpen
     : sidebarConfig.drawerWidthClosed;
@@ -133,6 +134,9 @@ export const SidebarSubmenu = (props: SidebarSubmenuProps) => {
       )}
     //onClick={handleSubmenuClick}
     >
+      <Typography variant="h5" component="span" className={classes.title}>
+        {props.title}
+      </Typography>
       {props.children}
 
     </Box>

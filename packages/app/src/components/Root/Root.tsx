@@ -47,7 +47,8 @@ import {
   SidebarSubmenuItem,
   SidebarExpandButton,
   SidebarSubmenu,
-  Titulos
+  Titulos,
+  SidebarSubmenuItemModificado
 } from '@backstage/core-components';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
