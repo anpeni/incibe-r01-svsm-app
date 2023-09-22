@@ -26,20 +26,25 @@ pipeline {
     stage('Install dependencies') {
         steps {
             container('node') {
+              script{
                 sh 'npm install'
+              }
             }
         }
     }
     stage('Build') {
         steps {
             container('node') {
+              script{
                 sh 'npm run build'
+              }
             }
         }
     }
     stage('Test') {
         steps {
             container('node') {
+              script{
                 sh 'npm test'
             }
         }
