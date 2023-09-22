@@ -33,7 +33,7 @@ import {
 } from '@backstage/plugin-user-settings';
 
 
-import { SidebarSearchModal } from '@backstage/plugin-search';
+import { SearchModal, SidebarSearchModal } from '@backstage/plugin-search';
 import {
   Sidebar,
   sidebarConfig,
@@ -94,7 +94,10 @@ const SidebarLogo = () => {
 
 const useStyles = makeStyles({
   sidebarContainer: {
-    overflow: 'hidden', // Para que el contenido no se desborde
+    //zIndex: 10,
+    //overflow: 'hidden',
+    //backgroundColor: 'white',// Para que el contenido no se desborde
+    //backdropFilter: 'blur(120px)'
   },
   sectionTitle: {
     fontSize: '8px',
@@ -137,6 +140,10 @@ const useStyles = makeStyles({
   sidebarDivider: {
     background: '#FFFFFF',
     opacity: 0.3,
+  },
+  sideBarStyle: {
+    backdropFilter: 'blur(120px)'
+
   }
 });
 
@@ -149,7 +156,13 @@ export const Root = ({ children }: PropsWithChildren<{}>) => {
     backgroundSize: 'cover', // Otras propiedades de estilo según tu preferencia
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'center',
+    zIndex: 10,
   };
+
+  const sideBarStyle = {
+    backdropFilter: 'blur(120px)'
+
+  }
 
   const CircleBadge = ({ count }: { count: number }) => {
     const classes = useStyles();
@@ -164,89 +177,83 @@ export const Root = ({ children }: PropsWithChildren<{}>) => {
 
   return (
     <div className={classes.sidebarContainer} style={rootStyle}>
-      <SidebarPage>
-        <Sidebar disableExpandOnHover>
-          <SidebarLogo />
-          <SidebarGroup label="Search" icon={<SearchOutlined />} to="/search">
-            <SidebarSearchModal />
-          </SidebarGroup>
-          <Titulos text={'PRINCIPAL'} ></Titulos>
-          {/* <Typography className={classes.sectionTitle}>PRINCIPAL</Typography> */}
-          <SidebarGroup label="Menu" icon={<MenuIcon />}>
-            {/* Global nav, not org-specific */}
+      <SidebarPage >
+        <div className={classes.sidebarContainer}>
+          <Sidebar disableExpandOnHover>
+            <SidebarLogo />
+            <SidebarGroup label="Search" icon={<SearchOutlined />} to="/search">
+            </SidebarGroup>
+            <Titulos text={'PRINCIPAL'} ></Titulos>
+            <SidebarGroup label="Menu" icon={<MenuIcon />}>
+              <SidebarSubmenuItem icon={GridView} to="/" title="Control Panel"
+                dropdownItems={[
+                  {
+                    title: 'Catalog',
+                    to: '/Catalog',
+                  },
+                  {
+                    title: 'APIs',
+                    to: '/api-docs',
+                  },
+                  {
+                    title: 'Docs',
+                    to: '/8',
+                  },
 
+                ]}
 
-
-            <SidebarSubmenuItem icon={GridView} to="/" title="Control Panel"
-              dropdownItems={[
-                {
-                  title: 'Actividad',
-                  to: '/7',
-                },
-                {
-                  title: 'Tráfico',
-                  to: '/8',
-                },
-                {
-                  title: 'Prueba1',
-                  to: '/8',
-                },
-                {
-                  title: 'Prueba2',
-                  to: '/8',
-                },
-              ]}
-
-            />
-            <SidebarItem icon={HomeIcon} to="/" text="Home" />
-            <SidebarItem icon={CategoryIcon} to="catalog" text="Catalog" />
-            <SidebarItem icon={ExtensionIcon} to="api-docs" text="APIs" />
-            <SidebarItem icon={DescriptionOutlined} to="docs" text="Docs" />
-            <SidebarItem
-              icon={CreateComponentIcon}
-              to="create"
-              text="Create..."
-            />
-            <SidebarItem
-              icon={NotificationsOutlined}
-              to="notifications"
-              text="Notifications"
-            >
-              <CircleBadge count={3} /> {/* Cambia el número según tus necesidades */}
-            </SidebarItem>
-            {/* End global nav */}
-            <SidebarDivider className={classes.sidebarDivider} />
-
-            <Titulos text={'ADMINISTRADOR'} ></Titulos>
-
-            <SidebarScrollWrapper>
-              <SidebarItem icon={MapIcon} to="tech-radar" text="Tech Radar" />
-              <SidebarItem icon={HelpIcon} to="/ayuda" text="Ayuda" />
+              />
+              {/* <SidebarItem icon={HomeIcon} to="/" text="Home" />
+              <SidebarItem icon={CategoryIcon} to="catalog" text="Catalog" />
+              <SidebarItem icon={ExtensionIcon} to="api-docs" text="APIs" />
+              <SidebarItem icon={DescriptionOutlined} to="docs" text="Docs" /> */}
               <SidebarItem
-                icon={NightIcon}
-                to="/tema"
-                text="Tema" />
+                icon={CreateComponentIcon}
+                to="create"
+                text="Create..."
+              />
+              <SidebarItem
+                icon={NotificationsOutlined}
+                to="notifications"
+                text="Notifications"
+              >
+                <CircleBadge count={3} /> {/* Cambia el número según tus necesidades */}
+              </SidebarItem>
+              {/* End global nav */}
+              <SidebarDivider className={classes.sidebarDivider} />
 
-            </SidebarScrollWrapper>
-          </SidebarGroup>
-          <SidebarSpace />
-          <SidebarExpandButton />
-          <SidebarDivider className={classes.sidebarDivider} />
-          <SidebarGroup
-            label="Settings"
-            icon={<SettingsOutlined />}
-            to="/settings"
-          >
-            <SidebarSettings />
-            <UserSettingsThemeToggleTema />
-            {/* <UserSettingsTema /> */}
-          </SidebarGroup>
-          <SidebarDivider className={classes.sidebarDivider} />
-          <SidebarGroup>
-            <UserSettingsProfileNew />
-            <UserSettingsSalir />
-          </SidebarGroup>
-        </Sidebar>
+              <Titulos text={'ADMINISTRADOR'} ></Titulos>
+              
+              <SidebarScrollWrapper>
+              <SidebarSettings />
+                {/* <SidebarItem icon={MapIcon} to="tech-radar" text="Tech Radar" /> */}
+                <SidebarItem icon={HelpIcon} to="/ayuda" text="Help" />
+                
+              <UserSettingsThemeToggleTema />
+              {/* <UserSettingsTema /> */}
+
+
+              </SidebarScrollWrapper>
+            </SidebarGroup>
+            <SidebarSpace />
+            <SidebarExpandButton />
+            <SidebarDivider className={classes.sidebarDivider} />
+            {/* <SidebarGroup
+              label="Settings"
+              icon={<SettingsOutlined />}
+              to="/settings"
+            > */}
+              {/* <SidebarSettings />
+              <UserSettingsThemeToggleTema /> */}
+              {/* <UserSettingsTema /> */}
+            {/* </SidebarGroup> */}
+            {/* <SidebarDivider className={classes.sidebarDivider} /> */}
+            <SidebarGroup>
+              <UserSettingsProfileNew />
+              <UserSettingsSalir />
+            </SidebarGroup>
+          </Sidebar>
+        </div>
         {children}
       </SidebarPage>
     </div>

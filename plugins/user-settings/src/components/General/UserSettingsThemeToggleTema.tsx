@@ -129,7 +129,7 @@ export const UserSettingsThemeToggleTema = () => {
               <div >
                 <ContrastIcon className={classes.contrastIcon} />
               </div>
-              <span className={classes.tema}>Tema</span>
+              <span className={classes.tema}>Theme</span>
               <div style={{ marginLeft: '25px' }}>
                 {/* <div className={classes.circleBehind}> */}
                 <Switch
