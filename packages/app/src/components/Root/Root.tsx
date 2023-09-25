@@ -200,6 +200,10 @@ export const Root = ({ children }: PropsWithChildren<{}>) => {
                     title: 'Docs',
                     to: '/8',
                   },
+                  {
+                    title: 'Docs',
+                    to: '/8',
+                  },
 
                 ]}
 
