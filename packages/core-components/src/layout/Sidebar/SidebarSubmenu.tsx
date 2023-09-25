@@ -128,18 +128,16 @@ export const SidebarSubmenu = (props: SidebarSubmenuProps) => {
 
 
   return (
-    <div style={{background: bgColor}}>
+    
     <Box
       className={classnames(classes.root
       )}
     //onClick={handleSubmenuClick}
     >
-      <Typography variant="h5" component="span" className={classes.title}>
-        {props.title}
-      </Typography>
+
       {props.children}
 
     </Box>
-    </div>
+    
   );
 };
