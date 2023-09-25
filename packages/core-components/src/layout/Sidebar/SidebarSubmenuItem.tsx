@@ -164,7 +164,7 @@ const useStyles = makeStyles<BackstageTheme>(
       marginLeft: '35px'
     },
     lineaVertical: {
-      height: 'calc(100% - 19px)',  // 20px menos que el contenedor
+      height: 'calc(100% - 20px)',  // 20px menos que el contenedor
       borderLeft: '2px solid rgba(255, 255, 255, 0.30)',
       position: 'absolute',  // Posicionado de manera absoluta dentro del div padre
       top: '0'  // Alineado con la parte superior del div padre

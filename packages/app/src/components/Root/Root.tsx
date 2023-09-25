@@ -67,10 +67,11 @@ const useSidebarLogoStyles = makeStyles({
     flexFlow: 'row nowrap',
     alignItems: 'center',
     marginBottom: -14,
+    //marginLeft: -6,
   },
   link: {
     width: sidebarConfig.drawerWidthClosed,
-    marginLeft: 24,
+    //marginLeft: 43,
   },
 });
 
@@ -82,13 +83,27 @@ const SidebarLogo = () => {
     <div className={classes.root}>
       <Link
         component={NavLink}
-        to="/"
+        to="/Catalog"
         underline="none"
         className={classes.link}
         aria-label="Home"
       >
-        {isOpen ? <LogoFull /> : <LogoIcon />}
+      {isOpen ? 
+        
+        <div style={{marginLeft:42}}>
+          <LogoFull />
+        </div>
+        
+        
+        : 
+        
+        <div style={{marginLeft:13}}>
+        <LogoIcon />
+      </div>
+        
+        }
       </Link>
+
     </div>
   );
 };
@@ -183,10 +198,11 @@ export const Root = ({ children }: PropsWithChildren<{}>) => {
           <Sidebar disableExpandOnHover>
             <SidebarLogo />
             <SidebarGroup label="Search" icon={<SearchOutlined />} to="/search">
+              <SidebarSearchModal />
             </SidebarGroup>
-            <Titulos text={'PRINCIPAL'} ></Titulos>
+            <Titulos text={'MAIN'} ></Titulos>
             <SidebarGroup label="Menu" icon={<MenuIcon />}>
-              <SidebarSubmenuItem icon={GridView} to="/" title="Control Panel"
+              <SidebarSubmenuItem icon={GridView} to="/Catalog" title="Control Panel"
                 dropdownItems={[
                   {
                     title: 'Catalog',
@@ -195,10 +211,6 @@ export const Root = ({ children }: PropsWithChildren<{}>) => {
                   {
                     title: 'APIs',
                     to: '/api-docs',
-                  },
-                  {
-                    title: 'Docs',
-                    to: '/8',
                   },
                   {
                     title: 'Docs',
@@ -227,7 +239,7 @@ export const Root = ({ children }: PropsWithChildren<{}>) => {
               {/* End global nav */}
               <SidebarDivider className={classes.sidebarDivider} />
 
-              <Titulos text={'ADMINISTRADOR'} ></Titulos>
+              <Titulos text={'ADMIN'} ></Titulos>
               
               <SidebarScrollWrapper>
               <SidebarSettings />
