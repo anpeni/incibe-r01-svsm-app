@@ -9,7 +9,7 @@ interface TitulosProps {
 
 const useStyles = makeStyles({
     sectionTitle: {
-        fontSize: '8px',
+        fontSize: '11px',
         color: 'rgba(255, 255, 255, 0.30)',
         fontFamily: "Inter, sans-serif",
         fontWeight: 500,
@@ -19,7 +19,7 @@ const useStyles = makeStyles({
         marginBottom: '10px'
     },
     sectionTitleCerrado: {
-        fontSize: '8px',
+        fontSize: '11px',
         color: 'rgba(255, 255, 255, 0.30)',
         fontFamily: "Inter, sans-serif",
         fontWeight: 500,
