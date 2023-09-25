@@ -108,7 +108,7 @@ export const UserSettingsThemeToggleTema = () => {
   return (
     <>
       {isOpen ? (
-        <a style={{ display: 'flex', flexFlow: 'row nowrap', marginLeft: '-3px', justifyContent: 'center', alignItems: 'center', height: '48px', width: '224px' }}>
+        <a style={{ display: 'flex', flexFlow: 'row nowrap', marginLeft: '3px', justifyContent: 'center', alignItems: 'center', height: '48px', width: '224px' }}>
           <div style={{
             marginLeft: '-20px', width: '72px',
             height: '100%',
@@ -129,7 +129,7 @@ export const UserSettingsThemeToggleTema = () => {
               <div >
                 <ContrastIcon className={classes.contrastIcon} />
               </div>
-              <span className={classes.tema}>Tema</span>
+              <span className={classes.tema}>Theme</span>
               <div style={{ marginLeft: '25px' }}>
                 {/* <div className={classes.circleBehind}> */}
                 <Switch

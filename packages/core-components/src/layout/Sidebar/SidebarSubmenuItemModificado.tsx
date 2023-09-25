@@ -17,7 +17,7 @@ import { OverridableComponent } from '@mui/material/OverridableComponent';
 import { SvgIconTypeMap } from '@mui/material';
 
 const useStyles = makeStyles<BackstageTheme>(
-  () => ({
+  theme => ({
     item: {
       // height: 48,
       // width: '100%',

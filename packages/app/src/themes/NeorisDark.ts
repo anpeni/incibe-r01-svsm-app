@@ -133,8 +133,8 @@ const createCustomThemeOverrides = (
       drawer: {
         // backgroundImage: `url(${backgroundImageUrl})`,
         //borderRadius: '12px',
-        boxShadow: '0px 4px 4px 0px rgba(0, 0, 0, 0.25)',
-        background: bgColor,
+        //boxShadow: '0px 4px 4px 0px rgba(0, 0, 0, 0.25)',
+        //background: bgColor,
         //backdropFilter: 'blur(120px)',
       },
     },

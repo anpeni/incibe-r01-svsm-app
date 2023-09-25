@@ -19,18 +19,20 @@ const useStyles = makeStyles<
 >(
   theme => ({
     root: {
-      zIndex: 1000,
+      zIndex: 10,
       width: 120,
       position: 'fixed',
       top: 165,
-      left: 45,
+      left: 45,      
       padding: 0,
-      background: 'var(--Color-Dark, linear-gradient(173deg, rgba(6, 11, 40, 0.75) 5.57%, rgba(6, 11, 40, 0.70) 166.22%))',
+      //background: 'var(--Color-Dark, linear-gradient(173deg, rgba(6, 11, 40, 0.75) 5.57%, rgba(6, 11, 40, 0.70) 166.22%))',
       borderRadius: '16px',
       backdropFilter: 'blur(120px)',
-      // zIndex: 1000,
+      background: bgColor,
       // position: 'relative',
-      // overflow: 'visible',
+      overflow: 'visible',
+      overflowX: 'visible',
+      overflowY: 'visible',
       // width: theme.spacing(7) + 1,
     },
     drawer: props => ({
@@ -68,41 +70,44 @@ const useStyles = makeStyles<
       // },
     }),
     drawerOpen: props => ({
-      //width: 120,
-      //borderRadius: '16px',
-      // [theme.breakpoints.down('xs')]: {
-      //   width: '100%',
-      //   position: 'relative',
-      //   //paddingLeft: theme.spacing(3),
-      //   //left: 0,
-      //   //top: 0,
-      // },
+      width: props.submenuConfig.drawerWidthOpen,
+      [theme.breakpoints.down('xs')]: {
+        width: '100%',
+        position: 'relative',
+        paddingLeft: theme.spacing(3),
+        left: 0,
+        top: 0,
+      },
     }),
     title: {
-      // fontSize: theme.typography.h5.fontSize,
-      // fontWeight: theme.typography.fontWeightMedium as any,
-      // color: theme.palette.common.white,
-      // padding: theme.spacing(2.5),
-      // [theme.breakpoints.down('xs')]: {
-      //   display: 'none',
-      // },
+      fontSize: theme.typography.h5.fontSize,
+      fontWeight: theme.typography.fontWeightMedium as any,
+      color: theme.palette.common.white,
+      padding: theme.spacing(2.5),
+      [theme.breakpoints.down('xs')]: {
+        display: 'none',
+      },
     },
   }),
   { name: 'BackstageSidebarSubmenu' },
 );
 
+const bgColor =
+  'linear-gradient(90deg, rgba(6,11,40,0.75) 50%, rgba(6,11,40,0.7) 100%)';
 
 export type SidebarSubmenuProps = {
   title?: string;
   children: ReactNode;
-  
 };
 
-
+/**
+ * Used inside SidebarItem to display an expandable Submenu
+ *
+ * @public
+ */
 export const SidebarSubmenu = (props: SidebarSubmenuProps) => {
   const { isOpen } = useSidebarOpenState();
   const { sidebarConfig, submenuConfig } = useContext(SidebarConfigContext);
-  
   const left = isOpen
     ? sidebarConfig.drawerWidthOpen
     : sidebarConfig.drawerWidthClosed;
@@ -123,13 +128,18 @@ export const SidebarSubmenu = (props: SidebarSubmenuProps) => {
 
 
   return (
+    <div style={{background: bgColor}}>
     <Box
       className={classnames(classes.root
       )}
-      //onClick={handleSubmenuClick}
+    //onClick={handleSubmenuClick}
     >
+      <Typography variant="h5" component="span" className={classes.title}>
+        {props.title}
+      </Typography>
       {props.children}
 
     </Box>
+    </div>
   );
 };

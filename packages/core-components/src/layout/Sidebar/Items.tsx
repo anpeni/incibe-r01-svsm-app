@@ -180,11 +180,14 @@ const makeSidebarStyles = (sidebarConfig: SidebarConfig) =>
       expandButton: {
         background: 'none',
         border: 'none',
-        color: theme.palette.navigation.color,
+        //color: theme.palette.navigation.color,
         width: '100%',
-        cursor: 'pointer',
+        //cursor: 'pointer',
         position: 'relative',
         height: 48,
+        '&:hover': {
+          background:'none',
+        },
       },
       arrows: {
         position: 'relative',
@@ -203,7 +206,7 @@ const makeSidebarStyles = (sidebarConfig: SidebarConfig) =>
       },
       circuloarrow: {
         position: 'absolute',
-        right: -1,
+        right: -7,
         //bottom: 10, // mover el círculo hacia arriba
         width: '25px',  // tamaño del círculo en anchura
         height: '25px', // tamaño del círculo en altura
@@ -212,7 +215,7 @@ const makeSidebarStyles = (sidebarConfig: SidebarConfig) =>
       },
       circuloarrowclaro: {
         position: 'absolute',
-        right: -1,
+        right: -7,
         //bottom: 10, // mover el círculo hacia arriba
         width: '25px',  // tamaño del círculo en anchura
         height: '25px', // tamaño del círculo en altura

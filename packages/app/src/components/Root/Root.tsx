@@ -96,7 +96,7 @@ const SidebarLogo = () => {
 const useStyles = makeStyles({
   sidebarContainer: {
     //zIndex: 10,
-    overflow: 'visible',
+    //overflow: 'hidden',
     //backgroundColor: 'white',// Para que el contenido no se desborde
     //backdropFilter: 'blur(120px)'
   },
@@ -189,28 +189,25 @@ export const Root = ({ children }: PropsWithChildren<{}>) => {
               <SidebarSubmenuItem icon={GridView} to="/" title="Control Panel"
                 dropdownItems={[
                   {
-                    title: 'Actividad',
+                    title: 'Catalog',
                     to: '/Catalog',
                   },
                   {
-                    title: 'Tráfico',
-                    to: '/8',
+                    title: 'APIs',
+                    to: '/api-docs',
                   },
                   {
-                    title: 'Prueba1',
+                    title: 'Docs',
                     to: '/8',
                   },
-                  {
-                    title: 'Prueba2',
-                    to: '/8',
-                  },
+
                 ]}
 
               />
-              <SidebarItem icon={HomeIcon} to="/" text="Home" />
+              {/* <SidebarItem icon={HomeIcon} to="/" text="Home" />
               <SidebarItem icon={CategoryIcon} to="catalog" text="Catalog" />
               <SidebarItem icon={ExtensionIcon} to="api-docs" text="APIs" />
-              <SidebarItem icon={DescriptionOutlined} to="docs" text="Docs" />
+              <SidebarItem icon={DescriptionOutlined} to="docs" text="Docs" /> */}
               <SidebarItem
                 icon={CreateComponentIcon}
                 to="create"
@@ -227,30 +224,31 @@ export const Root = ({ children }: PropsWithChildren<{}>) => {
               <SidebarDivider className={classes.sidebarDivider} />
 
               <Titulos text={'ADMINISTRADOR'} ></Titulos>
-
+              
               <SidebarScrollWrapper>
-                <SidebarItem icon={MapIcon} to="tech-radar" text="Tech Radar" />
-                <SidebarItem icon={HelpIcon} to="/ayuda" text="Ayuda" />
-                <SidebarItem
-                  icon={NightIcon}
-                  to="/tema"
-                  text="Tema" />
+              <SidebarSettings />
+                {/* <SidebarItem icon={MapIcon} to="tech-radar" text="Tech Radar" /> */}
+                <SidebarItem icon={HelpIcon} to="/ayuda" text="Help" />
+                
+              <UserSettingsThemeToggleTema />
+              {/* <UserSettingsTema /> */}
+
 
               </SidebarScrollWrapper>
             </SidebarGroup>
             <SidebarSpace />
             <SidebarExpandButton />
             <SidebarDivider className={classes.sidebarDivider} />
-            <SidebarGroup
+            {/* <SidebarGroup
               label="Settings"
               icon={<SettingsOutlined />}
               to="/settings"
-            >
-              <SidebarSettings />
-              <UserSettingsThemeToggleTema />
+            > */}
+              {/* <SidebarSettings />
+              <UserSettingsThemeToggleTema /> */}
               {/* <UserSettingsTema /> */}
-            </SidebarGroup>
-            <SidebarDivider className={classes.sidebarDivider} />
+            {/* </SidebarGroup> */}
+            {/* <SidebarDivider className={classes.sidebarDivider} /> */}
             <SidebarGroup>
               <UserSettingsProfileNew />
               <UserSettingsSalir />
