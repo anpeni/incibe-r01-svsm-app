@@ -76,7 +76,3 @@ $ yarn dev
 # Open  url to test
 http://localhost:3000
 ```
-
-
-<!-- PIPELINE TEST -->
-<!-- PIPELINE TEST -->
