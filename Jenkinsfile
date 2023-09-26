@@ -10,7 +10,7 @@ pipeline {
         spec:
           containers:
           - name: git-node
-            image: timbru31/node-alpine-git:16
+            image: timbru31/node-alpine-git:18
             command: ["cat"]
             tty: true
             resources:
@@ -237,7 +237,7 @@ pipeline {
             def imageValue = "061496817474.dkr.ecr.eu-west-1.amazonaws.com/cicd/backstage:${revision}"
             checkout changelog: false, poll: false, scm: [$class: 'GitSCM', branches: [[name: '*/develop-config']], 
                     doGenerateSubmoduleConfigurations: false, extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'gitops']], submoduleCfg: [], 
-                    userRemoteConfigs: [[credentialsId: 'bitbucket-bot-neoris-devsecops-http', url: 'https://neoris-devsecops@bitbucket.org/neoris-global/dso.backstage.git']]]
+                    userRemoteConfigs: [[credentialsId: 'bitbucket-global-neoris-http', url: 'https://neoris-devsecops@bitbucket.org/neoris-global/dso.backstage.git']]]
             dir('gitops') {
               sh """
                 sed -i "s|image:.*|image: $imageValue|g" ./base/application/deployment.yaml
@@ -249,7 +249,7 @@ pipeline {
                 git add ./base/application/deployment.yaml
                 git commit -m "neoris-devsecops: deployed new version for petclinic-angular:${imageValue}"
               """
-              withCredentials([usernamePassword(credentialsId: 'bitbucket-bot-neoris-devsecops-http', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
+              withCredentials([usernamePassword(credentialsId: 'bitbucket-global-neoris-http', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
                   sh('git push https://${GIT_USERNAME}:${GIT_PASSWORD}@bitbucket.org/neoris-global/dso.backstage.git HEAD:develop-config')
               }
             }

@@ -90,7 +90,6 @@ const useStyles = makeStyles({
   },
 });
 
-
 /** @public */
 export const UserSettingsThemeToggleTema = () => {
   const classes = useStyles();
