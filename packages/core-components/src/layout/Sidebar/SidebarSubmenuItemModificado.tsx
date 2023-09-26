@@ -125,7 +125,7 @@ const useStyles = makeStyles<BackstageTheme>(
     contenedor: {
       //background: 'red',
       //padding: '10px 0 10px 0'
-      height: '40px',
+      height: '39px',
       width: '100px',
       display: 'flex',
       alignItems: 'center',

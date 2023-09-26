@@ -33,7 +33,7 @@ import {
 } from '@backstage/plugin-user-settings';
 
 
-import { SearchModal, SidebarSearchModal } from '@backstage/plugin-search-modificado';
+import { SearchModal, SidebarSearchModal } from '@backstage/plugin-search';
 import {
   Sidebar,
   sidebarConfig,
