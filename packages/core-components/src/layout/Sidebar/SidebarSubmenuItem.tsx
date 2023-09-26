@@ -40,9 +40,10 @@ const useStyles = makeStyles<BackstageTheme>(
         background: 'var(--Color-Dark, linear-gradient(173deg, rgba(6, 11, 40, 0.75) 5.57%, rgba(6, 11, 40, 0.70) 166.22%))',
       },
       contenedorSubmenuFlotante: {
-        position: 'fixed',
-        top: '0',
-        left: '0',
+        // position: 'fixed',
+        // top: '0',
+        // left: '0',
+        //background: 'red'
       },
 
     },
@@ -53,6 +54,8 @@ const useStyles = makeStyles<BackstageTheme>(
     selected: {
       background: 'rgba(6, 11, 40, 0.8)',
       color: '#FFF',
+      borderRadius: '12px',
+      
 
     },
     label: {
@@ -67,7 +70,8 @@ const useStyles = makeStyles<BackstageTheme>(
     },
 
     sombreadoItem: {
-      boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.25)',
+      //background: 'red',
+      //minWidth: '500',  
     },
     labelSelected: {
       margin: theme.spacing(1.75),
@@ -109,20 +113,21 @@ const useStyles = makeStyles<BackstageTheme>(
     dropdownItem: {
       width: '100%',
       padding: '10px 0 10px 0',
-      '&:hover': {
-        background: 'var(--Color-Dark, linear-gradient(173deg, rgba(6, 11, 40, 0.75) 5.57%, rgba(6, 11, 40, 0.70) 166.22%))',
-        borderRadius: '12px',
-      },
+      // '&:hover': {
+      //   background: 'var(--Color-Dark, linear-gradient(173deg, rgba(6, 11, 40, 0.75) 5.57%, rgba(6, 11, 40, 0.70) 166.22%))',
+      //   borderRadius: '12px',
+      // },
+      
     },
     dropdownItemSeleccionado: {
       width: '100%',
       padding: '10px 20px 10px 0',
-      '&:hover': {
-        background: 'var(--Color-Dark, linear-gradient(173deg, rgba(6, 11, 40, 0.75) 5.57%, rgba(6, 11, 40, 0.70) 166.22%))',
-        borderRadius: '12px',
-      },
-      background: 'var(--Color-Dark, linear-gradient(173deg, rgba(6, 11, 40, 0.75) 5.57%, rgba(6, 11, 40, 0.70) 166.22%))',
-      borderRadius: '12px',
+      // '&:hover': {
+      //   background: 'var(--Color-Dark, linear-gradient(173deg, rgba(6, 11, 40, 0.75) 5.57%, rgba(6, 11, 40, 0.70) 166.22%))',
+      //   borderRadius: '12px',
+      // },
+      //background: 'var(--Color-Dark, linear-gradient(173deg, rgba(6, 11, 40, 0.75) 5.57%, rgba(6, 11, 40, 0.70) 166.22%))',
+      //borderRadius: '12px',
     },
     icono: {
       color: 'rgba(255, 255, 255, 0.30)',
@@ -145,17 +150,32 @@ const useStyles = makeStyles<BackstageTheme>(
       overflow: 'hidden',
       'text-overflow': 'ellipsis',
       marginLeft: '-18px',
+      '&:hover': {
+        background: 'var(--Color-Dark, linear-gradient(173deg, rgba(6, 11, 40, 0.75) 5.57%, rgba(6, 11, 40, 0.70) 166.22%))',
+        borderRadius: '12px',
+        padding: '10px 80px 10px 15px',
+        //paddingRight: theme.spacing(10),
+        marginLeft: '-1px',
+      },
+      
     },
     textContentSelected: {
       color: '#FFF',
-      paddingLeft: theme.spacing(4),
-      paddingRight: theme.spacing(1),
+      //paddingLeft: theme.spacing(4),
+      //paddingRight: '100%',
+      //Width: '400px',
       fontSize: '13px',//16px
       fontFamily: 'Inter, sans-serif',//inter
       whiteSpace: 'nowrap',
       overflow: 'hidden',
       'text-overflow': 'ellipsis',
-      marginLeft: '-18px',
+      marginLeft: '-1px',
+      background: 'var(--Color-Dark, linear-gradient(173deg, rgba(6, 11, 40, 0.75) 5.57%, rgba(6, 11, 40, 0.70) 166.22%))',
+      padding: '10px 80px 10px 15px',
+      borderRadius: '12px',
+      //marginRight: '100px',
+      //Width: '300px',
+
     },
     divMenu: {
       height: 'auto',
@@ -240,8 +260,10 @@ export const SidebarSubmenuItem = (props: SidebarSubmenuItemProps) => {
     return (
       <>
         {isOpen ? (
+
+
           <Box className={classes.itemContainer}>
-            <Tooltip title={title} enterDelay={500} enterNextDelay={500}>
+
               <Button
                 role="button"
                 onClick={handleClickDropdown}
@@ -276,7 +298,7 @@ export const SidebarSubmenuItem = (props: SidebarSubmenuItemProps) => {
                 )}
 
               </Button>
-            </Tooltip>
+            
             {dropdownItems && showDropDown && (
               <div className={classes.divMenu}>
                 {showDropDown && (<div className={classes.lineaVertical}></div>)}
@@ -314,8 +336,9 @@ export const SidebarSubmenuItem = (props: SidebarSubmenuItemProps) => {
               </div>
 
             )}
-
           </Box>
+
+
         ) : (
           <Box className={classes.itemContainer}>
             <Button

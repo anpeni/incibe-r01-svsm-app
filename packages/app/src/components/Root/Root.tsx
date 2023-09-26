@@ -33,7 +33,7 @@ import {
 } from '@backstage/plugin-user-settings';
 
 
-import { SearchModal, SidebarSearchModal } from '@backstage/plugin-search';
+import { SearchModal, SidebarSearchModal } from '@backstage/plugin-search-modificado';
 import {
   Sidebar,
   sidebarConfig,
@@ -216,6 +216,7 @@ export const Root = ({ children }: PropsWithChildren<{}>) => {
                     title: 'Docs',
                     to: '/8',
                   },
+
 
                 ]}
 

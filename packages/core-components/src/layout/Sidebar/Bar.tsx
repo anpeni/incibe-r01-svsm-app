@@ -44,7 +44,7 @@ const useStyles = makeStyles<BackstageTheme, { sidebarConfig: SidebarConfig }>(
     drawer: {
       borderRadius: '12px',
       background: bgColor,
-      backdropFilter: 'blur(120px)',
+      //backdropFilter: 'blur(120px)',
       display: 'flex',
       flexFlow: 'column nowrap',
       alignItems: 'flex-start',
