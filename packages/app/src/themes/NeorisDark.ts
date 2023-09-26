@@ -219,6 +219,11 @@ const createCustomThemeOverrides = (
         marginBottom: 15,
       },
     },
+    MuiSvgIcon: {
+      fontSizeSmall: {
+        marginLeft: '12px',
+      },
+    },
     CatalogReactUserListPicker: {
       title: {
         textTransform: 'none',
@@ -416,12 +421,25 @@ const createCustomThemeOverrides = (
         fontWeight: 100, // Thin
         borderRadius: '12px',
       },
+      input: { //Filtro
+        fontFamily: 'Inter, sans-serif',
+        fontSize: '16px',
+        height: 'fit-content',
+        fontWeight: 400,
+      },
     },
     MuiInput: {
       // Filtro
+      root: {
+        width: '281px',
+        height: '42px',
+      },
       underline: {
         '&::before': {
-          borderBottom: 'none',
+          borderBottom: 'none !important',
+        },
+        '&::after': {
+          borderBottom: 'none !important',
         },
       },
     },
