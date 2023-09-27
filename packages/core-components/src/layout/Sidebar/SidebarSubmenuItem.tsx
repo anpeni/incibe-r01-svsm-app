@@ -93,7 +93,8 @@ const useStyles = makeStyles<BackstageTheme>(
     },
 
     sombreadoItem: {
-      boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.25)',
+      //background: 'red',
+      //minWidth: '500',  
     },
     labelSelectedOscuro: {
       margin: theme.spacing(1.75),
@@ -164,12 +165,12 @@ const useStyles = makeStyles<BackstageTheme>(
     dropdownItemSeleccionado: {
       width: '100%',
       padding: '10px 20px 10px 0',
-      '&:hover': {
-        background: 'var(--Color-Dark, linear-gradient(173deg, rgba(6, 11, 40, 0.75) 5.57%, rgba(6, 11, 40, 0.70) 166.22%))',
-        borderRadius: '12px',
-      },
-      background: 'var(--Color-Dark, linear-gradient(173deg, rgba(6, 11, 40, 0.75) 5.57%, rgba(6, 11, 40, 0.70) 166.22%))',
-      borderRadius: '12px',
+      // '&:hover': {
+      //   background: 'var(--Color-Dark, linear-gradient(173deg, rgba(6, 11, 40, 0.75) 5.57%, rgba(6, 11, 40, 0.70) 166.22%))',
+      //   borderRadius: '12px',
+      // },
+      //background: 'var(--Color-Dark, linear-gradient(173deg, rgba(6, 11, 40, 0.75) 5.57%, rgba(6, 11, 40, 0.70) 166.22%))',
+      //borderRadius: '12px',
     },
     iconoOscuro: {
       color: 'rgba(255, 255, 255, 0.30)',
@@ -210,8 +211,9 @@ const useStyles = makeStyles<BackstageTheme>(
     },
     textContentSelectedOscuro: {
       color: '#FFF',
-      paddingLeft: theme.spacing(4),
-      paddingRight: theme.spacing(1),
+      //paddingLeft: theme.spacing(4),
+      //paddingRight: '100%',
+      //Width: '400px',
       fontSize: '13px',//16px
       fontFamily: 'Inter, sans-serif',//inter
       whiteSpace: 'nowrap',
@@ -468,7 +470,6 @@ export const SidebarSubmenuItem = (props: SidebarSubmenuItemProps) => {
                 </Box>
               </div>
             )}
-
           </Box>
         ) : (
           <Box className={classes.itemContainer}>
