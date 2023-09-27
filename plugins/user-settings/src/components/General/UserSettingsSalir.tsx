@@ -18,7 +18,7 @@ export const UserSettingsSalir = () => {
   return (
     <SidebarItem       
       icon={PowerSettingsNewOutlined} // Asegúrate de importar este icono
-      text="Log out" 
+      text="Log Out" 
       onClick={handleSignOut}
     />
   );

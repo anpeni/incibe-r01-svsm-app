@@ -131,7 +131,7 @@ const createCustomThemeOverrides = (
         borderRadius: '12px',
         boxShadow: '0px 4px 4px 0px rgba(0, 0, 0, 0.25)',
         background: bgColor,
-        backdropFilter: 'blur(120px)',
+        //backdropFilter: 'blur(120px)',
       },
     },
     // TODO: Remove after https://github.com/backstage/backstage/pull/16853 is available here
@@ -263,7 +263,7 @@ const createCustomThemeOverrides = (
       },
       label: {
         justifyContent: 'none',
-        color: 'white',
+        color: 'RGB(6, 11, 40, 0.8) !important',
       },
       contained: {
         fontFamily: 'Inter, sans-serif',
@@ -431,11 +431,11 @@ const createCustomThemeOverrides = (
     BackstageSidebarItem: {
       selected: {
         //backdropFilter: 'blur(120px)',
-        backgroundColor: 'rgba(6, 11, 40, 0.8)',
+        backgroundColor: 'rgba(255, 255, 255, 0.10)',
         borderRadius: '12px',
         borderLeft: 'none !important',
         width: '100%',
-        color: '#FFF !important'
+        color: 'RGB(6, 11, 40) !important'
       },
 
       root: {
@@ -443,14 +443,14 @@ const createCustomThemeOverrides = (
         //backgroundColor: 'rgba(6, 11, 40, 0.8)',
         //borderRadius: '12px'
         borderLeft: 'none !important',
-        color: 'rgba(255, 255, 255, 0.60) !important'
+        color: 'RGB(6, 11, 40, 0.8) !important'
       },
       highlightable: {
         //backdropFilter: 'blur(120px)',
         //backgroundColor: 'rgba(6, 11, 40, 0.8)',
         //borderRadius: '12px'
         '&:hover': { // Añade esta parte para el efecto de hover
-          backgroundColor: 'rgba(6, 11, 40, 0.8)',
+          backgroundColor: 'rgba(255, 255, 255, 0.10)',
           borderRadius: '12px',
 
         }
@@ -472,6 +472,8 @@ const createCustomThemeOverrides = (
         color: 'rgba(51, 51, 51, 0.80)'
       }
     },
+
+    
   };
 };
 

@@ -96,7 +96,7 @@ const useStyles = makeStyles<BackstageTheme>(
       //background: 'var(--Color-Dark, linear-gradient(173deg, rgba(6, 11, 40, 0.75) 5.57%, rgba(6, 11, 40, 0.70) 166.22%))',
       //borderRadius: '12px',
     },
-    textContent: {
+    textContentOscuro: {
       color: 'rgba(255, 255, 255, 0.60)',
       fontFamily: 'Inter, sans-serif',
       paddingLeft: 20,
@@ -112,13 +112,39 @@ const useStyles = makeStyles<BackstageTheme>(
       // overflow: 'hidden',
       // 'text-overflow': 'ellipsis',
     },
-    elementoSeleccionado: {
+    elementoSeleccionadoOscuro: {
       color: 'white',
       fontFamily: 'Inter, sans-serif',
       //paddingLeft: 20,
       fontSize: '13px',
       marginLeft: '8px',
       background: 'var(--Color-Dark, linear-gradient(173deg, rgba(6, 11, 40, 0.75) 5.57%, rgba(6, 11, 40, 0.70) 166.22%))',
+      borderRadius: '10px',
+      padding: '5px 12px 5px 12px'
+    },
+    textContentClaro: {
+      color: 'rgba(6, 11, 40, 0.8)',
+      fontFamily: 'Inter, sans-serif',
+      paddingLeft: 20,
+      //paddingRight: theme.spacing(4),
+      fontSize: '13px',
+      '&:hover': {
+        background: 'rgba(255, 255, 255, 0.10)',
+        marginLeft: '8px',
+        borderRadius: '10px',
+        padding: '5px 12px 5px 12px'
+      },
+      // whiteSpace: 'nowrap',
+      // overflow: 'hidden',
+      // 'text-overflow': 'ellipsis',
+    },
+    elementoSeleccionadoClaro: {
+      color: 'rgba(6, 11, 40)',
+      fontFamily: 'Inter, sans-serif',
+      //paddingLeft: 20,
+      fontSize: '13px',
+      marginLeft: '8px',
+      background: 'rgba(255, 255, 255, 0.10)',
       borderRadius: '10px',
       padding: '5px 12px 5px 12px'
     },
@@ -159,6 +185,7 @@ export const SidebarSubmenuItemModificado = (props: SidebarSubmenuItemProps) => 
   const { title, subtitle, to, icon: Icon, dropdownItems, exact, selectedFromParent } = props;
   const classes = useStyles();
   //const [isSelected, setIsSelected] = useState(false);
+  const isDarkMode = localStorage.getItem('theme') === 'neoris-dark';
   const [selectedObject, setSelectedObject] = useState(selectedFromParent);
   const { setIsHoveredOn } = useContext(SidebarItemWithSubmenuContext);
   const closeSubmenu = () => {
@@ -192,9 +219,7 @@ export const SidebarSubmenuItemModificado = (props: SidebarSubmenuItemProps) => 
       isActive = isLocationMatch(currentLocation, resolvedPath, exact);
       return isActive;
     });
-    return (
-      
-        
+    return (       
           <Box className={classes.dropdown}
           >
             {dropdownItems.map((object, key) => (
@@ -213,9 +238,13 @@ export const SidebarSubmenuItemModificado = (props: SidebarSubmenuItemProps) => 
                   <Typography
                     component="span"
                     className={
-                      selectedObject === object.title // Comprobar si el objeto está seleccionado
-                        ? classes.elementoSeleccionado
-                        : classes.textContent
+                      isDarkMode ?
+                      (selectedObject === object.title // Comprobar si el objeto está seleccionado
+                        ? classes.elementoSeleccionadoOscuro
+                        : classes.textContentOscuro) :
+                        (selectedObject === object.title // Comprobar si el objeto está seleccionado
+                        ? classes.elementoSeleccionadoClaro
+                        : classes.textContentClaro)
                     }
                   >
                     {object.title}

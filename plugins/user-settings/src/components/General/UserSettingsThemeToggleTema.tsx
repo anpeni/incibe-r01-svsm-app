@@ -30,9 +30,10 @@ const useStyles = makeStyles({
     },
   },
   iconLight: {
-    width: '1.2em',
-    height: '1.2em',
+    width: '1em',
+    height: '1em',
     position: 'relative',
+    top: '10%',
     // top: '75%',
     // left: '10%',
     // transform: 'translateY(-50%)',
@@ -40,15 +41,16 @@ const useStyles = makeStyles({
 
   },
   iconDark: {
-    width: '1.2em',
-    height: '1.2em',
+    width: '1em',
+    height: '1em',
     position: 'relative',
-    // top: '55%',
+    top: '10%',
     // right: '-10%',
     // transform: 'translateY(-50%)',
-    color: '#FFFFFF'
+    color: '#FFFFFF',
+
   },
-  contrastIcon: {
+  contrastIconOscuro: {
     fill: 'currentColor',
     width: '0.75em',
     height: '0.75em',
@@ -59,10 +61,28 @@ const useStyles = makeStyles({
     userSelect: 'none',
     color: 'rgba(255, 255, 255, 0.60)'
   },
-  tema: {
+  contrastIconClaro: {
+    fill: 'currentColor',
+    width: '0.75em',
+    height: '0.75em',
+    display: 'inline-block',
+    fontSize: '1.5rem',
+    transition: 'fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
+    flexShrink: 0,
+    userSelect: 'none',
+    color: 'RGB(6, 11, 40, 0.8)'
+  },
+  temaOscuro: {
     marginLeft: '10px',
     fontWeight: 500,
     color: 'rgba(255, 255, 255, 0.60)',
+    alignItems: 'center',
+    fontSize: '16px'
+  },
+  temaClaro: {
+    marginLeft: '10px',
+    fontWeight: 500,
+    color: 'RGB(6, 11, 40)',
     alignItems: 'center',
     fontSize: '16px'
   },
@@ -93,6 +113,7 @@ const useStyles = makeStyles({
 /** @public */
 export const UserSettingsThemeToggleTema = () => {
   const classes = useStyles();
+  const isDarkMode = localStorage.getItem('theme') === 'neoris-dark';
   const appThemeApi = useApi(appThemeApiRef);
   const themeId = useObservable(
     appThemeApi.activeThemeId$(),
@@ -125,10 +146,23 @@ export const UserSettingsThemeToggleTema = () => {
               flexShrink: '0',
               verticalAlign: 'middle',
             }}>
-              <div >
-                <ContrastIcon className={classes.contrastIcon} />
-              </div>
-              <span className={classes.tema}>Theme</span>
+
+
+              {isDarkMode ? (
+                <>
+                  <div ><ContrastIcon className={classes.contrastIconOscuro} /></div>
+                  <span className={classes.temaOscuro}>Theme</span>
+                </>
+
+              ) : (
+                <>
+                  <div ><ContrastIcon className={classes.contrastIconClaro} /></div>
+                  <span className={classes.temaClaro}>Theme</span>
+                </>
+              )
+
+              }
+
               <div style={{ marginLeft: '25px' }}>
                 {/* <div className={classes.circleBehind}> */}
                 <Switch

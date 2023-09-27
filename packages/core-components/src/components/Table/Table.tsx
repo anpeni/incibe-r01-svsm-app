@@ -285,7 +285,7 @@ export function TableToolbar(toolbarProps: {
             <FilterList />
           </IconButton>
           <Typography className={filtersClasses.title}>
-            Filters ({selectedFiltersLength})
+            Filte ({selectedFiltersLength})
           </Typography>
         </Box>
         <StyledMTableToolbar

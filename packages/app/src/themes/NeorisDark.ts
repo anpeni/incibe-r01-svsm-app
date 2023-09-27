@@ -349,7 +349,7 @@ const createCustomThemeOverrides = (
       },
       colorPrimary: {
         //backgroundColor: 'white', en este sale el circulo blanco
-        opacity: '1 !important',
+        //opacity: '1 !important',
         mui: {
           checked: {
             //backgroundColor: 'white !important',
@@ -471,6 +471,7 @@ const createCustomThemeOverrides = (
       },
       
     },
+    
   };
 };
 

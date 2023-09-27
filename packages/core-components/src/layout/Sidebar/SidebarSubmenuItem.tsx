@@ -23,7 +23,7 @@ import { SidebarSubmenuItemModificado } from './SidebarSubmenuItemModificado';
 
 const useStyles = makeStyles<BackstageTheme>(
   theme => ({
-    item: {
+    itemOscuro: {
       fontSize: '16px',//16px
       fontFamily: 'Inter, sans-serif',//inter
       lineHeight: '1.57',
@@ -39,26 +39,39 @@ const useStyles = makeStyles<BackstageTheme>(
       '&:hover': {
         background: 'var(--Color-Dark, linear-gradient(173deg, rgba(6, 11, 40, 0.75) 5.57%, rgba(6, 11, 40, 0.70) 166.22%))',
       },
-      contenedorSubmenuFlotante: {
-        // position: 'fixed',
-        // top: '0',
-        // left: '0',
-        //background: 'red'
+    },
+    itemClaro: {
+      fontSize: '16px',//16px
+      fontFamily: 'Inter, sans-serif',//inter
+      lineHeight: '1.57',
+      height: 48,
+      width: '100%',
+      display: 'flex',
+      alignItems: 'center',
+      color: theme.palette.navigation.color,
+      padding: theme.spacing(2.5),
+      cursor: 'pointer',
+      position: 'relative',
+      border: 'none',
+      '&:hover': {
+        background: 'rgba(255, 255, 255, 0.10)',
       },
-
     },
     itemContainer: {
       width: '100%',
 
     },
-    selected: {
+    selectedOscuro: {
       background: 'rgba(6, 11, 40, 0.8)',
       color: '#FFF',
       borderRadius: '12px',
-      
-
     },
-    label: {
+    selectedClaro: {
+      background: 'rgba(255, 255, 255, 0.10)',
+      color: 'rgba(6, 11, 40, 0.8)',
+      borderRadius: '12px',
+    },
+    labelOscuro: {
       margin: theme.spacing(1.75),
       marginLeft: theme.spacing(1),
       fontSize: 16,
@@ -68,12 +81,22 @@ const useStyles = makeStyles<BackstageTheme>(
       lineHeight: 1,
       color: 'rgba(255, 255, 255, 0.60)',
     },
+    labelClaro: {
+      margin: theme.spacing(1.75),
+      marginLeft: theme.spacing(1),
+      fontSize: 16,
+      whiteSpace: 'nowrap',
+      overflow: 'hidden',
+      'text-overflow': 'ellipsis',
+      lineHeight: 1,
+      color: 'RGB(6, 11, 40, 0.8)',
+    },
 
     sombreadoItem: {
       //background: 'red',
       //minWidth: '500',  
     },
-    labelSelected: {
+    labelSelectedOscuro: {
       margin: theme.spacing(1.75),
       marginLeft: theme.spacing(1),
       fontSize: 16,
@@ -82,6 +105,16 @@ const useStyles = makeStyles<BackstageTheme>(
       'text-overflow': 'ellipsis',
       lineHeight: 1,
       color: 'white',
+    },
+    labelSelectedClaro: {
+      margin: theme.spacing(1.75),
+      marginLeft: theme.spacing(1),
+      fontSize: 16,
+      whiteSpace: 'nowrap',
+      overflow: 'hidden',
+      'text-overflow': 'ellipsis',
+      lineHeight: 1,
+      color: 'RGB(6, 11, 40)',
     },
     subtitle: {
       fontSize: 10,
@@ -94,15 +127,25 @@ const useStyles = makeStyles<BackstageTheme>(
       position: 'absolute',
       right: 51,
     },
-    expandClose: {
+    expandCloseOscuro: {
       position: 'absolute',
       right: 51,
       color: 'rgba(255, 255, 255, 0.30)',
     },
-    expandOpen: {
+    expandOpenOscuro: {
       position: 'absolute',
       right: 51,
       color: '#fff',
+    },
+    expandCloseClaro: {
+      position: 'absolute',
+      right: 51,
+      color: 'rgba(6, 11, 40)',
+    },
+    expandOpenClaro: {
+      position: 'absolute',
+      right: 51,
+      color: 'rgba(6, 11, 40)',
     },
     dropdown: {
       display: 'flex',
@@ -117,7 +160,7 @@ const useStyles = makeStyles<BackstageTheme>(
       //   background: 'var(--Color-Dark, linear-gradient(173deg, rgba(6, 11, 40, 0.75) 5.57%, rgba(6, 11, 40, 0.70) 166.22%))',
       //   borderRadius: '12px',
       // },
-      
+
     },
     dropdownItemSeleccionado: {
       width: '100%',
@@ -129,18 +172,26 @@ const useStyles = makeStyles<BackstageTheme>(
       //background: 'var(--Color-Dark, linear-gradient(173deg, rgba(6, 11, 40, 0.75) 5.57%, rgba(6, 11, 40, 0.70) 166.22%))',
       //borderRadius: '12px',
     },
-    icono: {
+    iconoOscuro: {
       color: 'rgba(255, 255, 255, 0.30)',
       marginLeft: '6px',
     },
-    iconoSelect: {
+    iconoSelectOscuro: {
       color: '#FFF',
+      marginLeft: '6px',
+    },
+    iconoClaro: {
+      color: 'rgba(6, 11, 40, 0.80)',
+      marginLeft: '6px',
+    },
+    iconoSelectClaro: {
+      color: 'rgba(6, 11, 40)',
       marginLeft: '6px',
     },
     iconocentrado: {
       marginLeft: '6px',
     },
-    textContent: {
+    textContentOscuro: {
       color: 'rgba(255, 255, 255, 0.60)',
       paddingLeft: theme.spacing(4),
       paddingRight: theme.spacing(1),
@@ -157,9 +208,8 @@ const useStyles = makeStyles<BackstageTheme>(
         //paddingRight: theme.spacing(10),
         marginLeft: '-1px',
       },
-      
     },
-    textContentSelected: {
+    textContentSelectedOscuro: {
       color: '#FFF',
       //paddingLeft: theme.spacing(4),
       //paddingRight: '100%',
@@ -175,7 +225,41 @@ const useStyles = makeStyles<BackstageTheme>(
       borderRadius: '12px',
       //marginRight: '100px',
       //Width: '300px',
-
+    },
+    textContentClaro: {
+      color: 'rgba(6, 11, 40, 0.8)',
+      paddingLeft: theme.spacing(4),
+      paddingRight: theme.spacing(1),
+      fontSize: '13px',//16px
+      fontFamily: 'Inter, sans-serif',//inter
+      whiteSpace: 'nowrap',
+      overflow: 'hidden',
+      'text-overflow': 'ellipsis',
+      marginLeft: '-18px',
+      '&:hover': {
+        background: 'rgba(255, 255, 255, 0.10)',
+        borderRadius: '12px',
+        padding: '10px 80px 10px 15px',
+        //paddingRight: theme.spacing(10),
+        marginLeft: '-1px',
+      },
+    },
+    textContentSelectedClaro: {
+      color: 'rgba(6, 11, 40)',
+      //paddingLeft: theme.spacing(4),
+      //paddingRight: '100%',
+      //Width: '400px',
+      fontSize: '13px',//16px
+      fontFamily: 'Inter, sans-serif',//inter
+      whiteSpace: 'nowrap',
+      overflow: 'hidden',
+      'text-overflow': 'ellipsis',
+      marginLeft: '-1px',
+      background: 'rgba(255, 255, 255, 0.10)',
+      padding: '10px 80px 10px 15px',
+      borderRadius: '12px',
+      //marginRight: '100px',
+      //Width: '300px',
     },
     divMenu: {
       height: 'auto',
@@ -228,7 +312,7 @@ export const SidebarSubmenuItem = (props: SidebarSubmenuItemProps) => {
   const closeSubmenu = () => {
     setIsHoveredOn(false);
   };
-
+  const isDarkMode = localStorage.getItem('theme') === 'neoris-dark';
   const toLocation = useResolvedPath(to ?? '');
   const currentLocation = useLocation();
   const [selectedObject, setSelectedObject] = useState(null);
@@ -245,7 +329,7 @@ export const SidebarSubmenuItem = (props: SidebarSubmenuItemProps) => {
 
   const handleSelectedObjectChange = (newSelectedObject: any) => {
     console.log("newSelectedObject.title: " + newSelectedObject.title);
-    setSelectedObject(newSelectedObject.title );
+    setSelectedObject(newSelectedObject.title);
 
   };
 
@@ -260,30 +344,39 @@ export const SidebarSubmenuItem = (props: SidebarSubmenuItemProps) => {
     return (
       <>
         {isOpen ? (
-
-
           <Box className={classes.itemContainer}>
+            <Button
+              role="button"
+              onClick={handleClickDropdown}
+              onTouchStart={e => e.stopPropagation()}
+              className={classnames(
+                isDarkMode ? classes.itemOscuro : classes.itemClaro,
+                isDarkMode ? (showDropDown ? classes.selectedOscuro : undefined) 
+                : (showDropDown ? classes.selectedClaro : undefined),
+              )}
+            >
+              {isDarkMode ? (
+                Icon &&
+                <Icon
+                  fontSize="small"
+                  className={classnames(
+                    showDropDown ? classes.iconoSelectOscuro : classes.iconoOscuro,
+                  )} />
+              ) : (
+                Icon &&
+                <Icon
+                  fontSize="small"
+                  className={classnames(
+                    showDropDown ? classes.iconoSelectClaro : classes.iconoClaro,
 
-              <Button
-                role="button"
-                onClick={handleClickDropdown}
-                onTouchStart={e => e.stopPropagation()}
-                className={classnames(
-                  classes.item,
-                  showDropDown ? classes.selected : undefined,
-                )}
-              >
-                {Icon &&
-                  <Icon
-                    fontSize="small"
-                    className={classnames(
-
-                      showDropDown ? classes.iconoSelect : classes.icono,
-                    )} />}
+                  )} />
+              )
+              }
+              {isDarkMode ? (
                 <Typography
                   component="span"
                   className={classnames(
-                    showDropDown ? classes.labelSelected : classes.label,
+                    showDropDown ? classes.labelSelectedOscuro : classes.labelOscuro,
                   )
                   }
                 >
@@ -291,14 +384,40 @@ export const SidebarSubmenuItem = (props: SidebarSubmenuItemProps) => {
                   <br />
                 </Typography>
 
-                {showDropDown ? (
-                  <ExpandLess className={classes.expandOpen} />
-                ) : (
-                  <ExpandMore className={classes.expandClose} />
-                )}
+              ) : (
+                <Typography
+                  component="span"
+                  className={classnames(
+                    showDropDown ? classes.labelSelectedClaro : classes.labelClaro,
+                  )
+                  }
+                >
+                  {title}
+                  <br />
+                </Typography>
 
-              </Button>
-            
+              )
+              }
+
+              {isDarkMode ? (
+                showDropDown ? (
+                  <ExpandLess className={classes.expandOpenOscuro} />
+                ) : (
+                  <ExpandMore className={classes.expandCloseOscuro} />
+                )
+
+              ) : (
+                showDropDown ? (
+                  <ExpandLess className={classes.expandOpenClaro} />
+                ) : (
+                  <ExpandMore className={classes.expandCloseClaro} />
+                )
+
+              )
+              }
+
+
+            </Button>
             {dropdownItems && showDropDown && (
               <div className={classes.divMenu}>
                 {showDropDown && (<div className={classes.lineaVertical}></div>)}
@@ -319,26 +438,39 @@ export const SidebarSubmenuItem = (props: SidebarSubmenuItemProps) => {
                         {showDropDown &&
                           (<div className={classes.lineaHorizontal}></div>)}
                         <div className={classnames(classes.sombreadoItem)}>
+
+                          {isDarkMode ? (
                           <Typography component="span"
+                          className={
+                            selectedObject === object.title // Comprobar si el objeto está seleccionado
+                              ? classes.textContentSelectedOscuro
+                              : classes.textContentOscuro
+                          }
+                        >
+                          {object.title}
+                        </Typography>
+
+                          ) : (
+                            <Typography component="span"
                             className={
                               selectedObject === object.title // Comprobar si el objeto está seleccionado
-                                ? classes.textContentSelected
-                                : classes.textContent
+                                ? classes.textContentSelectedClaro
+                                : classes.textContentClaro
                             }
                           >
                             {object.title}
                           </Typography>
+
+                          )
+                          }
                         </div>
                       </div>
                     </Link>
                   ))}
                 </Box>
               </div>
-
             )}
           </Box>
-
-
         ) : (
           <Box className={classes.itemContainer}>
             <Button
@@ -346,16 +478,18 @@ export const SidebarSubmenuItem = (props: SidebarSubmenuItemProps) => {
               onClick={handleClickDropdown}
               onTouchStart={e => e.stopPropagation()}
               className={classnames(
-                classes.item,
-                showDropDown ? classes.selected : undefined,
+                isDarkMode ? 
+                (showDropDown ? `${classes.selectedOscuro } ${classes.itemOscuro}` : classes.itemOscuro) :
+                (showDropDown ? `${classes.selectedClaro } ${classes.itemClaro}` : classes.itemClaro)
               )}
             >
               {Icon &&
                 <Icon
                   fontSize="small"
                   className={classnames(
-                    showDropDown ? classes.iconoSelect : classes.icono,
-                    showDropDown ? classes.iconocentrado : classes.iconocentrado,
+                    isDarkMode ? 
+                    (showDropDown ? `${classes.iconoSelectOscuro} ${classes.iconocentrado}` : `${classes.iconoOscuro} ${classes.iconocentrado}`)
+                  : (showDropDown ? `${classes.iconoSelectClaro} ${classes.iconocentrado}` : `${classes.iconoClaro} ${classes.iconocentrado}`)
                   )} />}
             </Button>
             {dropdownItems && showDropDown && (
@@ -378,7 +512,7 @@ export const SidebarSubmenuItem = (props: SidebarSubmenuItemProps) => {
                           <Typography component="span"
                             className={classnames(
                               //showDropDown ? classes.textContentSelected : classes.textContent,
-                              classes.textContent
+                              classes.textContentOscuro
                             )}
                           >
                           </Typography>
@@ -400,9 +534,15 @@ export const SidebarSubmenuItem = (props: SidebarSubmenuItemProps) => {
             )}
           </Box>
         )}
+
       </>
     );
+
+
+
   }
+
+
 
   return (
     <Box className={classes.itemContainer}>
