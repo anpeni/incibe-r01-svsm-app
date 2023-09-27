@@ -223,6 +223,10 @@ const createCustomThemeOverrides = (
       fontSizeSmall: {
         marginLeft: '12px',
       },
+      root: {
+        height: '24px',
+        weight: '24px',
+      }
     },
     CatalogReactUserListPicker: {
       title: {
