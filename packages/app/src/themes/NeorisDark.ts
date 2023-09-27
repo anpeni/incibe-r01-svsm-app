@@ -219,15 +219,6 @@ const createCustomThemeOverrides = (
         marginBottom: 15,
       },
     },
-    MuiSvgIcon: {
-      fontSizeSmall: {
-        marginLeft: '12px',
-      },
-      root: {
-        height: '24px',
-        weight: '24px',
-      }
-    },
     CatalogReactUserListPicker: {
       title: {
         textTransform: 'none',
@@ -394,6 +385,7 @@ const createCustomThemeOverrides = (
         borderRadius: '12px',
         backgroundColor: 'rgba(6, 11, 40, 0.4)',
         flex: 'none',
+        padding: 2,
       },
     },
     MuiTypography: {
@@ -471,9 +463,9 @@ const createCustomThemeOverrides = (
         borderRadius: '12px',
       },
     },
-    BackstageInfoCard: {
+    BackstageInfoCard: { // Cabecera Cards
       header: {
-        backdropFilter: 'blur(120px)',
+        // backdropFilter: 'blur(120px)',
       },
     },
     BackstageSidebarItem: {
@@ -533,7 +525,12 @@ const createCustomThemeOverrides = (
       root: {
         color: 'white',
       }
-    }
+    },
+    MuiDivider: {
+      root: {
+        backgroundColor: 'none',
+      }
+    },
   };
 };
 

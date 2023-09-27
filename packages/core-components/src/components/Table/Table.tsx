@@ -75,7 +75,7 @@ const tableIcons: Icons = {
     <ChevronLeft {...props} ref={ref} />
   )),
   ResetSearch: forwardRef((props, ref) => <Clear {...props} ref={ref} />),
-  Search: forwardRef((props, ref) => <FilterAltOutlinedIcon {...props} ref={ref} />),
+  Search: forwardRef((props, ref) => <FilterAltOutlinedIcon {...props} ref={ref} />), // Filtro
   SortArrow: forwardRef((props, ref) => <ArrowUpward {...props} ref={ref} />),
   ThirdStateCheck: forwardRef((props, ref) => <Remove {...props} ref={ref} />),
   ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />),
