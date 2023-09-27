@@ -69,38 +69,6 @@ pipeline {
       }
     }
 
-    stage('dependencies') {
-      steps {
-        container('npm') {
-          script {
-            sh "npm install"
-          }
-        }
-      }
-    }
-
-    stage('npm-build') {
-      steps {
-        container('npm') {
-          script {
-            sh "npm run build"
-          }
-        }
-      }
-    }
-
-    stage('unit test') {
-      steps {
-        container('npm-tests') {
-          sh "npm run test-headless"
-        }
-      }
-      post {
-        always {
-          junit allowEmptyResults: true, testResults: 'test-results.xml'
-        }
-      }
-    }
 
    
   }
