@@ -100,6 +100,8 @@ function extractValueByField(data: any, field: string): any | undefined {
 
 export type TableHeaderClassKey = 'header';
 
+const isDarkMode = localStorage.getItem('theme') === 'neoris-dark';
+
 const StyledMTableHeader = withStyles(
   theme => ({
     header: {
@@ -162,7 +164,15 @@ const useTableStyles = makeStyles<BackstageTheme>(
       display: 'flex',
       alignItems: 'start',
     },
-    cardContainer: {
+    cardContainerLight: {
+      background: 'linear-gradient(90deg, rgba(224,241,255,0.5) 50%, rgba(224,241,255,0.4) 100%)',
+      borderRadius: 12,
+      paddingLeft: 20,
+      paddingRight: 20,
+      paddingBottom: 20,
+      backdropFilter: 'blur(120px)',
+    },
+    cardContainerDark: {
       background: 'linear-gradient(173deg, rgba(6, 11, 40, 0.75) 5.57%, rgba(6, 11, 40, 0.70) 166.22%)',
       borderRadius: 12,
       paddingLeft: 20,
@@ -529,7 +539,7 @@ export function Table<T extends object = {}>(props: TableProps<T>) {
           onChangeFilters={setSelectedFilters}
         />
       )}
-      <Card className={tableClasses.cardContainer}>
+      <Card className={isDarkMode ? tableClasses.cardContainerDark : tableClasses.cardContainerLight}>
       <MTable<T>
         components={{
           Header: StyledMTableHeader,
