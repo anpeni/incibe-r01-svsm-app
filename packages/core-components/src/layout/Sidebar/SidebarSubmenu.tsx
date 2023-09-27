@@ -20,10 +20,10 @@ const useStyles = makeStyles<
   theme => ({
     rootOscuro: {
       zIndex: 10,
-      width: 100,
+      width: 120,
       position: 'fixed',
-      top: 217,
-      left: 45,
+      top: 212,
+      left: 45,      
       padding: 0,
       //background: 'var(--Color-Dark, linear-gradient(173deg, rgba(6, 11, 40, 0.75) 5.57%, rgba(6, 11, 40, 0.70) 166.22%))',
       borderRadius: '16px',
@@ -51,18 +51,6 @@ const useStyles = makeStyles<
       overflowX: 'visible',
       overflowY: 'visible',
       // width: theme.spacing(7) + 1,
-    },
-    contenedor: {
-      // background: 'red',
-      // overflow: 'visible',
-      // overflowX: 'visible',
-      // overflowY: 'visible',
-      // zIndex: 10,
-      // width: 120,
-      // position: 'fixed',
-      // top: 212,
-      // left: 45,      
-      // padding: 0,
     },
     drawer: props => ({
       //zIndex: 1000,

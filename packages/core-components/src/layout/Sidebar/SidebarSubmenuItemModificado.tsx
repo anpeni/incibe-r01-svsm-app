@@ -62,25 +62,24 @@ const useStyles = makeStyles<BackstageTheme>(
     //   right: 21,
     // },
     dropdown: {
-      //width: '200px',
+      width: '100%',
       display: 'flex',
       flexDirection: 'column',
-      //height: '100px',
       //alignItems: 'start',
 
     },
     dropdownItem: {
       //width: '50%',
-      //padding: '10px 0 10px 0',
+      padding: '10px 0 10px 0',
       //'&:hover': {
       //background: 'var(--Color-Dark, linear-gradient(173deg, rgba(6, 11, 40, 0.75) 5.57%, rgba(6, 11, 40, 0.70) 166.22%))',
       //color: 'theme.palette.navigation.selectedColor',
       //borderradius: '12px',
       // },
       '&:hover': {
-        //background: 'var(--Color-Dark, linear-gradient(173deg, rgba(6, 11, 40, 0.75) 5.57%, rgba(6, 11, 40, 0.70) 166.22%))',
+        background: 'var(--Color-Dark, linear-gradient(173deg, rgba(6, 11, 40, 0.75) 5.57%, rgba(6, 11, 40, 0.70) 166.22%))',
         //color: 'theme.palette.navigation.selectedColor',
-        //borderRadius: '12px',
+        borderRadius: '12px',
         //width: '80px',
         //height: '10px',
       },
@@ -88,13 +87,13 @@ const useStyles = makeStyles<BackstageTheme>(
       //margin: '10px',
     },
     dropdownItemSeleccionado: {
-      //padding: '10px 0 10px 0',
-      // '&:hover': {
-      //   background: 'var(--Color-Dark, linear-gradient(173deg, rgba(6, 11, 40, 0.75) 5.57%, rgba(6, 11, 40, 0.70) 166.22%))',
-      //   borderRadius: '12px',
-      // },
-      //background: 'var(--Color-Dark, linear-gradient(173deg, rgba(6, 11, 40, 0.75) 5.57%, rgba(6, 11, 40, 0.70) 166.22%))',
-      //borderRadius: '12px',
+      padding: '10px 0 10px 0',
+      '&:hover': {
+        background: 'var(--Color-Dark, linear-gradient(173deg, rgba(6, 11, 40, 0.75) 5.57%, rgba(6, 11, 40, 0.70) 166.22%))',
+        borderRadius: '12px',
+      },
+      background: 'var(--Color-Dark, linear-gradient(173deg, rgba(6, 11, 40, 0.75) 5.57%, rgba(6, 11, 40, 0.70) 166.22%))',
+      borderRadius: '12px',
     },
     textContentOscuro: {
       color: 'rgba(255, 255, 255, 0.60)',
@@ -102,12 +101,6 @@ const useStyles = makeStyles<BackstageTheme>(
       paddingLeft: 20,
       //paddingRight: theme.spacing(4),
       fontSize: '13px',
-      '&:hover': {
-        background: 'var(--Color-Dark, linear-gradient(173deg, rgba(6, 11, 40, 0.75) 5.57%, rgba(6, 11, 40, 0.70) 166.22%))',
-        marginLeft: '8px',
-        borderRadius: '10px',
-        padding: '5px 12px 5px 12px'
-      },
       // whiteSpace: 'nowrap',
       // overflow: 'hidden',
       // 'text-overflow': 'ellipsis',
@@ -115,7 +108,7 @@ const useStyles = makeStyles<BackstageTheme>(
     elementoSeleccionadoOscuro: {
       color: 'white',
       fontFamily: 'Inter, sans-serif',
-      //paddingLeft: 20,
+      paddingLeft: 20,
       fontSize: '13px',
       marginLeft: '8px',
       background: 'var(--Color-Dark, linear-gradient(173deg, rgba(6, 11, 40, 0.75) 5.57%, rgba(6, 11, 40, 0.70) 166.22%))',
@@ -234,7 +227,7 @@ export const SidebarSubmenuItemModificado = (props: SidebarSubmenuItemProps) => 
                 onClick={() => handleObjectClick(object)}
                 onTouchStart={e => e.stopPropagation()}
               >
-                <div className={classes.contenedor}>
+                <div >
                   <Typography
                     component="span"
                     className={
@@ -254,8 +247,8 @@ export const SidebarSubmenuItemModificado = (props: SidebarSubmenuItemProps) => 
               </Link>
             ))}
           </Box>
-       
-     
+        )}
+      </Box>
     );
   }
 

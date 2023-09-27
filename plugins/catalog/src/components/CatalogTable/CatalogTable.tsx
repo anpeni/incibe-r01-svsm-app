@@ -35,10 +35,10 @@ import {
 } from '@backstage/plugin-catalog-react';
 import { Typography } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
-import Edit from '@material-ui/icons/Edit';
-import OpenInNew from '@material-ui/icons/OpenInNew';
-import Star from '@material-ui/icons/Star';
-import StarBorder from '@material-ui/icons/StarBorder';
+import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
+import OpenInNew from '@mui/icons-material/LaunchOutlined';
+import StarBorder from '@mui/icons-material/StarOutlineOutlined';
+import Star from '@mui/icons-material/StarOutlined';
 import { capitalize } from 'lodash';
 import React, { ReactNode, useMemo } from 'react';
 import { columnFactories } from './columns';
@@ -165,7 +165,7 @@ export const CatalogTable = (props: CatalogTableProps) => {
         icon: () => (
           <>
             <Typography variant="srOnly">{title}</Typography>
-            <Edit fontSize="small" />
+            <EditOutlinedIcon fontSize="small" />
           </>
         ),
         tooltip: title,
