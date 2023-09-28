@@ -448,6 +448,11 @@ const createCustomThemeOverrides = (
         },
       },
     },
+    MuiInputAdornment: {
+      positionStart: {
+        paddingLeft: '12px',
+      },
+    },
     MuiFormLabel: {
       root: {
         color: theme.page.fontColor,
