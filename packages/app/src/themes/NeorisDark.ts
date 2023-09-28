@@ -220,14 +220,14 @@ const createCustomThemeOverrides = (
       },
     },
     MuiSvgIcon: {
-       fontSizeSmall: {
-         //marginLeft: '12px',
+      fontSizeSmall: {
+        //marginLeft: '12px',
       },
       root: {
         height: '24px',
         //weight: '24px',
-     }
-     },
+      }
+    },
     CatalogReactUserListPicker: {
       title: {
         textTransform: 'none',
@@ -512,7 +512,7 @@ const createCustomThemeOverrides = (
         textOverflow: 'ellipsis',
       },
     },
-    
+
   };
 };
 

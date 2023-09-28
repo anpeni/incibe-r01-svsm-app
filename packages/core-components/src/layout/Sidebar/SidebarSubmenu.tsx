@@ -20,7 +20,7 @@ const useStyles = makeStyles<
   theme => ({
     rootOscuro: {
       zIndex: 10,
-      width: 120,
+      width: 100,
       position: 'fixed',
       top: 212,
       left: 45,      

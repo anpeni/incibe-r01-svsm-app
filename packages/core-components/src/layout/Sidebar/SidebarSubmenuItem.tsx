@@ -173,7 +173,7 @@ const useStyles = makeStyles<BackstageTheme>(
       //borderRadius: '12px',
     },
     iconoOscuro: {
-      color: 'rgba(255, 255, 255, 0.30)',
+      color: 'rgba(255, 255, 255, 0.60)',
       marginLeft: '6px',
     },
     iconoSelectOscuro: {

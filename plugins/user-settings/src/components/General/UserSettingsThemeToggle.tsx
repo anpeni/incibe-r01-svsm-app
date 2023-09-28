@@ -124,6 +124,16 @@ export const UserSettingsThemeToggle = () => {
       className={classes.list}
       classes={{ container: classes.container }}
     >
+{/* 
+      <div>
+        <span>Theme
+
+        </span>
+        <p>Change the theme mode
+
+        </p>
+      </div> */}
+
       <ListItemText
         className={classes.listItemText}
         primary="Theme"
