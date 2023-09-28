@@ -221,19 +221,11 @@ const createCustomThemeOverrides = (
     },
     MuiSvgIcon: {
       fontSizeSmall: {
-<<<<<<< HEAD
         //marginLeft: '12px',
       },
       root: {
         height: '24px',
         //weight: '24px',
-=======
-        // marginLeft: '12px',
-      },
-      root: {
-        // height: '24px',
-        // width: '24px',
->>>>>>> a157d89a441aa1295900b0fc0e2b3c32b1a0dde1
       }
     },
     CatalogReactUserListPicker: {
@@ -521,9 +513,6 @@ const createCustomThemeOverrides = (
         textOverflow: 'ellipsis',
       },
     },
-<<<<<<< HEAD
-
-=======
     MuiCard: {
       root: {
         background:
@@ -546,7 +535,6 @@ const createCustomThemeOverrides = (
         color: 'white',
       }
     }
->>>>>>> a157d89a441aa1295900b0fc0e2b3c32b1a0dde1
   };
 };
 
