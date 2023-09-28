@@ -25,11 +25,11 @@ export const UserSettingsAppearanceCard = () => {
   const { isMobile } = useSidebarPinState();
 
   return (
-    <InfoCard title="Appearance" variant="gridItem">
-      <List dense>
-        <UserSettingsThemeToggle />
-        {!isMobile && <UserSettingsPinToggle />}
-      </List>
-    </InfoCard>
+<InfoCard title={<span style={{ marginLeft: '13px' }}>Appearance</span>} variant="gridItem">
+  <List dense>
+    <UserSettingsThemeToggle />
+    {!isMobile && <UserSettingsPinToggle />}
+  </List>
+</InfoCard>
   );
 };

@@ -33,11 +33,32 @@ const useStyles = makeStyles({
     color: 'grey',
     fontSize: '10px',
   },
+  sectionTitleOscuro: {
+    fontSize: '11px',
+    color: 'rgba(255, 255, 255, 0.30)',
+    fontFamily: "Inter, sans-serif",
+    fontWeight: 500,
+    lineHeight: 'normal',
+    marginLeft: '0px',
+    marginTop: '5px',
+    marginBottom: '0px'
+},
+sectionTitleaClaro: {
+    fontSize: '11px',
+    color: 'RGB(6, 11, 40)',
+    fontFamily: "Inter, sans-serif",
+    fontWeight: 500,
+    lineHeight: 'normal',
+    marginLeft: '0px',
+    marginTop: '5px',
+    marginBottom: '0px'
+},
 });
 export const UserSettingsProfileNew = () => {
   const { profile, displayName } = useUserProfile();
   const classes = useStyles();
   const { isOpen } = useSidebarOpenState();
+  const isDarkMode = localStorage.getItem('theme') === 'neoris-dark';
   return (
     <>
     {isOpen ? (
@@ -49,15 +70,30 @@ export const UserSettingsProfileNew = () => {
   
         <div style={{ display: 'flex', flexDirection: 'column', marginBottom: '-17px', fontWeight: 'bold' }}>
 
-            <span className={classes.developerText}>
+        {isDarkMode ? (
+              <span className={classes.sectionTitleOscuro}>
               DEVELOPER
-            </span>
+              </span>
+              ) : (
+                <span className={classes.sectionTitleaClaro}>
+                DEVELOPER
+                </span>
+              )}
+
 
           {profile.email && (
             <div style={{marginBottom: '8px' }}>
-              <span >
+              {isDarkMode ? (
+              <span style={{color:'white'}}>
               {displayName}
               </span>
+              ) : (
+                <span style={{color:'RGB(6, 11, 40)'}}>
+                {displayName}
+                </span>
+              )}
+            
+            
             </div>
           )}
         </div>

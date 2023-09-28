@@ -485,6 +485,11 @@ const createCustomThemeOverrides = (
         borderLeft: 'none !important',
         width: '100%',
         color: '#FFF !important',
+        marginLeft: '1px !important',
+      },
+      iconContainer: {
+        marginLeft: '1px !important',
+
       },
       root: {
         //backdropFilter: 'blur(120px)',
