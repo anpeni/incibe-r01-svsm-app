@@ -70,12 +70,13 @@ const useStyles = makeStyles(theme => ({
     paddingRight: 0,
     paddingLeft: 0,
   },
-  listItemSecondaryAction: {
+  listItemSecondaryAction: { // Botones
+    background: 'black',
+    borderRadius: '12px',
     position: 'relative',
     transform: 'unset',
     top: 'auto',
     right: 'auto',
-    paddingLeft: 16,
     [theme.breakpoints.down('xs')]: {
       paddingLeft: 0,
     },
@@ -155,18 +156,19 @@ export const UserSettingsThemeToggle = () => {
                 value={theme.id}
               >
                 <>
-                  {theme.title}&nbsp;
+                  
                   <ThemeIcon
                     id={theme.id}
                     icon={themeIcon}
                     activeId={themeId}
                   />
+                  {theme.title}&nbsp;
                 </>
               </TooltipToggleButton>
             );
           })}
           <Tooltip placement="top" arrow title="Select Auto Theme">
-            <ToggleButton value="auto" selected={themeId === undefined}>
+            <ToggleButton className='selectedToggleButton' value="auto" selected={themeId === undefined}>
               Auto&nbsp;
               <AutoIcon color={themeId === undefined ? 'primary' : undefined} />
             </ToggleButton>

@@ -221,11 +221,19 @@ const createCustomThemeOverrides = (
     },
     MuiSvgIcon: {
       fontSizeSmall: {
+<<<<<<< HEAD
         //marginLeft: '12px',
       },
       root: {
         height: '24px',
         //weight: '24px',
+=======
+        // marginLeft: '12px',
+      },
+      root: {
+        // height: '24px',
+        // width: '24px',
+>>>>>>> a157d89a441aa1295900b0fc0e2b3c32b1a0dde1
       }
     },
     CatalogReactUserListPicker: {
@@ -394,6 +402,7 @@ const createCustomThemeOverrides = (
         borderRadius: '12px',
         backgroundColor: 'rgba(6, 11, 40, 0.4)',
         flex: 'none',
+        padding: 2,
       },
     },
     MuiTypography: {
@@ -471,9 +480,9 @@ const createCustomThemeOverrides = (
         borderRadius: '12px',
       },
     },
-    BackstageInfoCard: {
+    BackstageInfoCard: { // Cabecera Cards
       header: {
-        backdropFilter: 'blur(120px)',
+        // backdropFilter: 'blur(120px)',
       },
     },
     BackstageSidebarItem: {
@@ -512,7 +521,32 @@ const createCustomThemeOverrides = (
         textOverflow: 'ellipsis',
       },
     },
+<<<<<<< HEAD
 
+=======
+    MuiCard: {
+      root: {
+        background:
+          'var(--Color-Dark, linear-gradient(173deg, rgba(6, 11, 40, 0.75) 5.57%, rgba(6, 11, 40, 0.70) 166.22%));',
+        backdropFilter: 'blur(120px)',
+      },
+    },
+    BackstageSelectInputBase: {
+      input: {
+        border: 'none',
+      },
+    },
+    MuiOutlinedInput: {
+      root: {
+        borderRadius: '12px',
+      },
+    },
+    MuiListItemIcon: {
+      root: {
+        color: 'white',
+      }
+    }
+>>>>>>> a157d89a441aa1295900b0fc0e2b3c32b1a0dde1
   };
 };
 
