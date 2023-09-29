@@ -68,7 +68,24 @@ pipeline {
         }
       }
     }
-
+    stage('dependencies') {
+      steps {
+        container('npm') {
+          script {
+            sh "npm install"
+          }
+        }
+      }
+    }
+    stage('npm-build') {
+      steps {
+        container('npm') {
+          script {
+            sh "npm run build"
+          }
+        }
+      }
+    }
 
    
   }
