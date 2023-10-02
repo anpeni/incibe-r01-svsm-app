@@ -138,6 +138,10 @@ export type SelectProps = {
   native?: boolean;
   disabled?: boolean;
   margin?: 'dense' | 'none';
+  //onOpen?: () => void;  // Añadido
+  //onClose?: () => void; 
+  onOpen?: (...args: any[]) => void;
+  onClose?: (...args: any[]) => void;
 };
 
 /** @public */
@@ -159,6 +163,7 @@ export function SelectComponent(props: SelectProps) {
     selected || (multiple ? [] : ''),
   );
   const [isOpen, setOpen] = useState(false);
+  
 
   useEffect(() => {
     setValue(multiple ? [] : '');
@@ -172,6 +177,8 @@ export function SelectComponent(props: SelectProps) {
     setValue(event.target.value as SelectedItems);
     onChange(event.target.value as SelectedItems);
   };
+  const height = isOpen ? `${40 * items.length}px` : '150px';
+
 
   const handleOpen = (event: React.ChangeEvent<any>) => {
     if (disabled) {
@@ -195,8 +202,12 @@ export function SelectComponent(props: SelectProps) {
     setValue(newValue);
     onChange(newValue);
   };
+  useEffect(() => {
+    console.log("Valor de isOpen:", isOpen);
+  }, [isOpen]);
 
   return (
+    <>
     <Box className={classes.root}>
       <FormControl className={classes.formControl}>
         <InputLabel className={classes.formLabel}>{label}</InputLabel>
@@ -277,5 +288,7 @@ export function SelectComponent(props: SelectProps) {
         </Select>
       </FormControl>
     </Box>
-  );
+    {isOpen && <Box style={{ height: height}}></Box>}
+    </>
+    );
 }

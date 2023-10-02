@@ -32,7 +32,7 @@ import {
   humanizeEntityRef,
   useEntityList,
   useStarredEntities,
-} from '@backstage/plugin-catalog-react';
+} from '@backstage/plugin-catalog-react-modificado';
 import { Typography } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 import Edit from '@material-ui/icons/Edit';
