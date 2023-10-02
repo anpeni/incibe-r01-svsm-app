@@ -40,8 +40,6 @@ function useEntityKindFilter(opts: { initialFilter: string }): {
     [kindParameter],
   );
 
-  const [isSelectOpen, setIsSelectOpen] = useState(false);
-
   const [selectedKind, setSelectedKind] = useState(
     queryParamKind ?? filters.kind?.value ?? opts.initialFilter,
   );
@@ -97,27 +95,18 @@ export interface EntityKindPickerProps {
 /** @public */
 export const EntityKindPicker = (props: EntityKindPickerProps) => {
   const { allowedKinds, hidden, initialFilter = 'component' } = props;
-  const [isOpen, setIsOpen] = useState(false);
+
   const alertApi = useApi(alertApiRef);
 
   const { error, allKinds, selectedKind, setSelectedKind } =
     useEntityKindFilter({
       initialFilter: initialFilter,
     });
-    const handleOpen = () => {
-      console.log(isOpen);
-      setIsOpen(true);  // Estableces isOpen como true cuando el menú se abre
-    };
-  
-    const handleClose = () => {
-      console.log(isOpen);
-      setIsOpen(false); // Estableces isOpen como false cuando el menú se cierra
-    };
 
   useEffect(() => {
-    if (!isOpen) {
+    if (error) {
       alertApi.post({
-        message: `Failed to load entity kinds ${isOpen}`,
+        message: `Failed to load entity kinds`,
         severity: 'error',
       });
     }
@@ -133,19 +122,13 @@ export const EntityKindPicker = (props: EntityKindPickerProps) => {
   }));
 
   return hidden ? null : (
-    <>
     <Box pb={1} pt={1}>
       <Select
         label="Kind"
         items={items}
         selected={selectedKind.toLocaleLowerCase('en-US')}
         onChange={value => setSelectedKind(String(value))}
-        onOpen={handleOpen}
-        onClose={handleClose}
-
       />
     </Box>
-    {isOpen && <Box style={{ height: '300px', background:'red' }}></Box>}
-    </>
   );
 };
