@@ -37,8 +37,8 @@ import { catalogEntityCreatePermission } from '@backstage/plugin-catalog-common/
 // .--  Custom Theme --
 import { ThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import LightIcon from '@material-ui/icons/WbSunny';
-import DarkIcon from '@material-ui/icons/NightsStay';
+import DarkIcon from '@mui/icons-material/DarkModeOutlined';
+import LightIcon from '@mui/icons-material/LightModeOutlined';
 import { NeorisTheme } from './themes';
 
 // .--  Custom icons --
@@ -139,7 +139,8 @@ const app = createApp({
   // .-- routes bind --
   bindRoutes({ bind }) {
     bind(catalogPlugin.externalRoutes, {
-      createComponent: scaffolderPlugin.routes.root,
+      createComponent: catalogImportPlugin.routes.importPage, // Manda a Add
+      // createComponent: scaffolderPlugin.routes.root,
       viewTechDoc: techdocsPlugin.routes.docRoot,
     });
     bind(apiDocsPlugin.externalRoutes, {

@@ -49,38 +49,80 @@ type TooltipToggleButtonProps = {
   value: string;
 };
 
-const useStyles = makeStyles(theme => ({
-  container: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    width: '100%',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    paddingBottom: 8,
-    paddingRight: 16,
-  },
-  list: {
-    width: 'initial',
-    [theme.breakpoints.down('xs')]: {
+const useStyles = makeStyles(
+  theme => ({
+    container: {
+      display: 'flex',
+      flexWrap: 'wrap',
       width: '100%',
-      padding: `0 0 12px`,
+      justifyContent: 'space-between',
+      alignItems: 'center',
+      paddingBottom: 8,
+      paddingRight: 16,
     },
-  },
-  listItemText: {
-    paddingRight: 0,
-    paddingLeft: 0,
-  },
-  listItemSecondaryAction: {
-    position: 'relative',
-    transform: 'unset',
-    top: 'auto',
-    right: 'auto',
-    paddingLeft: 16,
-    [theme.breakpoints.down('xs')]: {
+    titulo: {
+      color: '#FFF',
+      textAlign: 'right',
+      fontFamily: 'Inter, sans-serif',
+      fontSize: '20px',
+      fontStyle: 'normal',
+      fontWeight: 700,
+      lineHeight: 'normal',
+      position: 'relative',
+      //top: '-5px',
+    },
+    texto: {
+      color: '#FFF',
+      textAlign: 'right',
+      fontFamily: 'Inter, sans-serif',
+      fontSize: '20px',
+      fontStyle: 'normal',
+      fontWeight: 400,
+      lineHeight: 'normal',
+      position: 'relative',
+      top: '-20px',
+    },
+    textoTema: {
+      color: '#FFF',
+      textAlign: 'right',
+      fontFamily: 'Inter, sans-serif',
+      fontSize: '13px',
+      fontStyle: 'normal',
+      fontWeight: 400,
+      lineHeight: 'normal',
+      
+    },
+    lista: {
+      position: 'relative',
+      top: '15px',
+
+    },
+    list: {
+      width: 'initial',
+      [theme.breakpoints.down('xs')]: {
+        width: '100%',
+        padding: `0 0 12px`,
+      },
+    },
+    listItemText: {
+      paddingRight: 0,
       paddingLeft: 0,
     },
-  },
-}));
+    listItemSecondaryAction: { // Botones
+      background: 'black',
+      borderRadius: '12px',
+      position: 'relative',
+      transform: 'unset',
+      top: 'auto',
+      right: 'auto',
+      [theme.breakpoints.down('xs')]: {
+        paddingLeft: 0,
+      },
+    },
+
+  }
+
+  ));
 
 // ToggleButtonGroup uses React.children.map instead of context
 // so wrapping with Tooltip breaks ToggleButton functionality.
@@ -124,11 +166,19 @@ export const UserSettingsThemeToggle = () => {
       className={classes.list}
       classes={{ container: classes.container }}
     >
-      <ListItemText
+
+      <div className={classes.lista}>
+        <span className={classes.titulo}>Theme
+        </span>
+        <p className={classes.texto}>Change the theme mode
+        </p>
+      </div>
+
+      {/* <ListItemText
         className={classes.listItemText}
         primary="Theme"
         secondary="Change the theme mode"
-      />
+      /> */}
       <ListItemSecondaryAction className={classes.listItemSecondaryAction}>
         <ToggleButtonGroup
           exclusive
@@ -145,18 +195,21 @@ export const UserSettingsThemeToggle = () => {
                 value={theme.id}
               >
                 <>
-                  {theme.title}&nbsp;
+
                   <ThemeIcon
                     id={theme.id}
                     icon={themeIcon}
                     activeId={themeId}
                   />
+                  <span>{theme.title}</span>&nbsp;
+
+
                 </>
               </TooltipToggleButton>
             );
           })}
           <Tooltip placement="top" arrow title="Select Auto Theme">
-            <ToggleButton value="auto" selected={themeId === undefined}>
+            <ToggleButton className='selectedToggleButton' value="auto" selected={themeId === undefined}>
               Auto&nbsp;
               <AutoIcon color={themeId === undefined ? 'primary' : undefined} />
             </ToggleButton>

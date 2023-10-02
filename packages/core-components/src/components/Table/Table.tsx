@@ -35,7 +35,7 @@ import ChevronRight from '@material-ui/icons/ChevronRight';
 import Clear from '@material-ui/icons/Clear';
 import DeleteOutline from '@material-ui/icons/DeleteOutline';
 import Edit from '@material-ui/icons/Edit';
-import FilterList from '@material-ui/icons/FilterList';
+import FilterAltOutlinedIcon from '@mui/icons-material/FilterAltOutlined';
 import FirstPage from '@material-ui/icons/FirstPage';
 import LastPage from '@material-ui/icons/LastPage';
 import Remove from '@material-ui/icons/Remove';
@@ -67,7 +67,7 @@ const tableIcons: Icons = {
   )),
   Edit: forwardRef((props, ref) => <Edit {...props} ref={ref} />),
   Export: forwardRef((props, ref) => <SaveAlt {...props} ref={ref} />),
-  Filter: forwardRef((props, ref) => <FilterList {...props} ref={ref} />),
+  Filter: forwardRef((props, ref) => <FilterAltOutlinedIcon {...props} ref={ref} />),
   FirstPage: forwardRef((props, ref) => <FirstPage {...props} ref={ref} />),
   LastPage: forwardRef((props, ref) => <LastPage {...props} ref={ref} />),
   NextPage: forwardRef((props, ref) => <ChevronRight {...props} ref={ref} />),
@@ -75,7 +75,7 @@ const tableIcons: Icons = {
     <ChevronLeft {...props} ref={ref} />
   )),
   ResetSearch: forwardRef((props, ref) => <Clear {...props} ref={ref} />),
-  Search: forwardRef((props, ref) => <FilterList {...props} ref={ref} />),
+  Search: forwardRef((props, ref) => <FilterAltOutlinedIcon {...props} ref={ref} />), // Filtro
   SortArrow: forwardRef((props, ref) => <ArrowUpward {...props} ref={ref} />),
   ThirdStateCheck: forwardRef((props, ref) => <Remove {...props} ref={ref} />),
   ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />),
@@ -99,6 +99,8 @@ function extractValueByField(data: any, field: string): any | undefined {
 }
 
 export type TableHeaderClassKey = 'header';
+
+const isDarkMode = localStorage.getItem('theme') === 'neoris-dark';
 
 const StyledMTableHeader = withStyles(
   theme => ({
@@ -162,7 +164,15 @@ const useTableStyles = makeStyles<BackstageTheme>(
       display: 'flex',
       alignItems: 'start',
     },
-    cardContainer: {
+    cardContainerLight: {
+      background: 'linear-gradient(90deg, rgba(224,241,255,0.5) 50%, rgba(224,241,255,0.4) 100%)',
+      borderRadius: 12,
+      paddingLeft: 20,
+      paddingRight: 20,
+      paddingBottom: 20,
+      backdropFilter: 'blur(120px)',
+    },
+    cardContainerDark: {
       background: 'linear-gradient(173deg, rgba(6, 11, 40, 0.75) 5.57%, rgba(6, 11, 40, 0.70) 166.22%)',
       borderRadius: 12,
       paddingLeft: 20,
@@ -282,7 +292,7 @@ export function TableToolbar(toolbarProps: {
       <Box className={filtersClasses.root}>
         <Box className={filtersClasses.root}>
           <IconButton onClick={toggleFilters} aria-label="filter list">
-            <FilterList />
+            <FilterAltOutlinedIcon />
           </IconButton>
           <Typography className={filtersClasses.title}>
             Filte ({selectedFiltersLength})
@@ -529,7 +539,7 @@ export function Table<T extends object = {}>(props: TableProps<T>) {
           onChangeFilters={setSelectedFilters}
         />
       )}
-      <Card className={tableClasses.cardContainer}>
+      <Card className={isDarkMode ? tableClasses.cardContainerDark : tableClasses.cardContainerLight}>
       <MTable<T>
         components={{
           Header: StyledMTableHeader,

@@ -26,6 +26,7 @@ import {
   attachComponentData,
   useElementFilter,
 } from '@backstage/core-plugin-api';
+import SettingsOutlinedIcon from '@material-ui/icons/SettingsOutlined';
 
 /** @public */
 export type SettingsLayoutRouteProps = {
@@ -71,9 +72,18 @@ export const SettingsLayout = (props: SettingsLayoutProps) => {
 
   return (
     <Page themeId="home">
-      {!isMobile && <Header title={title ?? 'Settings'} />}
-      <RoutedTabs routes={routes} />
-    </Page>
+    {!isMobile && (
+      <Header
+        title={
+          <span style={{ display: 'flex', alignItems: 'center' }}>
+            <SettingsOutlinedIcon fontSize="large" style={{marginRight: '8px' }} />
+            {title ?? 'Settings'}
+          </span>
+        }
+      />
+    )}
+    <RoutedTabs routes={routes} />
+  </Page>
   );
 };
 
