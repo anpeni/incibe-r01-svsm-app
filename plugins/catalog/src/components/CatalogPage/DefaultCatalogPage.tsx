@@ -37,7 +37,7 @@ import {
   EntityKindPicker,
   EntityNamespacePicker,
   EntityOwnerPickerProps,
-} from '@backstage/plugin-catalog-react';
+} from '@backstage/plugin-catalog-react-modificado';
 import React, { ReactNode } from 'react';
 import { createComponentRouteRef } from '../../routes';
 import { CatalogTable, CatalogTableRow } from '../CatalogTable';

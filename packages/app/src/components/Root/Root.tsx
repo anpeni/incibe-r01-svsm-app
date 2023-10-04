@@ -57,7 +57,7 @@ import { DescriptionOutlined } from '@material-ui/icons';
 import { useApp } from '@backstage/core-plugin-api';
 
 
-const backgroundImageUrl = require('../../assets/Incibe-Background.png');
+const backgroundImageUrl = require('../../assets/images/Incibe-Background.png');
 
 const useSidebarLogoStyles = makeStyles({
   root: {

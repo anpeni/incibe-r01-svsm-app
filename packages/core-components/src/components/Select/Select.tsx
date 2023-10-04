@@ -44,22 +44,25 @@ const BootstrapInput = withStyles(
           marginTop: theme.spacing(3),
         },
         '&.Mui-focused > div[role=button]': {
-          borderColor: theme.palette.primary.main,
+        borderRadius: '12px',
         },
+        borderRadius: '12px',
       },
       input: {
-        borderRadius: theme.shape.borderRadius,
         position: 'relative',
-        backgroundColor: theme.palette.background.paper,
-        border: '1px solid #ced4da',
+        border: 'none',
+        borderRadius: '12px',
+        background: 'var(--Color-Dark, linear-gradient(173deg, rgba(6, 11, 40, 0.75) 5.57%, rgba(6, 11, 40, 0.70) 166.22%))',
         fontSize: theme.typography.body1.fontSize,
         padding: theme.spacing(1.25, 3.25, 1.25, 1.5),
         transition: theme.transitions.create(['border-color', 'box-shadow']),
-        fontFamily: 'Helvetica Neue',
+        fontFamily: 'Inter, sans-serif',
         '&:focus': {
-          background: theme.palette.background.paper,
-          borderRadius: theme.shape.borderRadius,
+          // background: "theme.palette.background.paper",
         },
+        '&[aria-expanded="true"]': {
+          borderRadius: '12px 12px 0px 0px !important'
+        }
       },
     }),
   { name: 'BackstageSelectInputBase' },
@@ -138,6 +141,10 @@ export type SelectProps = {
   native?: boolean;
   disabled?: boolean;
   margin?: 'dense' | 'none';
+  //onOpen?: () => void;  // Añadido
+  //onClose?: () => void; 
+  onOpen?: (...args: any[]) => void;
+  onClose?: (...args: any[]) => void;
 };
 
 /** @public */
@@ -159,6 +166,7 @@ export function SelectComponent(props: SelectProps) {
     selected || (multiple ? [] : ''),
   );
   const [isOpen, setOpen] = useState(false);
+  
 
   useEffect(() => {
     setValue(multiple ? [] : '');
@@ -172,6 +180,8 @@ export function SelectComponent(props: SelectProps) {
     setValue(event.target.value as SelectedItems);
     onChange(event.target.value as SelectedItems);
   };
+  const height = isOpen ? `${40 * items.length}px` : '150px';
+
 
   const handleOpen = (event: React.ChangeEvent<any>) => {
     if (disabled) {
@@ -195,8 +205,12 @@ export function SelectComponent(props: SelectProps) {
     setValue(newValue);
     onChange(newValue);
   };
+  useEffect(() => {
+    console.log("Valor de isOpen:", isOpen);
+  }, [isOpen]);
 
   return (
+    <>
     <Box className={classes.root}>
       <FormControl className={classes.formControl}>
         <InputLabel className={classes.formLabel}>{label}</InputLabel>
@@ -249,6 +263,12 @@ export function SelectComponent(props: SelectProps) {
               horizontal: 'left',
             },
             getContentAnchorEl: null,
+            PaperProps: {
+              style: {
+                // Menu desplegado
+                borderRadius: '0px 0px 12px 12px',
+              },
+            },
           }}
         >
           {placeholder && !multiple && (
@@ -277,5 +297,7 @@ export function SelectComponent(props: SelectProps) {
         </Select>
       </FormControl>
     </Box>
-  );
+    {isOpen && <Box style={{ height: height}}></Box>}
+    </>
+    );
 }

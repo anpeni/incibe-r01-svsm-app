@@ -144,15 +144,6 @@ const createCustomThemeOverrides = (
         color: alpha(theme.page.fontColor, 0.8),
       },
     },
-    BackstageSidebar: {
-      drawer: {
-        // backgroundImage: `url(${backgroundImageUrl})`,
-        //borderRadius: '12px',
-        //boxShadow: '0px 4px 4px 0px rgba(0, 0, 0, 0.25)',
-        //background: bgColor,
-        //backdropFilter: 'blur(120px)',
-      },
-    },
     // TODO: Remove after https://github.com/backstage/backstage/pull/16853 is available here
     BackstageHeaderLabel: {
       label: {
@@ -371,9 +362,8 @@ const createCustomThemeOverrides = (
       },
       thumb: {
         // backgroundColor: bgColor,
-
-        //height: 14,
-        //width: 14,
+        height: 14,
+        width: 14,
       },
       track: {
         //borderRadius: 9,
@@ -436,10 +426,10 @@ const createCustomThemeOverrides = (
       root: {
         // Select and Filters
         color: theme.page.fontColor,
-        background: bgColor,
+        // background: bgColor,
         backdropFilter: 'blur(120px)',
         fontWeight: 100, // Thin
-        borderRadius: '12px',
+        // borderRadius: '12px',
       },
       input: { //Filtro
         fontFamily: 'Inter, sans-serif',
@@ -461,6 +451,12 @@ const createCustomThemeOverrides = (
         '&::after': {
           borderBottom: 'none !important',
         },
+      },
+    },
+    MuiOutlinedInput: {
+      root: {
+        borderRadius: '12px',
+        background: bgColor,
       },
     },
     MuiInputAdornment: {
@@ -485,21 +481,15 @@ const createCustomThemeOverrides = (
       },
     },
     MuiMenu: {
-      // Selects abiertos<
+      // Selects abiertos
       list: {
         background: bgColor,
         backdropFilter: 'blur(120px)',
-        borderRadius: '12px',
       },
     },
-    BackstageInfoCard: { // Cabecera Cards
-      header: {
-        // backdropFilter: 'blur(120px)',
-      },
-    },
+
     BackstageSidebarItem: {
       selected: {
-        //backdropFilter: 'blur(120px)',
         backgroundColor: 'rgba(6, 11, 40, 0.8)',
         borderRadius: '12px',
         borderLeft: 'none !important',
@@ -509,7 +499,6 @@ const createCustomThemeOverrides = (
       },
       iconContainer: {
         marginLeft: '1px !important',
-
       },
       root: {
         //backdropFilter: 'blur(120px)',
@@ -543,16 +532,6 @@ const createCustomThemeOverrides = (
         background:
           'var(--Color-Dark, linear-gradient(173deg, rgba(6, 11, 40, 0.75) 5.57%, rgba(6, 11, 40, 0.70) 166.22%));',
         backdropFilter: 'blur(120px)',
-      },
-    },
-    BackstageSelectInputBase: {
-      input: {
-        border: 'none',
-      },
-    },
-    MuiOutlinedInput: {
-      root: {
-        borderRadius: '12px',
       },
     },
     MuiListItemIcon: {
