@@ -7,13 +7,35 @@ import {
   Tooltip,
   makeStyles,
   Box, // Agregar Box de Material-UI
+  Grid
 } from '@material-ui/core';
 import { useSidebarPinState } from '@backstage/core-components';
+import { MySwitch } from './SwitchPropio';
 
 
 
 const useStyles = makeStyles(
   theme => ({
+    customSwitch: {
+      marginTop: '4px',
+      //color: 'transparent !important',
+      width: '70px',
+      height: '40px',
+      padding: '6px',
+      borderRadius: '24px',
+      '& .MuiSwitch-thumb': {
+        width: '60px',
+        height: '35px',
+        borderRadius: '50px !important',
+      },
+      '& .MuiSwitch-track': {
+        height: '24px',
+        width: '60px !important',
+        borderRadius: '50px !important',
+        color: '#FFFFFF !important'
+
+      },
+    },
     container: {
       display: 'flex',
       flexWrap: 'wrap',
@@ -82,6 +104,23 @@ const useStyles = makeStyles(
         paddingLeft: 0,
       },
     },
+    flexContainer: {
+      display: 'flex',
+      justifyContent: 'space-between', // Alinea los hijos a cada extremo
+      alignItems: 'center', // Centra los hijos verticalmente
+    },
+    textContainer: {
+      textAlign: 'left', // Alinea los textos a la izquierda
+      marginLeft: '29px',
+      marginTop: '-20px',
+      marginBottom: '-25px',
+    },
+    switchModificado: {
+      right: '70px',
+      position: 'fixed',
+      //marginBottom: '30px',
+      marginTop: '-30px',
+    },
 
   }
 
@@ -89,43 +128,30 @@ const useStyles = makeStyles(
 
 /** @public */
 export const UserSettingsPinToggle = () => {
+
   const { isPinned, toggleSidebarPinState } = useSidebarPinState();
   const classes = useStyles();
-  const switchStyle = {
-    backgroundColor: 'black',
-    // width: '100px',  
-    // height: '5px', 
-  };
+
 
   return (
-    <ListItem>
-      {/* <ListItemText
-          primary="Pin Sidebar"
-          secondary="Prevent the sidebar from collapsing"
-        /> */}
-      <div className={classes.lista}>
+
+    <div className={classes.flexContainer}>
+      <div className={classes.textContainer}>
         <span className={classes.titulo}>Pin Sidebar
         </span>
         <p className={classes.texto}>Prevent the sidebar from collapsing
         </p>
       </div>
-      <ListItemSecondaryAction>
-        <Tooltip
-          placement="top"
-          arrow
-          title={`${isPinned ? 'Unpin' : 'Pin'} Sidebar`}
-          style={switchStyle}
-        >
-          <Switch
-            color="primary"
-            checked={isPinned}
-            onChange={() => toggleSidebarPinState()}
-            name="pin"
-            inputProps={{ 'aria-label': 'Pin Sidebar Switch' }}
-            style={switchStyle}
-          />
-        </Tooltip>
-      </ListItemSecondaryAction>
-    </ListItem>
+      <Grid item className={classes.switchModificado}>
+      <MySwitch 
+        
+        checked={isPinned}
+        onChange={() => toggleSidebarPinState()}
+        name="pin"
+      >
+      </MySwitch>
+      </Grid>
+
+    </div>
   );
 };

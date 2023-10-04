@@ -34,6 +34,7 @@ export const DefaultSettingsPage = (props: {
       <SettingsLayout.Route path="general" title="General">
         <UserSettingsGeneral />
       </SettingsLayout.Route>
+      
       <SettingsLayout.Route
         path="auth-providers"
         title="Authentication Providers"

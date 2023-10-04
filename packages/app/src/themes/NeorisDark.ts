@@ -44,11 +44,15 @@ const baseTheme = createTheme({
     palette: {
       ...palettes.light,
       primary: {
-        main: '#0052CC',
+        nuevo: '#FFFFFF',
+        
+        main: '#FFFFFF',
         light: '#4C9AFF',
-        dark: '#060B28B3',
+        dark: 'green',
       },
+
       secondary: {
+        nuevo2:'grey',
         main: '#FF5630',
         light: '#FFAB00',
         dark: '#6554C0',
@@ -100,7 +104,17 @@ const baseTheme = createTheme({
       },
       text: {
         primary: '#FFFFFF',
+        
       },
+      coloricono: {
+        main: 'grey',
+        
+      },
+      coloriconoactivo: {
+        main: 'white',
+        
+      },
+
     },
   }),
   fontFamily: 'Inter, sans-serif',
@@ -323,9 +337,10 @@ const createCustomThemeOverrides = (
     },
     MuiButtonBase: {
       root: {
-        color: 'white !important',
+        //color: 'white !important',
       },
     },
+
     MuiChip: {
       root: {
         borderRadius: 3,
@@ -336,34 +351,34 @@ const createCustomThemeOverrides = (
     },
     MuiSelect: {
       root: {
-        '&[aria-expanded]': {
+        //'&[aria-expanded]': {
           // Select abierto
           // backgroundColor: bgColor,
           // color: 'black',
-        },
+       // },
       },
     },
     MuiSwitch: {
       root: {
-        padding: 10,
-        '&$checked': {
-          backgroundColor: 'white',
-          opacity: '1',
-        },
+        //padding: 10,
+        // '&$checked': {
+        //   backgroundColor: 'white',
+        //   opacity: '1',
+        // },
       },
       switchBase: {
-        padding: 12,
+        //padding: 12,
       },
       thumb: {
         // backgroundColor: bgColor,
 
-        height: 14,
-        width: 14,
+        //height: 14,
+        //width: 14,
       },
       track: {
-        borderRadius: 9,
-        backgroundColor: 'white !important',
-        opacity: '1 !important',
+        //borderRadius: 9,
+        //backgroundColor: 'white !important',
+        //opacity: '1 !important',
       },
       colorPrimary: {
         //backgroundColor: 'white', en este sale el circulo blanco
@@ -371,7 +386,7 @@ const createCustomThemeOverrides = (
         mui: {
           checked: {
             //backgroundColor: 'white !important',
-            opacity: '1 !important',
+            //opacity: '1 !important',
           },
         },
       },
@@ -555,3 +570,5 @@ export const neorisDarkTheme: UnifiedTheme = createUnifiedThemeFromV4({
     ...createCustomThemeOverrides(baseTheme),
   },
 });
+
+

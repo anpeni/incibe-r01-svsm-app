@@ -113,7 +113,7 @@ const app = createApp({
   // },
   {
     id: 'neoris-dark',
-    title: 'NEORIS Dark',
+    title: 'Dark mode',
     variant: 'dark',
     icon: <DarkIcon />,
     Provider: ({ children }) => (
@@ -125,7 +125,7 @@ const app = createApp({
   },
   {
     id: 'neoris-light',
-    title: 'NEORIS Light',
+    title: 'Light mode',
     variant: 'light',
     icon: <LightIcon />,
     Provider: ({ children }) => (

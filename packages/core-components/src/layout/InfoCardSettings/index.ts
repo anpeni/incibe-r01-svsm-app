@@ -14,21 +14,9 @@
  * limitations under the License.
  */
 
-export * from './BottomLink';
-export * from './Content';
-export * from './ContentHeader';
-export * from './ErrorBoundary';
-export * from './ErrorPage';
-export * from './Header';
-export * from './HeaderActionMenu';
-export * from './HeaderLabel';
-export * from './HeaderTabs';
-export * from './InfoCard';
-export * from './InfoCardSettings';
-export * from './ItemCard';
-export * from './Page';
-export * from './ProxiedSignInPage';
-export * from './Sidebar';
-export * from './SignInPage';
-export * from './TabbedCard';
-export * from './Breadcrumbs';
+export { InfoCardSettings } from './InfoCardSettings';
+export type {
+  InfoCardVariantsSettings,
+  InfoCardClassKeySettings,
+  CardActionsTopRightClassKeySettings,
+} from './InfoCardSettings';

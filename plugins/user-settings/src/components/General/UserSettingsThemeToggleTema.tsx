@@ -14,17 +14,22 @@ const useStyles = makeStyles({
   customSwitch: {
     marginTop: '4px',
     //color: 'transparent !important',
-    width: '70px',
-    height: '40px',
+    width: '65px',
+    //height: '40px',
     padding: '6px',
+    
     '& .MuiSwitch-thumb': {
-      width: '28px',
-      height: '28px',
-      borderRadius: '50%'
+      width: '35px',
+      height: '35px',
+      //borderRadius: '50%'
     },
     '& .MuiSwitch-track': {
       height: '24px',
+      width: '70px',
       borderRadius: '24px',
+      backgroundColor: 'white !important',
+      opacity: '1 !important',
+      padding: '10px',
       //color: '#FFFFFF !important'
 
     },
@@ -77,7 +82,8 @@ const useStyles = makeStyles({
     fontWeight: 500,
     color: 'rgba(255, 255, 255, 0.60)',
     alignItems: 'center',
-    fontSize: '16px'
+    fontSize: '16px',
+    
   },
   temaClaro: {
     marginLeft: '10px',
@@ -89,9 +95,9 @@ const useStyles = makeStyles({
   circuloicondark: {
     width: '1.25em',
     height: '1.25em',
-    position: 'absolute',
-    top: '75%',
-    left: '80%',
+    position: 'absolute',   
+    top: '100%',
+    left: '90%',
     //right: '90%',
     transform: 'translateY(-50%)',
     backgroundColor: '#192A3E', // color del círculo

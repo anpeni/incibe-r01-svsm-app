@@ -23,6 +23,8 @@ import {
 } from 'react-router-dom';
 import { Content } from '../../layout/Content';
 import { HeaderTabs } from '../../layout/HeaderTabs';
+import { HeaderTabsSettings } from '../../layout/HeaderTabs';
+
 import { SubRoute } from './types';
 
 export function useSelectedSubRoute(subRoutes: SubRoute[]): {
@@ -92,7 +94,7 @@ export function RoutedTabs(props: { routes: SubRoute[] }) {
   };
   return (
     <>
-      <HeaderTabs
+      <HeaderTabsSettings
         tabs={headerTabs}
         selectedIndex={index}
         onChange={onTabChange}

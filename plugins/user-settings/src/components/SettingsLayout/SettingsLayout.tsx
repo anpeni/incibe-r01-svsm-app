@@ -72,18 +72,23 @@ export const SettingsLayout = (props: SettingsLayoutProps) => {
 
   return (
     <Page themeId="home">
-    {!isMobile && (
-      <Header
-        title={
-          <span style={{ display: 'flex', alignItems: 'center' }}>
-            <SettingsOutlinedIcon fontSize="large" style={{marginRight: '8px' }} />
-            {title ?? 'Settings'}
-          </span>
-        }
-      />
-    )}
-    <RoutedTabs routes={routes} />
-  </Page>
+      {!isMobile && (
+        <Header
+          title={
+            <span style={{ marginLeft: '50px', display: 'flex', alignItems: 'center', marginTop: '15px', marginBottom: '45px' }}>
+              <SettingsOutlinedIcon style={{ marginRight: '20px', transform: 'scale(1.75)' }} />
+              {title ?? 'Settings'}
+            </span>
+          }
+        />
+      )}
+
+      <RoutedTabs routes={routes} />
+
+
+
+
+    </Page>
   );
 };
 

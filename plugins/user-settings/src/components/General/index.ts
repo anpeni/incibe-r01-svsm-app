@@ -27,3 +27,4 @@ export { UserSettingsThemeToggleTema } from './UserSettingsThemeToggleTema';
 export { UserSettingsTema } from './UserSettingsTema';
 export { UserSettingsPinToggle } from './UserSettingsPinToggle';
 export { UserSettingsIdentityCard } from './UserSettingsIdentityCard';
+export { MySwitch } from './SwitchPropio';

@@ -23,16 +23,18 @@ import { UserSettingsIdentityCard } from './UserSettingsIdentityCard';
 /** @public */
 export const UserSettingsGeneral = () => {
   return (
-    <Grid container direction="row" spacing={3}>
+<div style={{ marginLeft: '40px', marginRight: '40px', marginTop:'30px' }}>
+    <Grid container direction="row" spacing={5} >
       <Grid item xs={12} md={6}>
         <UserSettingsProfileCard />
       </Grid>
       <Grid item xs={12} md={6}>
         <UserSettingsAppearanceCard />
       </Grid>
-      <Grid item xs={12} md={6}>
+      <Grid item xs={12} md={12} style={{ marginTop: '-20px' }}>
         <UserSettingsIdentityCard />
       </Grid>
     </Grid>
+    </div>
   );
 };

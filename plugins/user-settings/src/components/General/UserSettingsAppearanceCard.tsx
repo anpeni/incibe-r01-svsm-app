@@ -15,21 +15,46 @@
  */
 
 import { InfoCard, useSidebarPinState } from '@backstage/core-components';
+import { InfoCardSettings } from '@backstage/core-components';
 import { List } from '@material-ui/core';
 import React from 'react';
 import { UserSettingsPinToggle } from './UserSettingsPinToggle';
 import { UserSettingsThemeToggle } from './UserSettingsThemeToggle';
+import { makeStyles} from '@material-ui/core/styles';
 
+const useStyles = makeStyles({
+  titulo: {
+    color: '#FFF',
+    textAlign: 'right',
+    fontFamily: 'Inter, sans-serif',
+    fontSize: '28px',
+    fontStyle: 'normal',
+    fontWeight: 700,
+    lineHeight: 'normal',
+    marginLeft: '23px'
+
+  },
+  textoTema: {
+    color: '#FFF',
+    textAlign: 'right',
+    fontFamily: 'Inter, sans-serif',
+    fontSize: '13px',
+    fontStyle: 'normal',
+    fontWeight: 400,
+    lineHeight: 'normal',
+  },
+});
 /** @public */
 export const UserSettingsAppearanceCard = () => {
   const { isMobile } = useSidebarPinState();
+  const classes = useStyles();
 
   return (
-<InfoCard title={<span style={{ marginLeft: '13px' }}>Appearance</span>} variant="gridItem">
+<InfoCardSettings title={<span className={classes.titulo}>Appearance</span>} variant="gridItem">
   <List dense>
     <UserSettingsThemeToggle />
     {!isMobile && <UserSettingsPinToggle />}
   </List>
-</InfoCard>
+</InfoCardSettings>
   );
 };

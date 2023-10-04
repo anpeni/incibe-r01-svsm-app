@@ -19,36 +19,114 @@ import React from 'react';
 import { UserSettingsSignInAvatar } from './UserSettingsSignInAvatar';
 import { UserSettingsMenu } from './UserSettingsMenu';
 import { useUserProfile } from '../useUserProfileInfo';
-import { InfoCard } from '@backstage/core-components';
+import { InfoCardSettings } from '@backstage/core-components';
+import { makeStyles} from '@material-ui/core/styles';
+
+
+const useStyles = makeStyles({
+  titulo: {
+    color: '#FFF',
+    textAlign: 'right',
+    fontFamily: 'Inter, sans-serif',
+    fontSize: '28px',
+    fontStyle: 'normal',
+    fontWeight: 700,
+    lineHeight: 'normal',
+    marginLeft: '23px'
+
+  },
+  rol: {
+    color: '#FFF',
+    textAlign: 'right',
+    fontFamily: 'Inter, sans-serif',
+    fontSize: '13px',
+    fontStyle: 'normal',
+    fontWeight: 500,
+    lineHeight: 'normal',
+    marginBottom: '-5px'
+  },
+  nombre: {
+    color: '#FFF',
+    textAlign: 'right',
+    fontFamily: 'Inter, sans-serif',
+    fontSize: '16px',
+    fontStyle: 'normal',
+    fontWeight: 700,
+    lineHeight: 'normal',
+    marginBottom: '-2px'
+  },
+  mail: {
+    color: '#FFF',
+    textAlign: 'right',
+    fontFamily: 'Inter, sans-serif',
+    fontSize: '16px',
+    fontStyle: 'normal',
+    fontWeight: 500,
+    lineHeight: 'normal',
+  },
+});
+
+
 
 /** @public */
 export const UserSettingsProfileCard = () => {
   const { profile, displayName } = useUserProfile();
+  const classes = useStyles();
 
   return (
-    <InfoCard title="Profile" variant="gridItem">
-      <Grid container spacing={6}>
-        <Grid item>
+    <InfoCardSettings variant="gridItem" title={<span className={classes.titulo}>Profile</span>}>
+      <Grid container spacing={6} style={{ marginTop: '-8px'}}>
+        <Grid item style={{ marginLeft: '28px'}}>
           <UserSettingsSignInAvatar size={96} />
         </Grid>
-        <Grid item xs={12} sm container>
-          <Grid item xs container direction="column" spacing={2}>
+        <Grid item xs={12} sm container style={{marginTop: '-2px'}}>
+          <Grid item xs container direction="column" spacing={2} style={{ marginLeft: '-30px'}}>
             <Grid item xs>
-              <Typography variant="subtitle1" gutterBottom>
+            <Typography variant="subtitle1" gutterBottom  
+            style={{
+              marginBottom: '3px',
+              color: '#FFF',              
+              fontFamily: 'Inter, sans-serif',
+              fontSize: '13px',
+              fontStyle: 'normal',
+              fontWeight: 500,
+              lineHeight: 'normal',             
+              }}>
+                DEVELOPER
+              </Typography>
+              <Typography variant="subtitle1" gutterBottom 
+              style={{
+                marginBottom: '3px',
+                color: '#FFF',              
+                fontFamily: 'Inter, sans-serif',
+                fontSize: '16px',
+                fontStyle: 'normal',
+                fontWeight: 700,
+                lineHeight: 'normal',  
+                }}>
                 {displayName}
               </Typography>
               {profile.email && (
-                <Typography variant="body2" color="textSecondary">
+                <Typography variant="body2" color="textSecondary"
+                style={{
+                  
+                  color: '#FFF',              
+                  fontFamily: 'Inter, sans-serif',
+                  fontSize: '16px',
+                  fontStyle: 'normal',
+                  fontWeight: 500,
+                  lineHeight: 'normal',  
+                  }}>
                   {profile.email}
                 </Typography>
               )}
             </Grid>
           </Grid>
-          <Grid item>
+          <Grid item style={{ marginRight: '-5px', marginTop: '-80px'}}>
             <UserSettingsMenu />
           </Grid>
         </Grid>
       </Grid>
-    </InfoCard>
+    </InfoCardSettings>
   );
 };

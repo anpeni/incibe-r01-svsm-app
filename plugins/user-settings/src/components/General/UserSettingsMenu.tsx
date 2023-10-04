@@ -49,6 +49,7 @@ export const UserSettingsMenu = () => {
         data-testid="user-settings-menu"
         aria-label="more"
         onClick={handleOpen}
+        style={{ color: 'white', transform: 'scale(1.8)'}}
       >
         <MoreVertIcon />
       </IconButton>
