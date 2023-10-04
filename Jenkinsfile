@@ -16,7 +16,15 @@ pipeline {
             resources:
               requests:
                 cpu: "200m"
-                memory: "128Mi"        
+                memory: "128Mi"  
+          - name: install-dependencies
+            image: nikolaik/python-nodejs:python3.11-nodejs16-bullseye
+            securityContext: 
+              priviledged: true
+            resources:
+              requests:
+                cpu: "200m"
+                memory: "128Mi"      
           - name: npm
             image: node:12-alpine
             command:
@@ -68,24 +76,19 @@ pipeline {
         }
       }
     }
-    stage('dependencies') {
+
+    stage('install-dependencies') {
       steps {
-        container('npm') {
+        container('install-dependencies') {
           script {
-            sh "npm install"
+            sh """
+              yarn install --frozen-lockfile
+            """
           }
         }
       }
     }
-    stage('npm-build') {
-      steps {
-        container('npm') {
-          script {
-            sh "npm run build"
-          }
-        }
-      }
-    }
+    
 
    
   }
