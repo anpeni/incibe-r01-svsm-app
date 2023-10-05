@@ -205,9 +205,6 @@ export function SelectComponent(props: SelectProps) {
     setValue(newValue);
     onChange(newValue);
   };
-  useEffect(() => {
-    console.log("Valor de isOpen:", isOpen);
-  }, [isOpen]);
 
   return (
     <>

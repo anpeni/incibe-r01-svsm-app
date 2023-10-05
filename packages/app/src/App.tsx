@@ -64,6 +64,7 @@ const app = createApp({
       <SignInPage
         {...props}
         auto
+        // ! Descomentar para tener el login con Guest
         providers={[
            'guest',
           {
@@ -73,6 +74,14 @@ const app = createApp({
             apiRef: dexOIDCAuthApiRef,
           },
         ]}
+
+        // ! Descomentar para tener login con Azure solamente
+        // provider={{
+        //     id: 'dex',
+        //     title: 'Dex',
+        //     message: 'Sign in using Azure AD',
+        //     apiRef: dexOIDCAuthApiRef,
+        // }}
       />
     ),
   },
