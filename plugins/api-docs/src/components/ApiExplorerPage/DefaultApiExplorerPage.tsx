@@ -35,7 +35,7 @@ import {
   UserListFilterKind,
   UserListPicker,
   CatalogFilterLayout,
-} from '@backstage/plugin-catalog-react';
+} from '@backstage/plugin-catalog-react-modificado';
 import React from 'react';
 import { registerComponentRouteRef } from '../../routes';
 
