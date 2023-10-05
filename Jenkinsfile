@@ -19,6 +19,9 @@ pipeline {
                 memory: "128Mi"  
           - name: install-dependencies
             image: nikolaik/python-nodejs:python3.11-nodejs16-bullseye
+            command:
+            - cat
+            tty: true
             securityContext: 
               priviledged: true
             resources:
