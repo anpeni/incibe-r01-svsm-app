@@ -44,15 +44,11 @@ const baseTheme = createTheme({
     palette: {
       ...palettes.light,
       primary: {
-        nuevo: '#FFFFFF',
-        
-        main: '#FFFFFF',
+        main: '#0052CC',
         light: '#4C9AFF',
-        dark: 'green',
+        dark: '#060B28B3',
       },
-
       secondary: {
-        nuevo2:'grey',
         main: '#FF5630',
         light: '#FFAB00',
         dark: '#6554C0',
@@ -106,14 +102,7 @@ const baseTheme = createTheme({
         primary: '#FFFFFF',
         
       },
-      coloricono: {
-        main: 'grey',
-        
-      },
-      coloriconoactivo: {
-        main: 'white',
-        
-      },
+
 
     },
   }),
@@ -328,7 +317,7 @@ const createCustomThemeOverrides = (
     },
     MuiButtonBase: {
       root: {
-        //color: 'white !important',
+        color: 'white !important',
       },
     },
 
