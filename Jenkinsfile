@@ -70,17 +70,7 @@ pipeline {
       }
     }
 
-    stage('install-dependencies') {
-      steps {
-        container('install-dependencies') {
-          script {
-            sh """
-              yarn install --frozen-lockfile
-            """
-          }
-        }
-      }
-    }
+   
     
 
    
