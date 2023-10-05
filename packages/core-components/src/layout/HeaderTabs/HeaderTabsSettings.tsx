@@ -30,7 +30,7 @@ export type HeaderTabsClassKey =
   | 'tabRoott';
 
   const bgColor =
-  'var(--Color-Dark, linear-gradient(173deg, rgba(6, 11, 40, 0.75) 5.57%, rgba(6, 11, 40, 0.70) 166.22%))';
+  'var(--Color-Dark, linear-gradient(173deg, rgba(6, 11, 40, 0.50) 5.57%, rgba(6, 11, 40, 0.70) 166.22%))';
 
 const useStyles = makeStyles(
   theme => ({
@@ -44,8 +44,8 @@ const useStyles = makeStyles(
       //...theme.typography.caption,
       //paddingLeft: theme.spacing(3, 3),
       backgroundColor: bgColor,
-      backdropFilter: 'blur(120px)',
-      //textTransform: 'uppercase',
+      //backdropFilter: 'blur(120px)',
+      textTransform: 'none',
       fontWeight: 400,
       fontfamily: 'Inter, sans-serif',
       fontStyle: 'normal',
