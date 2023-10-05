@@ -39,17 +39,7 @@ pipeline {
               requests:
                 cpu: "200m"
                 memory: "128Mi"
-          - name: npm-tests
-            image: 061496817474.dkr.ecr.eu-west-1.amazonaws.com/mirror/selenium/node-chrome:4.11.0-20230801
-            command:
-            - cat
-            tty: true
-            securityContext: 
-              priviledged: true
-            resources:
-              requests:
-                cpu: "200m"
-                memory: "128Mi"
+          
          
           volumes:
           - name: jenkins-docker-cfg
