@@ -35,6 +35,7 @@ import { Page } from '../Page';
 import { getSignInProviders, useSignInProviders } from './providers';
 import { GridItem, useStyles } from './styles';
 import { IdentityProviders, SignInProviderConfig } from './types';
+import LoginBackground from '../../../../app/src/assets/images/Login-Background.png';
 
 type MultiSignInPageProps = SignInPageProps & {
   providers: IdentityProviders;
@@ -70,7 +71,7 @@ export const MultiSignInPage = ({
 
   return (
     <Page themeId="home">
-      <Header title={configApi.getString('app.title')} />
+      <Header title={configApi.getString('app.title')} />multi
       <Content>
         {title && <ContentHeader title={title} textAlign={align} />}
         <Grid
@@ -151,46 +152,56 @@ export const SingleSignInPage = ({
 
   useMountEffect(() => login({ checkExisting: true }));
 
-  return showLoginPage ? (
-    <Page themeId="home">
-      <Header title={configApi.getString('app.title')} />
-      <Content>
-        <Grid
-          container
-          justifyContent="center"
-          spacing={2}
-          component="ul"
-          classes={classes}
-        >
-          <GridItem>
-            <InfoCard
-              variant="fullHeight"
-              title={provider.title}
-              actions={
-                <Button
-                  color="primary"
-                  variant="outlined"
-                  onClick={() => {
-                    login({ showPopup: true });
-                  }}
-                >
-                  Sign In
-                </Button>
-              }
+    const backgroundImageUrl = LoginBackground;
+
+    // Single Sign in Page
+  return (
+    // <div style={{ background: 'url("https://www.yorkstonguesthouse.co.uk/wp-content/uploads/2017/09/Rectangle-1920x1080-Placeholder.png")' }}>
+    <div style={{ backgroundImage: `url(${backgroundImageUrl})`, }}>
+    {/* // <div style={{ background: 'url("/static/media/Incibe-Background.png")' }}> */}
+      {showLoginPage ? (
+        <Page themeId="home">
+          {/* <Header title={configApi.getString('app.title')}/> */}
+          <Content>
+            <Grid
+              style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}
+              container
+              justifyContent="center"
+              alignItems="center"
+              component="ul"
+              classes={classes}
             >
-              <Typography variant="body1">{provider.message}</Typography>
-              {error && error.name !== 'PopupRejectedError' && (
-                <Typography variant="body1" color="error">
-                  {error.message}
-                </Typography>
-              )}
-            </InfoCard>
-          </GridItem>
-        </Grid>
-      </Content>
-    </Page>
-  ) : (
-    <Progress />
+              <GridItem>
+                <InfoCard
+                  variant="fullHeight"
+                  title={provider.title}
+                  actions={
+                    <Button
+                      color="primary"
+                      variant="outlined"
+                      onClick={() => {
+                        login({ showPopup: true });
+                      }}
+                    >
+                      Sign In
+                    </Button>
+                  }
+                >
+                  <Typography variant="body1">{provider.message}</Typography>
+                  {error && error.name !== 'PopupRejectedError' && (
+                    <Typography variant="body1" color="error">
+                      {error.message}
+                    </Typography>
+                  )}
+                </InfoCard>
+              </GridItem>
+            </Grid>
+          </Content>
+        </Page>
+      ) : (
+        <Progress />
+      )}
+    </div>
   );
 };
 
