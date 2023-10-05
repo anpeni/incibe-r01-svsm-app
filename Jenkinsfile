@@ -81,6 +81,18 @@ pipeline {
         }
       }
     }
+
+    stage('yarn-tsc') {
+      steps {
+        container('install-dependencies') {
+          script {
+            sh """
+              yarn tsc
+            """
+          }
+        }
+      }
+    }
     
 
    
