@@ -117,13 +117,13 @@ pipeline {
       }
     }
     
-    stage('trivy-scanner') {
+    stage('validate-dockerfile') {
       steps {
         container('trivy-scanner') {
           script {
             sh """
               #!/usr/bin/env sh
-                cmd="trivy --input ./image.tar --severity CRITICAL""
+                cmd="trivy --severity CRITICAL --config ./packages/backend/Dockerfile"
                 echo "Running trivy task with command below"
                 echo "\$cmd"
                 eval "\$cmd"
