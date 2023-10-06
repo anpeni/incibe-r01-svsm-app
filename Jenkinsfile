@@ -123,10 +123,10 @@ pipeline {
           script {
             sh """
               #!/usr/bin/env sh
-                cmd="trivy $* "
+                cmd="trivy \$* "
                 echo "Running trivy task with command below"
-                echo "$cmd"
-                eval "$cmd"
+                echo "\$cmd"
+                eval "\$cmd"
             """
           }
         }
