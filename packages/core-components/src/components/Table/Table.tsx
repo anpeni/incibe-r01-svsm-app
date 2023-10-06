@@ -132,10 +132,15 @@ const StyledMTableToolbar = withStyles(
     },
     searchField: {
       paddingRight: theme.spacing(2),
+      padding: '0px 0px 0px 1px',
+      background:'linear-gradient(173deg, rgba(6, 11, 40, 0.75) 5.42%, rgba(6, 11, 40, 0.70) 133.85%)',
+      borderRadius: '12px',  
     },
   }),
   { name: 'BackstageTableToolbar' },
 )(MTableToolbar);
+
+
 
 /** @public */
 export type FiltersContainerClassKey = 'root' | 'title';

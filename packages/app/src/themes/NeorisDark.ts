@@ -416,7 +416,7 @@ const createCustomThemeOverrides = (
         // Select and Filters
         color: theme.page.fontColor,
         // background: bgColor,
-        backdropFilter: 'blur(120px)',
+        //backdropFilter: 'blur(120px)',
         fontWeight: 100, // Thin
         // borderRadius: '12px',
       },
