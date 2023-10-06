@@ -50,8 +50,6 @@ pipeline {
               requests:
                 cpu: "200m"
                 memory: "128Mi"
-          
-         
           volumes:
           - name: jenkins-docker-cfg
             configMap:
