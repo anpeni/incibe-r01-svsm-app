@@ -29,7 +29,7 @@ export const useStyles = makeStyles(
       display: 'flex',
       flexDirection: 'column',
       width: '100%',
-      maxWidth: '400px',
+      maxWidth: '500px',
       margin: 0,
       padding: 0,
     },

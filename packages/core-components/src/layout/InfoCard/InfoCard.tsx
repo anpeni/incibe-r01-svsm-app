@@ -223,7 +223,7 @@ export function InfoCard(props: Props): JSX.Element {
     errorBoundaryProps || (slackChannel ? { slackChannel } : {});
 
   return (
-    <Card style={calculatedStyle} className={className}>
+    <Card style={{ boxShadow: '0px 4px 20px 0px rgba(0, 0, 0, 0.70)'}} className={cardClassName}>
       <ErrorBoundary {...errProps}>
         {title && (
           <CardHeader

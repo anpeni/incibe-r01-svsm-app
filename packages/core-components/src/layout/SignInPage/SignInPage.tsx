@@ -36,6 +36,8 @@ import { getSignInProviders, useSignInProviders } from './providers';
 import { GridItem, useStyles } from './styles';
 import { IdentityProviders, SignInProviderConfig } from './types';
 import LoginBackground from '../../../../app/src/assets/images/Login-Background.png';
+import NeorisLogo from '../../../../app/src/assets/images/neoris-graphic-logo.png';
+import { SidebarDivider } from '../Sidebar';
 
 type MultiSignInPageProps = SignInPageProps & {
   providers: IdentityProviders;
@@ -152,19 +154,24 @@ export const SingleSignInPage = ({
 
   useMountEffect(() => login({ checkExisting: true }));
 
-    const backgroundImageUrl = LoginBackground;
+  const backgroundImageUrl = LoginBackground;
+  const neorisLogo = NeorisLogo;
 
-    // Single Sign in Page
+  // Single Sign in Page
   return (
-    // <div style={{ background: 'url("https://www.yorkstonguesthouse.co.uk/wp-content/uploads/2017/09/Rectangle-1920x1080-Placeholder.png")' }}>
-    <div style={{ backgroundImage: `url(${backgroundImageUrl})`, }}>
-    {/* // <div style={{ background: 'url("/static/media/Incibe-Background.png")' }}> */}
+    <div style={{ backgroundImage: `url(${backgroundImageUrl})` }}>
+      {/* // <div style={{ background: 'url("/static/media/Incibe-Background.png")' }}> */}
       {showLoginPage ? (
         <Page themeId="home">
           {/* <Header title={configApi.getString('app.title')}/> */}
           <Content>
             <Grid
-              style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}
+              style={{
+                position: 'absolute',
+                top: '50%',
+                left: '50%',
+                transform: 'translate(-50%, -50%)',
+              }}
               container
               justifyContent="center"
               alignItems="center"
@@ -174,7 +181,6 @@ export const SingleSignInPage = ({
               <GridItem>
                 <InfoCard
                   variant="fullHeight"
-                  title={provider.title}
                   actions={
                     <Button
                       color="primary"
@@ -182,14 +188,30 @@ export const SingleSignInPage = ({
                       onClick={() => {
                         login({ showPopup: true });
                       }}
+                      style={{ display: 'block', margin: 'auto', marginBottom: '20px'}}
                     >
                       Sign In
                     </Button>
                   }
                 >
-                  <Typography variant="body1">{provider.message}</Typography>
+                  <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '20px' }}>
+                    <img
+                      src={neorisLogo}
+                      alt="Logo"
+                      width="70"
+                      height="59.08"
+                      style={{ maxWidth: '100%', maxHeight: '100%' }}
+                    />
+                  </div>
+                  <Typography variant="h6" align="left" gutterBottom style={{ marginLeft: '15px' }}>
+                    {provider.title}
+                  </Typography>
+                  <SidebarDivider />
+                  <Typography variant="body1" align="left" style={{ marginLeft: '15px' }}>
+                    {provider.message}
+                  </Typography>
                   {error && error.name !== 'PopupRejectedError' && (
-                    <Typography variant="body1" color="error">
+                    <Typography variant="body1" color="error" align="center">
                       {error.message}
                     </Typography>
                   )}
