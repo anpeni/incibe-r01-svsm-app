@@ -27,6 +27,17 @@ pipeline {
             resources:
               requests:
                 cpu: "200m"
+                memory: "128Mi" 
+          - name: trivy-scanner
+            image: public.ecr.aws/aquasecurity/trivy:latest
+            command:
+            - cat
+            tty: true
+            securityContext: 
+              priviledged: true
+            resources:
+              requests:
+                cpu: "200m"
                 memory: "128Mi"      
           - name: npm
             image: node:12-alpine
@@ -106,6 +117,21 @@ pipeline {
       }
     }
     
+    stage('trivy-scanner') {
+      steps {
+        container('trivy-scanner') {
+          script {
+            sh """
+              #!/usr/bin/env sh
+                cmd="trivy $* "
+                echo "Running trivy task with command below"
+                echo "$cmd"
+                eval "$cmd"
+            """
+          }
+        }
+      }
+    }
 
    
   }
