@@ -117,22 +117,7 @@ pipeline {
       }
     }
     
-    stage('trivy-scanner') {
-      steps {
-        container('trivy-scanner') {
-          script {
-            sh """
-              #!/usr/bin/env sh
-                cmd="trivy \$* "
-                echo "Running trivy task with command below"
-                echo "\$cmd"
-                eval "\$cmd"
-            """
-          }
-        }
-      }
-    }
-
+  
    
   }
 }
