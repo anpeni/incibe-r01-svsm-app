@@ -103,17 +103,7 @@ pipeline {
       }
     }
 
-    stage('yarn-builder') {
-      steps {
-        container('install-dependencies') {
-          script {
-            sh """
-              yarn build:backend --config ../../app-config.yaml
-            """
-          }
-        }
-      }
-    }
+   
     
     stage('validate-dockerfile') {
       steps {
