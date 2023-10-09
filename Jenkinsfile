@@ -39,7 +39,7 @@ pipeline {
               requests:
                 cpu: "200m"
                 memory: "128Mi"
-          - name:kaniko
+          - name: kaniko
             image: gcr.io/kaniko-project/executor:v1.12.1
             command:
             - cat
