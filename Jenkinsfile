@@ -144,12 +144,12 @@ pipeline {
               while IFS= read -r p
               do  
                 echo "Building $p image using Kaniko"
-                if [[ $$(params.push) ]]; then
+                if [[ \${params.push} ]]; then
                   echo a
-                  cmd="/kaniko/executor --context $p/. --dockerfile $p/Dockerfile --destination $(params.image-registry)/$p:$(params.image-tag)" 
+                  cmd="/kaniko/executor --context $p/. --dockerfile $p/Dockerfile --destination \$(params.image-registry)/$p:\$(params.image-tag)" 
                 else
                   echo b
-                  cmd="/kaniko/executor --context $p/. --dockerfile $p/Dockerfile --destination $(params.image-registry)/$p:$(params.image-tag) --no-push --tarPath=$p.tar" 
+                  cmd="/kaniko/executor --context $p/. --dockerfile $p/Dockerfile --destination \$(params.image-registry)/$p:\$(params.image-tag) --no-push --tarPath=$p.tar" 
                 fi 
                 eval \$cmd
                 if [[ \$? -eq 1 ]]; then
