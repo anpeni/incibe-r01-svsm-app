@@ -49,6 +49,17 @@ pipeline {
             resources:
               requests:
                 cpu: "200m"
+                memory: "128Mi"
+          -name: docker
+            image: public.ecr.aws/docker/library/bash:5.2
+            command:
+            - cat
+            tty: true
+            securityContext: 
+              priviledged: true
+            resources:
+              requests:
+                cpu: "200m"
                 memory: "128Mi"      
           - name: npm
             image: node:12-alpine
@@ -133,37 +144,34 @@ pipeline {
     }
 
     stage('build-and-push') {
+      steps {
+        container('kaniko') {
+      env {
+        AWS_EC2_METADATA_DISABLED = 'true'
+        AWS_SDK_LOAD_CONFIG = 'true'
+        AWS_ACCESS_KEY_ID = "QUtJQVE0VUw2NjVCS0VBV1E0VFQ="
+        AWS_SECRET_ACCESS_KEY = "WUFvaURvT2N3enhITUtvd1dzamxxWkJVZmEvdHd5eEpwYTh2ZzVzZQ=="
+        AWS_REGION = "ZXUtd2VzdC0x"
+      }
+      args [
+        '--tarPath=./image.tar',
+        '--no-push',
+        '--dockerfile=./packages/backend/Dockerfile',
+        '--context=/workspace/source/./',
+        '--destination= 061496817474.dkr.ecr.eu-west-1.amazonaws.com/cicd/backstage:develop-6d79f5c-20231004-154909',
+        '--digest-file=/tekton/results/IMAGE_DIGEST',
+        '--compressed-caching=false'
+      ]
+      
+    }
+      }
+}
+stage('Write Image URL') {
   steps {
-    container('kaniko') {
-        script {
-          sh """
-            #!/busybox/sh
-            cd ./source
-            if [[ -s changes.txt ]]; then
-              while IFS= read -r p
-              do  
-                echo "Building $p image using Kaniko"
-                if [[ \${params.push} ]]; then
-                  echo a
-                  cmd="/kaniko/executor --context $p/. --dockerfile $p/Dockerfile --destination \$(params.image-registry)/$p:\$(params.image-tag)" 
-                else
-                  echo b
-                  cmd="/kaniko/executor --context $p/. --dockerfile $p/Dockerfile --destination \$(params.image-registry)/$p:\$(params.image-tag) --no-push --tarPath=$p.tar" 
-                fi 
-                eval \$cmd
-                if [[ \$? -eq 1 ]]; then
-                    variable=`echo \$p | cut -d'/' -f3`
-                    sed -i "s/\$variable//g" changes.txt
-                else 
-                    variable=`echo \$p | cut -d'/' -f3`
-                fi
-              done < changes.txt         
-            else
-              echo "Error: No changes detected in last commit"
-              exit 1
-            fi
-          """
-        
+    container('docker') {
+      script {
+        def image = "061496817474.dkr.ecr.eu-west-1.amazonaws.com/cicd/backstage:\$(params.branch-name)-\$(params.commit-hash)-\$(params.commit-date)"
+        sh "echo -n '${image}' > ${results.IMAGE_URL.path}"
       }
     }
   }
