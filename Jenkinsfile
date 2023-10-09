@@ -40,7 +40,7 @@ pipeline {
                 cpu: "200m"
                 memory: "128Mi"
           - name: kaniko
-            image: gcr.io/kaniko-project/executor:v1.12.1
+            image: gcr.io/kaniko-project/executor:v1.15.0-debug
             command:
             - cat
             tty: true
