@@ -125,7 +125,6 @@ pipeline {
       }
     }
 
-   
     
     stage('validate-dockerfile') {
       steps {
@@ -181,6 +180,5 @@ stage('Write Image URL') {
     }
   }
 }
-   
   }
 }
