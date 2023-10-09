@@ -169,14 +169,5 @@ pipeline {
     }
   }
 }
-stage('Write Image URL') {
-  steps {
-    container('docker') {
-      script {
-        def image = "061496817474.dkr.ecr.eu-west-1.amazonaws.com/cicd/backstage:\$(params.branch-name)-\$(params.commit-hash)-\$(params.commit-date)"
-        sh "echo -n '${image}' > ${results.IMAGE_URL.path}"
-      }
-    }
-  }
-}
+
   }
