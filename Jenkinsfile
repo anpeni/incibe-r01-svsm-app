@@ -135,7 +135,6 @@ pipeline {
     stage('build-and-push') {
   steps {
     container('kaniko') {
-      withCredentials([string(credentialsId: 'creds-aws-ecr', variable: 'DOCKER_AUTH_CONFIG')]) {
         script {
           sh """
             #!/busybox/sh
@@ -164,7 +163,7 @@ pipeline {
               exit 1
             fi
           """
-        }
+        
       }
     }
   }
