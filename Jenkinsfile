@@ -180,4 +180,3 @@ stage('Write Image URL') {
   }
 }
   }
-}
