@@ -146,25 +146,29 @@ pipeline {
     stage('build-and-push') {
       steps {
         container('kaniko') {
-      env {
-        AWS_EC2_METADATA_DISABLED = 'true'
-        AWS_SDK_LOAD_CONFIG = 'true'
-        AWS_ACCESS_KEY_ID = "QUtJQVE0VUw2NjVCS0VBV1E0VFQ="
-        AWS_SECRET_ACCESS_KEY = "WUFvaURvT2N3enhITUtvd1dzamxxWkJVZmEvdHd5eEpwYTh2ZzVzZQ=="
-        AWS_REGION = "ZXUtd2VzdC0x"
-      }
-      args [
-        '--tarPath=./image.tar',
-        '--no-push',
-        '--dockerfile=./packages/backend/Dockerfile',
-        '--context=/workspace/source/./',
-        '--destination= 061496817474.dkr.ecr.eu-west-1.amazonaws.com/cicd/backstage:develop-6d79f5c-20231004-154909',
-        '--digest-file=/tekton/results/IMAGE_DIGEST',
-        '--compressed-caching=false'
-      ]
-      
-    }
-      }
+  environment {
+    AWS_EC2_METADATA_DISABLED = 'true'
+    AWS_SDK_LOAD_CONFIG = 'true'
+    AWS_ACCESS_KEY_ID = credentials('creds-aws-ecr').username
+    AWS_SECRET_ACCESS_KEY = credentials('creds-aws-ecr').password
+    AWS_REGION = credentials('creds-aws-ecr').region
+  }
+  args [
+    '--tarPath=./image.tar',
+    '--no-push',
+    '--dockerfile=./packages/backend/Dockerfile',
+    '--context=/workspace/source/./',
+    "--destination=${params.image-registry}/cicd/backstage:${params.image-tag}",
+    '--digest-file=/tekton/results/IMAGE_DIGEST',
+    '--compressed-caching=false'
+  ]
+  image 'gcr.io/kaniko-project/executor:v1.12.1'
+  name 'build-and-push'
+  securityContext {
+    runAsUser 0
+  }
+  workingDir '/workspace/source'
+}
 }
 stage('Write Image URL') {
   steps {
