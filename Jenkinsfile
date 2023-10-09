@@ -142,31 +142,30 @@ pipeline {
       }
     }
 
-    stage('build-and-push') {
-  steps {
-    container('kaniko') {
-      environment {
-        AWS_EC2_METADATA_DISABLED = 'true'
-        AWS_SDK_LOAD_CONFIG = 'true'
-        AWS_ACCESS_KEY_ID = "QUtJQVE0VUw2NjVCS0VBV1E0VFQ="
-        AWS_SECRET_ACCESS_KEY = "WUFvaURvT2N3enhITUtvd1dzamxxWkJVZmEvdHd5eEpwYTh2ZzVzZQ=="
-        AWS_REGION = "ZXUtd2VzdC0x"
-      }
-      args [
-        '--tarPath=./image.tar',
-        '--no-push',
-        '--dockerfile=./packages/backend/Dockerfile',
-        '--context=/workspace/source/./',
-        "--destination=${params.image-registry}/cicd/backstage:${params.image-tag}",
-        '--digest-file=/tekton/results/IMAGE_DIGEST',
-        '--compressed-caching=false'
-      ]
-      image 'gcr.io/kaniko-project/executor:v1.12.1'
-      name 'build-and-push'
-      securityContext {
-        runAsUser 0
-      }
-      workingDir '/workspace/source'
+     stage('build-and-push') {
+            steps {
+                script {
+                    container('kaniko') {
+                        // Define tus variables de entorno
+                        env.AWS_EC2_METADATA_DISABLED = 'true'
+                        env.AWS_SDK_LOAD_CONFIG = 'true'
+                        env.AWS_ACCESS_KEY_ID = "QUtJQVE0VUw2NjVCS0VBV1E0VFQ="
+                        env.AWS_SECRET_ACCESS_KEY = "WUFvaURvT2N3enhITUtvd1dzamxxWkJVZmEvdHd5eEpwYTh2ZzVzZQ=="
+                        env.AWS_REGION = "ZXUtd2VzdC0x"
+                        
+                        // Define los argumentos y otros detalles
+                        def kanikoArgs = [
+                            '--tarPath=./image.tar',
+                            '--no-push',
+                            '--dockerfile=./packages/backend/Dockerfile',
+                            '--context=/workspace/source/./',
+                            "--destination=${params.image-registry}/cicd/backstage:${params.image-tag}",
+                            '--digest-file=/tekton/results/IMAGE_DIGEST',
+                            '--compressed-caching=false'
+                        ]
+
+                    }
+              }
     }
   }
 }
