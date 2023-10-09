@@ -111,7 +111,7 @@ pipeline {
           script {
             sh """
               #!/usr/bin/env sh
-                cmd="trivy --severity CRITICAL --config ./packages/backend/Dockerfile"
+                cmd="trivy  --config ./packages/backend/Dockerfile"
                 echo "Running trivy task with command below"
                 echo "\$cmd"
                 eval "\$cmd"
