@@ -50,7 +50,7 @@ pipeline {
               requests:
                 cpu: "200m"
                 memory: "128Mi"
-          -name: docker
+          - name: docker
             image: public.ecr.aws/docker/library/bash:5.2
             command:
             - cat
