@@ -157,7 +157,7 @@ pipeline {
         '--no-push',
         '--dockerfile=./packages/backend/Dockerfile',
         '--context=/workspace/source/./',
-        "--destination=061496817474.dkr.ecr.eu-west-1.amazonaws.com/cicd/backstage:develop-6d79f5c-20231004-154909",
+        "--destination=${params.image-registry}/cicd/backstage:${params.image-tag}",
         '--digest-file=/tekton/results/IMAGE_DIGEST',
         '--compressed-caching=false'
       ]
