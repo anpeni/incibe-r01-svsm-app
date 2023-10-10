@@ -15,6 +15,7 @@
  */
 
 import React from 'react';
+
 import {
   FormProvider,
   SubmitHandler,
@@ -68,7 +69,7 @@ export const PreparePullRequestForm = <
   return (
     <FormProvider {...methods}>
       <form onSubmit={handleSubmit(onSubmit)}>
-        {render({ values: watch(), formState, register, control, setValue })}
+        {render({ values: watch() as any, formState, register, control, setValue })}
       </form>
     </FormProvider>
   );
