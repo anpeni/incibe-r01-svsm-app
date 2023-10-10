@@ -38,6 +38,28 @@ pipeline {
             resources:
               requests:
                 cpu: "200m"
+                memory: "128Mi"
+          - name: kaniko
+            image: gcr.io/kaniko-project/executor:v1.15.0-debug
+            command:
+            - cat
+            tty: true
+            securityContext: 
+              priviledged: true
+            resources:
+              requests:
+                cpu: "200m"
+                memory: "128Mi"
+          - name: docker
+            image: public.ecr.aws/docker/library/bash:5.2
+            command:
+            - cat
+            tty: true
+            securityContext: 
+              priviledged: true
+            resources:
+              requests:
+                cpu: "200m"
                 memory: "128Mi"      
           - name: npm
             image: node:12-alpine
@@ -103,17 +125,6 @@ pipeline {
       }
     }
 
-    stage('yarn-builder') {
-      steps {
-        container('install-dependencies') {
-          script {
-            sh """
-              yarn build:backend --config ../../app-config.yaml
-            """
-          }
-        }
-      }
-    }
     
     stage('validate-dockerfile') {
       steps {
@@ -121,7 +132,7 @@ pipeline {
           script {
             sh """
               #!/usr/bin/env sh
-                cmd="trivy --severity CRITICAL --config ./packages/backend/Dockerfile"
+                cmd="trivy config --severity CRITICAL ./packages/backend/Dockerfile"
                 echo "Running trivy task with command below"
                 echo "\$cmd"
                 eval "\$cmd"
@@ -131,6 +142,32 @@ pipeline {
       }
     }
 
-   
+     stage('build-and-push') {
+            steps {
+                script {
+                    container('kaniko') {
+                        // Define tus variables de entorno
+                        env.AWS_EC2_METADATA_DISABLED = 'true'
+                        env.AWS_SDK_LOAD_CONFIG = 'true'
+                        env.AWS_ACCESS_KEY_ID = "QUtJQVE0VUw2NjVCS0VBV1E0VFQ="
+                        env.AWS_SECRET_ACCESS_KEY = "WUFvaURvT2N3enhITUtvd1dzamxxWkJVZmEvdHd5eEpwYTh2ZzVzZQ=="
+                        env.AWS_REGION = "ZXUtd2VzdC0x"
+                        
+                        // Define los argumentos y otros detalles
+                        def kanikoArgs = [
+                            '--tarPath=./image.tar',
+                            '--no-push',
+                            '--dockerfile=./packages/backend/Dockerfile',
+                            '--context=/workspace/source/./',
+                            "--destination=${params.image-registry}/cicd/backstage:${params.image-tag}",
+                            '--digest-file=/tekton/results/IMAGE_DIGEST',
+                            '--compressed-caching=false'
+                        ]
+
+                    }
+              }
+    }
   }
 }
+
+  }
