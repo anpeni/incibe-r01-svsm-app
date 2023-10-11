@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import { InfoCard } from '@backstage/core-components';
+import { InfoCardSettings } from '@backstage/core-components';
 import { configApiRef, useApi } from '@backstage/core-plugin-api';
 import { Chip, Typography } from '@material-ui/core';
 import React from 'react';
@@ -51,27 +51,83 @@ export const ImportInfoCard = (props: ImportInfoCardProps) => {
   const catalogFilename = useCatalogFilename();
 
   return (
-    <InfoCard
-      title="Register an existing component"
-      titleTypographyProps={{ component: 'h3' }}
+    <InfoCardSettings
+      title=""
+      //titleTypographyProps={{ component: 'h3' }}
       deepLink={{
         title: 'Learn more about the Software Catalog',
         link: 'https://backstage.io/docs/features/software-catalog/',
       }}
     >
-      <Typography variant="body2" paragraph>
-        Enter the URL to your source code repository to add it to {appTitle}.
-      </Typography>
-      <Typography component="h4" variant="h6">
+      <span style={{
+        display: 'block',
+        color: '#FFF',
+        fontFamily: 'Inter, sans-serif',
+        fontSize: '24px',
+        fontStyle: 'normal',
+        fontWeight: '800',
+        lineHeight: '32px',
+        marginLeft: '20px',
+        marginTop: '5px',
+      }}    >
+        Register an existing component
+      </span>
+
+      <span style={{
+        display: 'block',
+        color: '#FFF',
+        fontFamily: 'Inter, sans-serif',
+        fontSize: '16px',
+        fontStyle: 'normal',
+        fontWeight: '800',
+        lineHeight: '32px',
+        marginLeft: '20px',
+        marginTop: '20px',
+      }}    >
+        Enter the URL to your source code repository to add it to {appTitle}
+      </span>
+      <span style={{
+        display: 'block',
+        color: '#FFF',
+        fontFamily: 'Inter, sans-serif',
+        fontSize: '14px',
+        fontStyle: 'normal',
+        fontWeight: '400',
+        lineHeight: '32px',
+        marginLeft: '20px',
+        marginTop: '20px',
+      }}    >
         Link to an existing entity file
-      </Typography>
-      <Typography variant="subtitle2" color="textSecondary" paragraph>
+      </span>
+      <span style={{
+        display: 'block',
+        color: '#FFF',
+        fontFamily: 'Inter, sans-serif',
+        fontSize: '14px',
+        fontStyle: 'normal',
+        fontWeight: '400',
+        lineHeight: '32px',
+        marginLeft: '20px',
+        //marginTop: '5px',
+      }}    >
         Example: <code>{exampleLocationUrl}</code>
-      </Typography>
-      <Typography variant="body2" paragraph>
+      </span>
+
+      <span style={{
+        display: 'block',
+        color: '#FFF',
+        fontFamily: 'Inter, sans-serif',
+        fontSize: '14px',
+        fontStyle: 'normal',
+        fontWeight: '800',
+        lineHeight: '32px',
+        marginLeft: '20px',
+        marginTop: '20px',
+      }}    >
         The wizard analyzes the file, previews the entities, and adds them to
         the {appTitle} catalog.
-      </Typography>
+      </span>
+
       {hasGithubIntegration && (
         <>
           <Typography component="h4" variant="h6">
@@ -96,6 +152,6 @@ export const ImportInfoCard = (props: ImportInfoCardProps) => {
           )}
         </>
       )}
-    </InfoCard>
+    </InfoCardSettings>
   );
 };

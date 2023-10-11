@@ -40,28 +40,36 @@ export const DefaultImportPage = () => {
   const appTitle = configApi.getOptional('app.title') || 'Backstage';
 
   const contentItems = [
-    <Grid item xs={12} md={4} lg={6} xl={8}>
+    <Grid item xs={12} md={4} lg={6} xl={6} style={{ position: 'relative' }}>
+      <div style={{ width:'825px', 
+        position: 'fixed',  
+        right: '15px',
+        }}>
       <ImportInfoCard />
+      </div>
     </Grid>,
 
-    <Grid item xs={12} md={8} lg={6} xl={4}>
+    <Grid item xs={12} md={8} lg={6} xl={4} style={{ 
+      display: 'flex', 
+      flexDirection: 'column' }}>
       <span
         style={{
           color: '#FFF',
-          fontFamily: 'Inter',
+          fontFamily: 'Inter, sans-serif',
           fontSize: '24px',
           fontStyle: 'normal',
           fontWeight: '700',
           lineHeight: '32px',
-          marginLeft: '15px',
-          marginTop: '30px',
+          marginLeft: '-10px',
+          marginTop: '20px',
           marginBottom: '40px',
-          backgroundColor: 'red',
         }}
       >
         GitHub Pages Website
       </span>
-      <ImportStepper />
+      <div style={{marginLeft: '15px'}}>
+        <ImportStepper />
+      </div>
     </Grid>,
   ];
 
@@ -71,57 +79,48 @@ export const DefaultImportPage = () => {
         <div style={{
           display: 'flex',
           flexDirection: 'column',
-          //backgroundColor: 'red',
-          width: '1625px',  
+          width: '1625px',
         }}>
-
           <div style={{
             display: 'flex',
             alignItems: 'center',
             marginTop: '25px',
-            marginLeft:'30px',
-            //width: '1300px',
-            //backgroundColor: 'red',
+            marginLeft: '30px',
           }}>
-            <AddBoxIcon style={{marginTop: '10px', transform: 'scale(1.8)', marginLeft:'10px'}}/>
+            <AddBoxIcon style={{ marginTop: '15px', transform: 'scale(1.8)', marginLeft: '10px' }} />
             <Header
               title="Create a new component"
               style={{
                 color: '#FFF',
                 textAlign: 'left',
                 //marginTop: '10px',
-                fontFamily: 'Inter',
+                fontFamily: 'Inter, sans-serif',
                 fontSize: '32px',
                 fontStyle: 'normal',
                 fontWeight: '700',
                 lineHeight: 'normal',
-                marginLeft: '10px',  // Espacio entre el icono y el título
               }}
             />
-            <div style={{ marginRight: '15px', marginTop: '15px' }}>
+            <div style={{ right: '15px', marginTop: '15px', position:'fixed' }}>
               <SupportButton>
                 Start tracking your component in {appTitle} by adding it to the
                 software catalog.
               </SupportButton>
             </div>
           </div>
-          <Content>            
+          <Content >
+            <div style={{ marginTop: '-20px', }}>
               <span style={{
-                //marginLeft: 'auto',
-               // marginRight: '1320px',
-                marginTop: '-40px',
-                marginBottom: '-40px',
                 color: '#FFF',
-                fontFamily: 'Inter',
+                fontFamily: 'Inter, sans-serif',
                 fontSize: '16px',
                 fontStyle: 'normal',
                 fontWeight: '400',
                 lineHeight: '16px',
-                marginLeft: '15px',                                
+                marginLeft: '15px',
               }}>Create new software components using standard templates</span>
-            
-
-            <Grid container spacing={5} style={{marginTop: '40px',}}>
+            </div>
+            <Grid container spacing={5} style={{ marginTop: '10px', display: 'flex', flexDirection: 'row' }}>
               {isMobile ? contentItems : contentItems.reverse()}
             </Grid>
           </Content>

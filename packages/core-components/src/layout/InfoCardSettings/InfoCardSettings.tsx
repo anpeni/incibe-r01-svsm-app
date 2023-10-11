@@ -8,8 +8,10 @@ import Divider from '@material-ui/core/Divider';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import classNames from 'classnames';
 import React, { ReactNode } from 'react';
-import { BottomLink, BottomLinkProps } from '../BottomLink';
+
+import { BottomLinkModificado, BottomLinkProps } from '../BottomLink';
 import { ErrorBoundary, ErrorBoundaryProps } from '../ErrorBoundary';
+import { Height } from '@material-ui/icons';
 
 /** @public */
 export type InfoCardClassKeySettings =
@@ -45,6 +47,11 @@ const useStyles = makeStyles(
 headerSubheader: {
   paddingTop: theme.spacing(1),
     },
+MuiDivider:{
+  root: {
+    height: '0px',
+  },
+},
 headerAvatar: { },
 headerAction: { },
 headerContent: { },
@@ -251,7 +258,7 @@ export function InfoCardSettings(props: Props): JSX.Element {
         {actions && (
           <CardActions className={actionsClassName}>{actions}</CardActions>
         )}
-        {deepLink && <BottomLink {...deepLink} />}
+        {deepLink && <BottomLinkModificado {...deepLink} />}
       </ErrorBoundary>
     </Card>
   );

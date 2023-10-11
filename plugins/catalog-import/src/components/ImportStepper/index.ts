@@ -15,5 +15,6 @@
  */
 
 export { ImportStepper } from './ImportStepper';
+export { ImportStepperModificado } from './ImportStepperModificado';
 export type { ImportStepperProps } from './ImportStepper';
 export { defaultGenerateStepper } from './defaults';

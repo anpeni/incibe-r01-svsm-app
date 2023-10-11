@@ -152,8 +152,8 @@ const createCustomThemeOverrides = (
         backgroundColor: 'none',
       },
       selected: {
-        backgroundColor: 'rgba(6, 11, 40, 0.8)',
-        borderRadius: '12px',
+        //backgroundColor: 'red',
+        //borderRadius: '12px',
       },
       tabRoot: {
         '&:hover': {

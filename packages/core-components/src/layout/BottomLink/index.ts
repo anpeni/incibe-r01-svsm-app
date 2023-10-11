@@ -15,4 +15,5 @@
  */
 
 export { BottomLink } from './BottomLink';
+export { BottomLinkModificado } from './BottomLinkModificado';
 export type { BottomLinkClassKey, BottomLinkProps } from './BottomLink';
