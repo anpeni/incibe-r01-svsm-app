@@ -31,7 +31,7 @@ jobs:
       uses: aquasecurity/trivy-action@master
       with:
         scan-type: 'config'
-        scan-ref: /packages/backend/Dockerfile
+        scan-ref: ./packages/backend/Dockerfile
         severity: 'CRITICAL'
         format: 'sarif'
         output: 'trivy-results.sarif'
