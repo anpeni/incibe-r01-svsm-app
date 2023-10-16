@@ -29,7 +29,7 @@ jobs:
       uses: int128/kaniko-action@v1
       with:
         push: false
-        context: --context=/workspace/source/./
-        file: ./packages/backend/Dockerfile
+        context: /workspace/source/./
+        file: packages/backend/Dockerfile
         kaniko-args: --tarPath=./image.tar --compressed-caching=false --digest-file=/tekton/results/IMAGE_DIGEST
-        tags: --destination=061496817474.dkr.ecr.eu-west-1.amazonaws.com/cicd/backstage:develop-fc976e4-20231009-211554
+        tags: 061496817474.dkr.ecr.eu-west-1.amazonaws.com/cicd/backstage:develop-fc976e4-20231009-211554
