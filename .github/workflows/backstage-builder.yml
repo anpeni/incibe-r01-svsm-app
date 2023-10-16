@@ -41,12 +41,13 @@ jobs:
         sarif_file: 'trivy-results.sarif'
 
     - name: build-image
-      uses: int128/kaniko-action@v1
+      uses: bymarshall/kaniko-action@main
       with:
         context: .
         file: packages/backend/Dockerfile
         tags: 061496817474.dkr.ecr.eu-west-1.amazonaws.com/cicd/backstage:develop-fc976e4-20231009-211554
-        kaniko-args: --tar-path=./image.tar 
+        push: false
+        tar_file: image.tar
     - run: |
         docker image ls
         cd packages/backend
@@ -54,7 +55,7 @@ jobs:
     - name: trivy-analisis
       uses: aquasecurity/trivy-action@master
       with:
-        input: ./packages/backend/image.tar
+        input: ./image.tar
         severity: 'CRITICAL'
         format: 'sarif'
         output: 'trivy-results.sarif'
