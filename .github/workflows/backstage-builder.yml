@@ -30,6 +30,7 @@ jobs:
     - name: scan Dockerfile trivy
       uses: aquasecurity/trivy-action@master
       with:
+        scan-type: 'config'
         input: /packages/backend/Dockerfile
         severity: 'CRITICAL'
         format: 'sarif'
