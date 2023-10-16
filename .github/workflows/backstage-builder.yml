@@ -47,3 +47,10 @@ jobs:
         file: packages/backend/Dockerfile
         kaniko-args: --tarPath=./image.tar --compressed-caching=false
         tags: 061496817474.dkr.ecr.eu-west-1.amazonaws.com/cicd/backstage:develop-fc976e4-20231009-211554
+    
+    - name: trivy-analisis
+      uses: aquasecurity/trivy-action@master
+      with:
+        scan-type: 'image'
+        input: ./image.tar
+        severity: 'CRITICAL'
