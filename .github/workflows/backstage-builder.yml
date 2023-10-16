@@ -45,7 +45,7 @@ jobs:
       with:
         context: .
         file: packages/backend/Dockerfile
-        tags: 061496817474.dkr.ecr.eu-west-1.amazonaws.com/cicd/backstage:develop-fc976e4-20231009-211554
+        destination: 061496817474.dkr.ecr.eu-west-1.amazonaws.com/cicd/backstage:develop-fc976e4-20231009-211554
     - run: |
         docker image ls
         ls -la
