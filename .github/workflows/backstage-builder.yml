@@ -1,4 +1,4 @@
-name: Builder
+name: BackStage builder
 on:
   workflow_dispatch:
   push:
@@ -14,7 +14,7 @@ env:
   CLUSTER_PROVIDER: ${{ vars.CLUSTER_PROVIDER }}
 
 jobs:
-  action:
+  backstage-builder:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
@@ -28,8 +28,7 @@ jobs:
     - name: build-image
       uses: int128/kaniko-action@v1
       with:
-        push: false
         context: .
         file: packages/backend/Dockerfile
-        kaniko-args: --tarPath=./image.tar --compressed-caching=false --digest-file=/tekton/results/IMAGE_DIGEST
+        kaniko-args: --tarPath=./image.tar --compressed-caching=false
         tags: 061496817474.dkr.ecr.eu-west-1.amazonaws.com/cicd/backstage:develop-fc976e4-20231009-211554
