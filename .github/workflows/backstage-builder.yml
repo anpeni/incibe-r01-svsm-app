@@ -45,9 +45,10 @@ jobs:
       with:
         context: .
         file: packages/backend/Dockerfile
-        kaniko-args: --tar-path ./image.tar 
         tags: 061496817474.dkr.ecr.eu-west-1.amazonaws.com/cicd/backstage:develop-fc976e4-20231009-211554
-    - run: ls -la
+    - run: |
+        docker image ls
+        ls -la
     - name: trivy-analisis
       uses: aquasecurity/trivy-action@master
       with:
