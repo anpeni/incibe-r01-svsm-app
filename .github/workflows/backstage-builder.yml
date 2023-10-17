@@ -23,7 +23,8 @@ jobs:
     - uses: actions/cache/restore@v3
       id: restore-cache
       with:
-          key: ${{ runner.os }}-build-${{ hashFiles('**/yarn.lock') }}
+        path: node_modules
+        key: ${{ runner.os }}-build-${{ hashFiles('**/yarn.lock') }}
 
 
     - name: install-dependencies
@@ -63,9 +64,7 @@ jobs:
         file: packages/backend/Dockerfile
         tags: 061496817474.dkr.ecr.eu-west-1.amazonaws.com/cicd/backstage:develop-fc976e4-20231009-211554
         kaniko-args: |
-          --tar-path
-          ${{ env.GITHUB_WORKSPACE }}/image.tar 
-          
+          --tar-path=./image.tar
         push: false
         
 
