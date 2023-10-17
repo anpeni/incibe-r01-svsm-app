@@ -15,6 +15,7 @@ env:
   ACCESS_KEY: ${{ secrets.ACCESS_KEY }}
   SECRET_KEY: ${{ secrets.SECRET_KEY }}
   GITHUB_REF: ${{ github.ref_name }}
+  GITHUB_REF_CLEAND: "${env.GITHUB_REF//\//-}"
 
 jobs:
   backstage-builder:
@@ -24,6 +25,7 @@ jobs:
         uses: actions/checkout@v4
       - name: echo
         run: |
+          echo "${{ env.GITHUB_REF }}"
           GITHUB_REF="${{ env.GITHUB_REF}}"
           echo "$GITHUB_REF"
           GITHUB_REF_CLEAND="${GITHUB_REF//\//-}"
