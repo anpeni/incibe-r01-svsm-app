@@ -25,7 +25,11 @@ jobs:
       - name: echo
         run: |
           echo ${{ env.GITHUB_REF}}
-          echo ${{ github.ref_protected }}
+          echo ${{ github.action_ref }}
+          echo ${{ github.base_ref }}
+          echo ${{ github.head_ref }}
+          echo ${{ github.action_ref }}
+          echo ${{ github.workflow_ref }}
           
       - uses: actions/cache/restore@v3
         id: restore-cache
