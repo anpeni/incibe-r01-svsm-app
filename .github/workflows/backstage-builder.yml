@@ -25,6 +25,8 @@ jobs:
       - name: echo
         run: |
           echo ${{ env.GITHUB_REF}}
+          echo ${{ github.ref_protected }}
+          
       - uses: actions/cache/restore@v3
         id: restore-cache
         with:
