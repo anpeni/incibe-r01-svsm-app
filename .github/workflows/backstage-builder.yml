@@ -26,8 +26,12 @@ jobs:
       - name: Extract branch name
         id: extract_branch
         shell: bash
-        run: echo "branch=${GITHUB_HEAD_REF:-${GITHUB_REF_NAME//\//-}}" >> $GITHUB_OUTPUT       
-          
+        run: echo "branch=${GITHUB_HEAD_REF:-${GITHUB_REF_NAME//\//-}}" >> $GITHUB_OUTPUT   
+
+      - name: Give date
+        id: date
+        run: echo "date=$(date +'%d%m%Y%H%M%S')" >> $GITHUB_OUTPUT
+     
       - uses: actions/cache/restore@v3
         id: restore-cache
         with:
@@ -102,5 +106,5 @@ jobs:
           secret-access-key: ${{ env.AWS_SECRET_KEY }}
           region: eu-west-1
           local-image: cicd/backstage
-          image: cicd/backstage:${{ steps.extract_branch.outputs.branch }}-${{ github.run_id }}
+          image: cicd/backstage:${{ steps.extract_branch.outputs.branch }}-${{ github.run_id }}-${{ steps.date.outputs.date }}
       
