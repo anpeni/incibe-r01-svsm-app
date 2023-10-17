@@ -20,20 +20,22 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v3
 
-    - name: Cache node_modules
-      uses: actions/cache@v2
-      if: always()
+    - uses: actions/cache/restore@v3
+      id: restore-cache
       with:
-        path: |
-          node_modules
-        key: ${{ runner.os }}-build-${{ hashFiles('**/yarn.lock') }}
-        restore-keys: |
-          ${{ runner.os }}-build-${{ hashFiles('**/yarn.lock') }}
-          ${{ runner.os }}-build-
+          key: ${{ runner.os }}-build-${{ hashFiles('**/yarn.lock') }}
+
 
     - name: install-dependencies
       run: yarn install --frozen-lockfile
 
+    - uses: actions/cache/save@v3
+      if: always() // or any other condition to invoke the save action
+      with:
+        path: node_modules
+        key: ${{ runner.os }}-build-${{ hashFiles('**/yarn.lock') }}
+      
+    
     - name: yarn-tsc
       run: yarn tsc
 
@@ -62,7 +64,7 @@ jobs:
         tags: 061496817474.dkr.ecr.eu-west-1.amazonaws.com/cicd/backstage:develop-fc976e4-20231009-211554
         kaniko-args: |
           --tar-path
-          ./image.tar 
+          ${{ env.GITHUB_WORKSPACE }}/image.tar 
           
         push: false
         
@@ -73,7 +75,7 @@ jobs:
     - name: trivy-analisis
       uses: aquasecurity/trivy-action@master
       with:
-        input: ./image.tar
+        input: ${{ env.GITHUB_WORKSPACE }}/image.tar
         severity: 'CRITICAL'
         format: 'sarif'
         output: 'trivy-results.sarif'
@@ -81,3 +83,5 @@ jobs:
       uses: github/codeql-action/upload-sarif@v2
       with:
         sarif_file: 'trivy-results.sarif'
+      
+    
