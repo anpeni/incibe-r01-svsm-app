@@ -11,14 +11,18 @@ on:
       - closed
 
 env:
-  AWS_ACCESS_KEY: ${{ secrets.AWS_ACCESS_KEY }}
-  AWS_SECRET_KEY: ${{ secrets.AWS_SECRET_KEY }}
   AWS_REGION: eu-west-1
   AWS_ECR_REPOSITORY: cicd/backstage
 
 jobs:
-  backstage-builder:
+  build:
     runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        node-version: [18.x]
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -29,48 +33,17 @@ jobs:
           calculatedSha=$(git rev-parse --short ${{ github.sha }})
           echo "MY_COMMIT_SHORT_SHA=$calculatedSha" >> $GITHUB_ENV
           echo "MY_BRANCH_NAME=${GITHUB_HEAD_REF:-${GITHUB_REF_NAME//\//-}}" >> $GITHUB_ENV
-          echo "MY_TIMESTAMP=$(date +'%Y%m%d-%H%M%S')" >> $GITHUB_ENV
 
-      - name: Restore cache all node_modules
-        uses: actions/cache/restore@v3
-        id: restore-cache-modules
+      - name: Use node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
         with:
-          path: '**/node_modules'
-          key: ${{ runner.os }}-node_modules-${{ hashFiles('yarn.lock', '**/package.json') }}
+          node-version: ${{ matrix.node-version }}
+          registry-url: https://registry.npmjs.org/
 
-      - name: Find location of global yarn cache
-        id: yarn-cache
-        if: steps.restore-cache-modules.outputs.cache-hit != 'true'
-        run: echo "dir=$([[ "$(yarn --version)" =~ "1.*" ]] && yarn cache dir || yarn config get cacheFolder)" >> $GITHUB_OUTPUT
-        shell: bash
-
-      - name: Restore cache global yarn cache
-        uses: actions/cache/restore@v3
-        if: steps.restore-cache-modules.outputs.cache-hit != 'true'
+      - name: Install yarn
+        uses: backstage/actions/yarn-install@v0.6.4
         with:
-          path: ${{ steps.yarn-cache.outputs.dir }}
-          key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-yarn-
-
-      - name: Install dependencies
-        if: steps.restore-cache-modules.outputs.cache-hit != 'true'
-        run: '[[ "$(yarn --version)" =~ "1.*" ]] && yarn install --frozen-lockfile || yarn install --immutable'
-        shell: bash
-
-      - name: Save cache all node_modules
-        uses: actions/cache/save@v3
-        if: steps.restore-cache-modules.outputs.cache-hit != 'true'
-        with:
-          path: '**/node_modules'
-          key: ${{ runner.os }}-node_modules-${{ hashFiles('yarn.lock', '**/package.json') }}
-
-      - name: Save cache global yarn cache
-        uses: actions/cache/save@v3
-        if: steps.restore-cache-modules.outputs.cache-hit != 'true'
-        with:
-          path: ${{ steps.yarn-cache.outputs.dir }}
-          key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
+          cache-prefix: ${{ runner.os }}-v${{ matrix.node-version }}
 
       - name: Compile
         run: yarn tsc
@@ -121,21 +94,12 @@ jobs:
           sarif_file: "results-dockerimage.sarif"
           category: "docker-image"
 
-      - name: Build linux/amd64 and linux/arm64 Docker images
-        uses: docker/build-push-action@v5
-        with:
-          context: .
-          file: ./packages/backend/Dockerfile
-          platforms: linux/amd64,linux/arm64
-          load: true
-          tags: ${{ env.AWS_ECR_REPOSITORY }}
-
       - name: Push to ECR
         id: ecr
         uses: jwalton/gh-ecr-push@v1
         with:
-          access-key-id: ${{ env.AWS_ACCESS_KEY }}
-          secret-access-key: ${{ env.AWS_SECRET_KEY }}
+          access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
+          secret-access-key: ${{ secrets.AWS_SECRET_KEY }}
           region: ${{ env.AWS_REGION }}
           local-image: ${{ env.AWS_ECR_REPOSITORY }}
-          image: ${{ env.AWS_ECR_REPOSITORY }}:${{ env.MY_BRANCH_NAME }}-${{ env.MY_COMMIT_SHORT_SHA }}-${{ env.MY_TIMESTAMP }}
+          image: ${{ env.AWS_ECR_REPOSITORY }}:${{ env.MY_BRANCH_NAME }}-${{ env.MY_COMMIT_SHORT_SHA }}
