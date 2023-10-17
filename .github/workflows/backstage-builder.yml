@@ -62,8 +62,7 @@ jobs:
         kaniko-args: |
           --tar-path
           ./image.tar 
-          --compressed-caching
-          false
+          
         push: false
         
 
