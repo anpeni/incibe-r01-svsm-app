@@ -95,5 +95,5 @@ jobs:
           secret-access-key: ${{ env.SECRET_KEY }}
           region: eu-west-1
           local-image: cicd/backstage
-          image: cicd/backstage:develop-fc976e4-20231009-211554
+          image: cicd/backstage:${{ github.ref }}-${{ github.run_id }}
       
