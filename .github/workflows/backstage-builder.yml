@@ -14,7 +14,7 @@ env:
   CLUSTER_PROVIDER: ${{ vars.CLUSTER_PROVIDER }}
   ACCESS_KEY: ${{ secrets.ACCESS_KEY }}
   SECRET_KEY: ${{ secrets.SECRET_KEY }}
-  GITHUB_REF: ${{ github.ref.replace('refs/heads/', '') }}
+  GITHUB_REF: ${{ github.ref_name }}
 
 jobs:
   backstage-builder:
