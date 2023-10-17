@@ -11,10 +11,10 @@ on:
       - closed
 
 env:
-  CLUSTER_PROVIDER: ${{ vars.CLUSTER_PROVIDER }}
   AWS_ACCESS_KEY: ${{ secrets.AWS_ACCESS_KEY }}
   AWS_SECRET_KEY: ${{ secrets.AWS_SECRET_KEY }}
-  
+  AWS_REGION: eu-west-1
+  AWS_ECR_REPOSITORY: cicd/backstage
 
 jobs:
   backstage-builder:
@@ -23,15 +23,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Extract branch name
-        id: extract_branch
-        shell: bash
-        run: echo "branch=${GITHUB_HEAD_REF:-${GITHUB_REF_NAME//\//-}}" >> $GITHUB_OUTPUT   
+      - name: Generate environment variables
+        id: vars
+        run: |
+          calculatedSha=$(git rev-parse --short ${{ github.sha }})
+          echo "MY_COMMIT_SHORT_SHA=$calculatedSha" >> $GITHUB_ENV
+          echo "MY_BRANCH_NAME=${GITHUB_HEAD_REF:-${GITHUB_REF_NAME//\//-}}" >> $GITHUB_ENV
+          echo "MY_TIMESTAMP=$(date +'%Y%m%d-%H%M%S')" >> $GITHUB_ENV
 
-      - name: Give date
-        id: date
-        run: echo "date=$(date +'%d%m%Y%H%M%S')" >> $GITHUB_OUTPUT
-     
       - uses: actions/cache/restore@v3
         id: restore-cache
         with:
@@ -81,12 +80,12 @@ jobs:
           context: .
           file: ./packages/backend/Dockerfile
           load: true
-          tags: cicd/backstage
+          tags: ${{ env.AWS_ECR_REPOSITORY }}
 
       - name: Scan Docker image with Trivy
         uses: aquasecurity/trivy-action@master
         with:
-          image-ref: "cicd/backstage"
+          image-ref: ${{ env.AWS_ECR_REPOSITORY }}
           severity: "CRITICAL"
           format: "sarif"
           output: "results-dockerimage.sarif"
@@ -96,7 +95,15 @@ jobs:
         with:
           sarif_file: "results-dockerimage.sarif"
           category: "docker-image"
-    
+
+      - name: Build linux/amd64 and linux/arm64 Docker images
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: ./packages/backend/Dockerfile
+          platforms: linux/amd64,linux/arm64
+          load: true
+          tags: ${{ env.AWS_ECR_REPOSITORY }}
 
       - name: Push to ECR
         id: ecr
@@ -104,7 +111,6 @@ jobs:
         with:
           access-key-id: ${{ env.AWS_ACCESS_KEY }}
           secret-access-key: ${{ env.AWS_SECRET_KEY }}
-          region: eu-west-1
-          local-image: cicd/backstage
-          image: cicd/backstage:${{ steps.extract_branch.outputs.branch }}-${{ github.run_id }}-${{ steps.date.outputs.date }}
-      
+          region: ${{ env.AWS_REGION }}
+          local-image: ${{ env.AWS_ECR_REPOSITORY }}
+          image: ${{ env.AWS_ECR_REPOSITORY }}:${{ env.MY_BRANCH_NAME }}-${{ env.MY_COMMIT_SHORT_SHA }}-${{ env.MY_TIMESTAMP }}
