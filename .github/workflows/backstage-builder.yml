@@ -10,6 +10,11 @@ on:
     types:
       - closed
 
+env:
+  CLUSTER_PROVIDER: ${{ vars.CLUSTER_PROVIDER }}
+  ACCESS_KEY: ${{ secrets.ACCESS_KEY }}
+  SECRET_KEY: ${{ secrets.SECRET_KEY }}
+
 jobs:
   backstage-builder:
     runs-on: ubuntu-latest
@@ -81,3 +86,13 @@ jobs:
         with:
           sarif_file: "results-dockerimage.sarif"
           category: "docker-image"
+
+      - name: Push to ECR
+        id: ecr
+        uses: jwalton/gh-ecr-push@v1
+        with:
+          access-key-id: ${{ env.ACCESS_KEY }}
+          secret-access-key: ${{ env.SECRET_KEY }}
+          region: eu-west-1
+          image: 061496817474.dkr.ecr.eu-west-1.amazonaws.com/cicd/backstage:develop-fc976e4-20231009-211554
+      
