@@ -3,83 +3,81 @@ on:
   workflow_dispatch:
   push:
     branches:
-    - feat/*
+      - feat/*
   pull_request:
     branches:
       - main
     types:
       - closed
 
-env:
-  CLUSTER_PROVIDER: ${{ vars.CLUSTER_PROVIDER }}
-
 jobs:
   backstage-builder:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout
-      uses: actions/checkout@v3
+      - name: Checkout
+        uses: actions/checkout@v4
 
-    - uses: actions/cache/restore@v3
-      id: restore-cache
-      with:
-        path: node_modules
-        key: ${{ runner.os }}-build-${{ hashFiles('./yarn.lock') }}
+      - uses: actions/cache/restore@v3
+        id: restore-cache
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-build-${{ hashFiles('./yarn.lock') }}
 
-    - name: install-dependencies
-      run: yarn install --frozen-lockfile
+      - name: Install dependencies
+        if: steps.restore-cache.outputs.cache-hit != 'true'
+        run: yarn install --frozen-lockfile
 
-    - uses: actions/cache/save@v3
-      if: always() 
-      with:
-        path: node_modules
-        key: ${{ runner.os }}-build-${{ hashFiles('./yarn.lock') }}
-      
-    
-    - name: yarn-tsc
-      run: yarn tsc
+      - uses: actions/cache/save@v3
+        if: steps.restore-cache.outputs.cache-hit != 'true'
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-build-${{ hashFiles('./yarn.lock') }}
 
-    - name: yarn-builder
-      run: yarn build:backend --config ../../app-config.yaml
+      - name: Compile
+        run: yarn tsc
 
-    - name: scan Dockerfile trivy
-      uses: aquasecurity/trivy-action@master
-      with:
-        scan-type: 'config'
-        scan-ref: ./packages/backend/Dockerfile
-        severity: 'CRITICAL'
-        format: 'sarif'
-        output: 'trivy-results.sarif'
+      - name: Build backend
+        run: yarn build:backend --config ../../app-config.yaml
 
-    - name: Sube Trivy scan resultado a GitHub Security tab
-      uses: github/codeql-action/upload-sarif@v2
-      with:
-        sarif_file: 'trivy-results.sarif'
+      - name: Scan Dockerfile with Trivy
+        uses: aquasecurity/trivy-action@master
+        with:
+          scan-type: "config"
+          scan-ref: ./packages/backend/Dockerfile
+          severity: "CRITICAL"
+          format: "sarif"
+          output: "results-dockerfile.sarif"
 
-    - name: build-image
-      uses: int128/kaniko-action@v1
-      with:
-        context: .
-        file: packages/backend/Dockerfile
-        tags: 061496817474.dkr.ecr.eu-west-1.amazonaws.com/cicd/backstage:develop-fc976e4-20231009-211554
-        kaniko-args: |
-          --tar-path=/kaniko/action/outputs/image.tar
-        push: false
-        
+      - name: Upload Trivy scan results to GitHub Security tab
+        uses: github/codeql-action/upload-sarif@v2
+        with:
+          sarif_file: "results-dockerfile.sarif"
+          category: "docker-file"
 
-    - run: |
-        ls -la
-        
-    - name: trivy-analisis
-      uses: aquasecurity/trivy-action@master
-      with:
-        input: /kaniko/action/outputs/image.tar
-        severity: 'CRITICAL'
-        format: 'sarif'
-        output: 'trivy-results.sarif'
-    - name: Sube Trivy scan resultado a GitHub Security tab
-      uses: github/codeql-action/upload-sarif@v2
-      with:
-        sarif_file: 'trivy-results.sarif'
-      
-    
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build and export to Docker
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: ./packages/backend/Dockerfile
+          load: true
+          tags: 061496817474.dkr.ecr.eu-west-1.amazonaws.com/cicd/backstage:develop-fc976e4-20231009-211554
+
+      - name: Scan Docker image with Trivy
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: "061496817474.dkr.ecr.eu-west-1.amazonaws.com/cicd/backstage:develop-fc976e4-20231009-211554"
+          severity: "CRITICAL"
+          format: "sarif"
+          output: "results-dockerimage.sarif"
+
+      - name: Upload Trivy scan results to GitHub Security tab
+        uses: github/codeql-action/upload-sarif@v2
+        with:
+          sarif_file: "results-dockerimage.sarif"
+          category: "docker-image"
