@@ -63,17 +63,17 @@ jobs:
         file: packages/backend/Dockerfile
         tags: 061496817474.dkr.ecr.eu-west-1.amazonaws.com/cicd/backstage:develop-fc976e4-20231009-211554
         kaniko-args: |
-          --tar-path=./image.tar
+          --tar-path=/kaniko/action/outputs/image.tar
         push: false
         
 
     - run: |
-        ls -laR
+        ls -la
         
     - name: trivy-analisis
       uses: aquasecurity/trivy-action@master
       with:
-        input: ./image.tar
+        input: /kaniko/action/outputs/image.tar
         severity: 'CRITICAL'
         format: 'sarif'
         output: 'trivy-results.sarif'
