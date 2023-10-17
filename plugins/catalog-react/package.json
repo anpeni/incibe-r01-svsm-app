@@ -48,7 +48,6 @@
   "dependencies": {
     "@backstage/catalog-client": "^1.4.2",
     "@backstage/catalog-model": "^1.4.0",
-    
     "@backstage/core-plugin-api": "^1.5.2",
     "@backstage/errors": "^1.2.0",
     "@backstage/integration": "^1.5.0",
