@@ -58,9 +58,7 @@ jobs:
         
 
     - run: |
-        docker image ls
-        cd packages/backend
-        ls -la
+        ls -laR
         
     - name: trivy-analisis
       uses: aquasecurity/trivy-action@master
