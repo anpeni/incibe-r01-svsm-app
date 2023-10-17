@@ -23,6 +23,12 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Extract branch name
+        shell: bash
+        run: echo "branch=${GITHUB_HEAD_REF:-${GITHUB_REF//\//-}"}" >> $GITHUB_OUTPUT
+        id: extract_branch
+        
       - name: echo
         run: |
           echo "${{ env.GITHUB_REF }}"
@@ -106,5 +112,5 @@ jobs:
           secret-access-key: ${{ env.AWS_SECRET_KEY }}
           region: eu-west-1
           local-image: cicd/backstage
-          image: cicd/backstage:$GITHUB_REF_CLEAND-${{ github.run_id }}
+          image: cicd/backstage:${{ steps.extract_branch.outputs.branch }}-${{ github.run_id }}
       
