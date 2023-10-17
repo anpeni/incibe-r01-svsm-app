@@ -25,7 +25,8 @@ jobs:
       with:
         path: node_modules
         key: ${{ runner.os }}-build-${{ hashFiles('**/yarn.lock') }}
-
+        restore-keys: |
+          ${{ runner.os }}-build-
 
     - name: install-dependencies
       run: yarn install --frozen-lockfile
@@ -74,7 +75,7 @@ jobs:
     - name: trivy-analisis
       uses: aquasecurity/trivy-action@master
       with:
-        input: ${{ env.GITHUB_WORKSPACE }}/image.tar
+        input: ./image.tar
         severity: 'CRITICAL'
         format: 'sarif'
         output: 'trivy-results.sarif'
