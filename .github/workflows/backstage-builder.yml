@@ -24,9 +24,7 @@ jobs:
       id: restore-cache
       with:
         path: node_modules
-        key: ${{ runner.os }}-build-${{ hashFiles('**/yarn.lock') }}
-        restore-keys: |
-          ${{ runner.os }}-build-
+        key: ${{ runner.os }}-build-${{ hashFiles('./yarn.lock') }}
 
     - name: install-dependencies
       run: yarn install --frozen-lockfile
@@ -35,7 +33,7 @@ jobs:
       if: always() 
       with:
         path: node_modules
-        key: ${{ runner.os }}-build-${{ hashFiles('**/yarn.lock') }}
+        key: ${{ runner.os }}-build-${{ hashFiles('./yarn.lock') }}
       
     
     - name: yarn-tsc
