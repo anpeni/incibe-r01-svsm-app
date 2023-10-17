@@ -12,8 +12,8 @@ on:
 
 env:
   CLUSTER_PROVIDER: ${{ vars.CLUSTER_PROVIDER }}
-  ACCESS_KEY: ${{ secrets.ACCESS_KEY }}
-  SECRET_KEY: ${{ secrets.SECRET_KEY }}
+  AWS_ACCESS_KEY: ${{ secrets.AWS_ACCESS_KEY }}
+  AWS_SECRET_KEY: ${{ secrets.AWS_SECRET_KEY }}
   GITHUB_REF: ${{ github.ref_name }}
   GITHUB_REF_CLEAND: "${env.GITHUB_REF//\//-}"
 
@@ -102,8 +102,8 @@ jobs:
         id: ecr
         uses: jwalton/gh-ecr-push@v1
         with:
-          access-key-id: ${{ env.ACCESS_KEY }}
-          secret-access-key: ${{ env.SECRET_KEY }}
+          access-key-id: ${{ env.AWS_ACCESS_KEY }}
+          secret-access-key: ${{ env.AWS_SECRET_KEY }}
           region: eu-west-1
           local-image: cicd/backstage
           image: cicd/backstage:$GITHUB_REF_CLEAND-${{ github.run_id }}
