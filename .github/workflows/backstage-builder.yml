@@ -20,6 +20,16 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v3
 
+    - name: Cache node_modules
+      uses: actions/cache@v2
+      with:
+        path: |
+          node_modules
+        key: ${{ runner.os }}-build-${{ hashFiles('**/yarn.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-build-${{ hashFiles('**/yarn.lock') }}
+          ${{ runner.os }}-build-
+
     - name: install-dependencies
       run: yarn install --frozen-lockfile
 
