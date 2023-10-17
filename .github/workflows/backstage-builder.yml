@@ -15,7 +15,6 @@ env:
   ACCESS_KEY: ${{ secrets.ACCESS_KEY }}
   SECRET_KEY: ${{ secrets.SECRET_KEY }}
   GITHUB_REF: ${{ github.ref_name }}
-  GITHUB_REF_CLEAND: test
 
 jobs:
   backstage-builder:
@@ -27,8 +26,9 @@ jobs:
         run: |
           GITHUB_REF="${{ env.GITHUB_REF}}"
           echo "$GITHUB_REF"
-          ${{env.GITHUB_REF_CLEAND}}="${GITHUB_REF//\//-}"
-          echo "${{env.GITHUB_REF_CLEAND}}"
+          GITHUB_REF_CLEAND="${GITHUB_REF//\//-}"
+          echo "$GITHUB_REF_CLEAND"
+          echo "${{ env.GITHUB_REF_CLEAND }}"
           
       - uses: actions/cache/restore@v3
         id: restore-cache
@@ -104,5 +104,5 @@ jobs:
           secret-access-key: ${{ env.SECRET_KEY }}
           region: eu-west-1
           local-image: cicd/backstage
-          image: cicd/backstage:${{env.GITHUB_REF_CLEAND}}-${{ github.run_id }}
+          image: cicd/backstage:$GITHUB_REF_CLEAND-${{ github.run_id }}
       
