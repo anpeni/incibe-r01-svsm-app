@@ -4,9 +4,11 @@ on:
   push:
     branches:
       - feat/*
+      - feature/*
   pull_request:
     branches:
-      - main
+      - master
+      - develop
     types:
       - closed
 

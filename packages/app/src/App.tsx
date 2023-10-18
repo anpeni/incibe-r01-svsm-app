@@ -65,23 +65,23 @@ const app = createApp({
         {...props}
         auto
         // ! Descomentar para tener el login con Guest
-        // providers={[
-        //    'guest',
-        //   {
-        //     id: 'dex',
-        //     title: 'Dex',
-        //     message: 'Sign in using Azure AD',
-        //     apiRef: dexOIDCAuthApiRef,
-        //   },
-        // ]}
-
-        // ! Descomentar para tener login con Azure solamente
-        provider={{
+        providers={[
+           'guest',
+          {
             id: 'dex',
             title: 'Dex',
             message: 'Sign in using Azure AD',
             apiRef: dexOIDCAuthApiRef,
-        }}
+          },
+        ]}
+
+        // ! Descomentar para tener login con Azure solamente
+        // provider={{
+        //     id: 'dex',
+        //     title: 'Dex',
+        //     message: 'Sign in using Azure AD',
+        //     apiRef: dexOIDCAuthApiRef,
+        // }}
       />
     ),
   },

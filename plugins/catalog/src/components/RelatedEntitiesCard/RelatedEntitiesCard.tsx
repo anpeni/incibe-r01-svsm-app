@@ -108,7 +108,7 @@ export function RelatedEntitiesCard<T extends Entity>(
       }
       columns={columns}
       entities={asRenderableEntities(entities || [])}
-      // tableOptions={tableOptions}
+      tableOptions={tableOptions}
     />
   );
 }
