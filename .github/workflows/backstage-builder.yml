@@ -51,6 +51,8 @@ jobs:
         run: yarn tsc
 
       - name: Build backend
+        env:
+          NODE_OPTIONS: "--max_old_space_size=4096"
         run: yarn build:backend --config ../../app-config.yaml
 
       - name: Scan Dockerfile with Trivy
