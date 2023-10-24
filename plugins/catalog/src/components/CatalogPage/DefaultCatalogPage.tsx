@@ -41,7 +41,6 @@ import {
 import React, { ReactNode } from 'react';
 import { createComponentRouteRef } from '../../routes';
 import { CatalogTable, CatalogTableRow } from '../CatalogTable';
-import { useCatalogPluginOptions } from '../../options';
 import { makeStyles } from '@material-ui/core';
 import { catalogTranslationRef } from '../../translation';
 import { useTranslationRef } from '@backstage/core-plugin-api/alpha';

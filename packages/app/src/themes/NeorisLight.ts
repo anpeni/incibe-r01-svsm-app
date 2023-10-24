@@ -134,7 +134,7 @@ const createCustomThemeOverrides = (
       root: {
         '& th': {
           // ? Cabecera
-          background: vars.fontFamily,
+          background: vars.light.background.highlight,
           border: 'none',
           textTransform: 'uppercase',
         },
