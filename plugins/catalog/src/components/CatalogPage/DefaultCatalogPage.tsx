@@ -88,7 +88,8 @@ export function DefaultCatalogPage(props: DefaultCatalogPageProps) {
       <Content>
         <ContentHeader title="">
           <CreateButton
-            title={t('catalog_page_create_button_title')}
+            // title={t('catalog_page_create_button_title')}
+            title={'ADD'}
             to={createComponentLink && createComponentLink()}
           />
           <SupportButton>All your software catalog entities</SupportButton>
