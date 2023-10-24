@@ -29,44 +29,8 @@ export type HeaderTabsClassKey =
   | 'selectedd'
   | 'tabRoott';
 
-  const bgColor =
-  'var(--Color-Dark, linear-gradient(173deg, rgba(6, 11, 40, 0.50) 5.57%, rgba(6, 11, 40, 0.70) 166.22%))';
-
-const useStyles = makeStyles(
-  theme => ({
-    tabsWrapperr: {
-      gridArea: 'pageSubheader',
-      //backgroundColor: 'red',
-      paddingLeft: theme.spacing(8),
-      minWidth: 0,
-    },
-    defaultTabb: {
-      //...theme.typography.caption,
-      //paddingLeft: theme.spacing(3, 3),
-      backgroundColor: bgColor,
-      //backdropFilter: 'blur(120px)',
-      textTransform: 'none',
-      fontWeight: 400,
-      fontfamily: 'Inter, sans-serif',
-      fontStyle: 'normal',
-      color: 'white',
-      fontSize: '16px',
-    },
-    selectedd: {
-      color: 'white',
-      fontWeight: 700,
-      backgroundColor: 'rgba(6, 11, 40, 0.8)',
-      borderRadius: '12px',
-    },
-    tabRoott: {
-      '&:hover': {
-        backgroundColor: 'rgba(6, 11, 40, 0.8)',
-        borderRadius: '12px',
-      },
-    },
-  }),
-  { name: 'BackstageHeaderTabsSettings' },
-);
+// const bgColor =
+// 'var(--Color-Dark, linear-gradient(173deg, rgba(6, 11, 40, 0.50) 5.57%, rgba(6, 11, 40, 0.70) 166.22%))';
 
 export type Tab = {
   id: string;
@@ -89,6 +53,45 @@ type HeaderTabsProps = {
 export function HeaderTabsSettings(props: HeaderTabsProps) {
   const { tabs, onChange, selectedIndex } = props;
   const [selectedTab, setSelectedTab] = useState<number>(selectedIndex ?? 0);
+  const useStyles = makeStyles(
+    theme => {
+      return {
+        tabsWrapperr: {
+          gridArea: 'pageSubheader',
+          //backgroundColor: 'red',
+          paddingLeft: theme.spacing(8),
+          minWidth: 0,
+        },
+        defaultTabb: {
+          //...theme.typography.caption,
+          //paddingLeft: theme.spacing(3, 3),
+          // backgroundColor: bgColor,
+          //backdropFilter: 'blur(120px)',
+          textTransform: 'none',
+          fontWeight: 400,
+          fontfamily: 'Inter, sans-serif',
+          fontStyle: 'normal',
+          color: `${theme.palette.type === 'dark' ? '#fff' : '#000'}`,
+          fontSize: '16px',
+        },
+        selectedd: {
+          color: `${theme.palette.type === 'dark' ? '#fff' : '#000'}`,
+          fontWeight: 700,
+          borderRadius: '12px',
+        },
+        tabRoott: {
+          '&:hover': {
+            // TODO Cambiar colores hover si se indica despues
+            borderRadius: '12px',
+            background: 'none',
+            color: '#4FD1C5',
+          },
+        },
+      };
+    },
+    { name: 'BackstageHeaderTabsSettings' },
+  );
+
   const styles = useStyles();
 
   const handleChange = useCallback(

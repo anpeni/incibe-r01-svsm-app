@@ -14,6 +14,8 @@ import { MySwitch } from './SwitchPropio';
 
 
 
+
+
 const useStyles = makeStyles(
   theme => ({
     customSwitch: {
@@ -23,16 +25,22 @@ const useStyles = makeStyles(
       height: '40px',
       padding: '6px',
       borderRadius: '24px',
+      
+      
       '& .MuiSwitch-thumb': {
         width: '60px',
         height: '35px',
         borderRadius: '50px !important',
+        backgroundColor: 'red',
+        
       },
       '& .MuiSwitch-track': {
         height: '24px',
         width: '60px !important',
         borderRadius: '50px !important',
-        color: '#FFFFFF !important'
+        color: 'red !important',
+        backgroundColor: 'red',
+        
 
       },
     },
@@ -46,7 +54,9 @@ const useStyles = makeStyles(
       paddingRight: 16,
     },
     titulo: {
-      color: '#FFF',
+      //color: '#FFF',
+      color: `${theme.palette.type === 'dark' ? '#FFF' : 'RGB(6, 11, 40)'
+    }`,
       textAlign: 'right',
       fontFamily: 'Inter, sans-serif',
       fontSize: '20px',
@@ -57,7 +67,9 @@ const useStyles = makeStyles(
       //top: '-5px',
     },
     texto: {
-      color: '#FFF',
+      //color: '#FFF',
+      color: `${theme.palette.type === 'dark' ? '#FFF' : 'RGB(6, 11, 40)'
+    }`,
       textAlign: 'right',
       fontFamily: 'Inter, sans-serif',
       fontSize: '20px',
@@ -68,7 +80,8 @@ const useStyles = makeStyles(
       top: '-20px',
     },
     textoTema: {
-      color: '#FFF',
+      color: `${theme.palette.type === 'dark' ? '#FFF' : 'RGB(6, 11, 40)'
+    }`,
       textAlign: 'right',
       fontFamily: 'Inter, sans-serif',
       fontSize: '13px',
@@ -143,7 +156,7 @@ export const UserSettingsPinToggle = () => {
         </p>
       </div>
       <Grid item className={classes.switchModificado}>
-      <MySwitch 
+      <MySwitch className={classes.customSwitch}
         
         checked={isPinned}
         onChange={() => toggleSidebarPinState()}

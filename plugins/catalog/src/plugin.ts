@@ -82,6 +82,15 @@ export const catalogPlugin = createPlugin({
     viewTechDoc: viewTechDocRouteRef,
     createFromTemplate: createFromTemplateRouteRef,
   },
+  
+  __experimentalConfigure(
+    options?: CatalogInputPluginOptions,
+  ): CatalogPluginOptions {
+    const defaultOptions = {
+      createButtonTitle: 'ADD',
+    };
+    return { ...defaultOptions, ...options };
+  },
 });
 
 /** @public */

@@ -68,8 +68,7 @@ import Button from '@material-ui/core/Button';
 import { OverridableComponent } from '@mui/material/OverridableComponent';
 import { SvgIconTypeMap } from '@mui/material';
 import { ChevronLeftOutlined, ChevronRightOutlined } from '@material-ui/icons';
-import { colorBrewer } from 'react-syntax-highlighter/dist/esm/styles/hljs';
-
+import { vars } from '../../../../app/src/themes/variables';
 /** @public */
 export type SidebarItemClassKey =
   | 'root'
@@ -95,12 +94,23 @@ const makeSidebarStyles = (sidebarConfig: SidebarConfig) =>
   makeStyles<BackstageTheme>(
     theme => ({
       root: {
-        color: theme.palette.navigation.color,
+        color: `${
+          theme.palette.type === 'dark'
+            ? 'rgba(255, 255, 255, 0.60)'
+            : 'RGB(6, 11, 40)'
+        }`,
         display: 'flex',
         flexFlow: 'row nowrap',
         alignItems: 'center',
         height: 48,
         cursor: 'pointer',
+        '&:hover': {
+          background: `${
+            theme.palette.type === 'dark'
+              ? vars.dark.background.highlight
+              : 'white !important' // TODO: Add var
+          }`,
+        },
       },
       buttonItem: {
         background: 'none',
@@ -123,17 +133,25 @@ const makeSidebarStyles = (sidebarConfig: SidebarConfig) =>
       },
       highlightable: {
         '&:hover': {
-          background:
-            theme.palette.navigation.navItem?.hoverBackground ?? '#404040',
+          background: `${
+            theme.palette.type === 'dark'
+              ? vars.dark.background.highlight
+              : vars.light.background.white + '!important'
+          }`,
+          //borderRadius: '12px',
         },
       },
       highlighted: {
-        background:
-          theme.palette.navigation.navItem?.hoverBackground ?? '#404040',
+        background: `${
+          theme.palette.type === 'dark'
+            ? vars.dark.background.highlight
+            : vars.light.background.white + '!important'
+        }`,
+        //borderRadius: '12px',
       },
       label: {
         // XXX (@koroeskohr): I can't seem to achieve the desired font-weight from the designs
-        fontWeight: 'bold',
+        fontWeight: 'lighter',
         whiteSpace: 'nowrap',
         lineHeight: 'auto',
         flex: '3 1 auto',
@@ -180,62 +198,57 @@ const makeSidebarStyles = (sidebarConfig: SidebarConfig) =>
       expandButton: {
         background: 'none',
         border: 'none',
-        //color: theme.palette.navigation.color,
         width: '100%',
-        //cursor: 'pointer',
         position: 'relative',
         height: 48,
         '&:hover': {
-          background:'none',
+          background: 'none',
         },
       },
       arrows: {
         position: 'relative',
-        // right: 3,
-        // bottom: 
-        // -3.8,
-
-      },
-      arrowslight: {
-        position: 'relative',
-        color: 'red',
-        // right: 3,
-        // bottom: 
-        // -3.8,
-
+        color: vars.light.fontColor.white,
       },
       circuloarrow: {
         position: 'absolute',
         right: -7,
-        //bottom: 10, // mover el círculo hacia arriba
-        width: '25px',  // tamaño del círculo en anchura
-        height: '25px', // tamaño del círculo en altura
-        backgroundColor: '#192A3E', // color del círculo
-        borderRadius: '50%', // redondea las esquinas para hacerlo un círcul
+        width: '25px',
+        height: '25px',
+        backgroundColor: vars.dark.background.accent,
+        borderRadius: '50%',
       },
-      circuloarrowclaro: {
-        position: 'absolute',
-        right: -7,
-        //bottom: 10, // mover el círculo hacia arriba
-        width: '25px',  // tamaño del círculo en anchura
-        height: '25px', // tamaño del círculo en altura
-        backgroundColor: 'white', // color del círculo       
-        borderRadius: '50%', // redondea las esquinas para hacerlo un círcul
-      },
-
       selected: {
         '&$root': {
-          borderLeft: `solid ${sidebarConfig.selectedIndicatorWidth}px ${theme.palette.navigation.indicator}`,
-          color: theme.palette.navigation.selectedColor,
+          borderLeft: `solid ${sidebarConfig.selectedIndicatorWidth}px ${vars.light.background.accent}`,
+          color: `${
+            theme.palette.type === 'dark'
+              ? vars.dark.background.white + '!important'
+              : vars.light.background.accent + ' !important'
+          }`,
+          background: `${
+            theme.palette.type === 'dark'
+              ? vars.dark.background.highlight
+              : vars.light.background.white + '!important'
+          }`,
+          '&:hover': {
+            background: `${
+              theme.palette.type === 'dark'
+                ? vars.dark.background.highlight
+                : vars.light.background.white + '!important'
+            }`,
+            borderadius: '12px !important',
+          },
         },
         '&$closed': {
           width: sidebarConfig.drawerWidthClosed,
         },
         '& $closedItemIcon': {
           paddingRight: sidebarConfig.selectedIndicatorWidth,
+          color: vars.light.background.accent,
         },
         '& $iconContainer': {
           marginLeft: -sidebarConfig.selectedIndicatorWidth,
+          color: vars.light.background.accent,
         },
       },
     }),
@@ -281,8 +294,8 @@ const useLocationMatch = (
               if (dropdownItems?.length) {
                 dropdownItems.forEach(
                   ({ to: _to }) =>
-                  (active =
-                    active || isLocationMatch(location, resolvePath(_to))),
+                    (active =
+                      active || isLocationMatch(location, resolvePath(_to))),
                 );
                 return;
               }
@@ -424,7 +437,11 @@ const SidebarItemBase = forwardRef<any, SidebarItemProps>((props, ref) => {
   const displayItemIcon = (
     <Box style={divStyle}>
       <Icon fontSize="small" />
-      {!isOpen && hasSubmenu ? <ChevronRightOutlined fontSize="small" /> : <></>}
+      {!isOpen && hasSubmenu ? (
+        <ChevronRightOutlined fontSize="small" />
+      ) : (
+        <></>
+      )}
     </Box>
   );
 
@@ -767,7 +784,6 @@ export const SidebarExpandButton = () => {
 
   return (
     <>
-    {isDarkMode ? (
       <Button
         role="button"
         onClick={handleClick}
@@ -775,30 +791,12 @@ export const SidebarExpandButton = () => {
         aria-label="Expand Sidebar"
         data-testid="sidebar-expand-button"
       >
-        
         <div className={classes.circuloarrow}>
-          
-        <Box className={classes.arrows}>
-          {isOpen ? <ChevronLeftOutlined /> : <ChevronRightOutlined />}
-          
-        </Box>
+          <Box className={classes.arrows}>
+            {isOpen ? <ChevronLeftOutlined /> : <ChevronRightOutlined />}
+          </Box>
         </div>
       </Button>
-    ):(
-      <Button
-      role="button"
-      onClick={handleClick}
-      className={classes.expandButton}
-      aria-label="Expand Sidebar"
-      data-testid="sidebar-expand-button"
-    >
-      <div className={classes.circuloarrowclaro}>
-      <Box className={classes.arrows}>
-        {isOpen ? <ChevronLeftOutlined style={{color:'rgba(51, 51, 51, 0.80)'}} /> : <ChevronRightOutlined style={{color:'rgba(51, 51, 51, 0.80)'}}/>}
-      </Box>
-      </div>
-    </Button>
-    )}
     </>
   );
 };

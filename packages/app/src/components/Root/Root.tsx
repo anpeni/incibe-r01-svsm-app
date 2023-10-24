@@ -15,25 +15,21 @@
  */
 
 import React, { PropsWithChildren } from 'react';
-import { Link, Typography, makeStyles } from '@material-ui/core';
-import HomeIcon from '@material-ui/icons/Home';
-import ExtensionIcon from '@material-ui/icons/Extension';
-import MapIcon from '@material-ui/icons/MyLocation';
+import { Link, makeStyles } from '@material-ui/core';
 import HelpIcon from '@material-ui/icons/HeadsetMic';
-import NightIcon from '@material-ui/icons/NightsStay';
 import CreateComponentIcon from '@material-ui/icons/AddCircleOutline';
-import CategoryIcon from '@material-ui/icons/Category';
 import LogoFull from './LogoFull';
 import LogoIcon from './LogoIcon';
 import { NavLink } from 'react-router-dom';
 import {
   Settings as SidebarSettings,
-  UserSettingsSignInAvatar, UserSettingsProfileNew,
-  UserSettingsThemeToggleTema, UserSettingsTema, UserSettingsSalir
+  UserSettingsProfileNew,
+  UserSettingsThemeToggleTema2, UserSettingsSalir
 } from '@backstage/plugin-user-settings';
 
 
-import { SearchModal, SidebarSearchModal } from '@backstage/plugin-search';
+
+import { SidebarSearchModal } from '@backstage/plugin-search';
 import {
   Sidebar,
   sidebarConfig,
@@ -41,25 +37,18 @@ import {
   SidebarGroup,
   SidebarItem,
   SidebarPage,
-  SidebarScrollWrapper,
   SidebarSpace,
   useSidebarOpenState,
   SidebarSubmenuItem,
   SidebarExpandButton,
-  SidebarSubmenu,
   Titulos,
-  SidebarSubmenuItemModificado
 } from '@backstage/core-components';
 import MenuIcon from '@material-ui/icons/Menu';
-import SearchIcon from '@material-ui/icons/Search';
-import { GridView, SettingsOutlined, SearchOutlined, NotificationsOutlined } from '@mui/icons-material'
-import { DescriptionOutlined } from '@material-ui/icons';
-import { useApp } from '@backstage/core-plugin-api';
+import { GridView, SearchOutlined, NotificationsOutlined } from '@mui/icons-material'
+import { BackstageTheme } from '@backstage/theme';
 
-
-const backgroundImageUrl = require('../../assets/images/Incibe-Background.png');
-
-const useSidebarLogoStyles = makeStyles({
+const useSidebarLogoStyles = makeStyles<BackstageTheme>(
+  theme => ({
   root: {
     width: sidebarConfig.drawerWidthClosed,
     height: 3 * sidebarConfig.logoHeight,
@@ -67,13 +56,16 @@ const useSidebarLogoStyles = makeStyles({
     flexFlow: 'row nowrap',
     alignItems: 'center',
     marginBottom: -14,
-    //marginLeft: -6,
+
+  },
+  search: {
+    background:'red !important',
   },
   link: {
     width: sidebarConfig.drawerWidthClosed,
-    //marginLeft: 43,
+
   },
-});
+  }));
 
 const SidebarLogo = () => {
   const classes = useSidebarLogoStyles();
@@ -88,56 +80,44 @@ const SidebarLogo = () => {
         className={classes.link}
         aria-label="Home"
       >
-      {isOpen ? 
-        
-        <div style={{marginLeft:42}}>
-          <LogoFull />
-        </div>
-        
-        
-        : 
-        
-        <div style={{marginLeft:13}}>
-        <LogoIcon />
-      </div>
-        
-        }
+        {isOpen ? (
+          <div style={{ marginLeft: 42 }}>
+            <LogoFull />
+          </div>
+        ) : (
+          <div style={{ marginLeft: 13 }}>
+            <LogoIcon />
+          </div>
+        )}
       </Link>
-
     </div>
   );
 };
 
 const useStyles = makeStyles({
   sidebarContainer: {
-    //zIndex: 10,
-    //overflow: 'hidden',
-    //backgroundColor: 'white',// Para que el contenido no se desborde
-    //backdropFilter: 'blur(120px)'
+
   },
   sectionTitle: {
     fontSize: '8px',
     color: 'rgba(255, 255, 255, 0.30)',
-    fontFamily: "Inter, sans-serif",
+    fontFamily: 'Inter, sans-serif',
     fontWeight: 500,
     lineHeight: 'normal',
     marginLeft: '15px',
     marginTop: '15px',
-    marginBottom: '10px'
+    marginBottom: '10px',
   },
   sectionTitleCerrado: {
     fontSize: '8px',
     color: 'rgba(255, 255, 255, 0.30)',
-    fontFamily: "Inter, sans-serif",
+    fontFamily: 'Inter, sans-serif',
     fontWeight: 500,
     lineHeight: 'normal',
-    marginLeft: 'auto',  // Centrado horizontal (requiere un contenedor flex)
+    marginLeft: 'auto',
     marginRight: 'auto',
     marginTop: '15px',
     marginBottom: '10px'
-  },
-  titulos: {
-
   },
   circleBadge: {
     display: 'inline-flex',
@@ -147,7 +127,7 @@ const useStyles = makeStyles({
     height: '20px',
     borderRadius: '50%',
     backgroundColor: '#EE3131',
-    marginLeft: '8px', // Espacio entre el texto y el círculo
+    marginLeft: '8px',
   },
   number: {
     color: 'white',
@@ -158,27 +138,23 @@ const useStyles = makeStyles({
     opacity: 0.3,
   },
   sideBarStyle: {
-    backdropFilter: 'blur(120px)'
-
-  }
+    // backdropFilter: 'blur(120px)',
+  },
 });
 
 export const Root = ({ children }: PropsWithChildren<{}>) => {
   const classes = useStyles();
   const { isOpen } = useSidebarOpenState();
   //console.log('Is Sidebar Open:', isOpen);
+
+  // ? Para poner imagen de fondo a la Sidebar
   const rootStyle = {
-    backgroundImage: `url(${backgroundImageUrl})`, // Establece la imagen de fondo
-    backgroundSize: 'cover', // Otras propiedades de estilo según tu preferencia
-    backgroundRepeat: 'no-repeat',
-    backgroundPosition: 'center',
-    zIndex: 10,
+    // backgroundImage: `url(${backgroundImageUrl})`, // Establece la imagen de fondo
+    // backgroundSize: 'cover', // Otras propiedades de estilo según tu preferencia
+    // backgroundRepeat: 'no-repeat',
+    // backgroundPosition: 'center',
+    // zIndex: 10,
   };
-
-  const sideBarStyle = {
-    backdropFilter: 'blur(120px)'
-
-  }
 
   const CircleBadge = ({ count }: { count: number }) => {
     const classes = useStyles();
@@ -190,19 +166,21 @@ export const Root = ({ children }: PropsWithChildren<{}>) => {
     );
   };
 
-
   return (
     <div className={classes.sidebarContainer} style={rootStyle}>
-      <SidebarPage >
+      <SidebarPage>
         <div className={classes.sidebarContainer}>
           <Sidebar disableExpandOnHover>
             <SidebarLogo />
             <SidebarGroup label="Search" icon={<SearchOutlined />} to="/search">
-              <SidebarSearchModal />
+              <SidebarSearchModal  />
             </SidebarGroup>
-            <Titulos text={'MAIN'} ></Titulos>
+            <Titulos text={'MAIN'}></Titulos>
             <SidebarGroup label="Menu" icon={<MenuIcon />}>
-              <SidebarSubmenuItem icon={GridView} to="/Catalog" title="Control Panel"
+              <SidebarSubmenuItem
+                icon={GridView}
+                to="/Catalog"
+                title="Control Panel"
                 dropdownItems={[
                   {
                     title: 'Catalog',
@@ -216,14 +194,8 @@ export const Root = ({ children }: PropsWithChildren<{}>) => {
                     title: 'Docs',
                     to: '/8',
                   },
-
                 ]}
-
               />
-              {/* <SidebarItem icon={HomeIcon} to="/" text="Home" />
-              <SidebarItem icon={CategoryIcon} to="catalog" text="Catalog" />
-              <SidebarItem icon={ExtensionIcon} to="api-docs" text="APIs" />
-              <SidebarItem icon={DescriptionOutlined} to="docs" text="Docs" /> */}
               <SidebarItem
                 icon={CreateComponentIcon}
                 to="create"
@@ -234,23 +206,14 @@ export const Root = ({ children }: PropsWithChildren<{}>) => {
                 to="notifications"
                 text="Notifications"
               >
-                <CircleBadge count={3} /> {/* Cambia el número según tus necesidades */}
+                <CircleBadge count={3} />
               </SidebarItem>
               {/* End global nav */}
               <SidebarDivider className={classes.sidebarDivider} />
-
               <Titulos text={'ADMIN'} ></Titulos>
-              
-              <SidebarScrollWrapper>
               <SidebarSettings />
-                {/* <SidebarItem icon={MapIcon} to="tech-radar" text="Tech Radar" /> */}
-                <SidebarItem icon={HelpIcon} to="/ayuda" text="Help" />
-                
-              <UserSettingsThemeToggleTema />
-              {/* <UserSettingsTema /> */}
-
-
-              </SidebarScrollWrapper>
+              <SidebarItem icon={HelpIcon} to="/ayuda" text="Help" />
+              <UserSettingsThemeToggleTema2 />
             </SidebarGroup>
             <SidebarSpace />
             <SidebarExpandButton />
@@ -260,9 +223,9 @@ export const Root = ({ children }: PropsWithChildren<{}>) => {
               icon={<SettingsOutlined />}
               to="/settings"
             > */}
-              {/* <SidebarSettings />
+            {/* <SidebarSettings />
               <UserSettingsThemeToggleTema /> */}
-              {/* <UserSettingsTema /> */}
+            {/* <UserSettingsTema /> */}
             {/* </SidebarGroup> */}
             {/* <SidebarDivider className={classes.sidebarDivider} /> */}
             <SidebarGroup>

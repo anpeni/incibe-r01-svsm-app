@@ -58,7 +58,8 @@ export function CreateButton(props: CreateButtonProps) {
     </IconButton>
   ) : (
     <Button component={RouterLink} variant="contained" color="primary" to={to}>
-      {title}
+      {/* // TODO: Variabilize color */}
+      <span style={{ color: 'white' }}>{title}</span>{' '}
     </Button>
   );
 }

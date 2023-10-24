@@ -55,6 +55,7 @@ import { SelectProps } from '../Select/Select';
 import { Filter, Filters, SelectedFilters, Without } from './Filters';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { Card } from '@material-ui/core';
+import { vars } from '../../../../app/src/themes/variables';
 
 // Material-table is not using the standard icons available in in material-ui. https://github.com/mbrn/material-table/issues/51
 const tableIcons: Icons = {
@@ -67,7 +68,9 @@ const tableIcons: Icons = {
   )),
   Edit: forwardRef((props, ref) => <Edit {...props} ref={ref} />),
   Export: forwardRef((props, ref) => <SaveAlt {...props} ref={ref} />),
-  Filter: forwardRef((props, ref) => <FilterAltOutlinedIcon {...props} ref={ref} />),
+  Filter: forwardRef((props, ref) => (
+    <FilterAltOutlinedIcon {...props} ref={ref} />
+  )),
   FirstPage: forwardRef((props, ref) => <FirstPage {...props} ref={ref} />),
   LastPage: forwardRef((props, ref) => <LastPage {...props} ref={ref} />),
   NextPage: forwardRef((props, ref) => <ChevronRight {...props} ref={ref} />),
@@ -75,7 +78,9 @@ const tableIcons: Icons = {
     <ChevronLeft {...props} ref={ref} />
   )),
   ResetSearch: forwardRef((props, ref) => <Clear {...props} ref={ref} />),
-  Search: forwardRef((props, ref) => <FilterAltOutlinedIcon {...props} ref={ref} />), // Filtro
+  Search: forwardRef((props, ref) => (
+    <FilterAltOutlinedIcon {...props} ref={ref} />
+  )), // Filtro
   SortArrow: forwardRef((props, ref) => <ArrowUpward {...props} ref={ref} />),
   ThirdStateCheck: forwardRef((props, ref) => <Remove {...props} ref={ref} />),
   ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />),
@@ -100,8 +105,6 @@ function extractValueByField(data: any, field: string): any | undefined {
 
 export type TableHeaderClassKey = 'header';
 
-const isDarkMode = localStorage.getItem('theme') === 'neoris-dark';
-
 const StyledMTableHeader = withStyles(
   theme => ({
     header: {
@@ -119,7 +122,6 @@ const StyledMTableHeader = withStyles(
 
 export type TableToolbarClassKey = 'root' | 'title' | 'searchField';
 
-
 const StyledMTableToolbar = withStyles(
   theme => ({
     root: {
@@ -133,14 +135,19 @@ const StyledMTableToolbar = withStyles(
     searchField: {
       paddingRight: theme.spacing(2),
       padding: '0px 0px 0px 1px',
-      background:'linear-gradient(173deg, rgba(6, 11, 40, 0.75) 5.42%, rgba(6, 11, 40, 0.70) 133.85%)',
-      borderRadius: '12px',  
+      background: vars.dark.background.white,
+      borderRadius: '12px',
+      // ? Color del texto y iconos filtro
+      '& input': {
+        color: 'black',
+      },
+      '& svg': {
+        fill: 'black',
+      },
     },
   }),
   { name: 'BackstageTableToolbar' },
 )(MTableToolbar);
-
-
 
 /** @public */
 export type FiltersContainerClassKey = 'root' | 'title';
@@ -164,27 +171,23 @@ const useFilterStyles = makeStyles<BackstageTheme>(
 export type TableClassKey = 'root';
 
 const useTableStyles = makeStyles<BackstageTheme>(
-  () => ({
+  theme => ({
     root: {
       display: 'flex',
       alignItems: 'start',
     },
-    cardContainerLight: {
-      background: 'linear-gradient(90deg, rgba(224,241,255,0.5) 50%, rgba(224,241,255,0.4) 100%)',
+    cardContainer: {
+      background: `${
+        theme.palette.type === 'dark'
+          ? vars.dark.background.card
+          : vars.light.background.card
+      }`,
       borderRadius: 12,
       paddingLeft: 20,
       paddingRight: 20,
       paddingBottom: 20,
-      backdropFilter: 'blur(120px)',
+      // backdropFilter: 'blur(120px)',
     },
-    cardContainerDark: {
-      background: 'linear-gradient(173deg, rgba(6, 11, 40, 0.75) 5.57%, rgba(6, 11, 40, 0.70) 166.22%)',
-      borderRadius: 12,
-      paddingLeft: 20,
-      paddingRight: 20,
-      paddingBottom: 20,
-      backdropFilter: 'blur(120px)',
-    }
   }),
   { name: 'BackstageTable' },
 );
@@ -199,7 +202,7 @@ function convertColumns<T extends object>(
     let cellStyle = column.cellStyle || {};
 
     if (column.highlight) {
-      headerStyle.color = theme.palette.textContrast;
+      headerStyle.color = theme.palette.text.secondary;
 
       if (typeof cellStyle === 'object') {
         (cellStyle as React.CSSProperties).fontWeight =
@@ -544,36 +547,36 @@ export function Table<T extends object = {}>(props: TableProps<T>) {
           onChangeFilters={setSelectedFilters}
         />
       )}
-      <Card className={isDarkMode ? tableClasses.cardContainerDark : tableClasses.cardContainerLight}>
-      <MTable<T>
-        components={{
-          Header: StyledMTableHeader,
-          Toolbar,
-          Body,
-          ...components,
-        }}
-        options={{ ...defaultOptions, ...options }}
-        columns={MTColumns}
-        icons={tableIcons}
-        title={
-          <>
-            <Typography variant="h5" component="h2">
-            {title}
-            </Typography>
-            {subtitle && (
-              <Typography color="textSecondary" variant="body1">
-                {subtitle}
+      <Card className={tableClasses.cardContainer}>
+        <MTable<T>
+          components={{
+            Header: StyledMTableHeader,
+            Toolbar,
+            Body,
+            ...components,
+          }}
+          options={{ ...defaultOptions, ...options }}
+          columns={MTColumns}
+          icons={tableIcons}
+          title={
+            <>
+              <Typography variant="h5" component="h2">
+                {title}
               </Typography>
-            )}
-          </>
-        }
-        data={typeof data === 'function' ? data : tableData}
-        style={{ width: '100%' }}
-        localization={{
-          toolbar: { searchPlaceholder: 'Filter', searchTooltip: 'Filter' },
-        }}
-        {...restProps}
-      />
+              {subtitle && (
+                <Typography color="textSecondary" variant="body1">
+                  {subtitle}
+                </Typography>
+              )}
+            </>
+          }
+          data={typeof data === 'function' ? data : tableData}
+          style={{ width: '100%' }}
+          localization={{
+            toolbar: { searchPlaceholder: 'Filter', searchTooltip: 'Filter' },
+          }}
+          {...restProps}
+        />
       </Card>
     </Box>
   );

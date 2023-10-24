@@ -61,7 +61,7 @@ export const EntityTypePicker = (props: EntityTypePickerProps) => {
   ];
 
   return hidden ? null : (
-    <Box pb={1} pt={1}>
+    <Box>
       <Select
         label="Type"
         items={items}

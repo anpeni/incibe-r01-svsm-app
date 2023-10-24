@@ -45,7 +45,7 @@ const useStyles = makeStyles({
 },
 sectionTitleaClaro: {
     fontSize: '11px',
-    color: 'RGB(6, 11, 40)',
+    color: '#000',
     fontFamily: "Inter, sans-serif",
     fontWeight: 500,
     lineHeight: 'normal',
@@ -88,7 +88,7 @@ export const UserSettingsProfileNew = () => {
               {displayName}
               </span>
               ) : (
-                <span style={{color:'RGB(6, 11, 40)'}}>
+                <span style={{color:'#000'}}>
                 {displayName}
                 </span>
               )}

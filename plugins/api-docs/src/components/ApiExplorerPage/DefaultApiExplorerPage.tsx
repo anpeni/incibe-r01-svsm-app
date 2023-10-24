@@ -38,6 +38,7 @@ import {
 } from '@backstage/plugin-catalog-react-modificado';
 import React from 'react';
 import { registerComponentRouteRef } from '../../routes';
+import { makeStyles } from '@material-ui/core';
 
 const defaultColumns: TableColumn<CatalogTableRow>[] = [
   CatalogTable.columns.createTitleColumn({ hidden: true }),
@@ -60,11 +61,19 @@ export type DefaultApiExplorerPageProps = {
   actions?: TableProps<CatalogTableRow>['actions'];
 };
 
+const useStyles = makeStyles(theme => ({
+  pullUpDropdown: {
+    marginTop: '-80px',
+  },
+}));
+
 /**
  * DefaultApiExplorerPage
  * @public
  */
 export const DefaultApiExplorerPage = (props: DefaultApiExplorerPageProps) => {
+  const classes = useStyles();
+
   const { initiallySelectedFilter = 'all', columns, actions } = props;
 
   const configApi = useApi(configApiRef);
@@ -91,12 +100,14 @@ export const DefaultApiExplorerPage = (props: DefaultApiExplorerPageProps) => {
         <EntityListProvider>
           <CatalogFilterLayout>
             <CatalogFilterLayout.Filters>
-              <EntityKindPicker initialFilter="api" hidden />
-              <EntityTypePicker />
-              <UserListPicker initialFilter={initiallySelectedFilter} />
-              <EntityOwnerPicker />
-              <EntityLifecyclePicker />
-              <EntityTagPicker />
+              <div className={classes.pullUpDropdown}>
+                <EntityKindPicker initialFilter="api" hidden />
+                <EntityTypePicker />
+                <UserListPicker initialFilter={initiallySelectedFilter} />
+                <EntityOwnerPicker />
+                <EntityLifecyclePicker />
+                <EntityTagPicker />
+              </div>
             </CatalogFilterLayout.Filters>
             <CatalogFilterLayout.Content>
               <CatalogTable

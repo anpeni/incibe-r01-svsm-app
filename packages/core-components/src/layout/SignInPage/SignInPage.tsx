@@ -38,6 +38,7 @@ import { IdentityProviders, SignInProviderConfig } from './types';
 import LoginBackground from '../../../../app/src/assets/images/Login-Background.png';
 import NeorisLogo from '../../../../app/src/assets/images/neoris-graphic-logo.png';
 import { SidebarDivider } from '../Sidebar';
+import { useTheme } from '@material-ui/core/styles';
 
 type MultiSignInPageProps = SignInPageProps & {
   providers: IdentityProviders;
@@ -73,7 +74,8 @@ export const MultiSignInPage = ({
 
   return (
     <Page themeId="home">
-      <Header title={configApi.getString('app.title')} />multi
+      <Header title={configApi.getString('app.title')} />
+      multi
       <Content>
         {title && <ContentHeader title={title} textAlign={align} />}
         <Grid
@@ -156,6 +158,7 @@ export const SingleSignInPage = ({
 
   const backgroundImageUrl = LoginBackground;
   const neorisLogo = NeorisLogo;
+  const theme = useTheme();
 
   // Single Sign in Page
   return (
@@ -188,26 +191,52 @@ export const SingleSignInPage = ({
                       onClick={() => {
                         login({ showPopup: true });
                       }}
-                      style={{ display: 'block', margin: 'auto', marginBottom: '20px'}}
+                      style={{
+                        display: 'block',
+                        margin: 'auto',
+                        marginBottom: '20px',
+                      }}
                     >
                       Sign In
                     </Button>
                   }
                 >
-                  <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '20px' }}>
+                  <div
+                    style={{
+                      display: 'flex',
+                      justifyContent: 'center',
+                      marginBottom: '20px',
+                    }}
+                  >
                     <img
                       src={neorisLogo}
                       alt="Logo"
                       width="70"
                       height="59.08"
-                      style={{ maxWidth: '100%', maxHeight: '100%' }}
+                      style={{
+                        maxWidth: '100%',
+                        maxHeight: '100%',
+                        filter:
+                          theme.palette.type === 'dark'
+                            ? 'none'
+                            : 'invert(100%)',
+                      }}
                     />
                   </div>
-                  <Typography variant="h6" align="left" gutterBottom style={{ marginLeft: '15px' }}>
+                  <Typography
+                    variant="h6"
+                    align="left"
+                    gutterBottom
+                    style={{ marginLeft: '15px' }}
+                  >
                     {provider.title}
                   </Typography>
                   <SidebarDivider />
-                  <Typography variant="body1" align="left" style={{ marginLeft: '15px' }}>
+                  <Typography
+                    variant="body1"
+                    align="left"
+                    style={{ marginLeft: '15px' }}
+                  >
                     {provider.message}
                   </Typography>
                   {error && error.name !== 'PopupRejectedError' && (

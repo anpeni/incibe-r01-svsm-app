@@ -20,73 +20,102 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import React from 'react';
 import { useUserProfile } from '../useUserProfileInfo';
+import { BackstageTheme } from '@backstage/theme';
+import { makeStyles } from '@material-ui/core/styles';
+import { vars } from '../../../../../packages/app/src/themes/variables';
+
+const useStyles = makeStyles<BackstageTheme>(theme => ({
+  userEntity: {
+    color: `${theme.palette.type === 'dark' ? '#FFF' : 'RGB(6, 11, 40)'}`,
+    display: 'flex',
+    alignItems: 'center',
+    fontFamily: 'Inter, sans-serif',
+    fontSize: '20px',
+    fontStyle: 'normal',
+    fontWeight: 400,
+    lineHeight: 'normal',
+    marginBottom: '25px',
+  },
+  ownerLinkContainer: {
+    background: `${theme.palette.type === 'dark' ? '#FFF' : '#FFF'}`,
+    width: '67%',
+    marginLeft: '82px',
+    padding: '5px 10px 5px 8px',
+    borderRadius: '12px',
+    color: 'red !important',
+  },
+  colorPrimary: {
+    color: 'red !important',
+  },
+  linkContainer: {
+    background: `${theme.palette.type === 'dark' ? '#FFF' : '#FFF'}`,
+    width: '67%',
+    marginLeft: '150px',
+    padding: '5px 10px 5px 8px',
+    borderRadius: '12px',
+  },
+  link: {
+    marginLeft: '8px',
+    color: 'RGB(6, 11, 40)',
+  },
+  titulo: {
+    color: `${theme.palette.type === 'dark' ? '#FFF' : 'RGB(6, 11, 40)'}`,
+    textAlign: 'right',
+    fontFamily: 'Inter, sans-serif',
+    fontSize: '28px',
+    fontStyle: 'normal',
+    fontWeight: 700,
+    lineHeight: 'normal',
+    marginLeft: '23px',
+    marginBottom: '10px',
+  },
+  card: {
+    backgroundColor: `${
+      theme.palette.type === 'dark'
+        ? vars.dark.background.card
+        : vars.light.background.card
+    }`,
+  },
+}));
 
 const Contents = () => {
   const { backstageIdentity } = useUserProfile();
+  const classes = useStyles();
 
   if (!backstageIdentity) {
     return <Typography>No Backstage Identity</Typography>;
   }
 
   return (
-    <Grid container spacing={1} style={{ marginTop: '25px', marginLeft: '25px', marginBottom: '45px' }}>
+    <Grid
+      container
+      spacing={1}
+      style={{ marginTop: '25px', marginLeft: '25px', marginBottom: '45px' }}
+    >
       <Grid item xs={12}>
-        <Typography variant="subtitle1" gutterBottom
-          style={{
-            color: '#FFF',
-            display: 'flex',
-            alignItems: 'center',
-            fontFamily: 'Inter, sans-serif',
-            fontSize: '20px',
-            fontStyle: 'normal',
-            fontWeight: 400,
-            lineHeight: 'normal',
-            marginBottom: '25px'
-          }}>
+        <Typography
+          variant="subtitle1"
+          gutterBottom
+          className={classes.userEntity}
+        >
           User Entity
-          <div style={{
-            background: 'var(--Color-Dark, linear-gradient(173deg, rgba(6, 11, 40, 0.75) 5.57%, rgba(6, 11, 40, 0.70) 166.22%))',
-            width: '67%',
-            marginLeft: '150px',
-            padding: '5px 10px 5px 8px',
-            borderRadius: '12px',
-
-          }}>
-          <EntityRefLinks
-            entityRefs={[backstageIdentity.userEntityRef]}
-            getTitle={ref => ref}
-            style={{ marginLeft: '8px' }}
-          />
+          <div className={classes.linkContainer}>
+            <EntityRefLinks
+              entityRefs={[backstageIdentity.userEntityRef]}
+              getTitle={ref => ref}
+              className={classes.link}
+            />
           </div>
         </Typography>
       </Grid>
       <Grid item xs={12}>
-        <Typography variant="subtitle1"
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            color: '#FFF',
-            fontFamily: 'Inter, sans-serif',
-            fontSize: '20px',
-            fontStyle: 'normal',
-            fontWeight: 400,
-            lineHeight: 'normal',
-          }}>
+        <Typography variant="subtitle1" className={classes.userEntity}>
           Ownership Entities
-          <div style={{
-            background: 'var(--Color-Dark, linear-gradient(173deg, rgba(6, 11, 40, 0.75) 5.57%, rgba(6, 11, 40, 0.70) 166.22%))',
-            width: '67%',
-            marginLeft: '82px',
-            padding: '5px 10px 5px 8px',
-            borderRadius: '12px',
-
-          }}>
+          <div className={classes.ownerLinkContainer}>
             <EntityRefLinks
               entityRefs={backstageIdentity.ownershipEntityRefs}
               getTitle={ref => ref}
-              style={{
-                marginLeft: '8px',
-              }}
+              className={classes.link}
             />
           </div>
         </Typography>
@@ -96,22 +125,15 @@ const Contents = () => {
 };
 
 /** @public */
-export const UserSettingsIdentityCard = () => (
-  <InfoCardSettings
-    title={<span style={{
-      color: '#FFF',
-      textAlign: 'right',
-      fontFamily: 'Inter, sans-serif',
-      fontSize: '28px',
-      fontStyle: 'normal',
-      fontWeight: 700,
-      lineHeight: 'normal',
-      marginLeft: '23px',
-      marginBottom: '10px'
-    }}>
-      Backstage Identity</span>}
-  >
-    <Contents
-    />
-  </InfoCardSettings>
-);
+export const UserSettingsIdentityCard = () => {
+  const classes = useStyles();
+
+  return (
+    <InfoCardSettings
+      className={classes.card}
+      title={<span className={classes.titulo}>Backstage Identity</span>}
+    >
+      <Contents />
+    </InfoCardSettings>
+  );
+};

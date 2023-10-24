@@ -20,53 +20,55 @@ import { UserSettingsSignInAvatar } from './UserSettingsSignInAvatar';
 import { UserSettingsMenu } from './UserSettingsMenu';
 import { useUserProfile } from '../useUserProfileInfo';
 import { InfoCardSettings } from '@backstage/core-components';
-import { makeStyles} from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
+import { BackstageTheme } from '@backstage/theme';
+import { vars } from '../../../../../packages/app/src/themes/variables';
 
-
-const useStyles = makeStyles({
+const useStyles = makeStyles<BackstageTheme>(theme => ({
   titulo: {
-    color: '#FFF',
+    color: `${theme.palette.type === 'dark' ? '#FFF' : 'RGB(6, 11, 40)'}`,
     textAlign: 'right',
     fontFamily: 'Inter, sans-serif',
     fontSize: '28px',
     fontStyle: 'normal',
     fontWeight: 700,
     lineHeight: 'normal',
-    marginLeft: '23px'
-
+    marginLeft: '23px',
+  },
+  card: {
+    backgroundColor: `${
+      theme.palette.type === 'dark'
+        ? vars.dark.background.card
+        : vars.light.background.card
+    }`,
   },
   rol: {
-    color: '#FFF',
-    textAlign: 'right',
+    marginBottom: '3px',
+    color: `${theme.palette.type === 'dark' ? '#FFF' : 'RGB(6, 11, 40)'}`,
     fontFamily: 'Inter, sans-serif',
     fontSize: '13px',
     fontStyle: 'normal',
     fontWeight: 500,
     lineHeight: 'normal',
-    marginBottom: '-5px'
   },
   nombre: {
-    color: '#FFF',
-    textAlign: 'right',
+    marginBottom: '3px',
+    color: `${theme.palette.type === 'dark' ? '#FFF' : 'RGB(6, 11, 40)'}`,
     fontFamily: 'Inter, sans-serif',
     fontSize: '16px',
     fontStyle: 'normal',
     fontWeight: 700,
     lineHeight: 'normal',
-    marginBottom: '-2px'
   },
   mail: {
-    color: '#FFF',
-    textAlign: 'right',
+    color: `${theme.palette.type === 'dark' ? '#FFF' : 'RGB(6, 11, 40)'}`,
     fontFamily: 'Inter, sans-serif',
     fontSize: '16px',
     fontStyle: 'normal',
     fontWeight: 500,
     lineHeight: 'normal',
   },
-});
-
-
+}));
 
 /** @public */
 export const UserSettingsProfileCard = () => {
@@ -74,55 +76,51 @@ export const UserSettingsProfileCard = () => {
   const classes = useStyles();
 
   return (
-    <InfoCardSettings variant="gridItem" title={<span className={classes.titulo}>Profile</span>}>
-      <Grid container spacing={6} style={{ marginTop: '-8px'}}>
-        <Grid item style={{ marginLeft: '28px'}}>
+    <InfoCardSettings
+      className={classes.card}
+      variant="gridItem"
+      title={<span className={classes.titulo}>Profile</span>}
+    >
+      <Grid container spacing={6} style={{ marginTop: '-8px' }}>
+        <Grid item style={{ marginLeft: '28px' }}>
           <UserSettingsSignInAvatar size={96} />
         </Grid>
-        <Grid item xs={12} sm container style={{marginTop: '-2px'}}>
-          <Grid item xs container direction="column" spacing={2} style={{ marginLeft: '-30px'}}>
+        <Grid item xs={12} sm container style={{ marginTop: '-2px' }}>
+          <Grid
+            item
+            xs
+            container
+            direction="column"
+            spacing={2}
+            style={{ marginLeft: '-30px' }}
+          >
             <Grid item xs>
-            <Typography variant="subtitle1" gutterBottom  
-            style={{
-              marginBottom: '3px',
-              color: '#FFF',              
-              fontFamily: 'Inter, sans-serif',
-              fontSize: '13px',
-              fontStyle: 'normal',
-              fontWeight: 500,
-              lineHeight: 'normal',             
-              }}>
+              <Typography
+                variant="subtitle1"
+                gutterBottom
+                className={classes.rol}
+              >
                 DEVELOPER
               </Typography>
-              <Typography variant="subtitle1" gutterBottom 
-              style={{
-                marginBottom: '3px',
-                color: '#FFF',              
-                fontFamily: 'Inter, sans-serif',
-                fontSize: '16px',
-                fontStyle: 'normal',
-                fontWeight: 700,
-                lineHeight: 'normal',  
-                }}>
+              <Typography
+                variant="subtitle1"
+                gutterBottom
+                className={classes.nombre}
+              >
                 {displayName}
               </Typography>
               {profile.email && (
-                <Typography variant="body2" color="textSecondary"
-                style={{
-                  
-                  color: '#FFF',              
-                  fontFamily: 'Inter, sans-serif',
-                  fontSize: '16px',
-                  fontStyle: 'normal',
-                  fontWeight: 500,
-                  lineHeight: 'normal',  
-                  }}>
+                <Typography
+                  variant="body2"
+                  color="textSecondary"
+                  className={classes.mail}
+                >
                   {profile.email}
                 </Typography>
               )}
             </Grid>
           </Grid>
-          <Grid item style={{ marginRight: '-5px', marginTop: '-80px'}}>
+          <Grid item style={{ marginRight: '-5px', marginTop: '-80px' }}>
             <UserSettingsMenu />
           </Grid>
         </Grid>

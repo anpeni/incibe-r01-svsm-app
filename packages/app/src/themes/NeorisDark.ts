@@ -8,12 +8,12 @@ import {
   PageTheme,
   palettes,
   UnifiedTheme,
-  BackstageTheme,
 } from '@backstage/theme';
 
-import { alpha, makeStyles, Theme } from '@material-ui/core/styles';
+import { alpha, Theme } from '@material-ui/core/styles';
 import { AutocompleteClassKey } from '@material-ui/lab/Autocomplete';
 import { AlertClassKey } from '@material-ui/lab/Alert';
+import { vars } from './variables';
 
 // Labs types not included in overrides; https://github.com/mui/material-ui/issues/19427
 declare module '@material-ui/core/styles/overrides' {
@@ -22,10 +22,6 @@ declare module '@material-ui/core/styles/overrides' {
     MuiAutocomplete: AutocompleteClassKey;
   }
 }
-
-// const bgColor ='linear-gradient(90deg, rgba(6,11,40,0.75) 50%, rgba(6,11,40,0.7) 100%)';
-const bgColor =
-  'var(--Color-Dark, linear-gradient(173deg, rgba(6, 11, 40, 0.75) 5.57%, rgba(6, 11, 40, 0.70) 166.22%))';
 
 const pageThemesFontColorOverride: Record<string, PageTheme> = {};
 Object.keys(defaultPageThemes).map(key => {
@@ -42,9 +38,9 @@ Object.keys(defaultPageThemes).map(key => {
 const baseTheme = createTheme({
   ...createBaseThemeOptions({
     palette: {
-      ...palettes.light,
+      ...palettes.dark,
       primary: {
-        main: '#0052CC',
+        main: '#FFFFFF',
         light: '#4C9AFF',
         dark: '#060B28B3',
       },
@@ -86,27 +82,21 @@ const baseTheme = createTheme({
         dark: '#0747A6',
       },
       background: {
-        default: 'none', // General
+        default: vars.dark.background.generic, // General
         paper: 'none', // Tarjetas
-        backdropFilter: 'blur(120px)',
       },
       navigation: {
-        ...palettes.light.navigation,
+        ...palettes.dark.navigation,
         color: '#FFFFFF',
         indicator: '#2684FF',
-        navItem: {
-          hoverBackground: 'rgba(116,118,121,0.6)',
-        },
       },
       text: {
         primary: '#FFFFFF',
-        
+        secondary: '#FFF',
       },
-
-
     },
   }),
-  fontFamily: 'Inter, sans-serif',
+  fontFamily: vars.fontFamily,
   pageTheme: pageThemesFontColorOverride,
   defaultPageTheme: 'home',
 });
@@ -123,7 +113,7 @@ const createCustomThemeOverrides = (
       },
       title: {
         color: theme.page.fontColor,
-        fontFamily: 'Inter, sans-serif',
+        fontFamily: vars.fontFamily,
         fontWeight: 'bold',
       },
       subtitle: {
@@ -133,7 +123,6 @@ const createCustomThemeOverrides = (
         color: alpha(theme.page.fontColor, 0.8),
       },
     },
-    // TODO: Remove after https://github.com/backstage/backstage/pull/16853 is available here
     BackstageHeaderLabel: {
       label: {
         color: theme.page.fontColor,
@@ -171,7 +160,8 @@ const createCustomThemeOverrides = (
     MuiTable: {
       root: {
         '& th': {
-          // Cabecera
+          // ? Cabecera
+          background: vars.dark.background.highlight,
           border: 'none',
           textTransform: 'uppercase',
         },
@@ -180,20 +170,15 @@ const createCustomThemeOverrides = (
     MuiTableRow: {
       root: {
         background: 'none',
-        // background:
-        //   'linear-gradient(173deg, rgba(6, 11, 40, 0.45) 5.57%, rgba(6, 11, 40, 0.40) 166.22%)',
         '&:nth-of-type(even)': {
-          background:
-            'linear-gradient(173deg, rgba(6, 11, 40, 0.25) 5.57%, rgba(6, 11, 40, 0.23) 166.22%)',
+          background: vars.dark.table.evenRows, // Filas pares tabla
         },
       },
       head: {
         color: '#FFFFFF',
-        fontFamily: 'Inter',
+        fontFamily: vars.fontFamily,
         fontSize: '13px',
         fontWeight: 'bold',
-        background:
-          'linear-gradient(171deg, rgba(6, 11, 40, 0.75) 6.87%, rgba(6, 11, 40, 0.70) 129.64%)',
       },
     },
     MuiPaper: {
@@ -203,28 +188,8 @@ const createCustomThemeOverrides = (
       elevation2: {
         boxShadow: 'none',
       },
-    },
-    BackstageTableToolbar: {
-      // Filter
-      searchField: {
-        paddingRight: 0,
-      },
-      root: {
-        marginBottom: 15,
-      },
-    },
-    MuiSvgIcon: {
-      fontSizeSmall: {
-        //marginLeft: '12px',
-      },
-      root: {
-        height: '24px',
-        //weight: '24px',
-      }
-    },
-    CatalogReactUserListPicker: {
-      title: {
-        textTransform: 'none',
+      elevation8: {
+        boxShadow: 'none',
       },
     },
     MuiAlert: {
@@ -260,175 +225,69 @@ const createCustomThemeOverrides = (
         },
       },
     },
-    MuiBackdrop: {
-      root: {
-        backgroundColor: 'rgba(9,30,69,0.54)',
+    MuiAutocomplete: {
+      listbox: {
+        // ? Select con varias opciones desplegado
+        background: vars.dark.background.card,
+        borderRadius: '12px',
       },
     },
-    MuiAutocomplete: {
+    // ? Modificar select con varias opciones (caja)
+    MuiOutlinedInput: {
       root: {
-        '&[aria-expanded=true]': {
-          // Casilla cuando abres
-          color: theme.page.fontColor,
-        },
-        '&[aria-expanded=true] path': {
-          fill: theme.page.fontColor,
-        },
-      },
-      tagSizeSmall: {
-        background:
-          'var(--color-dark, linear-gradient(180deg, rgba(6, 11, 40, 0.75) 0%, rgba(6, 11, 40, 0.70) 100%))',
-      },
-      listbox: {
-        // Select con varias opciones desplegado
-        background: bgColor,
         borderRadius: '12px',
-        backdropFilter: 'blur(120px)',
+        background: vars.dark.background.card,
+      },
+      notchedOutline: {
+        border: 'none',
       },
     },
     MuiButton: {
       root: {
         borderRadius: '12px',
         textTransform: 'none',
-        color: theme.page.fontColor,
+
         TextSize: '13px',
       },
+      // ? Botones login
       outlinedPrimary: {
         border: 'none',
-        backgroundColor: 'rgba(6, 11, 40, 1)',
+        backgroundColor: vars.dark.background.highlight,
         '&:hover': {
-          background: 'rgba(6, 11, 40, 0.5) !important',
+          backgroundColor: vars.dark.background.highlight,
+          opacity: '0.5',
           border: 'none',
         },
       },
+      // ? Boton Add Catalog
+      containedPrimary: {
+        backgroundColor: vars.dark.background.highlight,
+      },
+      // ? Ajustar Control panel en Sidebar
       label: {
         justifyContent: 'none',
+        //color: 'white',
       },
+      // ? Botones genericos
       contained: {
-        fontFamily: 'Inter, sans-serif',
+        fontFamily: vars.fontFamily,
         fontWeight: 600, // Semibold
-        background: bgColor,
-        backdropFilter: 'blur(120px)',
         '&:hover': {
-          background:
-            'linear-gradient(90deg, rgba(6,11,40,0.35) 50%, rgba(6,11,40,0.3) 100%) !important',
+          backgroundColor: vars.dark.background.highlight,
+          opacity: 0.5,
         },
       },
     },
-    MuiButtonBase: {
-      root: {
-        color: 'white !important',
-      },
-    },
-
-    MuiChip: {
-      root: {
-        borderRadius: 3,
-        backgroundColor: theme.palette.grey[50],
-        color: theme.page.fontColor,
-        margin: 4,
-      },
-    },
-    MuiSelect: {
-      root: {
-        //'&[aria-expanded]': {
-          // Select abierto
-          // backgroundColor: bgColor,
-          // color: 'black',
-       // },
-      },
-    },
-    MuiSwitch: {
-      root: {
-        //padding: 10,
-        // '&$checked': {
-        //   backgroundColor: 'white',
-        //   opacity: '1',
-        // },
-      },
-      switchBase: {
-        //padding: 12,
-      },
-      thumb: {
-        // backgroundColor: bgColor,
-        height: 14,
-        width: 14,
-      },
-      track: {
-        //borderRadius: 9,
-        //backgroundColor: 'white !important',
-        //opacity: '1 !important',
-      },
-      colorPrimary: {
-        //backgroundColor: 'white', en este sale el circulo blanco
-        //opacity: '1 !important',
-        mui: {
-          checked: {
-            //backgroundColor: 'white !important',
-            //opacity: '1 !important',
-          },
-        },
-      },
-    },
-    MuiTab: {
-      textColorInherit: {
-        color: theme.page.fontColor,
-        opacity: 0.8,
-      },
-    },
+    // ? Tabs
     MuiTabs: {
       indicator: {
-        transition: 'none',
-        background: 'none',
-      },
-      scrollButtons: {
+        background: '#4FD1C5',
+        height: '6px',
         borderRadius: '12px',
-      },
-      scroller: {
-        borderRadius: '12px',
-        backgroundColor: 'rgba(6, 11, 40, 0.4)',
-        flex: 'none',
-        padding: 2,
-      },
-    },
-    MuiTypography: {
-      colorPrimary: {
-        color: theme.page.fontColor,
-      },
-      colorTextSecondary: {
-        color: theme.page.fontColor,
-      },
-      button: {
-        textTransform: 'none',
-      },
-      subtitle2: {
-        fontSize: '16px', //16px
-        fontFamily: 'Inter, sans-serif', //inter
-        // fontWeight: '500',//regular
-        lineHeight: '1.57',
-      },
-      h5: {
-        marginBottom: 0,
-      },
-    },
-    MuiInputBase: {
-      root: {
-        // Select and Filters
-        color: theme.page.fontColor,
-        // background: bgColor,
-        //backdropFilter: 'blur(120px)',
-        fontWeight: 100, // Thin
-        // borderRadius: '12px',
-      },
-      input: { //Filtro
-        fontFamily: 'Inter, sans-serif',
-        fontSize: '16px',
-        height: 'fit-content',
-        fontWeight: 400,
       },
     },
     MuiInput: {
-      // Filtro
+      // ? Filtro
       root: {
         width: '281px',
         height: '42px',
@@ -442,92 +301,83 @@ const createCustomThemeOverrides = (
         },
       },
     },
-    MuiOutlinedInput: {
-      root: {
-        borderRadius: '12px',
-        background: bgColor,
-      },
-    },
+    // ? Icono Filter
     MuiInputAdornment: {
       positionStart: {
         paddingLeft: '12px',
       },
     },
-    MuiFormLabel: {
-      root: {
-        color: theme.page.fontColor,
-      },
-    },
-    MuiStepLabel: {
-      label: {
-        color: theme.page.fontColor,
-        fontWeight: 100, // Thin
-      },
-    },
-    MuiFormHelperText: {
-      root: {
-        color: theme.page.fontColor,
-      },
-    },
-    MuiMenu: {
-      // Selects abiertos
-      list: {
-        background: bgColor,
-        backdropFilter: 'blur(120px)',
-      },
-    },
-
+    // ? Sidebar
     BackstageSidebarItem: {
       selected: {
-        backgroundColor: 'rgba(6, 11, 40, 0.8)',
-        borderRadius: '12px',
-        borderLeft: 'none !important',
-        width: '100%',
-        color: '#FFF !important',
-        marginLeft: '1px !important',
+        // backgroundColor: highlightBackgroundDark,
+        // borderRadius: '12px',
+        // borderLeft: 'none !important',
+        // width: '100%',
+        //color: '#FFF !important',
+        // marginLeft: '1px !important',
       },
       iconContainer: {
-        marginLeft: '1px !important',
+        // marginLeft: '1px !important',
       },
       root: {
-        //backdropFilter: 'blur(120px)',
-        //backgroundColor: 'rgba(6, 11, 40, 0.8)',
-        //borderRadius: '12px'
-        borderLeft: 'none !important',
-        color: 'rgba(255, 255, 255, 0.60) !important',
+        //borderLeft: 'none !important',
+        //color: 'rgba(255, 255, 255, 0.60) !important',
       },
       highlightable: {
-        //backdropFilter: 'blur(120px)',
-        //backgroundColor: 'rgba(6, 11, 40, 0.8)',
-        //borderRadius: '12px'
         '&:hover': {
-          // Añade esta parte para el efecto de hover
-          backgroundColor: 'rgba(6, 11, 40, 0.8)',
-          borderRadius: '12px',
+          // backgroundColor: highlightBackgroundDark,
+          // borderRadius: '12px',
         },
       },
       label: {
-        flex: '3 1 auto',
-        width: '110px',
-        overflow: 'hidden',
-        fontWeight: 500,
-        lineHeight: 'auto',
-        whiteSpace: 'nowrap',
-        textOverflow: 'ellipsis',
+        // flex: '3 1 auto',
+        // width: '110px',
+        // overflow: 'hidden',
+        // fontWeight: 500,
+        // lineHeight: 'auto',
+        // whiteSpace: 'nowrap',
+        // textOverflow: 'ellipsis',
       },
     },
+    // ? Cards genericas de MUi
     MuiCard: {
       root: {
-        background:
-          'var(--Color-Dark, linear-gradient(173deg, rgba(6, 11, 40, 0.75) 5.57%, rgba(6, 11, 40, 0.70) 166.22%));',
+        background: vars.dark.background.generic,
         backdropFilter: 'blur(120px)',
+        boxShadow: '0px 4px 20px 0px rgba(0, 0, 0, 0.70)',
       },
     },
-    MuiListItemIcon: {
-      root: {
-        color: 'white',
-      }
-    }
+    // ? Quitar borde bajo a lista de botones
+    MuiListItem: {
+      divider: {
+        borderBottom: '0px',
+      },
+    },
+    // ? Color fondo Sidebar
+    BackstageSidebar: {
+      drawer: {
+        backgroundColor: vars.dark.background.generic,
+      },
+    },
+    MuiTypography: {
+      colorPrimary: {
+        color: theme.page.fontColor,
+      },
+      colorTextSecondary: {
+        color: theme.page.fontColor,
+      },
+      button: {
+        textTransform: 'none',
+      },
+      subtitle2: {
+        // ? Sidebar Items
+        fontSize: '16px', //16px
+        fontFamily: vars.fontFamily, //inter
+        // fontWeight: '500',//regular
+        lineHeight: '1.57',
+      },
+    },
   };
 };
 
@@ -538,5 +388,3 @@ export const neorisDarkTheme: UnifiedTheme = createUnifiedThemeFromV4({
     ...createCustomThemeOverrides(baseTheme),
   },
 });
-
-

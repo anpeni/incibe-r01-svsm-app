@@ -41,6 +41,8 @@ import {
 import React, { ReactNode } from 'react';
 import { createComponentRouteRef } from '../../routes';
 import { CatalogTable, CatalogTableRow } from '../CatalogTable';
+import { useCatalogPluginOptions } from '../../options';
+import { makeStyles } from '@material-ui/core';
 import { catalogTranslationRef } from '../../translation';
 import { useTranslationRef } from '@backstage/core-plugin-api/alpha';
 
@@ -59,7 +61,15 @@ export interface DefaultCatalogPageProps {
   ownerPickerMode?: EntityOwnerPickerProps['mode'];
 }
 
+const useStyles = makeStyles(theme => ({
+  pullUpDropdown: {
+    marginTop: '-80px',
+  },
+}));
+
 export function DefaultCatalogPage(props: DefaultCatalogPageProps) {
+  const classes = useStyles();
+
   const {
     columns,
     actions,
@@ -87,14 +97,16 @@ export function DefaultCatalogPage(props: DefaultCatalogPageProps) {
         <EntityListProvider>
           <CatalogFilterLayout>
             <CatalogFilterLayout.Filters>
-              <EntityKindPicker initialFilter={initialKind} />
-              <EntityTypePicker />
-              <UserListPicker initialFilter={initiallySelectedFilter} />
-              <EntityOwnerPicker mode={ownerPickerMode} />
-              <EntityLifecyclePicker />
-              <EntityTagPicker />
-              <EntityProcessingStatusPicker />
-              <EntityNamespacePicker />
+              <div className={classes.pullUpDropdown}>
+                <EntityKindPicker initialFilter={initialKind} />
+                <EntityTypePicker />
+                <UserListPicker initialFilter={initiallySelectedFilter} />
+                <EntityOwnerPicker mode={ownerPickerMode} />
+                <EntityLifecyclePicker />
+                <EntityTagPicker />
+                <EntityProcessingStatusPicker />
+                <EntityNamespacePicker />
+              </div>
             </CatalogFilterLayout.Filters>
             <CatalogFilterLayout.Content>
               <CatalogTable

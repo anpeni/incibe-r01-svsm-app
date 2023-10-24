@@ -20,19 +20,20 @@ import { List } from '@material-ui/core';
 import React from 'react';
 import { UserSettingsPinToggle } from './UserSettingsPinToggle';
 import { UserSettingsThemeToggle } from './UserSettingsThemeToggle';
-import { makeStyles} from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
+import { BackstageTheme } from '@backstage/theme';
+import { vars } from '../../../../../packages/app/src/themes/variables';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles<BackstageTheme>(theme => ({
   titulo: {
-    color: '#FFF',
+    color: `${theme.palette.type === 'dark' ? '#FFF' : 'RGB(6, 11, 40)'}`,
     textAlign: 'right',
     fontFamily: 'Inter, sans-serif',
     fontSize: '28px',
     fontStyle: 'normal',
     fontWeight: 700,
     lineHeight: 'normal',
-    marginLeft: '23px'
-
+    marginLeft: '23px',
   },
   textoTema: {
     color: '#FFF',
@@ -43,18 +44,29 @@ const useStyles = makeStyles({
     fontWeight: 400,
     lineHeight: 'normal',
   },
-});
+  card: {
+    backgroundColor: `${
+      theme.palette.type === 'dark'
+        ? vars.dark.background.card
+        : vars.light.background.card
+    }`,
+  },
+}));
 /** @public */
 export const UserSettingsAppearanceCard = () => {
   const { isMobile } = useSidebarPinState();
   const classes = useStyles();
 
   return (
-<InfoCardSettings title={<span className={classes.titulo}>Appearance</span>} variant="gridItem">
-  <List dense>
-    <UserSettingsThemeToggle />
-    {!isMobile && <UserSettingsPinToggle />}
-  </List>
-</InfoCardSettings>
+    <InfoCardSettings
+      className={classes.card}
+      title={<span className={classes.titulo}>Appearance</span>}
+      variant="gridItem"
+    >
+      <List dense>
+        <UserSettingsThemeToggle />
+        {!isMobile && <UserSettingsPinToggle />}
+      </List>
+    </InfoCardSettings>
   );
 };

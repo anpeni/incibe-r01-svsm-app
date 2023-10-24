@@ -15,154 +15,59 @@ import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
 import { OverridableComponent } from '@mui/material/OverridableComponent';
 import { SvgIconTypeMap } from '@mui/material';
+import { vars } from '../../../../app/src/themes/variables';
 
 const useStyles = makeStyles<BackstageTheme>(
   theme => ({
-    item: {
-      // height: 48,
-      // width: '100%',
-      // '&:hover': {
-      //   background:
-      //     theme.palette.navigation.navItem?.hoverBackground || '#6f6f6f',
-      //   color: theme.palette.navigation.selectedColor,
-      // },
-      // display: 'flex',
-      // alignItems: 'center',
-      // color: theme.palette.navigation.color,
-      // padding: theme.spacing(2.5),
-      // cursor: 'pointer',
-      // position: 'relative',
-      // background: 'none',
-      // border: 'none',
-    },
-    itemContainer: {
-      // width: '100%',
-    },
-    selected: {
-      // background: '#6f6f6f',
-      // color: theme.palette.common.white,
-    },
-    label: {
-      // margin: theme.spacing(1.75),
-      // marginLeft: theme.spacing(1),
-      // fontSize: theme.typography.body2.fontSize,
-      // whiteSpace: 'nowrap',
-      // overflow: 'hidden',
-      // 'text-overflow': 'ellipsis',
-      // lineHeight: 1,
-    },
-    subtitle: {
-      // fontSize: 10,
-      // whiteSpace: 'nowrap',
-      // overflow: 'hidden',
-      // 'text-overflow': 'ellipsis',
-    },
-    // dropdownArrow: {
-    //   position: 'absolute',
-    //   right: 21,
-    // },
     dropdown: {
-      //width: '200px',
       display: 'flex',
       flexDirection: 'column',
-      //height: '100px',
-      //alignItems: 'start',
-
     },
     dropdownItem: {
-      //width: '50%',
-      //padding: '10px 0 10px 0',
-      //'&:hover': {
-      //background: 'var(--Color-Dark, linear-gradient(173deg, rgba(6, 11, 40, 0.75) 5.57%, rgba(6, 11, 40, 0.70) 166.22%))',
-      //color: 'theme.palette.navigation.selectedColor',
-      //borderradius: '12px',
-      // },
-      '&:hover': {
-        //background: 'var(--Color-Dark, linear-gradient(173deg, rgba(6, 11, 40, 0.75) 5.57%, rgba(6, 11, 40, 0.70) 166.22%))',
-        //color: 'theme.palette.navigation.selectedColor',
-        //borderRadius: '12px',
-        //width: '80px',
-        //height: '10px',
-      },
-      //padding: '10px',
-      //margin: '10px',
+      '&:hover': {},
     },
-    dropdownItemSeleccionado: {
-      //padding: '10px 0 10px 0',
-      // '&:hover': {
-      //   background: 'var(--Color-Dark, linear-gradient(173deg, rgba(6, 11, 40, 0.75) 5.57%, rgba(6, 11, 40, 0.70) 166.22%))',
-      //   borderRadius: '12px',
-      // },
-      //background: 'var(--Color-Dark, linear-gradient(173deg, rgba(6, 11, 40, 0.75) 5.57%, rgba(6, 11, 40, 0.70) 166.22%))',
-      //borderRadius: '12px',
-    },
-    textContentOscuro: {
-      color: 'rgba(255, 255, 255, 0.60)',
+    textContent: {
+      color: `${
+        theme.palette.type === 'dark'
+          ? 'rgba(255, 255, 255, 0.60)'
+          : 'rgba(6, 11, 40, 0.8)'
+      }`,
       fontFamily: 'Inter, sans-serif',
       paddingLeft: 20,
-      //paddingRight: theme.spacing(4),
       fontSize: '13px',
       '&:hover': {
-        background: 'var(--Color-Dark, linear-gradient(173deg, rgba(6, 11, 40, 0.75) 5.57%, rgba(6, 11, 40, 0.70) 166.22%))',
+        background: `${
+          theme.palette.type === 'dark'
+            ? vars.dark.background.card
+            : vars.light.background.white
+        }`,
         marginLeft: '8px',
         borderRadius: '10px',
-        padding: '5px 12px 5px 12px'
+        padding: '5px 12px 5px 12px',
       },
-      // whiteSpace: 'nowrap',
-      // overflow: 'hidden',
-      // 'text-overflow': 'ellipsis',
     },
-    elementoSeleccionadoOscuro: {
-      color: 'white',
+    elementoSeleccionado: {
+      color: `${theme.palette.type === 'dark' ? 'white' : 'rgba(6, 11, 40)'}`,
       fontFamily: 'Inter, sans-serif',
-      //paddingLeft: 20,
       fontSize: '13px',
       marginLeft: '8px',
-      background: 'var(--Color-Dark, linear-gradient(173deg, rgba(6, 11, 40, 0.75) 5.57%, rgba(6, 11, 40, 0.70) 166.22%))',
+      background: `${
+        theme.palette.type === 'dark'
+          ? vars.dark.background.card
+          : vars.light.background.white
+      }`,
       borderRadius: '10px',
-      padding: '5px 12px 5px 12px'
-    },
-    textContentClaro: {
-      color: 'rgba(6, 11, 40, 0.8)',
-      fontFamily: 'Inter, sans-serif',
-      paddingLeft: 20,
-      //paddingRight: theme.spacing(4),
-      fontSize: '13px',
-      '&:hover': {
-        background: 'rgba(255, 255, 255, 0.10)',
-        marginLeft: '8px',
-        borderRadius: '10px',
-        padding: '5px 12px 5px 12px'
-      },
-      // whiteSpace: 'nowrap',
-      // overflow: 'hidden',
-      // 'text-overflow': 'ellipsis',
-    },
-    elementoSeleccionadoClaro: {
-      color: 'rgba(6, 11, 40)',
-      fontFamily: 'Inter, sans-serif',
-      //paddingLeft: 20,
-      fontSize: '13px',
-      marginLeft: '8px',
-      background: 'rgba(255, 255, 255, 0.10)',
-      borderRadius: '10px',
-      padding: '5px 12px 5px 12px'
+      padding: '5px 12px 5px 12px',
     },
     contenedor: {
-      //background: 'red',
-      //padding: '10px 0 10px 0'
       height: '39px',
       width: '100px',
       display: 'flex',
       alignItems: 'center',
-      
-
     },
-    
   }),
   { name: 'BackstageSidebarSubmenuItem' },
 );
-
 
 export type SidebarSubmenuItemDropdownItem = {
   title: string;
@@ -180,12 +85,18 @@ export type SidebarSubmenuItemProps = {
   onSelectedObjectChange?: (newSelectedObject: any) => void;
 };
 
-
-export const SidebarSubmenuItemModificado = (props: SidebarSubmenuItemProps) => {
-  const { title, subtitle, to, icon: Icon, dropdownItems, exact, selectedFromParent } = props;
+export const SidebarSubmenuItemModificado = (
+  props: SidebarSubmenuItemProps,
+) => {
+  const {
+    title,
+    to,
+    icon: Icon,
+    dropdownItems,
+    exact,
+    selectedFromParent,
+  } = props;
   const classes = useStyles();
-  //const [isSelected, setIsSelected] = useState(false);
-  const isDarkMode = localStorage.getItem('theme') === 'neoris-dark';
   const [selectedObject, setSelectedObject] = useState(selectedFromParent);
   const { setIsHoveredOn } = useContext(SidebarItemWithSubmenuContext);
   const closeSubmenu = () => {
@@ -195,23 +106,12 @@ export const SidebarSubmenuItemModificado = (props: SidebarSubmenuItemProps) => 
   const currentLocation = useLocation();
   let isActive = isLocationMatch(currentLocation, toLocation, exact);
 
-  const [showDropDown, setShowDropDown] = useState(true);
-  // const handleClickDropdown = () => {
-  //   setIsSelected(!isSelected);
-  // };
-
-  // const handleClickSeleccionado = () => {
-  //   setShowDropDown(!showDropDown);
-  // };
-
   const handleObjectClick = (object: any) => {
     setSelectedObject(object.title); // Aquí asumo que cada objeto tiene un título único. Puedes usar cualquier propiedad única.
     if (props.onSelectedObjectChange) {
       props.onSelectedObjectChange(object);
-      //console.log("object.title: ", object.title);
     }
   };
-
 
   if (dropdownItems !== undefined) {
     dropdownItems.some(item => {
@@ -219,43 +119,35 @@ export const SidebarSubmenuItemModificado = (props: SidebarSubmenuItemProps) => 
       isActive = isLocationMatch(currentLocation, resolvedPath, exact);
       return isActive;
     });
-    return (       
-          <Box className={classes.dropdown}
+    return (
+      <Box className={classes.dropdown}>
+        {dropdownItems.map((object, key) => (
+          <Link
+            to={object.to}
+            underline="none"
+            className={
+              selectedObject === object.title // Comprobar si el objeto está seleccionado
+                ? classes.dropdownItemSeleccionado
+                : classes.dropdownItem
+            }
+            onClick={() => handleObjectClick(object)}
+            onTouchStart={e => e.stopPropagation()}
           >
-            {dropdownItems.map((object, key) => (
-              <Link
-                to={object.to}
-                underline="none"
+            <div className={classes.contenedor}>
+              <Typography
+                component="span"
                 className={
                   selectedObject === object.title // Comprobar si el objeto está seleccionado
-                    ? classes.dropdownItemSeleccionado
-                    : classes.dropdownItem
+                    ? classes.elementoSeleccionado
+                    : classes.textContent
                 }
-                onClick={() => handleObjectClick(object)}
-                onTouchStart={e => e.stopPropagation()}
               >
-                <div className={classes.contenedor}>
-                  <Typography
-                    component="span"
-                    className={
-                      isDarkMode ?
-                      (selectedObject === object.title // Comprobar si el objeto está seleccionado
-                        ? classes.elementoSeleccionadoOscuro
-                        : classes.textContentOscuro) :
-                        (selectedObject === object.title // Comprobar si el objeto está seleccionado
-                        ? classes.elementoSeleccionadoClaro
-                        : classes.textContentClaro)
-                    }
-                  >
-                    {object.title}
-                    
-                  </Typography>
-                </div>
-              </Link>
-            ))}
-          </Box>
-       
-     
+                {object.title}
+              </Typography>
+            </div>
+          </Link>
+        ))}
+      </Box>
     );
   }
 
@@ -283,5 +175,3 @@ export const SidebarSubmenuItemModificado = (props: SidebarSubmenuItemProps) => 
     </Box>
   );
 };
-
-
