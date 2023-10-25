@@ -40,6 +40,7 @@ const useStyles = makeStyles<
       overflowX: 'visible',
       overflowY: 'visible',
     },
+    
   }),
   { name: 'BackstageSidebarSubmenu' },
 );

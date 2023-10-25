@@ -62,7 +62,7 @@ export const UserSettingsProfileNew = () => {
   return (
     <>
     {isOpen ? (
-    <div style={{ marginTop: '3px' , marginBottom: '-8px',marginLeft: '7px',  alignItems: 'center' }}>
+    <div style={{ marginTop: '3px' , marginBottom: '-8px',marginLeft: '23px',  alignItems: 'center' }}>
       <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
         <div style={{ margin: '10px' }}>
           <UserSettingsSignInAvatar size={40} />

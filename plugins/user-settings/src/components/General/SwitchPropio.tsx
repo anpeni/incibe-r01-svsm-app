@@ -34,11 +34,13 @@ export const MySwitch: React.FC<MySwitchProps> = ({
     transition: 'left 0.2s',
   };
 
-  return (
-    <div onClick={onChange} style={switchStyle as React.CSSProperties}>
-      <div style={toggleStyle as React.CSSProperties}></div>
-    </div>
-  );
+
+
+    return (
+        <div onClick={onChange} style={switchStyle as React.CSSProperties}>
+            <div style={toggleStyle as React.CSSProperties}></div>
+        </div>
+    );
 };
 
 export default MySwitch;

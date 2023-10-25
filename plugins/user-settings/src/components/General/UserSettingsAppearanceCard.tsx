@@ -24,9 +24,15 @@ import { makeStyles } from '@material-ui/core/styles';
 import { BackstageTheme } from '@backstage/theme';
 import { vars } from '../../../../../packages/app/src/themes/variables';
 
-const useStyles = makeStyles<BackstageTheme>(theme => ({
+
+
+
+const useStyles = makeStyles<BackstageTheme>(
+  theme => ({
+
   titulo: {
-    color: `${theme.palette.type === 'dark' ? '#FFF' : 'RGB(6, 11, 40)'}`,
+    color: `${theme.palette.type === 'dark' ? '#FFF' : 'RGB(6, 11, 40)'
+  }`,
     textAlign: 'right',
     fontFamily: 'Inter, sans-serif',
     fontSize: '28px',
@@ -58,11 +64,9 @@ export const UserSettingsAppearanceCard = () => {
   const classes = useStyles();
 
   return (
-    <InfoCardSettings
-      className={classes.card}
-      title={<span className={classes.titulo}>Appearance</span>}
-      variant="gridItem"
-    >
+    <InfoCardSettings className={classes.card} 
+    title={<span className={classes.titulo}>Appearance</span>} 
+    variant="gridItem">
       <List dense>
         <UserSettingsThemeToggle />
         {!isMobile && <UserSettingsPinToggle />}

@@ -16,48 +16,40 @@ import Button from '@material-ui/core/Button';
 import { OverridableComponent } from '@mui/material/OverridableComponent';
 import { SvgIconTypeMap } from '@mui/material';
 import { vars } from '../../../../app/src/themes/variables';
-
 const useStyles = makeStyles<BackstageTheme>(
   theme => ({
+
     dropdown: {
       display: 'flex',
       flexDirection: 'column',
     },
-    dropdownItem: {
-      '&:hover': {},
-    },
     textContent: {
-      color: `${
-        theme.palette.type === 'dark'
-          ? 'rgba(255, 255, 255, 0.60)'
-          : 'rgba(6, 11, 40, 0.8)'
-      }`,
+      color: `${theme.palette.type === 'dark' ? 'rgba(255, 255, 255, 0.60)' : 'rgba(6, 11, 40, 0.8)'
+        }`,
       fontFamily: 'Inter, sans-serif',
       paddingLeft: 20,
       fontSize: '13px',
       '&:hover': {
-        background: `${
-          theme.palette.type === 'dark'
-            ? vars.dark.background.card
+        background: `${theme.palette.type === 'dark'
+            ? vars.dark.background.highlight
             : vars.light.background.white
-        }`,
+          }`,
         marginLeft: '8px',
         borderRadius: '10px',
-        padding: '5px 12px 5px 12px',
+        padding: '5px 12px 5px 12px'
       },
     },
     elementoSeleccionado: {
-      color: `${theme.palette.type === 'dark' ? 'white' : 'rgba(6, 11, 40)'}`,
+      color: `${theme.palette.type === 'dark' ? 'white' : 'rgba(6, 11, 40)'
+        }`,
       fontFamily: 'Inter, sans-serif',
       fontSize: '13px',
       marginLeft: '8px',
-      background: `${
-        theme.palette.type === 'dark'
-          ? vars.dark.background.card
+      background: `${theme.palette.type === 'dark' ? vars.dark.background.highlight
           : vars.light.background.white
-      }`,
+        }`,
       borderRadius: '10px',
-      padding: '5px 12px 5px 12px',
+      padding: '5px 12px 5px 12px'
     },
     contenedor: {
       height: '39px',
@@ -65,6 +57,7 @@ const useStyles = makeStyles<BackstageTheme>(
       display: 'flex',
       alignItems: 'center',
     },
+
   }),
   { name: 'BackstageSidebarSubmenuItem' },
 );
@@ -85,17 +78,9 @@ export type SidebarSubmenuItemProps = {
   onSelectedObjectChange?: (newSelectedObject: any) => void;
 };
 
-export const SidebarSubmenuItemModificado = (
-  props: SidebarSubmenuItemProps,
-) => {
-  const {
-    title,
-    to,
-    icon: Icon,
-    dropdownItems,
-    exact,
-    selectedFromParent,
-  } = props;
+
+export const SidebarSubmenuItemModificado = (props: SidebarSubmenuItemProps) => {
+  const { title, to, icon: Icon, dropdownItems, exact, selectedFromParent } = props;
   const classes = useStyles();
   const [selectedObject, setSelectedObject] = useState(selectedFromParent);
   const { setIsHoveredOn } = useContext(SidebarItemWithSubmenuContext);
@@ -113,6 +98,7 @@ export const SidebarSubmenuItemModificado = (
     }
   };
 
+
   if (dropdownItems !== undefined) {
     dropdownItems.some(item => {
       const resolvedPath = resolvePath(item.to);
@@ -120,7 +106,8 @@ export const SidebarSubmenuItemModificado = (
       return isActive;
     });
     return (
-      <Box className={classes.dropdown}>
+      <Box className={classes.dropdown}
+      >
         {dropdownItems.map((object, key) => (
           <Link
             to={object.to}
@@ -137,17 +124,21 @@ export const SidebarSubmenuItemModificado = (
               <Typography
                 component="span"
                 className={
-                  selectedObject === object.title // Comprobar si el objeto está seleccionado
+
+                  (selectedObject === object.title // Comprobar si el objeto está seleccionado
                     ? classes.elementoSeleccionado
-                    : classes.textContent
+                    : classes.textContent)
                 }
               >
                 {object.title}
+
               </Typography>
             </div>
           </Link>
         ))}
       </Box>
+
+
     );
   }
 
@@ -175,3 +166,5 @@ export const SidebarSubmenuItemModificado = (
     </Box>
   );
 };
+
+

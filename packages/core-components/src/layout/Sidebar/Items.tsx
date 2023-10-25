@@ -121,6 +121,7 @@ const makeSidebarStyles = (sidebarConfig: SidebarConfig) =>
         textAlign: 'inherit',
         font: 'inherit',
         textTransform: 'none',
+        
       },
       closed: {
         width: sidebarConfig.drawerWidthClosed,
@@ -156,6 +157,7 @@ const makeSidebarStyles = (sidebarConfig: SidebarConfig) =>
         lineHeight: 'auto',
         flex: '3 1 auto',
         width: '110px',
+        marginLeft: '-10px',
         overflow: 'hidden',
         'text-overflow': 'ellipsis',
       },
@@ -163,11 +165,13 @@ const makeSidebarStyles = (sidebarConfig: SidebarConfig) =>
         boxSizing: 'border-box',
         height: '100%',
         width: sidebarConfig.iconContainerWidth,
-        marginRight: -theme.spacing(2),
+        //marginRight: '-8px',
+        marginLeft: '21px',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
         lineHeight: '0',
+        
       },
       searchRoot: {
         marginBottom: 12,
@@ -191,6 +195,7 @@ const makeSidebarStyles = (sidebarConfig: SidebarConfig) =>
       closedItemIcon: {
         width: '100%',
         justifyContent: 'center',
+
       },
       submenuArrow: {
         display: 'flex',
@@ -212,14 +217,18 @@ const makeSidebarStyles = (sidebarConfig: SidebarConfig) =>
       circuloarrow: {
         position: 'absolute',
         right: -7,
-        width: '25px',
-        height: '25px',
-        backgroundColor: vars.dark.background.accent,
-        borderRadius: '50%',
+        width: '25px',  
+        height: '25px', 
+        backgroundColor: vars.dark.background.accent, 
+        borderRadius: '50%', 
       },
       selected: {
         '&$root': {
-          borderLeft: `solid ${sidebarConfig.selectedIndicatorWidth}px ${vars.light.background.accent}`,
+          borderRadius: '9px',
+          borderLeft: `solid 9px ${vars.light.background.accent}`,
+          width: '185px ',
+          position: 'relative',
+          left: '20px',
           color: `${
             theme.palette.type === 'dark'
               ? vars.dark.background.white + '!important'
@@ -237,18 +246,32 @@ const makeSidebarStyles = (sidebarConfig: SidebarConfig) =>
                 : vars.light.background.white + '!important'
             }`,
             borderadius: '12px !important',
+            //width: '185px '
           },
+          
+          
         },
         '&$closed': {
-          width: sidebarConfig.drawerWidthClosed,
+          borderLeft: `none`,
+          width: '50px',
+          marginLeft: '-8px',
         },
         '& $closedItemIcon': {
           paddingRight: sidebarConfig.selectedIndicatorWidth,
-          color: vars.light.background.accent,
+          color:vars.light.background.accent,
+
         },
         '& $iconContainer': {
-          marginLeft: -sidebarConfig.selectedIndicatorWidth,
-          color: vars.light.background.accent,
+          marginLeft: '-4px',
+          color:vars.light.background.accent,
+          //background:'red'
+          
+        },
+        '& $label': {
+          marginLeft: '-5px',
+          //color:accentColorLight,
+          //background:'blue'
+          
         },
       },
     }),
@@ -791,12 +814,17 @@ export const SidebarExpandButton = () => {
         aria-label="Expand Sidebar"
         data-testid="sidebar-expand-button"
       >
-        <div className={classes.circuloarrow}>
-          <Box className={classes.arrows}>
-            {isOpen ? <ChevronLeftOutlined /> : <ChevronRightOutlined />}
-          </Box>
-        </div>
+
+          <div className={classes.circuloarrow}>
+            <Box className={classes.arrows}>
+              {isOpen ? <ChevronLeftOutlined /> : <ChevronRightOutlined />}
+            </Box>
+          </div>
+
+
+
       </Button>
+
     </>
   );
 };

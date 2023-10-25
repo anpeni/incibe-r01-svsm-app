@@ -21,12 +21,30 @@ import { ExpandMore, ExpandMoreOutlined } from '@material-ui/icons';
 import { SidebarSubmenu } from './SidebarSubmenu';
 import { SidebarSubmenuItemModificado } from './SidebarSubmenuItemModificado';
 import { vars } from '../../../../app/src/themes/variables';
-
 const useStyles = makeStyles<BackstageTheme>(
   theme => ({
     item: {
-      fontSize: '16px', //16px
-      fontFamily: 'Inter, sans-serif', //inter
+      fontSize: '16px',//16px
+      fontFamily: 'Inter, sans-serif',//inter
+      lineHeight: '1.57',
+      height: 48,
+      display: 'flex',
+      alignItems: 'center',
+      color: theme.palette.navigation.color,
+      padding: theme.spacing(2.5),
+      cursor: 'pointer',
+      position: 'relative',
+      border: 'none',
+      '&:hover': {
+        background: `${theme.palette.type === 'dark'
+            ? vars.dark.background.highlight
+            : vars.light.background.white
+          }`,
+      },
+    },
+    itemIcono: {
+      fontSize: '16px',//16px
+      fontFamily: 'Inter, sans-serif',//inter
       lineHeight: '1.57',
       height: 48,
       width: '100%',
@@ -38,27 +56,38 @@ const useStyles = makeStyles<BackstageTheme>(
       position: 'relative',
       border: 'none',
       '&:hover': {
-        background: `${
-          theme.palette.type === 'dark'
+        background: `${theme.palette.type === 'dark'
             ? vars.dark.background.highlight
             : vars.light.background.white
-        }`,
+          }`,
       },
     },
 
     itemContainer: {
       width: '100%',
+
     },
     selected: {
-      background: `${
-        theme.palette.type === 'dark'
+      background: `${theme.palette.type === 'dark'
           ? vars.dark.background.highlight
           : vars.light.background.white
-      }`,
-      color: `${
-        theme.palette.type === 'dark' ? '#FFF ' : 'rgba(6, 11, 40, 0.8)'
-      }`,
-      borderRadius: '12px',
+        }`,
+      color: `${theme.palette.type === 'dark' ? '#FFF ' : 'rgba(6, 11, 40, 0.8)'
+        }`,
+      borderRadius: '9px',
+      width: '185px',
+      marginLeft: '20px',
+      borderLeft: `solid 9px ${vars.light.background.accent}`,
+    },
+    selectedCerrado: {
+      background: `${theme.palette.type === 'dark'
+          ? vars.dark.background.highlight
+          : vars.light.background.white
+        }`,
+      width: 1,
+      marginLeft: '10px',
+      minWidth: '50px',
+      widht: '20px',
     },
     label: {
       margin: theme.spacing(1.75),
@@ -69,26 +98,22 @@ const useStyles = makeStyles<BackstageTheme>(
       overflow: 'hidden',
       'text-overflow': 'ellipsis',
       lineHeight: 1,
-      color: `${
-        theme.palette.type === 'dark'
-          ? 'rgba(255, 255, 255, 0.60)'
-          : 'RGB(6, 11, 40)'
-      }`,
+      color: `${theme.palette.type === 'dark' ? 'rgba(255, 255, 255, 0.60)' : 'RGB(6, 11, 40)'
+        }`,
     },
     labelSelected: {
       margin: theme.spacing(1.75),
       marginLeft: theme.spacing(1),
       fontSize: 16,
-      fontWeight: 'lighter',
+      fontWeight: "lighter",
       whiteSpace: 'nowrap',
       overflow: 'hidden',
       'text-overflow': 'ellipsis',
       lineHeight: 1,
-      color: `${
-        theme.palette.type === 'dark'
+      color: `${theme.palette.type === 'dark'
           ? vars.dark.background.white
           : vars.light.background.accent
-      }`,
+        }`,
     },
     subtitle: {
       fontSize: 10,
@@ -104,21 +129,17 @@ const useStyles = makeStyles<BackstageTheme>(
     expandClose: {
       position: 'absolute',
       fontWeight: 'bold',
-      right: 30,
-      color: `${
-        theme.palette.type === 'dark'
-          ? 'rgba(255, 255, 255, 0.60)'
-          : 'rgba(6, 11, 40)'
-      }`,
+      right: 10,
+      color: `${theme.palette.type === 'dark' ? 'rgba(255, 255, 255, 0.60)' : 'rgba(6, 11, 40)'
+        }`,
     },
     expandOpen: {
       position: 'absolute',
-      right: 30,
-      color: `${
-        theme.palette.type === 'dark'
+      right: 10,
+      color: `${theme.palette.type === 'dark'
           ? vars.dark.background.white
           : vars.light.background.accent
-      }`,
+        }`,
     },
     dropdown: {
       display: 'flex',
@@ -135,40 +156,40 @@ const useStyles = makeStyles<BackstageTheme>(
       padding: '10px 20px 10px 0',
     },
     icono: {
-      color: `${
-        theme.palette.type === 'dark'
-          ? 'rgba(255, 255, 255, 0.60)'
-          : 'rgba(6, 11, 40)'
-      }`,
-      marginLeft: '6px',
+      color: `${theme.palette.type === 'dark' ? 'rgba(255, 255, 255, 0.60)' : 'rgba(6, 11, 40)'
+        }`,
+      marginLeft: '23px',
     },
     iconoSelect: {
       color: vars.dark.background.accent,
-      marginLeft: '6px',
+      marginLeft: '-5px',
+    },
+    iconoSelectCerrado: {
+      color: vars.dark.background.accent,
+      marginLeft: '-5px',
+
     },
     iconocentrado: {
-      marginLeft: '6px',
     },
+    iconocentradoCerrado: {
+      marginLeft: '5px',
+    },
+
     textContent: {
-      color: `${
-        theme.palette.type === 'dark'
-          ? 'rgba(255, 255, 255, 0.60)'
-          : 'rgba(6, 11, 40, 0.80)'
-      }`,
+      color: `${theme.palette.type === 'dark' ? 'rgba(255, 255, 255, 0.60)' : 'rgba(6, 11, 40, 0.80)'
+        }`,
       paddingLeft: theme.spacing(4),
       paddingRight: theme.spacing(1),
-      fontSize: '13px', //16px
-      fontFamily: 'Inter, sans-serif', //inter
+      fontSize: '13px',//16px
+      fontFamily: 'Inter, sans-serif',//inter
       whiteSpace: 'nowrap',
       overflow: 'hidden',
       'text-overflow': 'ellipsis',
       marginLeft: '-18px',
       '&:hover': {
-        background: `${
-          theme.palette.type === 'dark'
-            ? vars.dark.background.highlight
+        background: `${theme.palette.type === 'dark' ? vars.dark.background.highlight
             : vars.light.background.white
-        }`,
+          }`,
         borderRadius: '12px',
         padding: '10px 80px 10px 15px',
         marginLeft: '-1px',
@@ -178,8 +199,8 @@ const useStyles = makeStyles<BackstageTheme>(
       color: 'rgba(255, 255, 255, 0.60)',
       paddingLeft: theme.spacing(4),
       paddingRight: theme.spacing(1),
-      fontSize: '13px', //16px
-      fontFamily: 'Inter, sans-serif', //inter
+      fontSize: '13px',//16px
+      fontFamily: 'Inter, sans-serif',//inter
       whiteSpace: 'nowrap',
       overflow: 'hidden',
       'text-overflow': 'ellipsis',
@@ -195,8 +216,8 @@ const useStyles = makeStyles<BackstageTheme>(
       color: 'rgba(6, 11, 40, 0.8)',
       paddingLeft: theme.spacing(4),
       paddingRight: theme.spacing(1),
-      fontSize: '13px', //16px
-      fontFamily: 'Inter, sans-serif', //inter
+      fontSize: '13px',//16px
+      fontFamily: 'Inter, sans-serif',//inter
       whiteSpace: 'nowrap',
       overflow: 'hidden',
       'text-overflow': 'ellipsis',
@@ -209,9 +230,10 @@ const useStyles = makeStyles<BackstageTheme>(
       },
     },
     textContentSelected: {
-      color: `${theme.palette.type === 'dark' ? '#FFF' : 'rgba(6, 11, 40)'}`,
-      fontSize: '13px', //16px
-      fontFamily: 'Inter, sans-serif', //inter
+      color: `${theme.palette.type === 'dark' ? '#FFF' : 'rgba(6, 11, 40)'
+        }`,
+      fontSize: '13px',//16px
+      fontFamily: 'Inter, sans-serif',//inter
       whiteSpace: 'nowrap',
       overflow: 'hidden',
       'text-overflow': 'ellipsis',
@@ -228,35 +250,36 @@ const useStyles = makeStyles<BackstageTheme>(
       height: 'auto',
       padding: '0',
       position: 'relative',
-      marginLeft: '35px',
+      marginLeft: '55px'
+    },
+    divMenuCerrado: {
+      height: 'auto',
+      padding: '0',
+      position: 'relative',
+      marginLeft: '35px'
     },
     lineaVertical: {
-      height: 'calc(100% - 20px)', // 20px menos que el contenedor
-      borderLeft: `${
-        theme.palette.type === 'dark'
-          ? '2px solid rgba(255, 255, 255, 0.30)'
-          : '2px solid black'
-      }`,
-      position: 'absolute', // Posicionado de manera absoluta dentro del div padre
-      top: '0', // Alineado con la parte superior del div padre
+      height: 'calc(100% - 20px)',  // 20px menos que el contenedor
+      borderLeft: `${theme.palette.type === 'dark' ? '2px solid rgba(255, 255, 255, 0.30)' : '2px solid black'
+        }`,
+      position: 'absolute',  // Posicionado de manera absoluta dentro del div padre
+      top: '0'  // Alineado con la parte superior del div padre
     },
     lineaHorizontal: {
       width: '10px',
-      borderBottom: `${
-        theme.palette.type === 'dark'
-          ? '2px solid rgba(255, 255, 255, 0.30)'
-          : '2px solid black'
-      }`,
-      marginLeft: '6.5px',
+      borderBottom: `${theme.palette.type === 'dark' ? '2px solid rgba(255, 255, 255, 0.30)' : '2px solid black'
+        }`,
+      marginLeft: '6.5px'
     },
     divLineaHorizontalItem: {
       display: 'flex',
       flexDirection: 'row',
       alignItems: 'center',
-    },
+    }
   }),
   { name: 'BackstageSidebarSubmenuItem' },
 );
+
 
 export type SidebarSubmenuItemDropdownItem = {
   title: string;
@@ -289,13 +312,14 @@ export const SidebarSubmenuItem = (props: SidebarSubmenuItemProps) => {
     setShowDropDown(!showDropDown);
   };
 
-  const handleObjectClick = (object: { title: any; to?: string }) => {
+  const handleObjectClick = (object: { title: any; to?: string; }) => {
     setSelectedObject(object.title);
   };
 
   const handleSelectedObjectChange = (newSelectedObject: any) => {
-    console.log('newSelectedObject.title: ' + newSelectedObject.title);
+    console.log("newSelectedObject.title: " + newSelectedObject.title);
     setSelectedObject(newSelectedObject.title);
+
   };
 
   if (dropdownItems !== undefined) {
@@ -309,6 +333,7 @@ export const SidebarSubmenuItem = (props: SidebarSubmenuItemProps) => {
     return (
       <>
         {isOpen ? (
+          // <Box className={classes.itemContainer}>
           <Box className={classes.itemContainer}>
             <Button
               role="button"
@@ -316,23 +341,20 @@ export const SidebarSubmenuItem = (props: SidebarSubmenuItemProps) => {
               onTouchStart={e => e.stopPropagation()}
               className={classnames(
                 classes.item,
-                showDropDown ? classes.selected : undefined,
-              )}
-            >
-              {Icon && (
+                (showDropDown ? classes.selected : undefined)
+              )}>
+              {Icon &&
                 <Icon
                   fontSize="small"
                   className={classnames(
                     showDropDown ? classes.iconoSelect : classes.icono,
-                  )}
-                />
-              )}
+                  )} />
+              }
               <Typography
                 component="span"
                 className={classnames(
                   showDropDown ? classes.labelSelected : classes.label,
-                )}
-              >
+                )}>
                 {title}
                 <br />
               </Typography>
@@ -344,7 +366,7 @@ export const SidebarSubmenuItem = (props: SidebarSubmenuItemProps) => {
             </Button>
             {dropdownItems && showDropDown && (
               <div className={classes.divMenu}>
-                {showDropDown && <div className={classes.lineaVertical}></div>}
+                {showDropDown && (<div className={classes.lineaVertical}></div>)}
                 <Box className={classes.dropdown}>
                   {dropdownItems.map((object, key) => (
                     <Link
@@ -359,18 +381,15 @@ export const SidebarSubmenuItem = (props: SidebarSubmenuItemProps) => {
                       onTouchStart={e => e.stopPropagation()}
                     >
                       <div className={classes.divLineaHorizontalItem}>
-                        {showDropDown && (
-                          <div className={classes.lineaHorizontal}></div>
-                        )}
+                        {showDropDown &&
+                          (<div className={classes.lineaHorizontal}></div>)}
                         <div className={classnames(classes.sombreadoItem)}>
-                          <Typography
-                            component="span"
+                          <Typography component="span"
                             className={
                               selectedObject === object.title // Comprobar si el objeto está seleccionado
                                 ? classes.textContentSelected
                                 : classes.textContent
-                            }
-                          >
+                            }>
                             {object.title}
                           </Typography>
                         </div>
@@ -382,31 +401,25 @@ export const SidebarSubmenuItem = (props: SidebarSubmenuItemProps) => {
             )}
           </Box>
         ) : (
-          <Box className={classes.itemContainer}>
+          <Box >
             <Button
               role="button"
               onClick={handleClickDropdown}
               onTouchStart={e => e.stopPropagation()}
               className={classnames(
-                showDropDown
-                  ? `${classes.selected} ${classes.item}`
-                  : classes.item,
+                (showDropDown ? `${classes.selectedCerrado} ${classes.itemIcono}` : classes.itemIcono)
               )}
             >
-              {Icon && (
+              {Icon &&
                 <Icon
                   fontSize="small"
                   className={classnames(
-                    showDropDown
-                      ? `${classes.iconoSelect} ${classes.iconocentrado}`
-                      : `${classes.icono} ${classes.iconocentrado}`,
-                  )}
-                />
-              )}
+                    (showDropDown ? `${classes.iconoSelectCerrado} ${classes.iconocentrado}` : `${classes.icono} ${classes.iconocentradoCerrado}`)
+                  )} />}
             </Button>
             {dropdownItems && showDropDown && (
-              <div className={classes.divMenu}>
-                {showDropDown && <div className={classes.lineaVertical}></div>}
+              <div className={classes.divMenuCerrado}>
+                {showDropDown && (<div className={classes.lineaVertical}></div>)}
                 <Box className={classes.dropdown}>
                   {dropdownItems.map((object, key) => (
                     <Link
@@ -417,21 +430,23 @@ export const SidebarSubmenuItem = (props: SidebarSubmenuItemProps) => {
                       onTouchStart={e => e.stopPropagation()}
                     >
                       <div className={classes.divLineaHorizontalItem}>
-                        {showDropDown && (
-                          <div className={classes.lineaHorizontal}></div>
-                        )}
+                        {showDropDown &&
+                          (<div className={classes.lineaHorizontal}>
+                          </div>)}
                         <div className={classnames(classes.sombreadoItem)}>
-                          <Typography
-                            component="span"
-                            className={classnames(classes.textContentOscuro)}
-                          ></Typography>
+                          <Typography component="span"
+                            className={classnames(
+                              classes.textContentOscuro
+                            )}
+                          >
+                          </Typography>
                         </div>
                       </div>
                     </Link>
                   ))}
                 </Box>
                 <div className={classnames(classes.contenedorSubmenuFlotante)}>
-                  <SidebarSubmenu>
+                  <SidebarSubmenu >
                     <SidebarSubmenuItemModificado
                       selectedFromParent={selectedObject}
                       dropdownItems={dropdownItems}

@@ -22,6 +22,7 @@ declare module '@material-ui/core/styles/overrides' {
     MuiAutocomplete: AutocompleteClassKey;
   }
 }
+
 const pageThemesFontColorOverride: Record<string, PageTheme> = {};
 Object.keys(defaultPageThemes).map(key => {
   pageThemesFontColorOverride[key] = {

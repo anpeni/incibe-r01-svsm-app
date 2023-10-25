@@ -24,51 +24,61 @@ import { makeStyles } from '@material-ui/core/styles';
 import { BackstageTheme } from '@backstage/theme';
 import { vars } from '../../../../../packages/app/src/themes/variables';
 
-const useStyles = makeStyles<BackstageTheme>(theme => ({
-  titulo: {
-    color: `${theme.palette.type === 'dark' ? '#FFF' : 'RGB(6, 11, 40)'}`,
-    textAlign: 'right',
-    fontFamily: 'Inter, sans-serif',
-    fontSize: '28px',
-    fontStyle: 'normal',
-    fontWeight: 700,
-    lineHeight: 'normal',
-    marginLeft: '23px',
-  },
-  card: {
-    backgroundColor: `${
-      theme.palette.type === 'dark'
-        ? vars.dark.background.card
-        : vars.light.background.card
-    }`,
-  },
-  rol: {
-    marginBottom: '3px',
-    color: `${theme.palette.type === 'dark' ? '#FFF' : 'RGB(6, 11, 40)'}`,
-    fontFamily: 'Inter, sans-serif',
-    fontSize: '13px',
-    fontStyle: 'normal',
-    fontWeight: 500,
-    lineHeight: 'normal',
-  },
-  nombre: {
-    marginBottom: '3px',
-    color: `${theme.palette.type === 'dark' ? '#FFF' : 'RGB(6, 11, 40)'}`,
-    fontFamily: 'Inter, sans-serif',
-    fontSize: '16px',
-    fontStyle: 'normal',
-    fontWeight: 700,
-    lineHeight: 'normal',
-  },
-  mail: {
-    color: `${theme.palette.type === 'dark' ? '#FFF' : 'RGB(6, 11, 40)'}`,
-    fontFamily: 'Inter, sans-serif',
-    fontSize: '16px',
-    fontStyle: 'normal',
-    fontWeight: 500,
-    lineHeight: 'normal',
-  },
-}));
+const useStyles = makeStyles<BackstageTheme>(
+  theme => ({
+    titulo: {
+      color: `${theme.palette.type === 'dark' ? '#FFF' : 'RGB(6, 11, 40)'
+        }`,
+      textAlign: 'right',
+      fontFamily: 'Inter, sans-serif',
+      fontSize: '28px',
+      fontStyle: 'normal',
+      fontWeight: 700,
+      lineHeight: 'normal',
+      marginLeft: '23px'
+
+    },
+    card: {
+      backgroundColor: `${
+        theme.palette.type === 'dark'
+          ? vars.dark.background.card
+          : vars.light.background.card
+      }`,
+
+    },
+    rol: {
+      marginBottom: '3px',
+      color: `${theme.palette.type === 'dark' ? '#FFF' : 'RGB(6, 11, 40)'
+        }`,
+      fontFamily: 'Inter, sans-serif',
+      fontSize: '13px',
+      fontStyle: 'normal',
+      fontWeight: 500,
+      lineHeight: 'normal',
+    },
+    nombre: {
+      marginBottom: '3px',
+      color: `${theme.palette.type === 'dark' ? '#FFF' : 'RGB(6, 11, 40)'
+        }`,
+      fontFamily: 'Inter, sans-serif',
+      fontSize: '16px',
+      fontStyle: 'normal',
+      fontWeight: 700,
+      lineHeight: 'normal',
+    },
+    mail: {
+
+      color: `${theme.palette.type === 'dark' ? '#FFF' : 'RGB(6, 11, 40)'
+        }`,
+      fontFamily: 'Inter, sans-serif',
+      fontSize: '16px',
+      fontStyle: 'normal',
+      fontWeight: 500,
+      lineHeight: 'normal',
+    },
+  }));
+
+
 
 /** @public */
 export const UserSettingsProfileCard = () => {
@@ -76,45 +86,25 @@ export const UserSettingsProfileCard = () => {
   const classes = useStyles();
 
   return (
-    <InfoCardSettings
-      className={classes.card}
-      variant="gridItem"
-      title={<span className={classes.titulo}>Profile</span>}
-    >
+    <InfoCardSettings className={classes.card} variant="gridItem" title={<span className={classes.titulo}>Profile</span>}>
       <Grid container spacing={6} style={{ marginTop: '-8px' }}>
         <Grid item style={{ marginLeft: '28px' }}>
           <UserSettingsSignInAvatar size={96} />
         </Grid>
         <Grid item xs={12} sm container style={{ marginTop: '-2px' }}>
-          <Grid
-            item
-            xs
-            container
-            direction="column"
-            spacing={2}
-            style={{ marginLeft: '-30px' }}
-          >
+          <Grid item xs container direction="column" spacing={2} style={{ marginLeft: '-30px' }}>
             <Grid item xs>
-              <Typography
-                variant="subtitle1"
-                gutterBottom
-                className={classes.rol}
-              >
+              <Typography variant="subtitle1" gutterBottom
+                className={classes.rol}>
                 DEVELOPER
               </Typography>
-              <Typography
-                variant="subtitle1"
-                gutterBottom
-                className={classes.nombre}
-              >
+              <Typography variant="subtitle1" gutterBottom
+                className={classes.nombre}>
                 {displayName}
               </Typography>
               {profile.email && (
-                <Typography
-                  variant="body2"
-                  color="textSecondary"
-                  className={classes.mail}
-                >
+                <Typography variant="body2" color="textSecondary"
+                className={classes.mail}>
                   {profile.email}
                 </Typography>
               )}

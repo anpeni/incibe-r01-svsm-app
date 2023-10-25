@@ -20,63 +20,75 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import React from 'react';
 import { useUserProfile } from '../useUserProfileInfo';
+
 import { BackstageTheme } from '@backstage/theme';
 import { makeStyles } from '@material-ui/core/styles';
+
 import { vars } from '../../../../../packages/app/src/themes/variables';
 
-const useStyles = makeStyles<BackstageTheme>(theme => ({
-  userEntity: {
-    color: `${theme.palette.type === 'dark' ? '#FFF' : 'RGB(6, 11, 40)'}`,
-    display: 'flex',
-    alignItems: 'center',
-    fontFamily: 'Inter, sans-serif',
-    fontSize: '20px',
-    fontStyle: 'normal',
-    fontWeight: 400,
-    lineHeight: 'normal',
-    marginBottom: '25px',
-  },
-  ownerLinkContainer: {
-    background: `${theme.palette.type === 'dark' ? '#FFF' : '#FFF'}`,
-    width: '67%',
-    marginLeft: '82px',
-    padding: '5px 10px 5px 8px',
-    borderRadius: '12px',
-    color: 'red !important',
-  },
-  colorPrimary: {
-    color: 'red !important',
-  },
-  linkContainer: {
-    background: `${theme.palette.type === 'dark' ? '#FFF' : '#FFF'}`,
-    width: '67%',
-    marginLeft: '150px',
-    padding: '5px 10px 5px 8px',
-    borderRadius: '12px',
-  },
-  link: {
-    marginLeft: '8px',
-    color: 'RGB(6, 11, 40)',
-  },
-  titulo: {
-    color: `${theme.palette.type === 'dark' ? '#FFF' : 'RGB(6, 11, 40)'}`,
-    textAlign: 'right',
-    fontFamily: 'Inter, sans-serif',
-    fontSize: '28px',
-    fontStyle: 'normal',
-    fontWeight: 700,
-    lineHeight: 'normal',
-    marginLeft: '23px',
-    marginBottom: '10px',
-  },
-  card: {
-    backgroundColor: `${
-      theme.palette.type === 'dark'
-        ? vars.dark.background.card
-        : vars.light.background.card
-    }`,
-  },
-}));
+
+const useStyles = makeStyles<BackstageTheme>(
+  theme => ({
+    userEntity: {
+      color: `${theme.palette.type === 'dark' ? '#FFF' : 'RGB(6, 11, 40)'
+        }`,
+      display: 'flex',
+      alignItems: 'center',
+      fontFamily: 'Inter, sans-serif',
+      fontSize: '20px',
+      fontStyle: 'normal',
+      fontWeight: 400,
+      lineHeight: 'normal',
+      marginBottom: '25px'
+    },
+    ownerLinkContainer: {
+      background: `${theme.palette.type === 'dark' ? '#FFF' : '#FFF'
+        }`,
+      width: '67%',
+      marginLeft: '82px',
+      padding: '5px 10px 5px 8px',
+      borderRadius: '12px',
+      color:'red !important'
+
+    },
+    colorPrimary: {
+      color: 'red !important'
+    },
+    linkContainer: {
+      background: `${theme.palette.type === 'dark' ? '#FFF' : '#FFF'
+        }`,
+      width: '67%',
+      marginLeft: '150px',
+      padding: '5px 10px 5px 8px',
+      borderRadius: '12px',
+
+    },
+    link: {
+      marginLeft: '8px',
+      color:'RGB(6, 11, 40)'
+
+    },
+    titulo: {
+      color: `${theme.palette.type === 'dark' ? '#FFF' : 'RGB(6, 11, 40)'
+        }`,
+      textAlign: 'right',
+      fontFamily: 'Inter, sans-serif',
+      fontSize: '28px',
+      fontStyle: 'normal',
+      fontWeight: 700,
+      lineHeight: 'normal',
+      marginLeft: '23px',
+      marginBottom: '10px'
+    },
+    card: {
+      backgroundColor: `${
+        theme.palette.type === 'dark'
+          ? vars.dark.background.card
+          : vars.light.background.card
+      }`,
+
+    },
+  }));
 
 const Contents = () => {
   const { backstageIdentity } = useUserProfile();
@@ -93,11 +105,8 @@ const Contents = () => {
       style={{ marginTop: '25px', marginLeft: '25px', marginBottom: '45px' }}
     >
       <Grid item xs={12}>
-        <Typography
-          variant="subtitle1"
-          gutterBottom
-          className={classes.userEntity}
-        >
+        <Typography variant="subtitle1" gutterBottom
+          className={classes.userEntity}>
           User Entity
           <div className={classes.linkContainer}>
             <EntityRefLinks
@@ -109,7 +118,8 @@ const Contents = () => {
         </Typography>
       </Grid>
       <Grid item xs={12}>
-        <Typography variant="subtitle1" className={classes.userEntity}>
+        <Typography variant="subtitle1"
+          className={classes.userEntity}>
           Ownership Entities
           <div className={classes.ownerLinkContainer}>
             <EntityRefLinks
@@ -129,9 +139,12 @@ export const UserSettingsIdentityCard = () => {
   const classes = useStyles();
 
   return (
-    <InfoCardSettings
-      className={classes.card}
-      title={<span className={classes.titulo}>Backstage Identity</span>}
+    <InfoCardSettings className={classes.card}
+      title={
+        <span className={classes.titulo}>
+          Backstage Identity
+        </span>
+      }
     >
       <Contents />
     </InfoCardSettings>
