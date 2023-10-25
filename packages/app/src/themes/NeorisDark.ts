@@ -15,7 +15,6 @@ import { AutocompleteClassKey } from '@material-ui/lab/Autocomplete';
 import { AlertClassKey } from '@material-ui/lab/Alert';
 import { vars } from './variables';
 
-
 // Labs types not included in overrides; https://github.com/mui/material-ui/issues/19427
 declare module '@material-ui/core/styles/overrides' {
   export interface ComponentNameToClassKey {
@@ -23,7 +22,6 @@ declare module '@material-ui/core/styles/overrides' {
     MuiAutocomplete: AutocompleteClassKey;
   }
 }
-
 
 const pageThemesFontColorOverride: Record<string, PageTheme> = {};
 Object.keys(defaultPageThemes).map(key => {
@@ -264,6 +262,7 @@ const createCustomThemeOverrides = (
       // ? Boton Add Catalog
       containedPrimary: {
         backgroundColor: vars.dark.background.highlight,
+        color: vars.dark.fontColor.white,
       },
       // ? Ajustar Control panel en Sidebar
       label: {
