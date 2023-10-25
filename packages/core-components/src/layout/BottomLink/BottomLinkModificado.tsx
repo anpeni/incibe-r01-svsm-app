@@ -23,6 +23,7 @@ import ArrowIcon from '@material-ui/icons/ArrowForward';
 import React from 'react';
 import { Link } from '../../components/Link';
 import ArrowCircleUpIcon from '@mui/icons-material/ArrowCircleUp';
+import { vars } from '../../../../../packages/app/src/themes/variables';
 
 /** @public */
 export type BottomLinkClassKey = 'root' | 'boxTitle' | 'arrow';
@@ -30,34 +31,49 @@ export type BottomLinkClassKey = 'root' | 'boxTitle' | 'arrow';
 const useStyles = makeStyles<BackstageTheme>(
   theme => ({
     root: {
-      //maxWidth: 'fit-content',
-      //padding: '-1px 5px -1px 5px',
       marginLeft: '520px',
-      //background: 'rgba(255, 255, 255, 0.10)',
       marginTop: '30px',
       marginBottom: '30px',
     },
     sombreadoLink: {
       display: 'flex',
       alignItems: 'center',
-      //padding: '1px 10px 1px 5px',
-      background: 'rgba(255, 255, 255, 0.10)',
+      background: `${
+        theme.palette.type === 'dark'
+          ? vars.dark.background.highlight
+          : vars.light.background.white
+      }`,
       borderRadius: '20px',
-
     },
     boxTitle: {
       margin: 0,
       display: 'flex',
       alignItems: 'center',
-      //color: theme.palette.textSubtle,
       padding: '1px 20px 1px 20px',
     },
     arrow: {     
       transform: 'rotate(90deg)',
-      color: '#FFF',
+      color: `${
+        theme.palette.type === 'dark'
+          ? vars.dark.fontColor.white
+          : vars.light.fontColor.black
+      }`,
       fontSize: '20px',
       marginLeft: '5px',
     },
+    textoEnlace: {
+      display: 'block',
+      color: `${
+        theme.palette.type === 'dark'
+          ? vars.dark.fontColor.white
+          : vars.light.fontColor.black
+      }`,
+      fontFamily: 'Inter, sans-serif',
+      fontSize: '13px',
+      fontStyle: 'normal',
+      fontWeight: 400,
+      lineHeight: '32px',
+    }
   }),
   { name: 'BackstageBottomLink' },
 );
@@ -87,19 +103,8 @@ export function BottomLinkModificado(props: BottomLinkProps) {
         <Box display="flex" alignItems="center" className={classes.root}>
         <div className={classes.sombreadoLink}>
           <Box className={classes.boxTitle}>
-            <span
-              style={{
-                display: 'block',
-                color: '#FFF',
-                fontFamily: 'Inter, sans-serif',
-                fontSize: '13px',
-                fontStyle: 'normal',
-                fontWeight: '400',
-                lineHeight: '32px',
-                //padding: '-2px -2px -2px -2px',
-                //marginLeft: '20px',
-                //marginTop: '20px',
-              }}>
+            <span className={classes.textoEnlace}
+>
               {title}
             </span>
             <ArrowCircleUpIcon className={classes.arrow} />

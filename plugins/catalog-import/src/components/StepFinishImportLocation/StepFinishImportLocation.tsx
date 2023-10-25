@@ -103,7 +103,14 @@ export const StepFinishImportLocation = ({ prepareResult, onReset }: Props) => {
       )}
       {existingLocations.length > 0 && (
         <>
-          <Typography>
+          <Typography 
+          style={{
+            fontFamily: 'Inter, sans-serif',
+            fontSize: '15px',
+            fontStyle: 'normal',
+            fontWeight: 400,
+            marginLeft: '20px',
+          }}>
             A refresh was triggered for the following locations:
           </Typography>
 
