@@ -83,7 +83,7 @@ const baseTheme = createTheme({
       },
       background: {
         default: vars.light.background.generic, // General
-        paper: 'none', // Tarjetas
+        paper: 'rgba(255,255,255,0)', // Tarjetas (invisible)
       },
       navigation: {
         ...palettes.light.navigation,

@@ -192,7 +192,7 @@ export const Root = ({ children }: PropsWithChildren<{}>) => {
                   },
                   {
                     title: 'Docs',
-                    to: '/8',
+                    to: '/docs',
                   },
                 ]}
               />
