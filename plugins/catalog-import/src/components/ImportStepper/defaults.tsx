@@ -36,6 +36,8 @@ import { StepPrepareSelectLocations } from '../StepPrepareSelectLocations';
 import { StepReviewLocation } from '../StepReviewLocation';
 import { StepperApis } from '../types';
 import { ImportFlows, ImportState } from '../useImportState';
+import { makeStyles } from '@material-ui/core/styles';
+
 
 export type StepConfiguration = {
   stepLabel: React.ReactElement;
@@ -80,6 +82,7 @@ export function defaultGenerateStepper(
   flow: ImportFlows,
   defaults: StepperProvider,
 ): StepperProvider {
+
   switch (flow) {
     // the prepare step is skipped but the label of the step is updated
     case 'single-location':
@@ -89,12 +92,32 @@ export function defaultGenerateStepper(
           stepLabel: (
             <StepLabel
               optional={
-                <Typography variant="caption">
+                <Typography       
+                variant="caption"
+                style={{
+                  fontFamily: 'Inter, sans-serif',
+                  fontSize: '12px',
+                  fontStyle: 'normal',
+                  fontWeight: 400,
+                  marginLeft: '20px',     
+                }}
+                >
                   Discovered Locations: 1
                 </Typography>
               }
             >
-              Select Locations
+
+
+              <div style={{
+                padding: '0',
+                color: '#FFF',
+                fontFamily: 'Inter, sans-serif',
+                fontSize: '24px',
+                fontStyle: 'normal',
+                fontWeight: 700,
+                marginLeft: '20px',
+
+              }}>Select Locations</div>
             </StepLabel>
           ),
           content: <></>,
@@ -263,10 +286,28 @@ export function defaultGenerateStepper(
 }
 
 export const defaultStepper: StepperProvider = {
+  //const classes = useStyles();
+
+
+
   analyze: (state, { apis }) => ({
-    stepLabel: <StepLabel>Select URL</StepLabel>,
+    stepLabel: <StepLabel>
+
+      <div style={{
+        padding: '0',
+        color: '#FFF',
+        fontFamily: 'Inter, sans-serif',
+        fontSize: '24px',
+        fontStyle: 'normal',
+        fontWeight: 700,
+        marginLeft: '20px',
+
+      }}>Select URL</div>
+
+    </StepLabel>,
     content: (
       <StepInitAnalyzeUrl
+
         key="analyze"
         analysisUrl={state.analysisUrl}
         onAnalysis={state.onAnalysis}
@@ -277,15 +318,47 @@ export const defaultStepper: StepperProvider = {
 
   prepare: state => ({
     stepLabel: (
-      <StepLabel optional={<Typography variant="caption">Optional</Typography>}>
-        Import Actions
+      <StepLabel optional={
+        <Typography variant="caption"
+          style={{
+            fontFamily: 'Inter, sans-serif',
+            fontSize: '12px',
+            fontStyle: 'normal',
+            fontWeight: 400,
+            marginLeft: '20px',
+
+
+
+          }}>Optional</Typography>}>
+        <div style={{
+          padding: '0',
+          color: '#FFF',
+          fontFamily: 'Inter, sans-serif',
+          fontSize: '24px',
+          fontStyle: 'normal',
+          fontWeight: 700,
+          marginLeft: '20px',
+        }}>Import Actions</div>
+
       </StepLabel>
     ),
     content: <BackButton onClick={state.onGoBack} />,
   }),
 
   review: state => ({
-    stepLabel: <StepLabel>Review</StepLabel>,
+    stepLabel: <StepLabel>
+      <div style={{
+        padding: '0',
+        color: '#FFF',
+        fontFamily: 'Inter, sans-serif',
+        fontSize: '24px',
+        fontStyle: 'normal',
+        fontWeight: 700,
+        marginLeft: '20px',
+      }}>Review</div>
+
+
+    </StepLabel>,
     content: (
       <StepReviewLocation
         prepareResult={state.prepareResult}
@@ -296,7 +369,16 @@ export const defaultStepper: StepperProvider = {
   }),
 
   finish: state => ({
-    stepLabel: <StepLabel>Finish</StepLabel>,
+    stepLabel: <StepLabel>
+      <div style={{
+        padding: '0',
+        color: '#FFF',
+        fontFamily: 'Inter, sans-serif',
+        fontSize: '24px',
+        fontStyle: 'normal',
+        fontWeight: 700,
+        marginLeft: '20px',
+      }}>Finish</div></StepLabel>,
     content: (
       <StepFinishImportLocation
         prepareResult={state.prepareResult}

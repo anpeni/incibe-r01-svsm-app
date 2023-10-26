@@ -103,6 +103,9 @@ export const EntityListComponent = (props: EntityListComponentProps) => {
             <ListItemIcon>{locationListItemIcon(r.target)}</ListItemIcon>
 
             <ListItemText
+              style={{
+                
+              }}
               primary={r.target}
               secondary={`Entities: ${r.entities.length}`}
             />
@@ -137,10 +140,10 @@ export const EntityListComponent = (props: EntityListComponentProps) => {
                     className={classes.nested}
                     {...(withLinks
                       ? {
-                          component: EntityRefLink,
-                          entityRef: entity,
-                          button: withLinks as any,
-                        }
+                        component: EntityRefLink,
+                        entityRef: entity,
+                        button: withLinks as any,
+                      }
                       : {})}
                   >
                     <ListItemIcon>

@@ -31,6 +31,25 @@ export interface ImportInfoCardProps {
   exampleRepositoryUrl?: string;
 }
 
+import { BackstageTheme } from '@backstage/theme';
+import { makeStyles } from '@material-ui/core/styles';
+
+import { vars } from '../../../../../packages/app/src/themes/variables';
+
+
+const useStyles = makeStyles<BackstageTheme>(
+  theme => ({
+    
+    card: {
+      backgroundColor: `${
+        theme.palette.type === 'dark'
+          ? vars.dark.background.card
+          : vars.light.background.card
+      }`,
+
+    },
+  }));
+
 /**
  * Shows information about the import process.
  *
@@ -49,9 +68,10 @@ export const ImportInfoCard = (props: ImportInfoCardProps) => {
   const hasGithubIntegration = configApi.has('integrations.github');
 
   const catalogFilename = useCatalogFilename();
+  const classes = useStyles();
 
   return (
-    <InfoCardSettings
+    <InfoCardSettings className={classes.card}
       title=""
       //titleTypographyProps={{ component: 'h3' }}
       deepLink={{

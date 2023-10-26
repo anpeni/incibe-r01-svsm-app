@@ -29,10 +29,29 @@ import {
   StepperProvider,
 } from './defaults';
 
+
 const useStyles = makeStyles(() => ({
   stepperRoot: {
     padding: 0,
+
   },
+  stepRoot: {
+
+    
+
+  },
+  stepContentRoot: {
+
+    
+
+  },
+  muiStepIcon: {
+    active: {
+
+      
+    },
+  },
+
 }));
 
 /**
@@ -72,9 +91,12 @@ export const ImportStepper = (props: ImportStepperProps) => {
 
   const render = (step: StepConfiguration) => {
     return (
-      <Step>
+      <Step
+      classes={{ root: classes.stepRoot }}>
         {step.stepLabel}
-        <StepContent>{step.content}</StepContent>
+        <StepContent
+        classes={{ root: classes.stepContentRoot }}
+        >{step.content}</StepContent>
       </Step>
     );
   };
@@ -82,10 +104,12 @@ export const ImportStepper = (props: ImportStepperProps) => {
   return (
     
       <Stepper
-        classes={{ root: classes.stepperRoot }}
+        classes={{ root: classes.muiStepIcon }}
         activeStep={state.activeStepNumber}
         orientation="vertical"
       >
+
+
         {render(
           states.analyze(
             state as Extract<ImportState, { activeState: 'analyze' }>,

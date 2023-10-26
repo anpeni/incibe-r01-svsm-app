@@ -48,7 +48,7 @@ export const StepReviewLocation = ({
   const [error, setError] = useState<string>();
   const exists =
     prepareResult.type === 'locations' &&
-    prepareResult.locations.some(l => l.exists)
+      prepareResult.locations.some(l => l.exists)
       ? true
       : false;
   const handleClick = useCallback(async () => {
@@ -116,7 +116,14 @@ export const StepReviewLocation = ({
     <>
       {prepareResult.type === 'repository' && (
         <>
-          <Typography paragraph>
+          <Typography paragraph
+          style={{
+            fontFamily: 'Inter, sans-serif',
+            fontSize: '15px',
+            fontStyle: 'normal',
+            fontWeight: 400,
+            marginLeft: '20px',
+          }}>
             The following Pull Request has been opened:{' '}
             <Link
               to={prepareResult.pullRequest.url}
@@ -134,7 +141,14 @@ export const StepReviewLocation = ({
         </>
       )}
 
-      <Typography>
+      <Typography
+        style={{
+          marginLeft: '17px',
+          fontFamily: 'Inter, sans-serif',
+          fontSize: '15px',
+          fontStyle: 'normal',
+          fontWeight: 400,
+        }}>
         {exists
           ? 'The following locations already exist in the catalog:'
           : 'The following entities will be added to the catalog:'}

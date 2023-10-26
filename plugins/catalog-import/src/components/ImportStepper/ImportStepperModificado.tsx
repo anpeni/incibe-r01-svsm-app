@@ -17,7 +17,9 @@
 
 import { InfoCard, InfoCardVariants } from '@backstage/core-components';
 import { useApi } from '@backstage/core-plugin-api';
-import { Step, StepContent, Stepper } from '@material-ui/core';
+import {Step, StepContent, Stepper } from '@mui/material';
+import {Divider} from '@mui/material';
+
 import { makeStyles } from '@material-ui/core/styles';
 import React, { useMemo } from 'react';
 import { catalogImportApiRef } from '../../api';
@@ -32,6 +34,11 @@ import {
 const useStyles = makeStyles(() => ({
   stepperRoot: {
     padding: 0,
+    background:'red !important',
+  },
+  stepRoot: {
+    //padding: 0,
+    background:'red !important',
   },
 }));
 
@@ -72,20 +79,28 @@ export const ImportStepperModificado = (props: ImportStepperProps) => {
 
   const render = (step: StepConfiguration) => {
     return (
-      <Step>
+      <Step
+      >
         {step.stepLabel}
         <StepContent>{step.content}</StepContent>
+        <Divider 
+        ></Divider>
       </Step>
     );
   };
 
   return (
+<>
+    <Divider 
+    ></Divider>
     
       <Stepper
         classes={{ root: classes.stepperRoot }}
         activeStep={state.activeStepNumber}
         orientation="vertical"
       >
+
+
         {render(
           states.analyze(
             state as Extract<ImportState, { activeState: 'analyze' }>,
@@ -113,6 +128,6 @@ export const ImportStepperModificado = (props: ImportStepperProps) => {
           ),
         )}
       </Stepper>
-    
+      </>
   );
 };

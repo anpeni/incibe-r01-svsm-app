@@ -7953,9 +7953,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@material-ui/core@npm:^4.11.0, @material-ui/core@npm:^4.12.2, @material-ui/core@npm:^4.12.4, @material-ui/core@npm:^4.9.13":
-  version: 4.12.4
-  resolution: "@material-ui/core@npm:4.12.4"
+"@material-ui/core@^4.11.0, @material-ui/core@^4.12.2, @material-ui/core@^4.12.4, @material-ui/core@^4.9.13, @material-ui/core@workspace:packages/core":
+  version: 0.0.0-use.local
+  resolution: "@material-ui/core@workspace:packages/core"
   dependencies:
     "@babel/runtime": ^7.4.4
     "@material-ui/styles": ^4.11.5
@@ -7976,9 +7976,8 @@ __metadata:
   peerDependenciesMeta:
     "@types/react":
       optional: true
-  checksum: 96b48deccda87ced841b1db45bed2be6d2b6d1b4eae72cd5c9b931201cb72026330688e0fead54e715bcead40b267ea88bde781c9f1563b1a71a5c51bf187289
-  languageName: node
-  linkType: hard
+  languageName: unknown
+  linkType: soft
 
 "@material-ui/icons@npm:^4.11.3, @material-ui/icons@npm:^4.9.1":
   version: 4.11.3
