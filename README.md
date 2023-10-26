@@ -1,4 +1,4 @@
-# [Backstage](https://backstage.io)
+# [Backstage](https://backstage.io) [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=neorisddc_devsecops-backstage-dashboard&metric=alert_status&token=2307ad67e0b81df1d4ef6a70a08a527aeb5b35c1)](https://sonarcloud.io/summary/new_code?id=neorisddc_devsecops-backstage-dashboard)
 >>>
 ## Docs
   https://backstage.io/docs
