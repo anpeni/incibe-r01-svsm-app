@@ -26,6 +26,50 @@ import { configApiRef, useAnalytics, useApi } from '@backstage/core-plugin-api';
 import { Link } from '@backstage/core-components';
 import { stringifyEntityRef } from '@backstage/catalog-model';
 import { assertError } from '@backstage/errors';
+import { makeStyles } from '@material-ui/core/styles';
+import { vars } from '../../../../../packages/app/src/themes/variables';
+
+const useStyles = makeStyles(
+  theme => ({
+    nextButton: {
+      color: `${theme.palette.type === 'dark'
+        ? vars.dark.fontColor.white
+        : vars.light.fontColor.black
+        }`,
+      background: `${theme.palette.type === 'dark'
+        ? vars.dark.background.highlight
+        : vars.light.background.card
+        }`,
+      fontFamily: 'sans-serif',
+      fontSize: '16px',
+      fontStyle: 'normal',
+      fontWeight: 700,
+      lineHeight: '20px',
+      padding: '10px 20px',
+      border: 'none',
+      marginleft: '50px',
+
+    },
+    backButton: {
+      color: `${theme.palette.type === 'dark'
+        ? vars.dark.fontColor.white
+        : vars.light.fontColor.black
+        }`,
+      background: `${theme.palette.type === 'dark'
+        ? vars.dark.background.highlight
+        : vars.light.background.card
+        }`,
+      fontFamily: 'sans-serif',
+      fontSize: '16px',
+      fontStyle: 'normal',
+      height: '40px',
+      fontWeight: 700,
+      lineHeight: '20px',
+      padding: '5px 10px',
+      border: 'none',
+
+    },
+  }))
 
 type Props = {
   prepareResult: PrepareResult;
@@ -34,6 +78,7 @@ type Props = {
 };
 
 export const StepReviewLocation = ({
+  
   prepareResult,
   onReview,
   onGoBack,
@@ -41,6 +86,7 @@ export const StepReviewLocation = ({
   const catalogApi = useApi(catalogApiRef);
   const configApi = useApi(configApiRef);
   const analytics = useAnalytics();
+  const classes = useStyles();
 
   const appTitle = configApi.getOptional('app.title') || 'Backstage';
 
@@ -162,8 +208,11 @@ export const StepReviewLocation = ({
       {error && <FormHelperText error>{error}</FormHelperText>}
 
       <Grid container spacing={0}>
-        {onGoBack && <BackButton onClick={onGoBack} disabled={submitted} />}
-        <NextButton
+        {onGoBack && <BackButton style={{ marginTop: '7px' }}
+        className={classes.backButton}
+        onClick={onGoBack} disabled={submitted} />}
+        <NextButton style={{ marginLeft: '20px' }}
+        className={classes.nextButton}
           disabled={submitted}
           loading={submitted}
           onClick={() => handleClick()}

@@ -25,6 +25,30 @@ import partition from 'lodash/partition';
 import { CompoundEntityRef } from '@backstage/catalog-model';
 import { entityRouteRef } from '@backstage/plugin-catalog-react';
 import { useRouteRef } from '@backstage/core-plugin-api';
+import { makeStyles } from '@material-ui/core/styles';
+import { vars } from '../../../../../packages/app/src/themes/variables';
+import clsx from 'clsx';
+
+const useStyles = makeStyles(
+  theme => ({
+    nextButton: {
+      color: `${theme.palette.type === 'dark'
+        ? vars.dark.fontColor.white
+        : vars.light.fontColor.black
+        }`,
+      background: `${theme.palette.type === 'dark'
+        ? vars.dark.background.highlight
+        : vars.light.background.card
+        }`,
+      fontFamily: 'Inter, sans-serif',
+      fontSize: '16px',
+      fontStyle: 'normal',
+      fontWeight: 700,
+      lineHeight: '20px',
+      padding: '10px 20px',
+
+    },
+  }))
 
 type Props = {
   prepareResult: PrepareResult;
@@ -56,7 +80,7 @@ const filterComponentEntity = (
 
 export const StepFinishImportLocation = ({ prepareResult, onReset }: Props) => {
   const entityRoute = useRouteRef(entityRouteRef);
-
+  const classes = useStyles();
   if (prepareResult.type === 'repository') {
     return (
       <>
@@ -123,11 +147,15 @@ export const StepFinishImportLocation = ({ prepareResult, onReset }: Props) => {
       )}
       <Grid container spacing={0}>
         {newComponentEntity && (
-          <ViewComponentButton to={entityRoute(newComponentEntity)}>
+          <ViewComponentButton 
+          className={classes.nextButton}
+          to={entityRoute(newComponentEntity)}>
             View Component
           </ViewComponentButton>
         )}
-        <BackButton onClick={onReset}>Register another</BackButton>
+        <BackButton onClick={onReset}
+        className={classes.nextButton}
+        >Register another</BackButton>
       </Grid>
     </>
   );

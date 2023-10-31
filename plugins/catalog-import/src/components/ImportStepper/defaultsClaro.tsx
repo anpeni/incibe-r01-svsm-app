@@ -39,7 +39,7 @@ import { ImportFlows, ImportState } from '../useImportState';
 import { makeStyles } from '@material-ui/core/styles';
 import { BackstageTheme } from '@backstage/theme';
 
-export type StepConfiguration = {
+export type StepConfigurationClaro = {
   stepLabel: React.ReactElement;
   content: React.ReactElement;
 };
@@ -49,23 +49,23 @@ export type StepConfiguration = {
  *
  * @public
  */
-export interface StepperProvider {
+export interface StepperProviderClaro {
   analyze: (
     s: Extract<ImportState, { activeState: 'analyze' }>,
     opts: { apis: StepperApis },
-  ) => StepConfiguration;
+  ) => StepConfigurationClaro;
   prepare: (
     s: Extract<ImportState, { activeState: 'prepare' }>,
     opts: { apis: StepperApis },
-  ) => StepConfiguration;
+  ) => StepConfigurationClaro;
   review: (
     s: Extract<ImportState, { activeState: 'review' }>,
     opts: { apis: StepperApis },
-  ) => StepConfiguration;
+  ) => StepConfigurationClaro;
   finish: (
     s: Extract<ImportState, { activeState: 'finish' }>,
     opts: { apis: StepperApis },
-  ) => StepConfiguration;
+  ) => StepConfigurationClaro;
 }
 
 /**
@@ -78,10 +78,10 @@ export interface StepperProvider {
  * @param defaults - the default steps
  * @public
  */
-export function defaultGenerateStepper(
+export function defaultGenerateStepperClaro(
   flow: ImportFlows,
-  defaults: StepperProvider,
-): StepperProvider {
+  defaults: StepperProviderClaro,
+): StepperProviderClaro {
 
   switch (flow) {
     // the prepare step is skipped but the label of the step is updated
@@ -92,15 +92,15 @@ export function defaultGenerateStepper(
           stepLabel: (
             <StepLabel
               optional={
-                <Typography
-                  variant="caption"
-                  style={{
-                    fontFamily: 'Inter, sans-serif',
-                    fontSize: '12px',
-                    fontStyle: 'normal',
-                    fontWeight: 400,
-                    marginLeft: '20px',
-                  }}
+                <Typography       
+                variant="caption"
+                style={{
+                  fontFamily: 'Inter, sans-serif',
+                  fontSize: '12px',
+                  fontStyle: 'normal',
+                  fontWeight: 400,
+                  marginLeft: '20px',     
+                }}
                 >
                   Discovered Locations: 1
                 </Typography>
@@ -285,8 +285,9 @@ export function defaultGenerateStepper(
   }
 }
 
-export const defaultStepper: StepperProvider = {
+export const defaultStepperClaro: StepperProviderClaro = {
   //const classes = useStyles();
+  
 
 
 
@@ -295,7 +296,7 @@ export const defaultStepper: StepperProvider = {
 
       <div style={{
         padding: '0',
-        color: '#FFF',
+        color: 'black',
         fontFamily: 'Inter, sans-serif',
         fontSize: '24px',
         fontStyle: 'normal',
@@ -332,7 +333,7 @@ export const defaultStepper: StepperProvider = {
           }}>Optional</Typography>}>
         <div style={{
           padding: '0',
-          color: '#FFF',
+          color: 'black',
           fontFamily: 'Inter, sans-serif',
           fontSize: '24px',
           fontStyle: 'normal',
@@ -342,25 +343,14 @@ export const defaultStepper: StepperProvider = {
 
       </StepLabel>
     ),
-    content: <BackButton onClick={state.onGoBack}
-      // style={{
-      //   color: 'red',
-      //   background: '#0065FF',
-      //   fontFamily: 'Helvetica Neue',
-      //   fontSize: '20px',
-      //   fontStyle: 'normal',
-      //   fontWeight: 700,
-      //   lineHeight: '20px',
-      //   padding: '10px 20px',
-      // }}
-    />,
+    content: <BackButton onClick={state.onGoBack} />,
   }),
 
   review: state => ({
     stepLabel: <StepLabel>
       <div style={{
         padding: '0',
-        color: '#FFF',
+        color: 'black',
         fontFamily: 'Inter, sans-serif',
         fontSize: '24px',
         fontStyle: 'normal',
@@ -383,7 +373,7 @@ export const defaultStepper: StepperProvider = {
     stepLabel: <StepLabel>
       <div style={{
         padding: '0',
-        color: '#FFF',
+        color: 'black',
         fontFamily: 'Inter, sans-serif',
         fontSize: '24px',
         fontStyle: 'normal',

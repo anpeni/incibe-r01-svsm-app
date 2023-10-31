@@ -160,6 +160,7 @@ const makeSidebarStyles = (sidebarConfig: SidebarConfig) =>
         marginLeft: '-10px',
         overflow: 'hidden',
         'text-overflow': 'ellipsis',
+        
       },
       iconContainer: {
         boxSizing: 'border-box',

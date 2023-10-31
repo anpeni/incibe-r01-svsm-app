@@ -22,7 +22,7 @@ const useStyles = makeStyles<
       zIndex: 10,
       width: 100,
       position: 'fixed',
-      top: 217,
+      top: 263,
       left: 45,
       padding: 0,
       borderRadius: '16px',

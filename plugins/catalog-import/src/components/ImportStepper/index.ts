@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-export { ImportStepper } from './ImportStepper';
-export { ImportStepperModificado } from './ImportStepperModificado';
+export { ImportStepper, ImportStepperClaro } from './ImportStepper';
 export type { ImportStepperProps } from './ImportStepper';
 export { defaultGenerateStepper } from './defaults';
+export { defaultGenerateStepperClaro } from './defaultsClaro';

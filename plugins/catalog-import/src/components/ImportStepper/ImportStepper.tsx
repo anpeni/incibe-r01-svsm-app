@@ -28,6 +28,13 @@ import {
   StepConfiguration,
   StepperProvider,
 } from './defaults';
+import {
+  defaultGenerateStepperClaro,
+  defaultStepperClaro,
+  StepConfigurationClaro,
+  StepperProviderClaro
+} from './defaultsClaro';
+
 
 
 const useStyles = makeStyles(() => ({
@@ -36,22 +43,11 @@ const useStyles = makeStyles(() => ({
 
   },
   stepRoot: {
-
-    
-
   },
   stepContentRoot: {
-
-    
-
   },
   muiStepIcon: {
-    active: {
-
-      
-    },
   },
-
 }));
 
 /**
@@ -64,7 +60,15 @@ export interface ImportStepperProps {
   generateStepper?: (
     flow: ImportFlows,
     defaults: StepperProvider,
-  ) => StepperProvider;
+  ) => StepperProvider,
+  variant?: InfoCardVariants;
+}
+export interface ImportStepperPropsClaro {
+  initialUrl?: string;
+  generateStepper?: (
+    flow: ImportFlows,
+    defaults: StepperProviderClaro,
+  ) => StepperProviderClaro;
   variant?: InfoCardVariants;
 }
 
@@ -74,6 +78,7 @@ export interface ImportStepperProps {
  * @public
  */
 export const ImportStepper = (props: ImportStepperProps) => {
+
   const {
     initialUrl,
     generateStepper = defaultGenerateStepper,
@@ -90,6 +95,73 @@ export const ImportStepper = (props: ImportStepperProps) => {
   );
 
   const render = (step: StepConfiguration) => {
+    return (
+      <Step
+      classes={{ root: classes.stepRoot }}>
+        {step.stepLabel}
+        <StepContent
+        classes={{ root: classes.stepContentRoot }}
+        >{step.content}</StepContent>
+      </Step>
+    );
+  };
+
+  return (
+    
+      <Stepper
+        classes={{ root: classes.muiStepIcon }}
+        activeStep={state.activeStepNumber}
+        orientation="vertical"
+      >
+
+
+        {render(
+          states.analyze(
+            state as Extract<ImportState, { activeState: 'analyze' }>,
+            { apis: { catalogImportApi } },
+          ),
+        )}
+        {render(
+          states.prepare(
+            state as Extract<ImportState, { activeState: 'prepare' }>,
+            { apis: { catalogImportApi } },
+          ),
+        )}
+        {render(
+          states.review(
+            state as Extract<ImportState, { activeState: 'review' }>,
+            { apis: { catalogImportApi } },
+          ),
+        )}
+        {render(
+          states.finish(
+            state as Extract<ImportState, { activeState: 'finish' }>,
+            { apis: { catalogImportApi } },
+          ),
+        )}
+      </Stepper>
+    
+  );
+};
+
+export const ImportStepperClaro = (props: ImportStepperPropsClaro) => {
+
+  const {
+    initialUrl,
+    generateStepper = defaultGenerateStepperClaro,
+    variant,
+  } = props;
+
+  const catalogImportApi = useApi(catalogImportApiRef);
+  const classes = useStyles();
+  const state = useImportState({ initialUrl });
+
+  const states = useMemo<StepperProviderClaro>(
+    () => generateStepper(state.activeFlow, defaultStepperClaro),
+    [generateStepper, state.activeFlow],
+  );
+
+  const render = (step: StepConfigurationClaro) => {
     return (
       <Step
       classes={{ root: classes.stepRoot }}>

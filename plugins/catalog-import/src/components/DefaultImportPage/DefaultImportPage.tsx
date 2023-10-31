@@ -25,7 +25,7 @@ import { configApiRef, useApi } from '@backstage/core-plugin-api';
 import { Grid, useMediaQuery, useTheme } from '@material-ui/core';
 import React from 'react';
 import { ImportInfoCard } from '../ImportInfoCard';
-import { ImportStepper } from '../ImportStepper';
+import { ImportStepper, ImportStepperClaro } from '../ImportStepper';
 import AddBoxIcon from '@mui/icons-material/AddBox';
 import { BackstageTheme } from '@backstage/theme';
 import { makeStyles } from '@material-ui/core/styles';
@@ -65,7 +65,6 @@ const useStyles = makeStyles(
       fontWeight: 400,
       lineHeight: '16px',
       marginLeft: '15px',
-
     }
   }),
   { name: 'BackstageDefaultImportPage' },
@@ -78,6 +77,7 @@ export const DefaultImportPage = () => {
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
   const appTitle = configApi.getOptional('app.title') || 'Backstage';
   const classes = useStyles();
+  const isDarkMode = localStorage.getItem('theme') === 'neoris-dark';
 
   const contentItems = [
     <Grid item xs={12} md={4} lg={6} xl={6} style={{ position: 'relative' }}>
@@ -100,7 +100,7 @@ export const DefaultImportPage = () => {
         GitHub Pages Website
       </span>
       <div style={{ marginLeft: '-11px', marginTop: '-30px' }}>
-        <ImportStepper />
+      {isDarkMode ? <ImportStepper /> : <ImportStepperClaro /> }
       </div>
     </Grid>,
   ];
@@ -141,15 +141,8 @@ export const DefaultImportPage = () => {
           </div>
           <Content >
             <div style={{ marginTop: '-20px', }}>
-              <span style={{
-                color: '#FFF',
-                fontFamily: 'Inter, sans-serif',
-                fontSize: '16px',
-                fontStyle: 'normal',
-                fontWeight: '400',
-                lineHeight: '16px',
-                marginLeft: '15px',
-              }}>Create new software components using standard templates</span>
+              <span className={classes.headerStepper}>
+                Create new software components using standard templates</span>
             </div>
             <Grid container spacing={5} style={{ marginTop: '10px', display: 'flex', flexDirection: 'row' }}>
               {isMobile ? contentItems : contentItems.reverse()}

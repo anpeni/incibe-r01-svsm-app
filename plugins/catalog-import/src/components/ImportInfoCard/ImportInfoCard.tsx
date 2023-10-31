@@ -39,14 +39,67 @@ import { vars } from '../../../../../packages/app/src/themes/variables';
 
 const useStyles = makeStyles<BackstageTheme>(
   theme => ({
-    
     card: {
-      backgroundColor: `${
-        theme.palette.type === 'dark'
+      backgroundColor: `${theme.palette.type === 'dark'
           ? vars.dark.background.card
           : vars.light.background.card
-      }`,
+        }`,
+    },
+    title: {
+      display: 'block',
+      color: `${theme.palette.type === 'dark'
+        ? vars.dark.fontColor.white
+        : vars.light.fontColor.black
+        }`,
+      fontFamily: 'Inter, sans-serif',
+      fontSize: '24px',
+      fontStyle: 'normal',
+      fontWeight: 800,
+      lineHeight: '32px',
+      marginLeft: '20px',
+      marginTop: '5px',
+    },
+    url: {
+      display: 'block',
+      color: `${theme.palette.type === 'dark'
+        ? vars.dark.fontColor.white
+        : vars.light.fontColor.black
+        }`,
+      fontFamily: 'Inter, sans-serif',
+      fontSize: '24px',
+      fontStyle: 'normal',
+      fontWeight: 800,
+      lineHeight: '32px',
+      marginLeft: '20px',
+      marginTop: '5px',
+    },
+    link: {
+      display: 'block',
+      color: `${theme.palette.type === 'dark'
+        ? vars.dark.fontColor.white
+        : vars.light.fontColor.black
+        }`,
+      fontFamily: 'Inter, sans-serif',
+      fontSize: '14px',
+      fontStyle: 'normal',
+      fontWeight: 400,
+      lineHeight: '32px',
+      marginLeft: '20px',
 
+    },
+    wizzard: {
+      display: 'block',
+      color: `${theme.palette.type === 'dark'
+        ? vars.dark.fontColor.white
+        : vars.light.fontColor.black
+        }`,
+      fontFamily: 'Inter, sans-serif',
+      fontSize: '14px',
+      fontStyle: 'normal',
+      fontWeight: 800,
+      lineHeight: '32px',
+      marginLeft: '20px',
+      marginTop: '20px',
     },
   }));
 
@@ -79,71 +132,22 @@ export const ImportInfoCard = (props: ImportInfoCardProps) => {
         link: 'https://backstage.io/docs/features/software-catalog/',
       }}
     >
-      <span style={{
-        display: 'block',
-        color: '#FFF',
-        fontFamily: 'Inter, sans-serif',
-        fontSize: '24px',
-        fontStyle: 'normal',
-        fontWeight: '800',
-        lineHeight: '32px',
-        marginLeft: '20px',
-        marginTop: '5px',
-      }}    >
+      <span className={classes.card}   >
         Register an existing component
       </span>
 
-      <span style={{
-        display: 'block',
-        color: '#FFF',
-        fontFamily: 'Inter, sans-serif',
-        fontSize: '16px',
-        fontStyle: 'normal',
-        fontWeight: '800',
-        lineHeight: '32px',
-        marginLeft: '20px',
-        marginTop: '20px',
-      }}    >
+      <span className={classes.url}     >
         Enter the URL to your source code repository to add it to {appTitle}
       </span>
-      <span style={{
-        display: 'block',
-        color: '#FFF',
-        fontFamily: 'Inter, sans-serif',
-        fontSize: '14px',
-        fontStyle: 'normal',
-        fontWeight: '400',
-        lineHeight: '32px',
-        marginLeft: '20px',
-        marginTop: '20px',
-      }}    >
+      <span style={{ marginTop: '20px', }}
+        className={classes.link}     >
         Link to an existing entity file
       </span>
-      <span style={{
-        display: 'block',
-        color: '#FFF',
-        fontFamily: 'Inter, sans-serif',
-        fontSize: '14px',
-        fontStyle: 'normal',
-        fontWeight: '400',
-        lineHeight: '32px',
-        marginLeft: '20px',
-        //marginTop: '5px',
-      }}    >
+      <span className={classes.link}   >
         Example: <code>{exampleLocationUrl}</code>
       </span>
 
-      <span style={{
-        display: 'block',
-        color: '#FFF',
-        fontFamily: 'Inter, sans-serif',
-        fontSize: '14px',
-        fontStyle: 'normal',
-        fontWeight: '800',
-        lineHeight: '32px',
-        marginLeft: '20px',
-        marginTop: '20px',
-      }}    >
+      <span className={classes.wizzard}>
         The wizard analyzes the file, previews the entities, and adds them to
         the {appTitle} catalog.
       </span>

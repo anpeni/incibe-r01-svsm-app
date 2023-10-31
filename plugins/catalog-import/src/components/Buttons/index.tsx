@@ -47,8 +47,8 @@ export const NextButton = (
   return (
     <div className={classes.wrapper}>
       <Button
-        color="primary"
-        variant="contained"
+        //color="primary"
+        //variant="contained"
         {...buttonProps}
         disabled={props.disabled || props.loading}
       />
@@ -64,7 +64,8 @@ export const BackButton = (props: ComponentProps<typeof Button>) => {
   const classes = useStyles();
 
   return (
-    <Button variant="outlined" className={classes.button} {...props}>
+    <Button //variant="outlined" 
+    className={classes.button} {...props}>
       {props.children || 'Back'}
     </Button>
   );

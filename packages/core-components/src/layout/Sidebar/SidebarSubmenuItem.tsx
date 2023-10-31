@@ -91,7 +91,7 @@ const useStyles = makeStyles<BackstageTheme>(
     },
     label: {
       margin: theme.spacing(1.75),
-      marginLeft: theme.spacing(1),
+      marginLeft: theme.spacing(1.5),
       fontSize: 16,
       fontWeight: 'lighter',
       whiteSpace: 'nowrap',
@@ -103,7 +103,7 @@ const useStyles = makeStyles<BackstageTheme>(
     },
     labelSelected: {
       margin: theme.spacing(1.75),
-      marginLeft: theme.spacing(1),
+      marginLeft: theme.spacing(1.5),
       fontSize: 16,
       fontWeight: "lighter",
       whiteSpace: 'nowrap',
@@ -129,7 +129,7 @@ const useStyles = makeStyles<BackstageTheme>(
     expandClose: {
       position: 'absolute',
       fontWeight: 'bold',
-      right: 10,
+      right: -33,
       color: `${theme.palette.type === 'dark' ? 'rgba(255, 255, 255, 0.60)' : 'rgba(6, 11, 40)'
         }`,
     },
@@ -250,7 +250,7 @@ const useStyles = makeStyles<BackstageTheme>(
       height: 'auto',
       padding: '0',
       position: 'relative',
-      marginLeft: '55px'
+      marginLeft: '53px'
     },
     divMenuCerrado: {
       height: 'auto',

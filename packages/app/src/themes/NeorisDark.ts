@@ -241,6 +241,14 @@ const createCustomThemeOverrides = (
       notchedOutline: {
         border: 'none',
       },
+      // input: {
+      //   '&:-webkit-autofill': {
+      //     caretColor: 'red !important',
+      //     borderRadius: '12px',
+      //     '-webkitBoxShadow': '0 0 0 100px #fff inset',
+      //     '-webkitTextFillColor': 'black !important',
+      //   },
+      // },
     },
     MuiButton: {
       root: {
@@ -302,6 +310,22 @@ const createCustomThemeOverrides = (
         },
       },
     },
+    MuiInputLabel: {
+      formControl: {
+        position: 'relative',
+      },
+    },
+    MuiFormLabel:{
+      root: {
+      color: '#FFF',
+      
+      fontSize: '24px',
+      fontStyle: 'normal',
+      fontFamily: "Inter, sans-serif",
+      fontWeight: 700,
+      lineHeight: '16px',
+    },
+  },
     // ? Icono Filter
     MuiInputAdornment: {
       positionStart: {
@@ -309,38 +333,9 @@ const createCustomThemeOverrides = (
       },
     },
     // ? Sidebar
-    BackstageSidebarItem: {
-      selected: {
-        // backgroundColor: highlightBackgroundDark,
-        // borderRadius: '12px',
-        // borderLeft: 'none !important',
-        // width: '100%',
-        //color: '#FFF !important',
-        // marginLeft: '1px !important',
-      },
-      iconContainer: {
-        // marginLeft: '1px !important',
-      },
-      root: {
-        //borderLeft: 'none !important',
-        //color: 'rgba(255, 255, 255, 0.60) !important',
-      },
-      highlightable: {
-        '&:hover': {
-          // backgroundColor: highlightBackgroundDark,
-          // borderRadius: '12px',
-        },
-      },
-      label: {
-        // flex: '3 1 auto',
-        // width: '110px',
-        // overflow: 'hidden',
-        // fontWeight: 500,
-        // lineHeight: 'auto',
-        // whiteSpace: 'nowrap',
-        // textOverflow: 'ellipsis',
-      },
-    },
+   
+      
+    
     // ? Cards genericas de MUi
     MuiCard: {
       root: {

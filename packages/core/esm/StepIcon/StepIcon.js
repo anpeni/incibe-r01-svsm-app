@@ -5,19 +5,26 @@ import CheckCircle from '../internal/svg-icons/CheckCircle';
 import Warning from '../internal/svg-icons/Warning';
 import withStyles from '../styles/withStyles';
 import SvgIcon from '../SvgIcon';
+import { vars } from '../../../app/src/themes/variables';
 export var styles = function styles(theme) {
   return {
     /* Styles applied to the root element. */
     root: {
       display: 'block',
-      color: '#062A57',
+      color: `${theme.palette.type === 'dark'
+          ? vars.dark.background.card
+          : vars.light.background.card
+        }`,
       transform: 'scale(1.5)', 
       '&$completed': {
-        color: '#062A57',   
+        color: vars.dark.background.highlight,   
         transform: 'scale(1.5)'   
       },
       '&$active': {
-        color:'#fff', 
+      color: `${theme.palette.type === 'dark'
+          ? vars.dark.background.white
+          : vars.dark.background.highlight
+        }`,
         
       },
       '&$error': {
@@ -29,13 +36,18 @@ export var styles = function styles(theme) {
     text: {
       position: 'absolute',
       marginTop: '1em',
-      fill: theme.palette.primary.contrastText,
+      fill: `${theme.palette.type === 'dark'
+      ? vars.light.background.white 
+      : vars.dark.background.highlight
+    }`,
       fontSize: '16px',
       fontWeight: '400',
       fontFamily: 'Inter, sans-serif',
       '&$active': {
-        fill: 'black',
-        
+        fill: `${theme.palette.type === 'dark'
+        ? vars.dark.background.highlight
+        : vars.light.background.white
+      }`,
       },
     },
 
@@ -78,12 +90,6 @@ var StepIcon = /*#__PURE__*/React.forwardRef(function StepIcon(props, ref) {
       });
     }
 
-    // if (completed) {
-    //   return /*#__PURE__*/React.createElement(CheckCircle, {
-    //     className: className,
-    //     ref: ref
-    //   });
-    // }
 
     if (completed) {
       return (
@@ -93,15 +99,6 @@ var StepIcon = /*#__PURE__*/React.forwardRef(function StepIcon(props, ref) {
       );
     }
 
-    // return /*#__PURE__*/React.createElement(SvgIcon, {
-    //   className: className,
-    //   ref: ref
-    // }, _ref, /*#__PURE__*/React.createElement("text", {
-    //   className: classNameText,
-    //   x: "12",
-    //   y: "16",
-    //   textAnchor: "middle"
-    // }, icon));
 
     return (
       <SvgIcon className={className} ref={ref}>

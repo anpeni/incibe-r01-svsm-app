@@ -22,6 +22,71 @@ import { AnalyzeResult, catalogImportApiRef } from '../../api';
 import { NextButton } from '../Buttons';
 import { asInputRef } from '../helpers';
 import { ImportFlows, PrepareResult } from '../useImportState';
+import { makeStyles } from '@material-ui/core/styles';
+import { vars } from '../../../../../packages/app/src/themes/variables';
+import clsx from 'clsx';
+
+
+const useStyles = makeStyles(
+  theme => ({
+    nextButton: {
+      color: `${theme.palette.type === 'dark'
+        ? vars.dark.fontColor.white
+        : vars.light.fontColor.black
+        }`,
+      background: `${theme.palette.type === 'dark'
+        ? vars.dark.background.highlight
+        : vars.light.background.card
+        }`,
+      fontFamily: 'Inter, sans-serif',
+      fontSize: '16px',
+      fontStyle: 'normal',
+      fontWeight: 700,
+      lineHeight: '20px',
+      padding: '10px 20px',
+
+    },
+    input: {
+      color: `${theme.palette.type === 'dark'
+        ? vars.dark.fontColor.black
+        : vars.light.fontColor.black
+        }`,
+    },
+    MuiInputBase: {
+      '& input': {
+        background: `${theme.palette.type === 'dark'
+          ? vars.dark.background.white + ' !important'
+          : vars.light.background.card + ' !important'
+          }`,
+        borderRadius: '12px',
+        color: `${theme.palette.type === 'dark'
+          ? vars.light.fontColor.black + ' !important'
+          : vars.light.fontColor.black + ' !important'
+          }`,
+
+        fontFamily: 'Inter, sans-serif',
+        fontSize: '16px',
+        fontStyle: 'normal',
+        fontWeight: 700,
+        lineHeight: '16px',
+      },
+
+    },
+    OutlinedInput: {
+      '& input': {
+        '&:-webkit-autofill': {
+          caretColor: 'black !important',
+          borderRadius: '12px',
+          '-webkitBoxShadow': `${theme.palette.type === 'dark'
+            ? '0 0 0 100px #fff inset'
+            : '0 0 0 100px #EFEFEF inset'
+            }`,
+          '-webkitTextFillColor': 'black !important',
+        },
+      }
+
+    },
+  }))
 
 type FormData = {
   url: string;
@@ -53,6 +118,7 @@ export interface StepInitAnalyzeUrlProps {
  * @public
  */
 export const StepInitAnalyzeUrl = (props: StepInitAnalyzeUrlProps) => {
+  const classes = useStyles();
   const {
     onAnalysis,
     analysisUrl = '',
@@ -113,9 +179,8 @@ export const StepInitAnalyzeUrl = (props: StepInitAnalyzeUrlProps) => {
           }
 
           default: {
-            const err = `Received unknown analysis result of type ${
-              (analysisResult as any).type
-            }. Please contact the support team.`;
+            const err = `Received unknown analysis result of type ${(analysisResult as any).type
+              }. Please contact the support team.`;
             setError(err);
             setSubmitted(false);
 
@@ -132,8 +197,8 @@ export const StepInitAnalyzeUrl = (props: StepInitAnalyzeUrlProps) => {
   );
 
   return (
-    <form onSubmit={handleSubmit(handleResult)}>
-      <TextField
+    <form onSubmit={handleSubmit(handleResult)} style={{ marginLeft: '20px' }}>
+      <TextField className={clsx(classes.MuiInputBase, classes.OutlinedInput)}
         {...asInputRef(
           register('url', {
             required: true,
@@ -149,7 +214,7 @@ export const StepInitAnalyzeUrl = (props: StepInitAnalyzeUrlProps) => {
         id="url"
         label="URL"
         placeholder={exampleLocationUrl}
-        helperText="Enter the full path to your entity file to start tracking your component"
+        //helperText="Enter the full path to your entity file to start tracking your component"
         margin="normal"
         variant="outlined"
         error={Boolean(errors.url)}
@@ -163,7 +228,7 @@ export const StepInitAnalyzeUrl = (props: StepInitAnalyzeUrlProps) => {
       {error && <FormHelperText error>{error}</FormHelperText>}
 
       <Grid container spacing={0}>
-        <NextButton
+        <NextButton className={classes.nextButton}
           disabled={Boolean(errors.url) || !watch('url')}
           loading={submitted}
           type="submit"
@@ -174,3 +239,7 @@ export const StepInitAnalyzeUrl = (props: StepInitAnalyzeUrlProps) => {
     </form>
   );
 };
+
+
+
+

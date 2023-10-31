@@ -26,9 +26,7 @@ import {
   UserSettingsProfileNew,
   UserSettingsThemeToggleTema2, UserSettingsSalir
 } from '@backstage/plugin-user-settings';
-
-
-
+import CategoryIcon from '@mui/icons-material/Category';
 import { SidebarSearchModal } from '@backstage/plugin-search';
 import {
   Sidebar,
@@ -49,22 +47,22 @@ import { BackstageTheme } from '@backstage/theme';
 
 const useSidebarLogoStyles = makeStyles<BackstageTheme>(
   theme => ({
-  root: {
-    width: sidebarConfig.drawerWidthClosed,
-    height: 3 * sidebarConfig.logoHeight,
-    display: 'flex',
-    flexFlow: 'row nowrap',
-    alignItems: 'center',
-    marginBottom: -14,
+    root: {
+      width: sidebarConfig.drawerWidthClosed,
+      height: 3 * sidebarConfig.logoHeight,
+      display: 'flex',
+      flexFlow: 'row nowrap',
+      alignItems: 'center',
+      marginBottom: -14,
 
-  },
-  search: {
-    background:'red !important',
-  },
-  link: {
-    width: sidebarConfig.drawerWidthClosed,
+    },
+    search: {
+      background: 'red !important',
+    },
+    link: {
+      width: sidebarConfig.drawerWidthClosed,
 
-  },
+    },
   }));
 
 const SidebarLogo = () => {
@@ -172,15 +170,23 @@ export const Root = ({ children }: PropsWithChildren<{}>) => {
         <div className={classes.sidebarContainer}>
           <Sidebar disableExpandOnHover>
             <SidebarLogo />
-            <SidebarGroup label="Search" icon={<SearchOutlined />} to="/search">
-              <SidebarSearchModal  />
-            </SidebarGroup>
             <Titulos text={'MAIN'}></Titulos>
-            <SidebarGroup label="Menu" icon={<MenuIcon />}>
+            <SidebarItem
+              icon={GridView}
+              to=""
+              text="Home"
+            />
+            <SidebarGroup label="Search" icon={<SearchOutlined />} to="/search">
+              <div style={{marginLeft:'20px', color:'red'}}>
+                <SidebarSearchModal />
+              </div>
+            </SidebarGroup>
+
+            <SidebarGroup label="Menu" icon={<CategoryIcon />}>
               <SidebarSubmenuItem
-                icon={GridView}
+                icon={CategoryIcon}
                 to="/Catalog"
-                title="Control Panel"
+                title="Catalog"
                 dropdownItems={[
                   {
                     title: 'Catalog',
@@ -218,16 +224,6 @@ export const Root = ({ children }: PropsWithChildren<{}>) => {
             <SidebarSpace />
             <SidebarExpandButton />
             <SidebarDivider className={classes.sidebarDivider} />
-            {/* <SidebarGroup
-              label="Settings"
-              icon={<SettingsOutlined />}
-              to="/settings"
-            > */}
-            {/* <SidebarSettings />
-              <UserSettingsThemeToggleTema /> */}
-            {/* <UserSettingsTema /> */}
-            {/* </SidebarGroup> */}
-            {/* <SidebarDivider className={classes.sidebarDivider} /> */}
             <SidebarGroup>
               <UserSettingsProfileNew />
               <UserSettingsSalir />
