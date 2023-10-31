@@ -28,7 +28,13 @@ backend:
     # host: 0.0.0.0
   csp:
     connect-src: ["'self'", 'http:', 'https:']
-    frame-src: ["'self'", 'https://grafana.aws.neoris.cloud', 'https://dex.aws.neoris.cloud', 'https://login.microsoftonline.com/']
+    frame-src:
+      [
+        "'self'",
+        'https://grafana.aws.neoris.cloud',
+        'https://dex.aws.neoris.cloud',
+        'https://login.microsoftonline.com/',
+      ]
   #   img-src: ["'self'", 'data:', 'https://backstage.io']
   #   # Content-Security-Policy directives follow the Helmet format: https://helmetjs.github.io/#reference
   #   # Default Helmet Content-Security-Policy values can be removed by setting the key to false
@@ -45,17 +51,16 @@ backend:
       password: ${POSTGRES_PASSWORD}
   # workingDirectory: /tmp # Use this to configure a working directory for the scaffolder, defaults to the OS temp-dir
 
-
 # Reference documentation http://backstage.io/docs/features/techdocs/configuration
 # Note: After experimenting with basic setup, use CI/CD to generate docs
 # and an external cloud storage when deploying TechDocs for production use-case.
 # https://backstage.io/docs/features/techdocs/how-to-guides#how-to-migrate-from-techdocs-basic-to-recommended-deployment-approach
 techdocs:
-  builder: "external" # Alternatives - 'external'
+  builder: 'external' # Alternatives - 'external'
   generator:
-    runIn: "local" # Alternatives - 'local'
+    runIn: 'local' # Alternatives - 'local'
   publisher:
-    type: "local" # Alternatives - 'googleGcs' or 'awsS3'. Read documentation for using alternatives.
+    type: 'local' # Alternatives - 'googleGcs' or 'awsS3'. Read documentation for using alternatives.
 
 # ====================================================================================
 #  Backstage authentication configuration
@@ -73,6 +78,10 @@ auth:
 
 scaffolder:
   # see https://backstage.io/docs/features/software-templates/configuration for software template options
+  defaultAuthor:
+    name: SVSM # TODO: Change this to real name
+    email: svsm@incibe.com
+  defaultCommitMessage: 'Initial commit'
 
 # ====================================================================================
 #  Backstage catalog configuration
@@ -87,28 +96,38 @@ catalog:
   locations:
     - type: file
       target: ../../catalog-neoris/catalog-info.yaml
+    # - type: url
+    #   target: https://github.com/backstage/software-templates/blob/main/scaffolder-templates/react-ssr-template/template.yaml
+    - type: file
+      target: ../../catalog-neoris/scaffolder-templates/clean-architecture-app/template.yaml
+    - type: file
+      target: ../../catalog-neoris/scaffolder-templates/react-ssr-template/template.yaml
+    - type: file
+      target: ../../catalog-neoris/scaffolder-templates/springboot-grpc-template/template.yaml
+      rules:
+        - allow: [Template]
 
 # ====================================================================================
 #  Backstage proxy configuration
 # ====================================================================================
 proxy:
-  "/grafana/api":
+  '/grafana/api':
     target: ${URL_GRAFANA}
     headers:
       Authorization: Bearer ${GRAFANA_TOKEN_ACCESS}
-  "/prometheus/api":
+  '/prometheus/api':
     target: ${URL_PROMETHEUS}
     secure: false
     #changeOrigin: true
     #secure: true
     #headers:
     #  Authorization: $YOUR_AUTH_TOKEN_IF_PROMETHEUS_IS_SECURED
-  "/bitbucketci":
+  '/bitbucketci':
     target: https://api.bitbucket.org/2.0/
     headers:
       # Basic base64(${BITBUCKET_CLOUD_USERNAME}:${BITBUCKET_CLOUD_APP_PASSWORD})
       Authorization: Basic ${BITBUCKETCI_TOKEN_ACCESS}
-  "/circleci/api":
+  '/circleci/api':
     target: https://circleci.com/api/v1.1
     headers:
       Circle-Token: ${CIRCLECI_AUTH_TOKEN}
@@ -138,23 +157,22 @@ sonarqube:
       baseUrl: https://sonarcloud.io
       apiKey: ${SONARQUBE_APIKEY}
 tekton:
-  - name: devsecops   
+  - name: devsecops
     baseUrl: http://tekton-dashboard.tekton-pipelines.svc.cluster.local:9097
     # authorizationBearerToken: ${AWS_K8S_CADATA}
     dashboardBaseUrl: http://tekton-dashboard.aws.neoris.cloud/
 
 kubernetes:
   serviceLocatorMethod:
-    type: "multiTenant"
+    type: 'multiTenant'
   clusterLocatorMethods:
-    - type: "config"
+    - type: 'config'
       clusters:
         - url: ${AWS_K8S_URL}
           name: devsecops
-          authProvider: "aws"
+          authProvider: 'aws'
           caData: ${AWS_K8S_CADATA}
 jenkins:
   baseUrl: ${URL_JENKINS}
   username: ${JENKINS_USERNAME}
   apiKey: ${JENKINS_APIKEY}
-
