@@ -28,7 +28,10 @@ jobs:
           token: ${{ steps.generate-token-clone.outputs.token }} # `GH_PAT` is a secret that contains your PAT
           path: .
       - name: deploy k8s repo
-        run: ./.github/scripts/backstage-deploy.sh ${{ github.event.inputs.image_version }} ${{ steps.generate-token-clone.outputs.token }} ${{env.HOST_ECR}}
+        run: |
+          ls -la
+          chmod +x ./.github/scripts/backstage-deploy.sh
+          ./.github/scripts/backstage-deploy.sh ${{ github.event.inputs.image_version }} ${{ steps.generate-token-clone.outputs.token }} ${{env.HOST_ECR}}
         #- name: deploy k8s repo
         #run: |
         #    echo ${{ github.event.inputs.image_version }}
