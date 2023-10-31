@@ -1,0 +1,48 @@
+name: BackStage deploy
+on:
+  workflow_dispatch:
+    inputs:
+        image_version:
+            description: 'My parameter description'
+            required: true
+
+env:
+  AWS_REGION: eu-west-1
+  AWS_ECR_REPOSITORY: cicd/backstage
+  HOST_ECR: 061496817474.dkr.ecr.eu-west-1.amazonaws.com
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Generate Token
+        uses: tibdex/github-app-token@3beb63f4bd073e61482598c45c71c1019b59b73a # v2.1.0
+        id: generate-token-clone
+        with:
+          app_id: "${{ secrets.BOT_APP_ID }}"
+          private_key: "${{ secrets.BOT_APP_PRIVATE_KEY }}"
+      - name: Checkout private tools
+        uses: actions/checkout@v4
+        with:
+          repository: DDC-NEORIS/devtools-k8s
+          token: ${{ steps.generate-token-clone.outputs.token }} # `GH_PAT` is a secret that contains your PAT
+          path: .
+      - name: deploy k8s repo
+        run: ./.github/scripts/backstage-deploy.sh ${{ github.event.inputs.image_version }} ${{ steps.generate-token-clone.outputs.token }} ${{env.HOST_ECR}}
+        #- name: deploy k8s repo
+        #run: |
+        #    echo ${{ github.event.inputs.image_version }}
+        #    ls -la
+        #    git branch -a
+        #    git fetch origin
+        #    git show-ref --verify --quiet refs/remotes/origin/feature/release-cicd/backstage-test01 && (git checkout feature/release-cicd/backstage-test01 && git pull origin feature/release-cicd/backstage-test01) || git checkout -b feature/release-cicd/backstage-test01
+        #    sed -i "s|image:.*|image: 061496817474.dkr.ecr.eu-west-1.amazonaws.com/${{ github.event.inputs.image_version }}|g" tools/base/backstage/backstage-stg/app/deployment.yaml
+        #    cat tools/base/backstage/backstage-stg/app/deployment.yaml
+        #    git config --global user.email "ddcglobal.practices@neoris.com"  
+        #    git config --global user.name "neoris-devsecops"
+        #    git add tools/base/backstage/backstage-stg/app/deployment.yaml
+        #    git commit -m "Descripción de tus cambios aquí"
+        #    git push --set-upstream origin feature/release-cicd/backstage-test01
+        #    curl -X POST "https://api.github.com/repos/DDC-NEORIS/devtools-k8s/pulls" -H "Authorization: token ${{ steps.generate-token-clone.outputs.token }}" -d '{"title": "Título de tu Pull Request", "head": "feature/release-cicd/backstage-test01", "base": "main", "body": "test AUTO PR"}'      
+
+

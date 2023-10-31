@@ -1,14 +1,17 @@
 name: BackStage builder
 on:
   workflow_dispatch:
+  create:
+    branches:
+      - stable-*
+      - release-*
   push:
     branches:
-      - feat/*
-      - feature/*
+      - main
+      - release-*
   pull_request:
     branches:
-      - master
-      - develop
+      - stable-*
     types:
       - closed
 
@@ -35,7 +38,11 @@ jobs:
           calculatedSha=$(git rev-parse --short ${{ github.sha }})
           echo "MY_COMMIT_SHORT_SHA=$calculatedSha" >> $GITHUB_ENV
           echo "MY_BRANCH_NAME=${GITHUB_HEAD_REF:-${GITHUB_REF_NAME//\//-}}" >> $GITHUB_ENV
-      
+          
+      - name: Generate environment variables
+        id: v-image
+        run: echo "MY_IMAGE_VERSION=${{ env.AWS_ECR_REPOSITORY }}:${{ env.MY_BRANCH_NAME }}-${{ env.MY_COMMIT_SHORT_SHA }}" >> $GITHUB_ENV
+
       - name: Generate Token
         uses: tibdex/github-app-token@3beb63f4bd073e61482598c45c71c1019b59b73a # v2.1.0
         id: generate-token
@@ -62,6 +69,13 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ steps.generate-token.outputs.token }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      - name: SonarQube Quality Gate check
+        id: sonarqube-quality-gate-check
+        uses: sonarsource/sonarqube-quality-gate-action@master
+        timeout-minutes: 5
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        continue-on-error: true
 
       - name: Build backend
         env:
@@ -112,6 +126,7 @@ jobs:
           category: "docker-image"
 
       - name: Push to ECR
+        if: github.ref == 'main' || github.ref == 'refs/heads/release-*' || github.ref == 'refs/heads/stable-*'
         id: ecr
         uses: jwalton/gh-ecr-push@v1
         with:
@@ -119,4 +134,9 @@ jobs:
           secret-access-key: ${{ secrets.AWS_SECRET_KEY }}
           region: ${{ env.AWS_REGION }}
           local-image: ${{ env.AWS_ECR_REPOSITORY }}
-          image: ${{ env.AWS_ECR_REPOSITORY }}:${{ env.MY_BRANCH_NAME }}-${{ env.MY_COMMIT_SHORT_SHA }}
+          image: ${{ env.MY_IMAGE_VERSION }}
+
+      - name: Trigger deploy
+        if: github.ref == 'main' || github.ref == 'refs/heads/release-*' || github.ref == 'refs/heads/stable-*'
+        run: |
+          curl -X POST -H "Accept: application/vnd.github.v3+json" -H "Authorization: Bearer ${{ steps.generate-token.outputs.token }}" https://api.github.com/repos/DDC-NEORIS/incibe-r01-svsm-app/actions/workflows/backstage-deploy.yml/dispatches -d '{"ref":"${{ githusb.ref }}", "inputs": {"image_version": "${{ env.MY_IMAGE_VERSION }}"}}'
