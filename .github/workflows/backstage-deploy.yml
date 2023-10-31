@@ -30,8 +30,12 @@ jobs:
       - name: deploy k8s repo
         run: |
           ls -la
-          chmod +x ./.github/scripts/backstage-deploy.sh
-          ./.github/scripts/backstage-deploy.sh ${{ github.event.inputs.image_version }} ${{ steps.generate-token-clone.outputs.token }} ${{env.HOST_ECR}}
+          cd .github/scripts/
+          chmod +x backstage-deploy.sh
+          ./backstage-deploy.sh ${{ github.event.inputs.image_version }} ${{ steps.generate-token-clone.outputs.token }} ${{env.HOST_ECR}}
+
+        #chmod +x ./.github/scripts/backstage-deploy.sh
+        #./.github/scripts/backstage-deploy.sh ${{ github.event.inputs.image_version }} ${{ steps.generate-token-clone.outputs.token }} ${{env.HOST_ECR}}
         #- name: deploy k8s repo
         #run: |
         #    echo ${{ github.event.inputs.image_version }}
