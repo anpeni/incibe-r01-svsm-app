@@ -31,6 +31,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+    
+      - name: echo github.ref
+        run: echo ${{ github.ref }}
 
       - name: Generate environment variables
         id: vars
@@ -126,7 +129,7 @@ jobs:
           category: "docker-image"
 
       - name: Push to ECR
-        if: github.ref == 'main' || github.ref == 'refs/heads/release-*' || github.ref == 'refs/heads/stable-*'
+        if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/release-*' || github.ref == 'refs/heads/stable-*'
         id: ecr
         uses: jwalton/gh-ecr-push@v1
         with:
@@ -137,6 +140,6 @@ jobs:
           image: ${{ env.MY_IMAGE_VERSION }}
 
       - name: Trigger deploy
-        if: github.ref == 'main' || github.ref == 'refs/heads/release-*' || github.ref == 'refs/heads/stable-*'
+        if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/release-*' || github.ref == 'refs/heads/stable-*'
         run: |
           curl -X POST -H "Accept: application/vnd.github.v3+json" -H "Authorization: Bearer ${{ steps.generate-token.outputs.token }}" https://api.github.com/repos/DDC-NEORIS/incibe-r01-svsm-app/actions/workflows/backstage-deploy.yml/dispatches -d '{"ref":"${{ github.ref }}", "inputs": {"image_version": "${{ env.MY_IMAGE_VERSION }}"}}'
