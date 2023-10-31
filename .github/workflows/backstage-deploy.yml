@@ -30,7 +30,7 @@ jobs:
       - name: deploy k8s repo
         run: |
           ls -la
-          cd .github/scripts/
+          cd ./scripts/
           chmod +x backstage-deploy.sh
           ./backstage-deploy.sh ${{ github.event.inputs.image_version }} ${{ steps.generate-token-clone.outputs.token }} ${{env.HOST_ECR}}
 
