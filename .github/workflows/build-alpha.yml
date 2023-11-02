@@ -1,0 +1,40 @@
+name: Build alpha container image
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+permissions:
+  actions: read
+  contents: read
+  packages: write
+  security-events: write
+
+jobs:
+  build-app:
+    uses: ./.github/workflows/build-app.yml
+    with:
+      cache_artifacts: true
+    secrets: inherit
+  verify-app:
+    needs:
+      - build-app
+    uses: ./.github/workflows/verify-app.yml
+    secrets: inherit
+  build-image:
+    needs:
+      - build-app
+    uses: ./.github/workflows/build-container-image.yml
+    with:
+      platforms: linux/amd64
+      push_to_images: |
+        ghcr.io/${{ github.repository }}
+      labels: |
+        org.opencontainers.image.description=Alpha build image used for development environment
+      flavor: |
+        latest=auto
+      tags: |
+        type=raw,value=edge
+        type=sha
+    secrets: inherit

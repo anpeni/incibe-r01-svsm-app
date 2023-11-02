@@ -1,0 +1,46 @@
+on:
+  workflow_call:
+    inputs:
+      cache_artifacts:
+        default: false
+        type: boolean
+
+env:
+  node-version: 18.x
+
+jobs:
+  build-app:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Use node.js ${{ env.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ env.node-version }}
+          registry-url: https://registry.npmjs.org/
+
+      - name: Install yarn
+        uses: backstage/actions/yarn-install@v0.6.4
+        with:
+          cache-prefix: ${{ runner.os }}-v${{ env.node-version }}
+
+      - name: Compile
+        run: yarn tsc
+
+      - name: Build backend
+        env:
+          NODE_OPTIONS: "--max_old_space_size=4096"
+        run: yarn build:backend --config ../../app-config.yaml
+
+      - uses: actions/upload-artifact@v3
+        if: inputs.cache_artifacts == true
+        with:
+          path: |-
+            ./dist-types/
+            ./packages/app/dist/
+            ./packages/backend/dist/
+          name: ${{ github.sha }}
+          retention-days: 0
