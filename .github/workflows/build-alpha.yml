@@ -38,3 +38,14 @@ jobs:
         type=raw,value=edge
         type=sha
     secrets: inherit
+  deploy-image:
+    needs:
+      - build-image
+    uses: ./.github/workflows/deploy-container-image.yml
+    with:
+      app_id: backstage
+      environment: staging
+      image_tag: ${{ needs.build-image.outputs.image_tag }}
+      manifest_path: tools/base/backstage/backstage-stg/app/deployment.yaml
+      manifest_type: deployment
+    secrets: inherit

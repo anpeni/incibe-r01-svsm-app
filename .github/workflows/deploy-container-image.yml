@@ -1,0 +1,69 @@
+on:
+  workflow_call:
+    inputs:
+      app_id:
+        required: true
+        type: string
+      environment:
+        required: true
+        type: string
+      auto_merge:
+        default: false
+        type: boolean
+      image_tag:
+        required: true
+        type: string
+      manifest_path:
+        required: true
+        type: string
+      manifest_type:
+        type: string
+      override_key:
+        type: string
+
+jobs:
+  deploy-container-image:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Calculate YAML node
+        id: node-selector
+        run: |
+          set -e
+          
+          if [[ "${{ inputs.override_key }}" != "" ]]; then
+            echo "yaml_node=${{ inputs.override_key }}" >> "$GITHUB_OUTPUT"
+          elif [[ "${{ inputs.manifest_type }}" == "deployment" ]]; then
+            echo "yaml_node=.spec.template.spec.containers[0].image" >> "$GITHUB_OUTPUT"
+          elif [[ "${{ inputs.manifest_type }}" == "helm-release" ]]; then
+            echo "yaml_node=.spec.values.image.tag" >> "$GITHUB_OUTPUT"
+          else 
+            echo "::error ::Invalid manifest type and override key not found"
+            exit 1
+          fi
+
+      - name: Generate token
+        uses: tibdex/github-app-token@v2
+        id: generate-token
+        with:
+          app_id: ${{ secrets.BOT_APP_ID }}
+          private_key: ${{ secrets.BOT_APP_PRIVATE_KEY }}
+
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          repository: DDC-NEORIS/devtools-k8s
+          token: "${{ steps.generate-token.outputs.token }}"
+      
+      - name: Update image
+        uses: mikefarah/yq@master
+        with:
+          cmd: yq -i '${{ steps.node-selector.outputs.yaml_node }} = "${{ inputs.image_tag }}"' ${{ inputs.manifest_path }}
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v5
+        with:
+          token: "${{ steps.generate-token.outputs.token }}"
+          commit-message: "ci(${{ inputs.app_id }}): update ${{ inputs.environment }} to ${{ inputs.image_tag }}"
+          branch: feature-update-${{ inputs.environment }}-${{ inputs.app_id }}-${{ github.sha }}
+          title: "ci(${{ inputs.app_id }}): update ${{ inputs.environment }} to ${{ inputs.image_tag }}"
