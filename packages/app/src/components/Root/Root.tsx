@@ -177,7 +177,7 @@ export const Root = ({ children }: PropsWithChildren<{}>) => {
               text="Home"
             />
             <SidebarGroup label="Search" icon={<SearchOutlined />} to="/search">
-              <div style={{marginLeft:'20px', color:'red'}}>
+              <div>
                 <SidebarSearchModal />
               </div>
             </SidebarGroup>

@@ -24,7 +24,8 @@
     "lint:all": "backstage-cli repo lint",
     "prettier:check": "prettier --check .",
     "create-plugin": "backstage-cli create-plugin --scope internal",
-    "new": "backstage-cli new --scope internal"
+    "new": "backstage-cli new --scope internal",
+    "postinstall": "rimraf node_modules/@backstage/plugin-search/node_modules/@backstage/core-components"
   },
   "workspaces": {
     "packages": [
@@ -45,6 +46,7 @@
     "lerna": "^4.0.0",
     "node-gyp": "^9.0.0",
     "prettier": "^2.3.2",
+    "rimraf": "^5.0.5",
     "typescript": "~5.0.0"
   },
   "resolutions": {
