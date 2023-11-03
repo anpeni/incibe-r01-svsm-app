@@ -39,6 +39,7 @@
     "@backstage/test-utils": "^1.4.4",
     "@playwright/test": "^1.32.3",
     "@spotify/prettier-config": "^12.0.0",
+    "@types/event-source-polyfill": "^1.0.3",
     "@types/git-url-parse": "^9.0.1",
     "@types/pluralize": "^0.0.30",
     "@types/swagger-ui-react": "^4.18.0",
