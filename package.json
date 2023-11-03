@@ -46,7 +46,6 @@
     "lerna": "^4.0.0",
     "node-gyp": "^9.0.0",
     "prettier": "^2.3.2",
-    "rimraf": "^5.0.5",
     "typescript": "~5.0.0"
   },
   "resolutions": {
@@ -73,6 +72,7 @@
     "@mui/material": "^5.14.8",
     "@types/zen-observable": "^0.8.4",
     "material-symbols": "^0.11.0",
+    "rimraf": "^5.0.5",
     "zen-observable": "^0.10.0"
   },
   "packageManager": "yarn@3.6.4"
