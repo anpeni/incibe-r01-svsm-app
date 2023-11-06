@@ -107,9 +107,13 @@ const makeSidebarStyles = (sidebarConfig: SidebarConfig) =>
         '&:hover': {
           background: `${
             theme.palette.type === 'dark'
-              ? vars.dark.background.highlight
+              ? 'red'
               : 'white !important' // TODO: Add var
           }`,
+          borderRadius: '12px',
+          marginLeft: '18px',
+          width:'185px',
+          paddingLeft: 0 +'!important'
         },
       },
       buttonItem: {
@@ -122,6 +126,7 @@ const makeSidebarStyles = (sidebarConfig: SidebarConfig) =>
         font: 'inherit',
         textTransform: 'none',
         
+        
       },
       closed: {
         width: sidebarConfig.drawerWidthClosed,
@@ -133,22 +138,90 @@ const makeSidebarStyles = (sidebarConfig: SidebarConfig) =>
         },
       },
       highlightable: {
-        '&:hover': {
-          background: `${
-            theme.palette.type === 'dark'
-              ? vars.dark.background.highlight
-              : vars.light.background.white + '!important'
-          }`,
-          //borderRadius: '12px',
+        '&$root': {
+          borderRadius: '9px',
+          width: '185px ',
+          position: 'relative',
+          left: '20px',
+
+          '&:hover': {
+            background: `${
+              theme.palette.type === 'dark'
+                ? vars.dark.background.highlight
+                : vars.light.background.white + '!important'
+            }`,
+            borderadius: '12px !important',
+            marginLeft:'0px'
+          
+          },        
+          
         },
-      },
+        '&$closed': {
+          borderLeft: `none`,
+          width: '50px',
+          marginLeft: '-8px',
+          
+        },
+        '& $closedItemIcon': {
+          paddingRight: sidebarConfig.selectedIndicatorWidth,
+          
+          
+          
+
+        },
+        '& $iconContainer': {
+          marginLeft: '5px',
+
+          
+        },
+        '& $label': {
+          marginLeft: '-5px',
+          
+        },
+        },
+        highlightableCerrado: {
+          '&$root': {
+            borderRadius: '9px',
+            width: '185px ',
+            position: 'relative',
+            left: '20px',
+  
+            '&:hover': {
+              background: `${
+                theme.palette.type === 'dark'
+                  ? vars.dark.background.highlight
+                  : vars.light.background.white + '!important'
+              }`,
+              borderadius: '12px !important',
+              marginLeft:'-8px'
+            
+            },        
+            
+          },
+          '&$closed': {
+            borderLeft: `none`,
+            width: '50px',
+            marginLeft: '-8px',
+            
+          },
+          '& $closedItemIcon': {
+            paddingRight: sidebarConfig.selectedIndicatorWidth,
+            
+          },
+          '& $iconContainer': {
+            marginLeft: '5px',
+  
+            
+          },
+          '& $label': {
+            marginLeft: '-5px',
+            
+          },
+          },
+
       highlighted: {
-        background: `${
-          theme.palette.type === 'dark'
-            ? vars.dark.background.highlight
-            : vars.light.background.white + '!important'
-        }`,
-        //borderRadius: '12px',
+        
+
       },
       label: {
         // XXX (@koroeskohr): I can't seem to achieve the desired font-weight from the designs
@@ -166,12 +239,13 @@ const makeSidebarStyles = (sidebarConfig: SidebarConfig) =>
         boxSizing: 'border-box',
         height: '100%',
         width: sidebarConfig.iconContainerWidth,
-        //marginRight: '-8px',
         marginLeft: '21px',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
         lineHeight: '0',
+
+        
         
       },
       searchRoot: {
@@ -196,6 +270,8 @@ const makeSidebarStyles = (sidebarConfig: SidebarConfig) =>
       closedItemIcon: {
         width: '100%',
         justifyContent: 'center',
+        
+        
 
       },
       submenuArrow: {
@@ -247,6 +323,57 @@ const makeSidebarStyles = (sidebarConfig: SidebarConfig) =>
                 : vars.light.background.white + '!important'
             }`,
             borderadius: '12px !important',
+            marginLeft:'0px'
+          },
+          
+          
+        },
+        '&$closed': {
+          borderLeft: `none`,
+          width: '50px',
+          marginLeft: '-8px',
+        },
+        '& $closedItemIcon': {
+          paddingRight: sidebarConfig.selectedIndicatorWidth,
+          color:vars.light.background.accent,
+          
+
+        },
+        '& $iconContainer': {
+          marginLeft: '-4px',
+          color:vars.light.background.accent,
+          
+        },
+        '& $label': {
+          marginLeft: '-5px',
+          
+        },
+      },
+      selectedCerrado: {
+        '&$root': {
+          borderRadius: '9px',
+          borderLeft: `solid 9px ${vars.light.background.accent}`,
+          width: '185px ',
+          position: 'relative',
+          left: '20px',
+          color: `${
+            theme.palette.type === 'dark'
+              ? vars.dark.background.white + '!important'
+              : vars.light.background.accent + ' !important'
+          }`,
+          background: `${
+            theme.palette.type === 'dark'
+              ? vars.dark.background.highlight
+              : vars.light.background.white + '!important'
+          }`,
+          '&:hover': {
+            background: `${
+              theme.palette.type === 'dark'
+                ? vars.dark.background.highlight
+                : vars.light.background.white + '!important'
+            }`,
+            borderadius: '12px !important',
+            marginLeft:'-8px'
             //width: '185px '
           },
           
@@ -260,6 +387,7 @@ const makeSidebarStyles = (sidebarConfig: SidebarConfig) =>
         '& $closedItemIcon': {
           paddingRight: sidebarConfig.selectedIndicatorWidth,
           color:vars.light.background.accent,
+          
 
         },
         '& $iconContainer': {
@@ -508,7 +636,7 @@ const SidebarItemBase = forwardRef<any, SidebarItemProps>((props, ref) => {
       classes.root,
       isOpen ? classes.open : classes.closed,
       isButtonItem(props) && classes.buttonItem,
-      { [classes.highlightable]: !disableHighlight },
+      isOpen ? { [classes.highlightable]: !disableHighlight } : { [classes.highlightableCerrado]: !disableHighlight }
     ),
   };
 
@@ -532,7 +660,9 @@ const SidebarItemBase = forwardRef<any, SidebarItemProps>((props, ref) => {
 
   if (isButtonItem(props)) {
     return (
-      <Button
+
+      isOpen ?
+      <Button 
         role="button"
         aria-label={text}
         {...childProps}
@@ -541,13 +671,24 @@ const SidebarItemBase = forwardRef<any, SidebarItemProps>((props, ref) => {
       >
         {content}
       </Button>
+      :
+      <Button style={{marginLeft: '-12px'}}
+        role="button"
+        aria-label={text}
+        {...childProps}
+        ref={ref}
+        onClick={handleClick}
+      >
+        {content}
+      </Button>
+
     );
   }
 
   return (
     <WorkaroundNavLink
       {...childProps}
-      activeClassName={classes.selected}
+      activeClassName={isOpen? classes.selected : classes.selectedCerrado }
       to={props.to ? props.to : ''}
       ref={ref}
       aria-label={text ? text : props.to}
