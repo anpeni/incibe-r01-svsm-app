@@ -104,18 +104,35 @@ const makeSidebarStyles = (sidebarConfig: SidebarConfig) =>
         alignItems: 'center',
         height: 48,
         cursor: 'pointer',
+      },
+      divCloseNoButton:{
+        display: 'flex',        
+        justifyContent: 'center', 
+        alignItems: 'center', 
+        width: '48px',
+        height: '48px',
+        marginLeft:'12px',
+        
+        borderRadius: '9px',
         '&:hover': {
           background: `${
             theme.palette.type === 'dark'
-              ? 'red'
-              : 'white !important' // TODO: Add var
+              ? vars.dark.background.highlight
+              : vars.light.background.white + '!important'
           }`,
-          borderRadius: '12px',
-          marginLeft: '18px',
-          width:'185px',
-          paddingLeft: 0 +'!important'
-        },
       },
+    },
+    buttonSearchNull:{
+      position: 'relative',
+
+      '&:hover': {
+        background: `${
+          theme.palette.type === 'dark'
+            ? 'none !important'
+            : 'none !important'
+        }`,
+    },
+  },
       buttonItem: {
         background: 'none',
         border: 'none',
@@ -164,19 +181,12 @@ const makeSidebarStyles = (sidebarConfig: SidebarConfig) =>
         },
         '& $closedItemIcon': {
           paddingRight: sidebarConfig.selectedIndicatorWidth,
-          
-          
-          
-
         },
         '& $iconContainer': {
-          marginLeft: '5px',
-
-          
+          marginLeft: '5px',        
         },
         '& $label': {
-          marginLeft: '-5px',
-          
+          marginLeft: '-5px',         
         },
         },
         highlightableCerrado: {
@@ -184,8 +194,12 @@ const makeSidebarStyles = (sidebarConfig: SidebarConfig) =>
             borderRadius: '9px',
             width: '185px ',
             position: 'relative',
-            left: '20px',
-  
+            left: '20px'           
+          },
+          '&$closed': {
+            borderLeft: `none`,
+            width: '50px',
+            marginLeft: '-8px',
             '&:hover': {
               background: `${
                 theme.palette.type === 'dark'
@@ -193,15 +207,8 @@ const makeSidebarStyles = (sidebarConfig: SidebarConfig) =>
                   : vars.light.background.white + '!important'
               }`,
               borderadius: '12px !important',
-              marginLeft:'-8px'
-            
-            },        
-            
-          },
-          '&$closed': {
-            borderLeft: `none`,
-            width: '50px',
-            marginLeft: '-8px',
+              marginLeft:'-8px'         
+            },  
             
           },
           '& $closedItemIcon': {
@@ -666,22 +673,25 @@ const SidebarItemBase = forwardRef<any, SidebarItemProps>((props, ref) => {
         role="button"
         aria-label={text}
         {...childProps}
+        //className={classes.selected}
         ref={ref}
         onClick={handleClick}
       >
         {content}
       </Button>
       :
-      <Button style={{marginLeft: '-14px'}}
+      <div className={classes.divCloseNoButton} >
+      <Button 
         role="button"
         aria-label={text}
         {...childProps}
+        className={classes.buttonSearchNull}
         ref={ref}
         onClick={handleClick}
       >
         {content}
       </Button>
-
+      </div>
     );
   }
 
@@ -908,10 +918,7 @@ export const SidebarScrollWrapper = styled('div')(({ theme }) => {
   return {
     flex: '0 1 auto',
     overflowX: 'hidden',
-    // 5px space to the right of the scrollbar
     width: 'calc(100% - 5px)',
-    // Display at least one item in the container
-    // Question: Can this be a config/theme variable - if so, which? :/
     minHeight: '48px',
     overflowY: 'hidden',
     '@media (hover: none)': scrollbarStyles,
@@ -962,9 +969,6 @@ export const SidebarExpandButton = () => {
               {isOpen ? <ChevronLeftOutlined /> : <ChevronRightOutlined />}
             </Box>
           </div>
-
-
-
       </Button>
 
     </>
