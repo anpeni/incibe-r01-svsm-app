@@ -3,7 +3,7 @@
 # ====================================================================================
 app:
   title: NEORIS monitor
-  baseUrl:  ${BACKSTAGE_BASE_URL} # https://backstage.aws.neoris.cloud
+  baseUrl: ${BACKSTAGE_BASE_URL} # https://backstage.aws.neoris.cloud
 organization:
   name: NEORIS
 # ====================================================================================
@@ -14,7 +14,7 @@ backend:
   listen:
     port: 7007
   cors:
-    origin:  ${BACKSTAGE_BASE_URL} # https://backstage.aws.neoris.cloud
+    origin: ${BACKSTAGE_BASE_URL} # https://backstage.aws.neoris.cloud
     methods: [GET, HEAD, PATCH, POST, PUT, DELETE]
     credentials: true
   database:
@@ -50,18 +50,20 @@ catalog:
   locations:
     - type: file
       target: ${CATALOG_NEORIS_CONTAINER_PATH} # Container path, check dockerfile
+    - type: file
+      target: '/app/catalog-neoris/remote-templates.yaml'
 # ====================================================================================
 #  Backstage proxy configuration
 # ====================================================================================
 proxy:
-  "/grafana/api":
+  '/grafana/api':
     target: ${URL_GRAFANA}
     headers:
       Authorization: Bearer ${GRAFANA_TOKEN_ACCESS}
-  "/prometheus/api":
+  '/prometheus/api':
     target: ${URL_PROMETHEUS}
     secure: false
-  "/bitbucketci":
+  '/bitbucketci':
     target: ${URL_BITBUCKETCI}
     headers:
       Authorization: Basic ${BITBUCKETCI_TOKEN_ACCESS}
@@ -75,18 +77,17 @@ integrations:
 grafana:
   domain: ${URL_GRAFANA_DOMAIN}
 tekton:
-  - name: devsecops   
+  - name: devsecops
     baseUrl: http://tekton-dashboard.tekton-pipelines.svc.cluster.local:9097
     # authorizationBearerToken: ${AWS_K8S_CADATA}
     dashboardBaseUrl: http://tekton-dashboard.aws.neoris.cloud/
 kubernetes:
   serviceLocatorMethod:
-    type: "multiTenant"
+    type: 'multiTenant'
   clusterLocatorMethods:
-    - type: "config"
+    - type: 'config'
       clusters:
         - url: ${AWS_K8S_URL}
           name: ${AWS_K8S_NAME}
-          authProvider: "${AWS_K8S_PROVIDER}"
+          authProvider: '${AWS_K8S_PROVIDER}'
           caData: ${AWS_K8S_CADATA}
-

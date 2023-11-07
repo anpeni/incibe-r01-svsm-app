@@ -27,7 +27,11 @@ import { entityPage } from './components/catalog/EntityPage';
 import { searchPage } from './components/search/SearchPage';
 import { Root } from './components/Root';
 
-import { AlertDisplay, OAuthRequestDialog, SignInPage } from '@backstage/core-components';
+import {
+  AlertDisplay,
+  OAuthRequestDialog,
+  SignInPage,
+} from '@backstage/core-components';
 import { createApp } from '@backstage/app-defaults';
 import { FlatRoutes } from '@backstage/core-app-api';
 import { CatalogGraphPage } from '@backstage/plugin-catalog-graph';
@@ -35,25 +39,20 @@ import { PermissionedRoute } from '@backstage/plugin-permission-react';
 import { catalogEntityCreatePermission } from '@backstage/plugin-catalog-common/alpha';
 
 // .--  Custom Theme --
-import { ThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import DarkIcon from '@mui/icons-material/DarkModeOutlined';
 import LightIcon from '@mui/icons-material/LightModeOutlined';
-import { NeorisTheme } from './themes';
 
 // .--  Custom icons --
 import { BitbucketIcon } from './assets/bitbucket';
 
 // .-- home page --
-import { HomepageCompositionRoot } from '@backstage/plugin-home';
-import { HomePage } from './components/home/HomePage';
 
 // .-- Plugins --
 import * as plugins from './plugins';
 
 // .-- Theme Override --
-import { BackstageTheme, darkTheme, lightTheme, themes, UnifiedThemeProvider } from '@backstage/theme';
-import { BackstageOverrides } from '@backstage/core-components';
+import { UnifiedThemeProvider } from '@backstage/theme';
 import { neorisDarkTheme } from './themes/NeorisDark';
 import { neorisLightTheme } from './themes/NeorisLight';
 
@@ -63,25 +62,23 @@ const app = createApp({
     SignInPage: props => (
       <SignInPage
         {...props}
-        auto
         // ! Descomentar para tener el login con Guest
-        providers={[
-           'guest',
-          {
-            id: 'dex',
-            title: 'Dex',
-            message: 'Sign in using Azure AD',
-            apiRef: dexOIDCAuthApiRef,
-          },
-        ]}
-
-        // ! Descomentar para tener login con Azure solamente
-        // provider={{
+        // providers={[
+        //   'guest',
+        //   {
         //     id: 'dex',
         //     title: 'Dex',
         //     message: 'Sign in using Azure AD',
         //     apiRef: dexOIDCAuthApiRef,
-        // }}
+        //   },
+        // ]}
+        // ! Descomentar para tener login con Azure solamente
+        provider={{
+          id: 'dex',
+          title: 'Dex',
+          message: 'Sign in using Azure AD',
+          apiRef: dexOIDCAuthApiRef,
+        }}
       />
     ),
   },
@@ -93,58 +90,58 @@ const app = createApp({
   },
   // .-- themes --
   themes: [
-  //   {
-  //   id: 'neoris-theme',
-  //   title: 'Neoris Theme',
-  //   variant: 'light',
-  //   icon: <LightIcon />,
-  //   Provider: ({ children }) => (
-  //     <ThemeProvider theme={NeorisTheme}>
-  //       <CssBaseline>{children}</CssBaseline>
-  //     </ThemeProvider>
-  //   ),
-  // },
-  // {
-  //   id: 'light',
-  //   title: 'Light',
-  //   variant: 'light',
-  //   Provider: ({ children }) => (
-  //     <UnifiedThemeProvider theme={themes.light} children={children} />
-  //   ),
-  // },
-  // {
-  //   id: 'dark',
-  //   title: 'Dark',
-  //   variant: 'dark',
-  //   Provider: ({ children }) => (
-  //     <UnifiedThemeProvider theme={themes.dark} children={children} />
-  //   ),
-  // },
-  {
-    id: 'neoris-dark',
-    title: 'Dark mode',
-    variant: 'dark',
-    icon: <DarkIcon />,
-    Provider: ({ children }) => (
-      <UnifiedThemeProvider theme={neorisDarkTheme} noCssBaseline>
-        <CssBaseline />
-        {children}
-      </UnifiedThemeProvider>
-    ),
-  },
-  {
-    id: 'neoris-light',
-    title: 'Light mode',
-    variant: 'light',
-    icon: <LightIcon />,
-    Provider: ({ children }) => (
-      <UnifiedThemeProvider theme={neorisLightTheme} noCssBaseline>
-        <CssBaseline />
-        {children}
-      </UnifiedThemeProvider>
-    ),
-  },
-],
+    //   {
+    //   id: 'neoris-theme',
+    //   title: 'Neoris Theme',
+    //   variant: 'light',
+    //   icon: <LightIcon />,
+    //   Provider: ({ children }) => (
+    //     <ThemeProvider theme={NeorisTheme}>
+    //       <CssBaseline>{children}</CssBaseline>
+    //     </ThemeProvider>
+    //   ),
+    // },
+    // {
+    //   id: 'light',
+    //   title: 'Light',
+    //   variant: 'light',
+    //   Provider: ({ children }) => (
+    //     <UnifiedThemeProvider theme={themes.light} children={children} />
+    //   ),
+    // },
+    // {
+    //   id: 'dark',
+    //   title: 'Dark',
+    //   variant: 'dark',
+    //   Provider: ({ children }) => (
+    //     <UnifiedThemeProvider theme={themes.dark} children={children} />
+    //   ),
+    // },
+    {
+      id: 'neoris-dark',
+      title: 'Dark mode',
+      variant: 'dark',
+      icon: <DarkIcon />,
+      Provider: ({ children }) => (
+        <UnifiedThemeProvider theme={neorisDarkTheme} noCssBaseline>
+          <CssBaseline />
+          {children}
+        </UnifiedThemeProvider>
+      ),
+    },
+    {
+      id: 'neoris-light',
+      title: 'Light mode',
+      variant: 'light',
+      icon: <LightIcon />,
+      Provider: ({ children }) => (
+        <UnifiedThemeProvider theme={neorisLightTheme} noCssBaseline>
+          <CssBaseline />
+          {children}
+        </UnifiedThemeProvider>
+      ),
+    },
+  ],
   // .-- routes bind --
   bindRoutes({ bind }) {
     bind(catalogPlugin.externalRoutes, {

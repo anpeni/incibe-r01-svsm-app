@@ -24,7 +24,8 @@ import { NavLink } from 'react-router-dom';
 import {
   Settings as SidebarSettings,
   UserSettingsProfileNew,
-  UserSettingsThemeToggleTema2, UserSettingsSalir
+  UserSettingsThemeToggleTema2,
+  UserSettingsSalir,
 } from '@backstage/plugin-user-settings';
 import CategoryIcon from '@mui/icons-material/Category';
 import { SidebarSearchModal } from '@backstage/plugin-search';
@@ -42,28 +43,29 @@ import {
   Titulos,
 } from '@backstage/core-components';
 import MenuIcon from '@material-ui/icons/Menu';
-import { GridView, SearchOutlined, NotificationsOutlined } from '@mui/icons-material'
+import {
+  GridView,
+  SearchOutlined,
+  NotificationsOutlined,
+} from '@mui/icons-material';
 import { BackstageTheme } from '@backstage/theme';
 
-const useSidebarLogoStyles = makeStyles<BackstageTheme>(
-  theme => ({
-    root: {
-      width: sidebarConfig.drawerWidthClosed,
-      height: 3 * sidebarConfig.logoHeight,
-      display: 'flex',
-      flexFlow: 'row nowrap',
-      alignItems: 'center',
-      marginBottom: -14,
-
-    },
-    search: {
-      background: 'red !important',
-    },
-    link: {
-      width: sidebarConfig.drawerWidthClosed,
-
-    },
-  }));
+const useSidebarLogoStyles = makeStyles<BackstageTheme>(theme => ({
+  root: {
+    width: sidebarConfig.drawerWidthClosed,
+    height: 3 * sidebarConfig.logoHeight,
+    display: 'flex',
+    flexFlow: 'row nowrap',
+    alignItems: 'center',
+    marginBottom: -14,
+  },
+  search: {
+    background: 'red !important',
+  },
+  link: {
+    width: sidebarConfig.drawerWidthClosed,
+  },
+}));
 
 const SidebarLogo = () => {
   const classes = useSidebarLogoStyles();
@@ -93,9 +95,7 @@ const SidebarLogo = () => {
 };
 
 const useStyles = makeStyles({
-  sidebarContainer: {
-
-  },
+  sidebarContainer: {},
   sectionTitle: {
     fontSize: '8px',
     color: 'rgba(255, 255, 255, 0.30)',
@@ -115,7 +115,7 @@ const useStyles = makeStyles({
     marginLeft: 'auto',
     marginRight: 'auto',
     marginTop: '15px',
-    marginBottom: '10px'
+    marginBottom: '10px',
   },
   circleBadge: {
     display: 'inline-flex',
@@ -171,11 +171,7 @@ export const Root = ({ children }: PropsWithChildren<{}>) => {
           <Sidebar disableExpandOnHover>
             <SidebarLogo />
             <Titulos text={'MAIN'}></Titulos>
-            <SidebarItem
-              icon={GridView}
-              to=""
-              text="Home"
-            />
+            <SidebarItem icon={GridView} to="" text="Home" />
             <SidebarGroup label="Search" icon={<SearchOutlined />} to="/search">
               <div>
                 <SidebarSearchModal />
@@ -205,7 +201,7 @@ export const Root = ({ children }: PropsWithChildren<{}>) => {
               <SidebarItem
                 icon={CreateComponentIcon}
                 to="create"
-                text="Create..."
+                text="Create"
               />
               <SidebarItem
                 icon={NotificationsOutlined}
@@ -216,7 +212,7 @@ export const Root = ({ children }: PropsWithChildren<{}>) => {
               </SidebarItem>
               {/* End global nav */}
               <SidebarDivider className={classes.sidebarDivider} />
-              <Titulos text={'ADMIN'} ></Titulos>
+              <Titulos text={'ADMIN'}></Titulos>
               <SidebarSettings />
               <SidebarItem icon={HelpIcon} to="/ayuda" text="Help" />
               <UserSettingsThemeToggleTema2 />

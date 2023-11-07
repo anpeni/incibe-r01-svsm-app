@@ -85,7 +85,7 @@ export const ScaffolderPageContents = ({
     <Page themeId="home">
       <Header
         pageTitleOverride="Create a New Component dsadasda"
-        title="Create a New Componentdsadada"
+        title="Create a New Component"
         subtitle="Create new software components using standard templates"
         {...headerOptions}
       >
