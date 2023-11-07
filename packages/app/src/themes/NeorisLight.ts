@@ -237,6 +237,8 @@ const createCustomThemeOverrides = (
         textTransform: 'none',
         color: theme.page.fontColor,
         TextSize: '13px',
+        '&:hover': {
+          backgroundColor: 'none !important'},     
       },
       // ? Botones login
       outlinedPrimary: {

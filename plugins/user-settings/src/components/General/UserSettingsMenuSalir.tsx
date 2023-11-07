@@ -1,7 +1,5 @@
 import React from 'react';
 import { IconButton } from '@material-ui/core';
-//import MoreVertIcon from '@material-ui/icons/MoreVert';
-//import SignOutIcon from '@material-ui/icons/MeetingRoom';
 import { identityApiRef, errorApiRef, useApi } from '@backstage/core-plugin-api';
 import { PoweroffOutlined } from '@ant-design/icons';
 import { Typography } from '@material-ui/core';

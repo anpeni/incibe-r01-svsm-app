@@ -35,12 +35,30 @@ const useStyles = makeStyles<BackstageTheme>(
       cursor: 'pointer',
       position: 'relative',
       border: 'none',
-      '&:hover': {
+      margingLeft: '-16px'
+    },
+    sombreado:{
+      marginLeft:'18px', 
+      borderRadius:'12px', 
+      paddingLeft:'0px',
+      width:'185px',
+            '&:hover': {
         background: `${theme.palette.type === 'dark'
             ? vars.dark.background.highlight
             : vars.light.background.white
           }`,
       },
+    },
+    sombreado2:{
+      '&:hover': {
+        background: `${theme.palette.type === 'dark'
+            ? vars.dark.background.highlight
+            : vars.light.background.white
+          }`,
+          borderRadius:'12px',        
+      },
+      marginLeft: '13px',
+      width: '48px',
     },
     itemIcono: {
       fontSize: '16px',//16px
@@ -55,17 +73,10 @@ const useStyles = makeStyles<BackstageTheme>(
       cursor: 'pointer',
       position: 'relative',
       border: 'none',
-      '&:hover': {
-        background: `${theme.palette.type === 'dark'
-            ? vars.dark.background.highlight
-            : vars.light.background.white
-          }`,
-      },
     },
 
     itemContainer: {
       width: '100%',
-
     },
     selected: {
       background: `${theme.palette.type === 'dark'
@@ -76,7 +87,7 @@ const useStyles = makeStyles<BackstageTheme>(
         }`,
       borderRadius: '9px',
       width: '185px',
-      marginLeft: '20px',
+      marginLeft: '5px',
       borderLeft: `solid 9px ${vars.light.background.accent}`,
     },
     selectedCerrado: {
@@ -85,7 +96,7 @@ const useStyles = makeStyles<BackstageTheme>(
           : vars.light.background.white
         }`,
       width: 1,
-      marginLeft: '10px',
+      marginLeft: '-2px',
       minWidth: '50px',
       widht: '20px',
     },
@@ -158,11 +169,11 @@ const useStyles = makeStyles<BackstageTheme>(
     icono: {
       color: `${theme.palette.type === 'dark' ? 'rgba(255, 255, 255, 0.60)' : 'rgba(6, 11, 40)'
         }`,
-      marginLeft: '23px',
+      marginLeft: '5px',
     },
     iconoSelect: {
       color: vars.dark.background.accent,
-      marginLeft: '-5px',
+      marginLeft: '-8px',
     },
     iconoSelectCerrado: {
       color: vars.dark.background.accent,
@@ -172,7 +183,7 @@ const useStyles = makeStyles<BackstageTheme>(
     iconocentrado: {
     },
     iconocentradoCerrado: {
-      marginLeft: '5px',
+      marginLeft: '-7px',
     },
 
     textContent: {
@@ -186,14 +197,6 @@ const useStyles = makeStyles<BackstageTheme>(
       overflow: 'hidden',
       'text-overflow': 'ellipsis',
       marginLeft: '-18px',
-      '&:hover': {
-        background: `${theme.palette.type === 'dark' ? vars.dark.background.highlight
-            : vars.light.background.white
-          }`,
-        borderRadius: '12px',
-        padding: '10px 80px 10px 15px',
-        marginLeft: '-1px',
-      },
     },
     textContentOscuro: {
       color: 'rgba(255, 255, 255, 0.60)',
@@ -223,7 +226,6 @@ const useStyles = makeStyles<BackstageTheme>(
       'text-overflow': 'ellipsis',
       marginLeft: '-18px',
       '&:hover': {
-        background: 'white',
         borderRadius: '12px',
         padding: '10px 80px 10px 15px',
         marginLeft: '-1px',
@@ -335,6 +337,7 @@ export const SidebarSubmenuItem = (props: SidebarSubmenuItemProps) => {
         {isOpen ? (
           // <Box className={classes.itemContainer}>
           <Box className={classes.itemContainer}>
+            <div className={classes.sombreado}>
             <Button
               role="button"
               onClick={handleClickDropdown}
@@ -363,7 +366,8 @@ export const SidebarSubmenuItem = (props: SidebarSubmenuItemProps) => {
               ) : (
                 <ExpandMore className={classes.expandClose} />
               )}
-            </Button>
+            </Button>           
+            </div>
             {dropdownItems && showDropDown && (
               <div className={classes.divMenu}>
                 {showDropDown && (<div className={classes.lineaVertical}></div>)}
@@ -402,6 +406,7 @@ export const SidebarSubmenuItem = (props: SidebarSubmenuItemProps) => {
           </Box>
         ) : (
           <Box >
+            <div className={classes.sombreado2}>
             <Button
               role="button"
               onClick={handleClickDropdown}
@@ -414,9 +419,10 @@ export const SidebarSubmenuItem = (props: SidebarSubmenuItemProps) => {
                 <Icon
                   fontSize="small"
                   className={classnames(
-                    (showDropDown ? `${classes.iconoSelectCerrado} ${classes.iconocentrado}` : `${classes.icono} ${classes.iconocentradoCerrado}`)
+                    (showDropDown ? `${classes.iconoSelectCerrado}` : `${classes.icono} ${classes.iconocentradoCerrado}`)
                   )} />}
             </Button>
+            </div>
             {dropdownItems && showDropDown && (
               <div className={classes.divMenuCerrado}>
                 {showDropDown && (<div className={classes.lineaVertical}></div>)}

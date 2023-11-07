@@ -672,7 +672,7 @@ const SidebarItemBase = forwardRef<any, SidebarItemProps>((props, ref) => {
         {content}
       </Button>
       :
-      <Button style={{marginLeft: '-12px'}}
+      <Button style={{marginLeft: '-14px'}}
         role="button"
         aria-label={text}
         {...childProps}
