@@ -105,7 +105,7 @@ catalog:
     # - type: file
     #   target: ../../catalog-neoris/scaffolder-templates/springboot-grpc-template/template.yaml
     - type: file
-      target: ../../catalog-neoris/scaffolder-templates/all-templates.yaml
+      target: ../../catalog-neoris/scaffolder-templates/remote-templates.yaml
       rules:
         - allow: [Template]
 
