@@ -132,6 +132,9 @@ proxy:
 #  Backstage integrations configuration
 # ====================================================================================
 integrations:
+  github:
+    - host: github.com
+      token: ${GITHUB_TOKEN}
   bitbucketCloud:
     - username: ${BITBUCKET_CLOUD_USERNAME}
       appPassword: ${BITBUCKET_CLOUD_APP_PASSWORD}
