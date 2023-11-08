@@ -79,6 +79,7 @@ const app = createApp({
           message: 'Sign in using Azure AD',
           apiRef: dexOIDCAuthApiRef,
         }}
+        // !
       />
     ),
   },
