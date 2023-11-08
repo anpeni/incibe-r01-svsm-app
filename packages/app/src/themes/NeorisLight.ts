@@ -123,6 +123,11 @@ const createCustomThemeOverrides = (
         color: alpha(theme.page.fontColor, 0.8),
       },
     },
+    MuiStepLabel:{
+      label:{
+        color: '#000',}
+      
+  },
     BackstageHeaderLabel: {
       label: {
         color: theme.page.fontColor,
@@ -170,6 +175,7 @@ const createCustomThemeOverrides = (
         color: vars.light.fontColor.white + '!important',
       },
     },
+
     MuiPaper: {
       rounded: {
         borderRadius: '12px',

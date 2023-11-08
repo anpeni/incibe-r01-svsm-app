@@ -110,7 +110,7 @@ export function defaultGenerateStepperClaro(
 
               <div style={{
                 padding: '0',
-                color: '#FFF',
+                color: '#000',
                 fontFamily: 'Inter, sans-serif',
                 fontSize: '24px',
                 fontStyle: 'normal',
@@ -333,7 +333,7 @@ export const defaultStepperClaro: StepperProviderClaro = {
           }}>Optional</Typography>}>
         <div style={{
           padding: '0',
-          color: 'black',
+          color: 'black !important',
           fontFamily: 'Inter, sans-serif',
           fontSize: '24px',
           fontStyle: 'normal',
