@@ -70,10 +70,6 @@ proxy:
 # ====================================================================================
 #  Backstage integrations configuration
 # ====================================================================================
-integrations:
-  bitbucketCloud:
-    - username: ${BITBUCKET_CLOUD_USERNAME}
-      appPassword: ${BITBUCKET_CLOUD_APP_PASSWORD}
 grafana:
   domain: ${URL_GRAFANA_DOMAIN}
 tekton:
