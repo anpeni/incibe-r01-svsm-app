@@ -182,6 +182,7 @@ const createCustomThemeOverrides = (
       },
     },
     MuiPaper: {
+
       rounded: {
         borderRadius: '12px',
       },
@@ -318,13 +319,13 @@ const createCustomThemeOverrides = (
     },
     MuiFormLabel:{
       root: {
-      color: '#FFF',
-      
+      color: '#000',     
       fontSize: '24px',
       fontStyle: 'normal',
       fontFamily: "Inter, sans-serif",
       fontWeight: 700,
       lineHeight: '16px',
+      
     },
   },
     // ? Icono Filter

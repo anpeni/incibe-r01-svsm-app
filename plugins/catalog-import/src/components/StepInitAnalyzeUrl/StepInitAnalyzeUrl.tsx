@@ -56,7 +56,11 @@ const useStyles = makeStyles(
       '& input': {
         background: `${theme.palette.type === 'dark'
           ? vars.dark.background.white + ' !important'
-          : vars.light.background.card + ' !important'
+          : vars.light.background.white + ' !important'
+          }`,
+          border: `${theme.palette.type === 'dark'
+          ? 'none !important' 
+          : '1px solid #000 !important' 
           }`,
         borderRadius: '12px',
         color: `${theme.palette.type === 'dark'

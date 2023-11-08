@@ -87,7 +87,7 @@ const useStyles = makeStyles<BackstageTheme>(
         }`,
       borderRadius: '9px',
       width: '185px',
-      marginLeft: '5px',
+      marginLeft: '0px',
       borderLeft: `solid 9px ${vars.light.background.accent}`,
     },
     selectedCerrado: {
@@ -146,7 +146,7 @@ const useStyles = makeStyles<BackstageTheme>(
     },
     expandOpen: {
       position: 'absolute',
-      right: 10,
+      right: 6,
       color: `${theme.palette.type === 'dark'
           ? vars.dark.background.white
           : vars.light.background.accent
@@ -173,7 +173,7 @@ const useStyles = makeStyles<BackstageTheme>(
     },
     iconoSelect: {
       color: vars.dark.background.accent,
-      marginLeft: '-8px',
+      marginLeft: '-4px',
     },
     iconoSelectCerrado: {
       color: vars.dark.background.accent,

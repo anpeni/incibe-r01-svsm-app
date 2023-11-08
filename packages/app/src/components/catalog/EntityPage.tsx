@@ -251,15 +251,15 @@ const serviceEntityPage = (
       </Grid>
     </EntityLayout.Route>
 
-    <EntityLayout.Route path="/kubernetes" title="Kubernetes">
+    {/* <EntityLayout.Route path="/kubernetes" title="Kubernetes">
       <EntityKubernetesContent refreshIntervalMs={30000} />
-    </EntityLayout.Route>
+    </EntityLayout.Route> */}
 
     <EntityLayout.Route path="/prometheus" title="Prometheus">
       <EntityPrometheusContent />
     </EntityLayout.Route>
 
-    <EntityLayout.Route path="/dependencies" title="Dependencies">
+    {/* <EntityLayout.Route path="/dependencies" title="Dependencies">
       <Grid container spacing={3} alignItems="stretch">
         <Grid item md={6}>
           <EntityDependsOnComponentsCard variant="gridItem" />
@@ -268,15 +268,15 @@ const serviceEntityPage = (
           <EntityDependsOnResourcesCard variant="gridItem" />
         </Grid>
       </Grid>
-    </EntityLayout.Route>
+    </EntityLayout.Route> */}
 
-    <EntityLayout.Route path="/todo" title="Todo">
+    {/* <EntityLayout.Route path="/todo" title="Todo">
       <EntityTodoContent />
-    </EntityLayout.Route>
+    </EntityLayout.Route> */}
 
-    <EntityLayout.Route path="/docs" title="Docs">
+    {/* <EntityLayout.Route path="/docs" title="Docs">
       {techdocsContent}
-    </EntityLayout.Route>
+    </EntityLayout.Route> */}
   </EntityLayout>
 );
 
@@ -294,15 +294,15 @@ const websiteEntityPage = (
        <EntityBitbucketContent />
     </EntityLayout.Route>
 
-    <EntityLayout.Route path="/kubernetes" title="Kubernetes">
+    {/* <EntityLayout.Route path="/kubernetes" title="Kubernetes">
       <EntityKubernetesContent refreshIntervalMs={30000} />
-    </EntityLayout.Route>
+    </EntityLayout.Route> */}
 
     <EntityLayout.Route path="/prometheus" title="Prometheus">
       <EntityPrometheusContent />
     </EntityLayout.Route>
 
-    <EntityLayout.Route path="/dependencies" title="Dependencies">
+    {/* <EntityLayout.Route path="/dependencies" title="Dependencies">
       <Grid container spacing={3} alignItems="stretch">
         <Grid item md={6}>
           <EntityDependsOnComponentsCard variant="gridItem" />
@@ -311,11 +311,11 @@ const websiteEntityPage = (
           <EntityDependsOnResourcesCard variant="gridItem" />
         </Grid>
       </Grid>
-    </EntityLayout.Route>
+    </EntityLayout.Route> */}
 
-    <EntityLayout.Route path="/docs" title="Docs">
+    {/* <EntityLayout.Route path="/docs" title="Docs">
       {techdocsContent}
-    </EntityLayout.Route>
+    </EntityLayout.Route> */}
   </EntityLayout>
 );
 
@@ -332,9 +332,9 @@ const defaultEntityPage = (
       {overviewContent}
     </EntityLayout.Route>
 
-    <EntityLayout.Route path="/docs" title="Docs">
+    {/* <EntityLayout.Route path="/docs" title="Docs">
       {techdocsContent}
-    </EntityLayout.Route>
+    </EntityLayout.Route> */}
   </EntityLayout>
 );
 
@@ -393,9 +393,9 @@ const apiPage = (
       </Grid>
     </EntityLayout.Route>
 
-    <EntityLayout.Route path="/todo" title="Todo">
+    {/* <EntityLayout.Route path="/todo" title="Todo">
       <EntityTodoContent />
-    </EntityLayout.Route>
+    </EntityLayout.Route> */}
   </EntityLayout>
 );
 

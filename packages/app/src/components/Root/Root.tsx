@@ -206,7 +206,7 @@ export const Root = ({ children }: PropsWithChildren<{}>) => {
               <SidebarItem
                 icon={NotificationsOutlined}
                 to="notifications"
-                text="Notifications"
+                text="Notification"
               >
                 <CircleBadge count={3} />
               </SidebarItem>
