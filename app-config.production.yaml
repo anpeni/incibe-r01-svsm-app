@@ -52,6 +52,8 @@ catalog:
       target: ${CATALOG_NEORIS_CONTAINER_PATH} # Container path, check dockerfile
     - type: file
       target: '/app/catalog-neoris/remote-templates.yaml'
+      rules:
+        - allow: [Template]
 # ====================================================================================
 #  Backstage proxy configuration
 # ====================================================================================
