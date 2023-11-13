@@ -23,7 +23,7 @@ import MenuBookIcon from '@material-ui/icons/MenuBook';
 import CloudQueueIcon from '@material-ui/icons/CloudQueue';
 import AcUnitIcon from '@material-ui/icons/AcUnit';
 import AppsIcon from '@material-ui/icons/Apps';
-import React, { ComponentType, PropsWithChildren } from 'react';
+import React, { ComponentType, PropsWithChildren , useState } from 'react';
 import { SidebarPage } from './Page';
 import { Sidebar } from './Bar';
 import { SidebarGroup } from './SidebarGroup';
@@ -57,6 +57,7 @@ const handleSearch = (input: string) => {
 };
 
 export const SampleSidebar = () => (
+  
   <SidebarPage>
     <Sidebar>
       <SidebarGroup label="Menu" icon={MenuIcon}>
@@ -71,8 +72,9 @@ export const SampleSidebar = () => (
     </Sidebar>
   </SidebarPage>
 );
-
+const [showDropDown, setShowDropDown] = useState(false);
 export const SampleScalableSidebar = () => (
+  
   <SidebarPage>
     <Sidebar disableExpandOnHover>
       <SidebarSearchField onSearch={handleSearch} to="/search" />
@@ -80,9 +82,12 @@ export const SampleScalableSidebar = () => (
       <SidebarGroup label="Menu" icon={<MenuIcon />}>
         <SidebarItem icon={MenuBookIcon} text="Catalog">
           <SidebarSubmenu title="Catalog">
-            <SidebarSubmenuItem title="Tools" to="/1" icon={BuildRoundedIcon} />
-            <SidebarSubmenuItem title="APIs" to="/2" icon={CloudQueueIcon} />
-            <SidebarSubmenuItem title="Components" to="/3" icon={AppsIcon} />
+            <SidebarSubmenuItem title="Tools" to="/1" icon={BuildRoundedIcon}               showDropDown={showDropDown}
+              setShowDropDown={setShowDropDown}/>
+            <SidebarSubmenuItem title="APIs" to="/2" icon={CloudQueueIcon}               showDropDown={showDropDown}
+              setShowDropDown={setShowDropDown}/>
+            <SidebarSubmenuItem title="Components" to="/3" icon={AppsIcon}               showDropDown={showDropDown}
+              setShowDropDown={setShowDropDown}/>
             <SidebarSubmenuItem
               title="Misc"
               to="/6"
@@ -97,6 +102,8 @@ export const SampleScalableSidebar = () => (
                   to: '/8',
                 },
               ]}
+              showDropDown={showDropDown}
+              setShowDropDown={setShowDropDown}
             />
           </SidebarSubmenu>
         </SidebarItem>
