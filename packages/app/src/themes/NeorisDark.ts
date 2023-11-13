@@ -15,6 +15,10 @@ import { AutocompleteClassKey } from '@material-ui/lab/Autocomplete';
 import { AlertClassKey } from '@material-ui/lab/Alert';
 import { vars } from './variables';
 
+export interface CustomUnifiedTheme extends UnifiedTheme {
+  overrides?: Theme['overrides'];
+}
+
 // Labs types not included in overrides; https://github.com/mui/material-ui/issues/19427
 declare module '@material-ui/core/styles/overrides' {
   export interface ComponentNameToClassKey {
@@ -182,7 +186,6 @@ const createCustomThemeOverrides = (
       },
     },
     MuiPaper: {
-
       rounded: {
         borderRadius: '12px',
       },
@@ -257,7 +260,8 @@ const createCustomThemeOverrides = (
         textTransform: 'none',
         TextSize: '13px',
         '&:hover': {
-          backgroundColor: 'none !important'},
+          backgroundColor: 'none !important',
+        },
       },
       // ? Botones login
       outlinedPrimary: {
@@ -317,17 +321,16 @@ const createCustomThemeOverrides = (
         position: 'relative',
       },
     },
-    MuiFormLabel:{
+    MuiFormLabel: {
       root: {
-      color: '#000',     
-      fontSize: '24px',
-      fontStyle: 'normal',
-      fontFamily: "Inter, sans-serif",
-      fontWeight: 700,
-      lineHeight: '16px',
-      
+        color: '#000',
+        fontSize: '24px',
+        fontStyle: 'normal',
+        fontFamily: 'Inter, sans-serif',
+        fontWeight: 700,
+        lineHeight: '16px',
+      },
     },
-  },
     // ? Icono Filter
     MuiInputAdornment: {
       positionStart: {
@@ -335,9 +338,7 @@ const createCustomThemeOverrides = (
       },
     },
     // ? Sidebar
-   
-      
-    
+
     // ? Cards genericas de MUi
     MuiCard: {
       root: {
@@ -379,7 +380,7 @@ const createCustomThemeOverrides = (
   };
 };
 
-export const neorisDarkTheme: UnifiedTheme = createUnifiedThemeFromV4({
+export const neorisDarkTheme: CustomUnifiedTheme = createUnifiedThemeFromV4({
   ...baseTheme,
   overrides: {
     ...baseTheme.overrides,

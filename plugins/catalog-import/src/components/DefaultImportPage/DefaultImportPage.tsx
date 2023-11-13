@@ -37,14 +37,14 @@ import { vars } from '../../../../../packages/app/src/themes/variables';
  * @public
  */
 
-
 const useStyles = makeStyles(
   theme => ({
     headerStepper: {
-      color: `${theme.palette.type === 'dark'
+      color: `${
+        theme.palette.type === 'dark'
           ? vars.dark.fontColor.white
           : vars.light.fontColor.black
-        }`,
+      }`,
       fontFamily: 'Inter, sans-serif',
       fontSize: '24px',
       fontStyle: 'normal',
@@ -55,21 +55,21 @@ const useStyles = makeStyles(
       marginBottom: '40px',
     },
     subtituloHeader: {
-      color: `${theme.palette.type === 'dark'
+      color: `${
+        theme.palette.type === 'dark'
           ? vars.dark.fontColor.white
           : vars.light.fontColor.black
-        }`,
+      }`,
       fontFamily: 'Inter, sans-serif',
       fontSize: '16px',
       fontStyle: 'normal',
       fontWeight: 400,
       lineHeight: '16px',
       marginLeft: '15px',
-    }
+    },
   }),
   { name: 'BackstageDefaultImportPage' },
 );
-
 
 export const DefaultImportPage = () => {
   const theme = useTheme();
@@ -81,47 +81,62 @@ export const DefaultImportPage = () => {
 
   const contentItems = [
     <Grid item xs={12} md={4} lg={6} xl={6} style={{ position: 'relative' }}>
-      <div style={{
-        width: '825px',
-        position: 'fixed',
-        right: '15px',
-      }}>
+      <div
+        style={{
+          width: '825px',
+          position: 'fixed',
+          right: '15px',
+        }}
+      >
         <ImportInfoCard />
       </div>
     </Grid>,
 
-    <Grid item xs={12} md={8} lg={6} xl={4} style={{
-      display: 'flex',
-      flexDirection: 'column'
-    }}>
-      <span
-        className={classes.headerStepper}
-      >
-        GitHub Pages Website
-      </span>
+    <Grid
+      item
+      xs={12}
+      md={8}
+      lg={6}
+      xl={4}
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+      }}
+    >
+      <span className={classes.headerStepper}>GitHub Pages Website</span>
       <div style={{ marginLeft: '-11px', marginTop: '-30px' }}>
-      {isDarkMode ? <ImportStepper /> : <ImportStepperClaro /> }
+        {isDarkMode ? <ImportStepper /> : <ImportStepperClaro />}
       </div>
     </Grid>,
   ];
 
   return (
     <div style={{ marginLeft: '60px' }}>
-      <Page themeId="home" >
-        <div style={{
-          display: 'flex',
-          flexDirection: 'column',
-          width: '1625px',
-        }}>
-          <div style={{
+      <Page themeId="home">
+        <div
+          style={{
             display: 'flex',
-            alignItems: 'center',
-            marginTop: '25px',
-            marginLeft: '30px',
-          }}>
-            <AddBoxIcon style={{ marginTop: '15px', transform: 'scale(1.8)', marginLeft: '10px' }} />
+            flexDirection: 'column',
+            width: '1625px',
+          }}
+        >
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              marginTop: '25px',
+              marginLeft: '30px',
+            }}
+          >
+            <AddBoxIcon
+              style={{
+                marginTop: '15px',
+                transform: 'scale(1.8)',
+                marginLeft: '10px',
+              }}
+            />
             <Header
-              title="Create a new component"
+              title="Add a new component"
               style={{
                 color: '#FFF',
                 textAlign: 'left',
@@ -132,25 +147,35 @@ export const DefaultImportPage = () => {
                 lineHeight: 'normal',
               }}
             />
-            <div style={{ right: '15px', marginTop: '15px', position: 'fixed' }}>
+            <div
+              style={{ right: '15px', marginTop: '15px', position: 'fixed' }}
+            >
               <SupportButton>
                 Start tracking your component in {appTitle} by adding it to the
                 software catalog.
               </SupportButton>
             </div>
           </div>
-          <Content >
-            <div style={{ marginTop: '-20px', }}>
+          <Content>
+            <div style={{ marginTop: '-20px' }}>
               <span className={classes.headerStepper}>
-                Create new software components using standard templates</span>
+                Create new software components using standard templates
+              </span>
             </div>
-            <Grid container spacing={5} style={{ marginTop: '10px', display: 'flex', flexDirection: 'row' }}>
+            <Grid
+              container
+              spacing={5}
+              style={{
+                marginTop: '10px',
+                display: 'flex',
+                flexDirection: 'row',
+              }}
+            >
               {isMobile ? contentItems : contentItems.reverse()}
             </Grid>
           </Content>
         </div>
       </Page>
-    </div >
-
+    </div>
   );
 };

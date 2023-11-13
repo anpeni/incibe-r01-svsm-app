@@ -39,6 +39,8 @@ import { catalogEntityCreatePermission } from '@backstage/plugin-catalog-common/
 import { usePermission } from '@backstage/plugin-permission-react';
 import { ScaffolderPageContextMenu } from './ScaffolderPageContextMenu';
 import { registerComponentRouteRef } from '../../routes';
+import { Box } from '@material-ui/core';
+import { AddBoxOutlined } from '@material-ui/icons';
 
 export type ScaffolderPageProps = {
   TemplateCardComponent?:
@@ -85,7 +87,18 @@ export const ScaffolderPageContents = ({
     <Page themeId="home">
       <Header
         pageTitleOverride="Create a New Component"
-        title="Create a New Component"
+        title={
+          <Box display="flex" alignItems="center">
+            <AddBoxOutlined
+              style={{
+                transform: 'scale(1.8)',
+                marginLeft: '10px',
+                marginRight: '10px',
+              }}
+            />
+            <Box ml={1}>Create a New Component</Box>
+          </Box>
+        }
         subtitle="Create new software components using standard templates"
         {...headerOptions}
       >

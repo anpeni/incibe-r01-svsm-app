@@ -41,6 +41,10 @@ import { ReviewStep } from './ReviewStep';
 import { extractSchemaFromStep } from '@backstage/plugin-scaffolder-react/alpha';
 import { selectedTemplateRouteRef } from '../../routes';
 import { LayoutOptions } from '@backstage/plugin-scaffolder-react';
+import { makeStyles } from '@material-ui/core/styles';
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import { neorisDarkTheme } from '../../../../../packages/app/src/themes/NeorisDark';
+import { vars } from '../../../../../packages/app/src/themes/variables';
 
 const Form = withTheme(MuiTheme);
 
@@ -163,58 +167,153 @@ export const MultistepJsonForm = (props: MultistepJsonFormProps) => {
 
   const ReviewStepElement = ReviewStepComponent ?? ReviewStep;
 
+  const customTheme = createMuiTheme({
+    ...neorisDarkTheme,
+    overrides: {
+      ...neorisDarkTheme.overrides,
+      MuiInputBase: {
+        root: {
+          ...neorisDarkTheme.overrides,
+          backgroundColor: 'white',
+          color: 'black',
+          padding: '10px',
+          borderRadius: '12px',
+        },
+      },
+      MuiStepper: {
+        vertical: {
+          background: vars.dark.background.generic,
+        },
+      },
+      // ? Fuentes blancas
+      MuiTypography: {
+        h6: {
+          color: 'white',
+          marginLeft: '10px',
+        },
+        colorTextSecondary: {
+          color: 'white',
+        },
+        body2: {
+          color: 'white',
+        },
+      },
+      MuiInputLabel: {
+        animated: {
+          color: 'black',
+          zIndex: 1,
+        },
+        outlined: {
+          color: 'white',
+          transform: 'translate(0px, -15px) scale(0.75) !important',
+        },
+      },
+      MuiFormHelperText: {
+        root: {
+          color: 'white',
+        },
+      },
+      MuiAutocomplete: {
+        inputRoot: {
+          padding: '10px !important',
+        },
+      },
+      MuiFormLabel: {
+        root: {
+          marginLeft: '10px',
+          color: 'black',
+          fontStyle: 'normal',
+          fontFamily: 'Inter, sans-serif',
+          fontWeight: 700,
+          transition:
+            'color 200ms cubic-bezier(0.0, 0, 0.2, 1) 0ms, transform 200ms cubic-bezier(0.0, 0, 0.2, 1) 0ms',
+          '&$focused': {
+            color: 'white',
+          },
+        },
+      },
+      MuiPaper: {
+        elevation0: {
+          background: 'transparent',
+        },
+      },
+      MuiButton: {
+        containedPrimary: {
+          //botones
+          backgroundColor: vars.dark.background.highlight,
+          color: vars.dark.fontColor.white,
+          '&:hover': {
+            backgroundColor: vars.dark.background.highlight + '!important',
+            opacity: 0.8,
+          },
+        },
+        label: {
+          // botones sin fondo
+          color: 'white',
+        },
+      },
+      MuiTableCell: {
+        // Paso Review and Create (titles)
+        body: {
+          color: 'white',
+        },
+      },
+    },
+  });
   return (
-    <>
-      <Stepper activeStep={activeStep} orientation="vertical">
-        {steps.map(({ title, schema, ...formProps }, index) => {
-          return (
-            <StepUI key={title}>
-              <StepLabel
-                aria-label={`Step ${index + 1} ${title}`}
-                aria-disabled="false"
-                tabIndex={0}
-              >
-                <Typography variant="h6" component="h2">
-                  {title}
-                </Typography>
-              </StepLabel>
-              <StepContent key={title}>
-                <Form
-                  showErrorList={false}
-                  fields={{ ...fieldOverrides, ...fields }}
-                  widgets={widgets}
-                  noHtml5Validate
-                  formData={formData}
-                  formContext={{ formData }}
-                  onChange={onChange}
-                  onSubmit={e => {
-                    if (e.errors.length === 0) handleNext();
-                  }}
-                  {...formProps}
-                  {...transformSchemaToProps(schema, layouts)}
+    <ThemeProvider theme={customTheme}>
+      <>
+        <Stepper activeStep={activeStep} orientation="vertical">
+          {steps.map(({ title, schema, ...formProps }, index) => {
+            return (
+              <StepUI key={title}>
+                <StepLabel
+                  aria-label={`Step ${index + 1} ${title}`}
+                  aria-disabled="false"
+                  tabIndex={0}
                 >
-                  <Button disabled={activeStep === 0} onClick={handleBack}>
-                    Back
-                  </Button>
-                  <Button variant="contained" color="primary" type="submit">
-                    Next step
-                  </Button>
-                </Form>
-              </StepContent>
-            </StepUI>
-          );
-        })}
-      </Stepper>
-      {activeStep === steps.length && (
-        <ReviewStepElement
-          disableButtons={disableButtons}
-          handleBack={handleBack}
-          handleCreate={handleCreate}
-          handleReset={handleReset}
-          formData={formData}
-          steps={getSchemasFromSteps(steps)}
-        />
-      )}
-    </>
+                  <Typography variant="h6" component="h2">
+                    {title}
+                  </Typography>
+                </StepLabel>
+                <StepContent key={title}>
+                  <Form
+                    showErrorList={false}
+                    fields={{ ...fieldOverrides, ...fields }}
+                    widgets={widgets}
+                    noHtml5Validate
+                    formData={formData}
+                    formContext={{ formData }}
+                    onChange={onChange}
+                    onSubmit={e => {
+                      if (e.errors.length === 0) handleNext();
+                    }}
+                    {...formProps}
+                    {...transformSchemaToProps(schema, layouts)}
+                  >
+                    <Button disabled={activeStep === 0} onClick={handleBack}>
+                      Back
+                    </Button>
+                    <Button variant="contained" color="primary" type="submit">
+                      Next step
+                    </Button>
+                  </Form>
+                </StepContent>
+              </StepUI>
+            );
+          })}
+        </Stepper>
+        {activeStep === steps.length && (
+          <ReviewStepElement
+            disableButtons={disableButtons}
+            handleBack={handleBack}
+            handleCreate={handleCreate}
+            handleReset={handleReset}
+            formData={formData}
+            steps={getSchemasFromSteps(steps)}
+          />
+        )}
+      </>
+    </ThemeProvider>
   );
 };
