@@ -37,25 +37,25 @@ const useStyles = makeStyles<BackstageTheme>(
       border: 'none',
       margingLeft: '-16px'
     },
-    sombreado:{
-      marginLeft:'18px', 
-      borderRadius:'12px', 
-      paddingLeft:'0px',
-      width:'185px',
-            '&:hover': {
+    sombreado: {
+      marginLeft: '18px',
+      borderRadius: '12px',
+      paddingLeft: '0px',
+      width: '185px',
+      '&:hover': {
         background: `${theme.palette.type === 'dark'
-            ? vars.dark.background.highlight
-            : vars.light.background.white
+          ? vars.dark.background.highlight
+          : vars.light.background.white
           }`,
       },
     },
-    sombreado2:{
+    sombreado2: {
       '&:hover': {
         background: `${theme.palette.type === 'dark'
-            ? vars.dark.background.highlight
-            : vars.light.background.white
+          ? vars.dark.background.highlight
+          : vars.light.background.white
           }`,
-          borderRadius:'12px',        
+        borderRadius: '12px',
       },
       marginLeft: '13px',
       width: '48px',
@@ -80,8 +80,8 @@ const useStyles = makeStyles<BackstageTheme>(
     },
     selected: {
       background: `${theme.palette.type === 'dark'
-          ? vars.dark.background.highlight
-          : vars.light.background.white
+        ? vars.dark.background.highlight
+        : vars.light.background.white
         }`,
       color: `${theme.palette.type === 'dark' ? '#FFF ' : 'rgba(6, 11, 40, 0.8)'
         }`,
@@ -92,13 +92,14 @@ const useStyles = makeStyles<BackstageTheme>(
     },
     selectedCerrado: {
       background: `${theme.palette.type === 'dark'
-          ? vars.dark.background.highlight
-          : vars.light.background.white
+        ? vars.dark.background.highlight
+        : vars.light.background.white
         }`,
       width: 1,
       marginLeft: '-2px',
       minWidth: '50px',
       widht: '20px',
+      
     },
     label: {
       margin: theme.spacing(1.75),
@@ -106,7 +107,8 @@ const useStyles = makeStyles<BackstageTheme>(
       fontSize: 16,
       fontWeight: 'lighter',
       whiteSpace: 'nowrap',
-      overflow: 'hidden',
+      //overflow: 'hidden',
+      fontFamily: 'Inter, sans-serif !important',
       'text-overflow': 'ellipsis',
       lineHeight: 1,
       color: `${theme.palette.type === 'dark' ? 'rgba(255, 255, 255, 0.60)' : 'RGB(6, 11, 40)'
@@ -118,12 +120,13 @@ const useStyles = makeStyles<BackstageTheme>(
       fontSize: 16,
       fontWeight: "lighter",
       whiteSpace: 'nowrap',
-      overflow: 'hidden',
+      //overflow: 'hidden',
+      fontFamily: 'Inter, sans-serif !important',
       'text-overflow': 'ellipsis',
       lineHeight: 1,
       color: `${theme.palette.type === 'dark'
-          ? vars.dark.background.white
-          : vars.light.background.accent
+        ? vars.dark.background.white
+        : vars.light.background.accent
         }`,
     },
     subtitle: {
@@ -148,8 +151,8 @@ const useStyles = makeStyles<BackstageTheme>(
       position: 'absolute',
       right: 6,
       color: `${theme.palette.type === 'dark'
-          ? vars.dark.background.white
-          : vars.light.background.accent
+        ? vars.dark.background.white
+        : vars.light.background.accent
         }`,
     },
     dropdown: {
@@ -240,11 +243,10 @@ const useStyles = makeStyles<BackstageTheme>(
       overflow: 'hidden',
       'text-overflow': 'ellipsis',
       marginLeft: '-1px',
-      background: `${
-        theme.palette.type === 'dark'
+      background: `${theme.palette.type === 'dark'
           ? vars.dark.background.highlight
           : vars.light.background.white
-      }`,
+        }`,
       padding: '10px 80px 10px 15px',
       borderRadius: '12px',
     },
@@ -296,9 +298,11 @@ export type SidebarSubmenuItemProps = {
   dropdownItems?: SidebarSubmenuItemDropdownItem[];
   exact?: boolean;
   selectedObject?: any;
+  showDropDown: boolean;
+  setShowDropDown: (show: boolean) => void; // Actualizado para especificar el tipo de función
 };
 export const SidebarSubmenuItem = (props: SidebarSubmenuItemProps) => {
-  const { title, subtitle, to, icon: Icon, dropdownItems, exact } = props;
+  const { title, subtitle, to, icon: Icon, dropdownItems, exact, showDropDown, setShowDropDown } = props;
   const classes = useStyles();
   const { setIsHoveredOn } = useContext(SidebarItemWithSubmenuContext);
   const closeSubmenu = () => {
@@ -309,7 +313,7 @@ export const SidebarSubmenuItem = (props: SidebarSubmenuItemProps) => {
   const [selectedObject, setSelectedObject] = useState(null);
   let isActive = isLocationMatch(currentLocation, toLocation, exact);
 
-  const [showDropDown, setShowDropDown] = useState(false);
+  //const [showDropDown, setShowDropDown] = useState(false);
   const handleClickDropdown = () => {
     setShowDropDown(!showDropDown);
   };
@@ -336,92 +340,95 @@ export const SidebarSubmenuItem = (props: SidebarSubmenuItemProps) => {
       <>
         {isOpen ? (
           // <Box className={classes.itemContainer}>
-          <Box className={classes.itemContainer}>
-            <div className={classes.sombreado}>
-            <Button
-              role="button"
-              onClick={handleClickDropdown}
-              onTouchStart={e => e.stopPropagation()}
-              className={classnames(
-                classes.item,
-                (showDropDown ? classes.selected : undefined)
-              )}>
-              {Icon &&
-                <Icon
-                  fontSize="small"
+          <>
+            <Box className={classes.itemContainer}>
+              <div className={classes.sombreado}>
+                <Button
+                  role="button"
+                  onClick={handleClickDropdown}
+                  onTouchStart={e => e.stopPropagation()}
                   className={classnames(
-                    showDropDown ? classes.iconoSelect : classes.icono,
-                  )} />
-              }
-              <Typography
-                component="span"
-                className={classnames(
-                  showDropDown ? classes.labelSelected : classes.label,
-                )}>
-                {title}
-                <br />
-              </Typography>
-              {showDropDown ? (
-                <ExpandLess className={classes.expandOpen} />
-              ) : (
-                <ExpandMore className={classes.expandClose} />
-              )}
-            </Button>           
-            </div>
-            {dropdownItems && showDropDown && (
-              <div className={classes.divMenu}>
-                {showDropDown && (<div className={classes.lineaVertical}></div>)}
-                <Box className={classes.dropdown}>
-                  {dropdownItems.map((object, key) => (
-                    <Link
-                      to={object.to}
-                      underline="none"
-                      className={
-                        selectedObject === object.title // Comprobar si el objeto está seleccionado
-                          ? classes.dropdownItemSeleccionado
-                          : classes.dropdownItem
-                      }
-                      onClick={() => handleObjectClick(object)}
-                      onTouchStart={e => e.stopPropagation()}
-                    >
-                      <div className={classes.divLineaHorizontalItem}>
-                        {showDropDown &&
-                          (<div className={classes.lineaHorizontal}></div>)}
-                        <div className={classnames(classes.sombreadoItem)}>
-                          <Typography component="span"
-                            className={
-                              selectedObject === object.title // Comprobar si el objeto está seleccionado
-                                ? classes.textContentSelected
-                                : classes.textContent
-                            }>
-                            {object.title}
-                          </Typography>
-                        </div>
-                      </div>
-                    </Link>
-                  ))}
-                </Box>
+                    classes.item,
+                    (showDropDown ? classes.selected : undefined)
+                  )}>
+                  {Icon &&
+                    <Icon
+                      fontSize="small"
+                      className={classnames(
+                        showDropDown ? classes.iconoSelect : classes.icono,
+                      )} />
+                  }
+                  <Typography
+                    component="span"
+                    className={classnames(
+                      showDropDown ? classes.labelSelected : classes.label,
+                    )}>
+                    {title}
+                    <br />
+                  </Typography>
+                  {showDropDown ? (
+                    <ExpandLess className={classes.expandOpen} />
+                  ) : (
+                    <ExpandMore className={classes.expandClose} />
+                  )}
+                </Button>
               </div>
-            )}
-          </Box>
+              {dropdownItems && showDropDown && (
+                <div className={classes.divMenu}>
+                  {showDropDown && (<div className={classes.lineaVertical}></div>)}
+                  <Box className={classes.dropdown}>
+                    {dropdownItems.map((object, key) => (
+                      <Link
+                        to={object.to}
+                        underline="none"
+                        className={
+                          location.pathname === object.to
+                            ? classes.dropdownItemSeleccionado
+                            : classes.dropdownItem
+                        }
+                        onClick={() => handleObjectClick(object)}
+                        onTouchStart={e => e.stopPropagation()}
+                      >
+                        <div className={classes.divLineaHorizontalItem}>
+                          {showDropDown &&
+                            (<div className={classes.lineaHorizontal}></div>)}
+                          <div className={classnames(classes.sombreadoItem)}>
+                            <Typography component="span"
+                              className={
+                                location.pathname === object.to  // Comprobar si el objeto está seleccionado
+                                  ? classes.textContentSelected
+                                  : classes.textContent
+                              }>
+                              {object.title}
+                            </Typography>
+                          </div>
+                        </div>
+                      </Link>
+                    ))}
+                  </Box>
+                </div>
+              )}
+            </Box>
+            {/* <div>{showDropDown ? 'Abierto' : 'Cerrado'}</div> */}
+          </>
         ) : (
           <Box >
             <div className={classes.sombreado2}>
-            <Button
-              role="button"
-              onClick={handleClickDropdown}
-              onTouchStart={e => e.stopPropagation()}
-              className={classnames(
-                (showDropDown ? `${classes.selectedCerrado} ${classes.itemIcono}` : classes.itemIcono)
-              )}
-            >
-              {Icon &&
-                <Icon
-                  fontSize="small"
-                  className={classnames(
-                    (showDropDown ? `${classes.iconoSelectCerrado}` : `${classes.icono} ${classes.iconocentradoCerrado}`)
-                  )} />}
-            </Button>
+              <Button
+                role="button"
+                onClick={handleClickDropdown}
+                onTouchStart={e => e.stopPropagation()}
+                className={classnames(
+                  (showDropDown ? `${classes.selectedCerrado} ${classes.itemIcono}` : classes.itemIcono)
+                )}
+              >
+                {Icon &&
+                  <Icon
+                    fontSize="small"
+                    className={classnames(
+                      (showDropDown ? `${classes.iconoSelectCerrado}` : `${classes.icono} ${classes.iconocentradoCerrado}`)
+                    )} />}
+              </Button>
             </div>
             {dropdownItems && showDropDown && (
               <div className={classes.divMenuCerrado}>
@@ -501,5 +508,18 @@ export const SidebarSubmenuItem = (props: SidebarSubmenuItemProps) => {
         </Link>
       </Tooltip>
     </Box>
+  );
+};
+
+type OtroComponenteProps = {
+  showDropDown: boolean;
+};
+
+// Usa el tipo en la definición del componente
+export const OtroComponente: React.FC<OtroComponenteProps> = ({ showDropDown }) => {
+  return (
+    <div>
+      {showDropDown ? 'Abierto' : 'Cerrado'}
+    </div>
   );
 };

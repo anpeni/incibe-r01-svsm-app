@@ -478,6 +478,8 @@ type SidebarItemBaseProps = {
   className?: string;
   noTrack?: boolean;
   onClick?: (ev: React.MouseEvent) => void;
+  showDropDown?: boolean;
+  setShowDropDown?: (showDropDown: boolean) => void;
 };
 
 type SidebarItemButtonProps = SidebarItemBaseProps & {
@@ -579,6 +581,8 @@ const SidebarItemBase = forwardRef<any, SidebarItemProps>((props, ref) => {
     noTrack,
     children,
     className,
+    showDropDown,
+    setShowDropDown,
     ...navLinkProps
   } = props;
   const { sidebarConfig } = useContext(SidebarConfigContext);
@@ -630,7 +634,11 @@ const SidebarItemBase = forwardRef<any, SidebarItemProps>((props, ref) => {
           {text}
         </Typography>
       )}
+
       <div className={classes.secondaryAction}>{children}</div>
+      {/* <div>
+      {showDropDown ? 'Abierto' : 'Cerrado'}
+    </div> */}
     </>
   );
 
@@ -665,6 +673,18 @@ const SidebarItemBase = forwardRef<any, SidebarItemProps>((props, ref) => {
     [analyticsApi, text, to, noTrack, onClick],
   );
 
+  const handleClickDropdown = () => {
+    if (setShowDropDown) {
+      setShowDropDown(false);
+    }
+    
+  };
+
+const handleCombinedClick = (event: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>) => {
+  handleClick(event);
+  handleClickDropdown();
+};
+
   if (isButtonItem(props)) {
     return (
 
@@ -675,7 +695,7 @@ const SidebarItemBase = forwardRef<any, SidebarItemProps>((props, ref) => {
         {...childProps}
         //className={classes.selected}
         ref={ref}
-        onClick={handleClick}
+        onClick={handleCombinedClick}
       >
         {content}
       </Button>
@@ -687,7 +707,7 @@ const SidebarItemBase = forwardRef<any, SidebarItemProps>((props, ref) => {
         {...childProps}
         className={classes.buttonSearchNull}
         ref={ref}
-        onClick={handleClick}
+        onClick={handleCombinedClick}
       >
         {content}
       </Button>
@@ -703,9 +723,10 @@ const SidebarItemBase = forwardRef<any, SidebarItemProps>((props, ref) => {
       ref={ref}
       aria-label={text ? text : props.to}
       {...navLinkProps}
-      onClick={handleClick}
+      onClick={handleCombinedClick}
     >
       {content}
+      
     </WorkaroundNavLink>
   );
 });
@@ -848,6 +869,8 @@ export function SidebarSearchField(props: SidebarSearchFieldProps) {
         to={props.to}
         onClick={handleItemClick}
         disableHighlight
+        showDropDown// Asegúrate de que showDropDown tenga un valor booleano
+        
       >
         <TextField
           placeholder="Search"
@@ -863,9 +886,9 @@ export function SidebarSearchField(props: SidebarSearchFieldProps) {
           inputProps={{
             className: classes.searchFieldHTMLInput,
           }}
-        />
+                  />
       </SidebarItem>
-    </Box>
+          </Box>
   );
 }
 

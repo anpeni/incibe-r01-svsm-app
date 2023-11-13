@@ -21,8 +21,14 @@ import { useRouteRef, IconComponent } from '@backstage/core-plugin-api';
 import { SettingsOutlined } from '@material-ui/icons';
 
 /** @public */
-export const Settings = (props: { icon?: IconComponent }) => {
+export const Settings = (props: { 
+  icon?: IconComponent, 
+  showDropDown?: boolean, 
+  setShowDropDown?: (show: boolean) => void 
+
+}) => {
   const routePath = useRouteRef(settingsRouteRef);
   const Icon = props.icon ? props.icon : SettingsOutlined;
-  return <SidebarItem text="Settings" to={routePath()} icon={Icon} />;
+  return <SidebarItem text="Settings" to={routePath()} icon={Icon} showDropDown={props.showDropDown}
+  setShowDropDown={props.setShowDropDown}/>;
 };

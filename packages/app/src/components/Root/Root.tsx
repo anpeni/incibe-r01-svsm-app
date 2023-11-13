@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import React, { PropsWithChildren } from 'react';
+import React, { PropsWithChildren, useContext, useState } from 'react';
 import { Link, makeStyles } from '@material-ui/core';
 import HelpIcon from '@material-ui/icons/HeadsetMic';
 import CreateComponentIcon from '@material-ui/icons/AddCircleOutline';
@@ -41,6 +41,7 @@ import {
   SidebarSubmenuItem,
   SidebarExpandButton,
   Titulos,
+  OtroComponente
 } from '@backstage/core-components';
 import MenuIcon from '@material-ui/icons/Menu';
 import {
@@ -143,6 +144,10 @@ const useStyles = makeStyles({
 export const Root = ({ children }: PropsWithChildren<{}>) => {
   const classes = useStyles();
   const { isOpen } = useSidebarOpenState();
+  const [showDropDown, setShowDropDown] = useState(false);
+
+
+
   //console.log('Is Sidebar Open:', isOpen);
 
   // ? Para poner imagen de fondo a la Sidebar
@@ -171,7 +176,7 @@ export const Root = ({ children }: PropsWithChildren<{}>) => {
           <Sidebar disableExpandOnHover>
             <SidebarLogo />
             <Titulos text={'MAIN'}></Titulos>
-            <SidebarItem icon={GridView} to="" text="Home" />
+            <SidebarItem icon={GridView} to="/Catalog" text="Home" showDropDown={showDropDown} setShowDropDown={setShowDropDown} />
             <SidebarGroup label="Search" icon={<SearchOutlined />} to="/search">
               <div>
                 <SidebarSearchModal />
@@ -180,6 +185,8 @@ export const Root = ({ children }: PropsWithChildren<{}>) => {
 
             <SidebarGroup label="Menu" icon={<CategoryIcon />}>
               <SidebarSubmenuItem
+                showDropDown={showDropDown}
+                setShowDropDown={setShowDropDown}
                 icon={CategoryIcon}
                 to="/Catalog"
                 title="Catalog"
@@ -199,11 +206,15 @@ export const Root = ({ children }: PropsWithChildren<{}>) => {
                 ]}
               />
               <SidebarItem
+                showDropDown={showDropDown}
+                setShowDropDown={setShowDropDown}
                 icon={CreateComponentIcon}
                 to="create"
                 text="Create"
               />
               <SidebarItem
+                showDropDown={showDropDown}
+                setShowDropDown={setShowDropDown}
                 icon={NotificationsOutlined}
                 to="notifications"
                 text="Notification"
@@ -213,9 +224,10 @@ export const Root = ({ children }: PropsWithChildren<{}>) => {
               {/* End global nav */}
               <SidebarDivider className={classes.sidebarDivider} />
               <Titulos text={'ADMIN'}></Titulos>
-              <SidebarSettings />
-              <SidebarItem icon={HelpIcon} to="/ayuda" text="Help" />
+              <SidebarSettings showDropDown={showDropDown} setShowDropDown={setShowDropDown}/>
+              <SidebarItem icon={HelpIcon} to="/ayuda" text="Help" showDropDown={showDropDown} setShowDropDown={setShowDropDown}/>
               <UserSettingsThemeToggleTema2 />
+              {/* <OtroComponente showDropDown={showDropDown}></OtroComponente> */}
             </SidebarGroup>
             <SidebarSpace />
             <SidebarExpandButton />
