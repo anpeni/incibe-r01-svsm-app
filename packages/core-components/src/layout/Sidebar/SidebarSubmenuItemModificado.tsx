@@ -113,7 +113,7 @@ export const SidebarSubmenuItemModificado = (props: SidebarSubmenuItemProps) => 
             to={object.to}
             underline="none"
             className={
-              selectedObject === object.title // Comprobar si el objeto está seleccionado
+              location.pathname === object.to // Comprobar si el objeto está seleccionado
                 ? classes.dropdownItemSeleccionado
                 : classes.dropdownItem
             }
@@ -125,7 +125,7 @@ export const SidebarSubmenuItemModificado = (props: SidebarSubmenuItemProps) => 
                 component="span"
                 className={
 
-                  (selectedObject === object.title // Comprobar si el objeto está seleccionado
+                  (location.pathname === object.to // Comprobar si el objeto está seleccionado
                     ? classes.elementoSeleccionado
                     : classes.textContent)
                 }
