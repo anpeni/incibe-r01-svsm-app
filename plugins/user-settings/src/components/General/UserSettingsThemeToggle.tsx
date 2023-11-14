@@ -200,7 +200,7 @@ const useStyles = makeStyles(theme => ({
     position: 'relative', // necesario para el posicionamiento del pseudo-elemento
     flexDirection: 'row',
     flexGrow: 1,
-
+    border: 'none !important',
     '&::before': {
       content: '""',
       position: 'absolute',

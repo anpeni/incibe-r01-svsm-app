@@ -259,6 +259,7 @@ const createCustomThemeOverrides = (
         borderRadius: '12px',
         textTransform: 'none',
         TextSize: '13px',
+        transition: 'none',
         '&:hover': {
           backgroundColor: 'none !important',
         },
