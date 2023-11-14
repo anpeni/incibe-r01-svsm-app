@@ -72,6 +72,10 @@ proxy:
 # ====================================================================================
 #  Backstage integrations configuration
 # ====================================================================================
+integrations:
+  github:
+    - host: github.com
+      token: ${GITHUB_TOKEN}
 grafana:
   domain: ${URL_GRAFANA_DOMAIN}
 tekton:
