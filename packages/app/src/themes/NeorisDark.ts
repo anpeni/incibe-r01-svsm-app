@@ -265,7 +265,6 @@ const createCustomThemeOverrides = (
         TextSize: '13px',
         transition:'none',
         '&:hover': {
- feature-catalogTransformation
           backgroundColor: 'transparent'
         },
           // '&:focus-visible': {
