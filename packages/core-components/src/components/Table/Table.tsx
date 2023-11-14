@@ -177,6 +177,7 @@ const useTableStyles = makeStyles<BackstageTheme>(
       alignItems: 'start',
     },
     cardContainer: {
+      width: '100%',
       background: `${
         theme.palette.type === 'dark'
           ? vars.dark.background.card
