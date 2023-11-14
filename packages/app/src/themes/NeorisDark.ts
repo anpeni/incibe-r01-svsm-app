@@ -127,6 +127,10 @@ const createCustomThemeOverrides = (
         color: alpha(theme.page.fontColor, 0.8),
       },
     },
+
+
+
+
     BackstageHeaderLabel: {
       label: {
         color: theme.page.fontColor,
@@ -259,9 +263,20 @@ const createCustomThemeOverrides = (
         borderRadius: '12px',
         textTransform: 'none',
         TextSize: '13px',
+        transition:'none',
         '&:hover': {
+ feature-catalogTransformation
+          backgroundColor: 'transparent'
+        },
+          // '&:focus-visible': {
+          //   outline: 0 + '!important',
+          //   background: 'transparent'
+    
+          // },
+
           backgroundColor: 'none !important',
         },
+
       },
       // ? Botones login
       outlinedPrimary: {

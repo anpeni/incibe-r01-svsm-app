@@ -61,7 +61,7 @@ const useStyles = makeStyles(theme => ({
     alignItems: 'center',
     paddingBottom: 8,
     paddingRight: 16,
-  },
+      },
   titulo: {
     color: `${theme.palette.type === 'dark' ? '#FFF' : 'RGB(6, 11, 40)'}`,
     textAlign: 'right',
@@ -122,7 +122,7 @@ const useStyles = makeStyles(theme => ({
   },
   lista: {
     position: 'relative',
-    //top: '3px',
+        //top: '3px',
     left: '12px',
   },
 
@@ -146,16 +146,6 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     justifyContent: 'center' /* Alineación horizontal */,
     alignItems: 'center',
-
-    //transform: 'scale(1/1.8)',
-    //background: '#060B28',
-    //borderRadius: '24px',
-    //padding: '-5px',
-    //position: 'absolute',
-    //top: '10px',
-    //bottom: '10px',
-    //left: '10px',
-    //right: '10px',
   },
   sombreado: {
     position: 'relative',
@@ -185,7 +175,7 @@ const useStyles = makeStyles(theme => ({
     },
   },
   toggleGroupNuevo: {
-    right: '60px',
+        right: '60px',
     top: '95px',
     background: 'white',
     width: '400px',
@@ -200,6 +190,7 @@ const useStyles = makeStyles(theme => ({
     position: 'relative', // necesario para el posicionamiento del pseudo-elemento
     flexDirection: 'row',
     flexGrow: 1,
+    border: 'none !important',
 
     '&::before': {
       content: '""',
@@ -289,48 +280,6 @@ export const UserSettingsThemeToggle = () => {
         <p className={classes.texto}>Change the theme mode</p>
       </div>
 
-      {/* <ListItemSecondaryAction > */}
-      {/* <ToggleButtonGroup
-          exclusive
-          size="large"
-          value={themeId ?? 'auto'}
-          onChange={handleSetTheme}
-          className={classes.toggleGroupNuevo}
-        > */}
-      {/* {themeIds.map(theme => {
-            const themeIcon = themeIds.find(t => t.id === theme.id)?.icon;
-            return (
-              <TooltipToggleButton
-                key={theme.id}
-                title={`Select ${theme.title}`}
-                value={theme.id}
-              >
-
-                {(themeId === theme.id) ? (
-                  <div className={classes.sombreado}>
-                  <div className={classes.toggleGroupSelected}>                  
-                  <span className={classes.textoDarkToggleSelected}>{theme.title}</span>&nbsp;
-                    <ThemeIcon                 
-                      id={theme.id}
-                      icon={themeIcon}
-                      activeId={themeId}
-                    />
-                  </div>
-                  </div>
-                ) : (
-                  <div className={classes.toggleGroup}>
-                    <span className={classes.textoDarkToggle}>{theme.title}</span>&nbsp;
-                    <ThemeIcon
-                      id={theme.id}
-                      icon={themeIcon}
-                      activeId={themeId}
-                    />
-                  </div>
-                )}
-
-              </TooltipToggleButton>
-            );
-          })} */}
       <ToggleButtonGroup
         exclusive
         size="large"
@@ -345,9 +294,9 @@ export const UserSettingsThemeToggle = () => {
             isDarkMode
               ? classes.toggleIndependienteDark
               : classes.toggleIndependienteDark
-          } ${
+            } ${
             themeId === 'neoris-dark' && isDarkMode ? classes.activoDark : ''
-          }`}
+            }`}
         >
           <span
             className={
@@ -374,7 +323,7 @@ export const UserSettingsThemeToggle = () => {
             isDarkMode
               ? classes.toggleIndependienteDark
               : classes.toggleIndependienteDark
-          } ${themeId === 'neoris-light' ? classes.activoLight : ''}`}
+            } ${themeId === 'neoris-light' ? classes.activoLight : ''}`}
         >
           <span
             className={
@@ -401,7 +350,7 @@ export const UserSettingsThemeToggle = () => {
             isDarkMode
               ? classes.toggleIndependienteDark
               : classes.toggleIndependienteDark
-          } ${themeId === undefined && !isDarkMode ? classes.activoDark : ''}`}
+            } ${themeId === undefined && !isDarkMode ? classes.activoDark : ''}`}
         >
           <span
             className={
