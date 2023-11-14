@@ -146,16 +146,6 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     justifyContent: 'center' /* Alineación horizontal */,
     alignItems: 'center',
-
-    //transform: 'scale(1/1.8)',
-    //background: '#060B28',
-    //borderRadius: '24px',
-    //padding: '-5px',
-    //position: 'absolute',
-    //top: '10px',
-    //bottom: '10px',
-    //left: '10px',
-    //right: '10px',
   },
   sombreado: {
     position: 'relative',
@@ -289,48 +279,6 @@ export const UserSettingsThemeToggle = () => {
         <p className={classes.texto}>Change the theme mode</p>
       </div>
 
-      {/* <ListItemSecondaryAction > */}
-      {/* <ToggleButtonGroup
-          exclusive
-          size="large"
-          value={themeId ?? 'auto'}
-          onChange={handleSetTheme}
-          className={classes.toggleGroupNuevo}
-        > */}
-      {/* {themeIds.map(theme => {
-            const themeIcon = themeIds.find(t => t.id === theme.id)?.icon;
-            return (
-              <TooltipToggleButton
-                key={theme.id}
-                title={`Select ${theme.title}`}
-                value={theme.id}
-              >
-
-                {(themeId === theme.id) ? (
-                  <div className={classes.sombreado}>
-                  <div className={classes.toggleGroupSelected}>                  
-                  <span className={classes.textoDarkToggleSelected}>{theme.title}</span>&nbsp;
-                    <ThemeIcon                 
-                      id={theme.id}
-                      icon={themeIcon}
-                      activeId={themeId}
-                    />
-                  </div>
-                  </div>
-                ) : (
-                  <div className={classes.toggleGroup}>
-                    <span className={classes.textoDarkToggle}>{theme.title}</span>&nbsp;
-                    <ThemeIcon
-                      id={theme.id}
-                      icon={themeIcon}
-                      activeId={themeId}
-                    />
-                  </div>
-                )}
-
-              </TooltipToggleButton>
-            );
-          })} */}
       <ToggleButtonGroup
         exclusive
         size="large"
