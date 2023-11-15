@@ -56,30 +56,33 @@ import { UnifiedThemeProvider } from '@backstage/theme';
 import { neorisDarkTheme } from './themes/NeorisDark';
 import { neorisLightTheme } from './themes/NeorisLight';
 
+const isProduction = process.env.NODE_ENV === 'production';
 const app = createApp({
   apis,
   components: {
     SignInPage: props => (
       <SignInPage
         {...props}
-        // ! Descomentar para tener el login con Guest
-        // providers={[
-        //   'guest',
-        //   {
-        //     id: 'dex',
-        //     title: 'Dex',
-        //     message: 'Sign in using Azure AD',
-        //     apiRef: dexOIDCAuthApiRef,
-        //   },
-        // ]}
-        // ! Descomentar para tener login con Azure solamente
-        provider={{
-          id: 'dex',
-          title: 'Dex',
-          message: 'Sign in using Azure AD',
-          apiRef: dexOIDCAuthApiRef,
-        }}
-        // !
+        {...(!isProduction
+          ? {
+              providers: [
+                'guest',
+                {
+                  id: 'dex',
+                  title: 'Dex',
+                  message: 'Sign in using Azure AD',
+                  apiRef: dexOIDCAuthApiRef,
+                },
+              ],
+            }
+          : {
+              provider: {
+                id: 'dex',
+                title: 'Dex',
+                message: 'Sign in using Azure AD',
+                apiRef: dexOIDCAuthApiRef,
+              },
+            })}
       />
     ),
   },
