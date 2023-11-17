@@ -63,6 +63,7 @@ import LanguageIcon from '@material-ui/icons/Language';
 import WarningIcon from '@material-ui/icons/Warning';
 import React from 'react';
 import { selectedTemplateRouteRef, viewTechDocRouteRef } from '../../routes';
+import { vars } from '../../../../../packages/app/src/themes/variables';
 
 const useStyles = makeStyles<
   BackstageTheme,
@@ -72,7 +73,11 @@ const useStyles = makeStyles<
     position: 'relative',
   },
   title: {
-    backgroundImage: ({ backgroundImage }) => backgroundImage,
+    background: `${
+      theme.palette.type === 'dark'
+        ? vars.dark.background.generic
+        : vars.light.background.card
+    }`,
     color: ({ fontColor }) => fontColor,
   },
   box: {
@@ -218,15 +223,13 @@ export const TemplateCard = ({ template, deprecated }: TemplateCardProps) => {
 
   return (
     <Card>
-      <CardMedia className={classes.cardHeader}>
-        <FavoriteEntity className={classes.starButton} entity={template} />
-        {deprecated && <DeprecationWarning />}
-        <ItemCardHeader
-          title={templateProps.title}
-          subtitle={templateProps.type}
-          classes={{ root: classes.title }}
-        />
-      </CardMedia>
+      <FavoriteEntity className={classes.starButton} entity={template} />
+      {deprecated && <DeprecationWarning />}
+      <ItemCardHeader
+        title={templateProps.title}
+        subtitle={templateProps.type}
+        classes={{ root: classes.title }}
+      />
       <CardContent
         style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}
       >
