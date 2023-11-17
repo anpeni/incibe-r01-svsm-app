@@ -41,10 +41,10 @@ import { ReviewStep } from './ReviewStep';
 import { extractSchemaFromStep } from '@backstage/plugin-scaffolder-react/alpha';
 import { selectedTemplateRouteRef } from '../../routes';
 import { LayoutOptions } from '@backstage/plugin-scaffolder-react';
-import { makeStyles } from '@material-ui/core/styles';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import { neorisDarkTheme } from '../../../../../packages/app/src/themes/NeorisDark';
 import { vars } from '../../../../../packages/app/src/themes/variables';
+import { useTheme } from '@material-ui/core/styles';
 
 const Form = withTheme(MuiTheme);
 
@@ -167,14 +167,21 @@ export const MultistepJsonForm = (props: MultistepJsonFormProps) => {
 
   const ReviewStepElement = ReviewStepComponent ?? ReviewStep;
 
+  const theme = useTheme();
+
   const customTheme = createMuiTheme({
     ...neorisDarkTheme,
     overrides: {
       ...neorisDarkTheme.overrides,
+
       MuiInputBase: {
         root: {
           ...neorisDarkTheme.overrides,
-          backgroundColor: 'white',
+          backgroundColor: `${
+            theme.palette.type === 'dark'
+              ? vars.dark.background.white
+              : vars.light.background.white
+          }`,
           color: 'black',
           padding: '10px',
           borderRadius: '12px',
@@ -182,35 +189,63 @@ export const MultistepJsonForm = (props: MultistepJsonFormProps) => {
       },
       MuiStepper: {
         vertical: {
-          background: vars.dark.background.generic,
+          background: `${
+            theme.palette.type === 'dark'
+              ? vars.dark.background.generic
+              : vars.light.background.card
+          }`,
         },
       },
       // ? Fuentes blancas
       MuiTypography: {
         h6: {
-          color: 'white',
+          color: `${
+            theme.palette.type === 'dark'
+              ? vars.dark.fontColor.white
+              : vars.light.fontColor.black
+          }`,
           marginLeft: '10px',
         },
         colorTextSecondary: {
-          color: 'white',
+          color: `${
+            theme.palette.type === 'dark'
+              ? vars.dark.fontColor.white
+              : vars.light.fontColor.black
+          }`,
         },
         body2: {
-          color: 'white',
+          color: `${
+            theme.palette.type === 'dark'
+              ? vars.dark.fontColor.white
+              : vars.light.fontColor.black
+          }`,
         },
       },
       MuiInputLabel: {
         animated: {
-          color: 'black',
+          color: `${
+            theme.palette.type === 'dark'
+              ? vars.dark.fontColor.black
+              : vars.light.fontColor.black
+          }`,
           zIndex: 1,
         },
         outlined: {
-          color: 'white',
+          color: `${
+            theme.palette.type === 'dark'
+              ? vars.dark.fontColor.white
+              : vars.light.fontColor.black
+          }`,
           transform: 'translate(0px, -15px) scale(0.75) !important',
         },
       },
       MuiFormHelperText: {
         root: {
-          color: 'white',
+          color: `${
+            theme.palette.type === 'dark'
+              ? vars.dark.fontColor.white
+              : vars.light.fontColor.black
+          }`,
         },
       },
       MuiAutocomplete: {
@@ -221,41 +256,63 @@ export const MultistepJsonForm = (props: MultistepJsonFormProps) => {
       MuiFormLabel: {
         root: {
           marginLeft: '10px',
-          color: 'black',
+          color: `${
+            theme.palette.type === 'dark'
+              ? vars.dark.fontColor.black
+              : vars.light.fontColor.black
+          }`,
           fontStyle: 'normal',
-          fontFamily: 'Inter, sans-serif',
           fontWeight: 700,
           transition:
             'color 200ms cubic-bezier(0.0, 0, 0.2, 1) 0ms, transform 200ms cubic-bezier(0.0, 0, 0.2, 1) 0ms',
           '&$focused': {
-            color: 'white',
+            color: `${
+              theme.palette.type === 'dark'
+                ? vars.dark.fontColor.black
+                : vars.light.fontColor.black
+            }`,
           },
         },
       },
       MuiPaper: {
         elevation0: {
           background: 'transparent',
+          fontFamily: vars.fontFamily + '!important',
         },
       },
       MuiButton: {
         containedPrimary: {
           //botones
           backgroundColor: vars.dark.background.highlight,
-          color: vars.dark.fontColor.white,
           '&:hover': {
             backgroundColor: vars.dark.background.highlight + '!important',
             opacity: 0.8,
           },
+          '& $label': {
+            color: `${
+              theme.palette.type === 'dark'
+                ? vars.dark.fontColor.white
+                : vars.light.fontColor.white
+            }`,
+          },
         },
         label: {
           // botones sin fondo
-          color: 'white',
+          color: `${
+            theme.palette.type === 'dark'
+              ? vars.dark.fontColor.white
+              : vars.light.fontColor.black
+          }`,
         },
       },
       MuiTableCell: {
         // Paso Review and Create (titles)
         body: {
-          color: 'white',
+          color: `${
+            theme.palette.type === 'dark'
+              ? vars.dark.fontColor.white
+              : vars.light.fontColor.black
+          }`,
         },
       },
     },
