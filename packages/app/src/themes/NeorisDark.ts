@@ -378,6 +378,17 @@ const createCustomThemeOverrides = (
         lineHeight: '1.57',
       },
     },
+    // ? Dialogos (Search)
+    MuiDialogTitle: {
+      root: {
+        background: vars.dark.background.card,
+      },
+    },
+    MuiDialogContent: {
+      root: {
+        background: vars.dark.background.card,
+      },
+    },
   };
 };
 
