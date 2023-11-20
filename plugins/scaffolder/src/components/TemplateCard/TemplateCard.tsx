@@ -64,6 +64,7 @@ import WarningIcon from '@material-ui/icons/Warning';
 import React from 'react';
 import { selectedTemplateRouteRef, viewTechDocRouteRef } from '../../routes';
 import { vars } from '../../../../../packages/app/src/themes/variables';
+import { ArrowCircleRightOutlined } from '@mui/icons-material';
 
 const useStyles = makeStyles<
   BackstageTheme,
@@ -72,13 +73,15 @@ const useStyles = makeStyles<
   cardHeader: {
     position: 'relative',
   },
-  title: {
-    background: `${
+  card: {
+    background:
       theme.palette.type === 'dark'
-        ? vars.dark.background.generic
-        : vars.light.background.card
-    }`,
-    color: ({ fontColor }) => fontColor,
+        ? vars.dark.background.card
+        : vars.light.background.card,
+  },
+  title: {
+    backgroundImage: ({ backgroundImage }) => backgroundImage,
+    color: theme.palette.text.secondary,
   },
   box: {
     overflow: 'hidden',
@@ -88,7 +91,7 @@ const useStyles = makeStyles<
     '-webkit-box-orient': 'vertical',
   },
   label: {
-    color: theme.palette.text.secondary,
+    color: theme.palette.text.primary,
     textTransform: 'uppercase',
     fontSize: '0.65rem',
     fontWeight: 'bold',
@@ -113,6 +116,21 @@ const useStyles = makeStyles<
     right: theme.spacing(0.5),
     padding: '0.25rem',
     color: ({ fontColor }) => fontColor,
+  },
+  button: {
+    background:
+      theme.palette.type === 'dark'
+        ? vars.dark.background.highlight
+        : vars.light.background.highlight,
+    borderRadius: '12px',
+    transition: '0.3s', // Añade una transición suave
+    '&:hover': {
+      background:
+        theme.palette.type === 'dark'
+          ? vars.dark.background.highlight // Añade un color de hover diferente
+          : vars.light.background.highlight, // Añade un color de hover diferente
+      opacity: 0.6, // Añade una opacidad al hover
+    },
   },
 }));
 
@@ -222,14 +240,16 @@ export const TemplateCard = ({ template, deprecated }: TemplateCardProps) => {
   const sourceLocation = getEntitySourceLocation(template, scmIntegrationsApi);
 
   return (
-    <Card>
-      <FavoriteEntity className={classes.starButton} entity={template} />
-      {deprecated && <DeprecationWarning />}
-      <ItemCardHeader
-        title={templateProps.title}
-        subtitle={templateProps.type}
-        classes={{ root: classes.title }}
-      />
+    <Card className={classes.card}>
+      <CardMedia className={classes.cardHeader}>
+        <FavoriteEntity className={classes.starButton} entity={template} />
+        {deprecated && <DeprecationWarning />}
+        <ItemCardHeader
+          title={templateProps.title}
+          subtitle={templateProps.type}
+          classes={{ root: classes.title }}
+        />
+      </CardMedia>
       <CardContent
         style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}
       >
@@ -306,8 +326,12 @@ export const TemplateCard = ({ template, deprecated }: TemplateCardProps) => {
           color="primary"
           to={href}
           aria-label={`Choose ${templateProps.title}`}
+          className={classes.button}
         >
           Choose
+          <ArrowCircleRightOutlined
+            style={{ marginLeft: 5, width: '20px', height: '20px' }}
+          />
         </LinkButton>
       </CardActions>
     </Card>
