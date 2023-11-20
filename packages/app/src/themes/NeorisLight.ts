@@ -371,6 +371,11 @@ const createCustomThemeOverrides = (
         background: vars.light.background.card,
       },
     },
+    MuiDialogActions: {
+      root: {
+        background: vars.light.background.card,
+      },
+    },
   };
 };
 
