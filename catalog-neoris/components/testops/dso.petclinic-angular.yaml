@@ -9,8 +9,8 @@ metadata:
     bitbucket.org/repository-slug: 'neoris-global/dso.petclinic-angular' # {workspace_slug}/{repo_slug}
     prometheus.io/rule: memUsage|component,node_memory_active_bytes|instance,sum by (instance) (node_cpu_seconds_total)
     prometheus.io/alert: all
-    backstage.io/kubernetes-label-selector: 'app.kubernetes.io/instance=cicd-petclinic-angular'
-    backstage.io/kubernetes-namespace: 'neoris-testops-cicd'
+    backstage.io/kubernetes-label-selector: 'app.kubernetes.io/instance=backstage-stg'
+    backstage.io/kubernetes-namespace: 'backstage'
     circleci.com/project-slug: bitbucket/backstage-repos/backstage-dex-image
 
     grafana/overview-dashboard: 'https://grafana.aws.neoris.cloud/d/cluster-costs/cluster-cost-and-utilization-metrics?orgId=1&refresh=15m&viewPanel=116&kiosk=true'
