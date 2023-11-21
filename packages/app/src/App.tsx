@@ -56,6 +56,8 @@ import { UnifiedThemeProvider } from '@backstage/theme';
 import { neorisDarkTheme } from './themes/NeorisDark';
 import { neorisLightTheme } from './themes/NeorisLight';
 
+import { FluxRuntimePage } from '@weaveworksoss/backstage-plugin-flux';
+
 const isProduction = process.env.NODE_ENV === 'production';
 const app = createApp({
   apis,
@@ -210,6 +212,7 @@ const routes = (
     </Route>
     <Route path="/settings" element={<UserSettingsPage />} />
     <Route path="/catalog-graph" element={<CatalogGraphPage />} />
+    <Route path="/flux-runtime" element={<FluxRuntimePage/>} />
   </FlatRoutes>
 );
 

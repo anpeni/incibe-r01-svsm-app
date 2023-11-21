@@ -99,6 +99,17 @@ import { EntityTektonPipelinesContent, isTektonCiAvailable } from '@jquad-group/
 // .--  plugin-circleci --
 import { EntityCircleCIContent, isCircleCIAvailable } from '@backstage/plugin-circleci';
 
+import {
+  EntityFluxGitRepositoriesCard,
+  EntityFluxHelmReleasesCard,
+  EntityFluxOCIRepositoriesCard,
+  EntityFluxKustomizationsCard,
+  EntityFluxHelmRepositoriesCard,
+  EntityFluxDeploymentsCard,
+  EntityFluxSourcesCard,
+  EntityFluxImagePoliciesCard,
+} from '@weaveworksoss/backstage-plugin-flux';
+
 const techdocsContent = (
   <EntityTechdocsContent>
     <TechDocsAddons>
@@ -184,6 +195,9 @@ const overviewContent = (
     <Grid item md={6} xs={12}>
       <EntityCatalogGraphCard variant="gridItem" height={400} />
     </Grid>
+    <Grid item md={8} xs={12}>
+      <EntityFluxHelmReleasesCard />
+    </Grid>
 
     <Grid item md={4} xs={12}>
       <EntityLinksCard />
@@ -251,9 +265,37 @@ const serviceEntityPage = (
       </Grid>
     </EntityLayout.Route>
 
-    {/* <EntityLayout.Route path="/kubernetes" title="Kubernetes">
+     <EntityLayout.Route path="/kubernetes" title="Kubernetes">
       <EntityKubernetesContent refreshIntervalMs={30000} />
-    </EntityLayout.Route> */}
+    </EntityLayout.Route> 
+    <EntityLayout.Route path="/weaveworks-flux" title="Weave Flux">
+      <Grid container spacing={3} alignItems="stretch">
+        <Grid item md={12}>
+          <EntityFluxHelmReleasesCard />
+        </Grid>
+        <Grid item md={12}>
+          <EntityFluxKustomizationsCard />
+        </Grid>
+        <Grid item md={12}>
+          <EntityFluxHelmRepositoriesCard />
+        </Grid>
+        <Grid item md={12}>
+          <EntityFluxGitRepositoriesCard />
+        </Grid>
+        <Grid item md={12}>
+          <EntityFluxOCIRepositoriesCard />
+        </Grid>
+        <Grid item md={12}>
+          <EntityFluxDeploymentsCard />
+        </Grid>
+        <Grid item md={12}>
+          <EntityFluxSourcesCard />
+        </Grid>
+        <Grid item md={12}>
+          <EntityFluxImagePoliciesCard />
+        </Grid>
+      </Grid>
+    </EntityLayout.Route>
 
     <EntityLayout.Route path="/prometheus" title="Prometheus">
       <EntityPrometheusContent />
@@ -294,9 +336,9 @@ const websiteEntityPage = (
        <EntityBitbucketContent />
     </EntityLayout.Route>
 
-    {/* <EntityLayout.Route path="/kubernetes" title="Kubernetes">
+     <EntityLayout.Route path="/kubernetes" title="Kubernetes">
       <EntityKubernetesContent refreshIntervalMs={30000} />
-    </EntityLayout.Route> */}
+    </EntityLayout.Route> 
 
     <EntityLayout.Route path="/prometheus" title="Prometheus">
       <EntityPrometheusContent />
@@ -511,4 +553,6 @@ export const entityPage = (
 
     <EntitySwitch.Case>{defaultEntityPage}</EntitySwitch.Case>
   </EntitySwitch>
+
+
 );

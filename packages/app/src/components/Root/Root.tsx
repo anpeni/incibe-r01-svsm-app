@@ -50,6 +50,7 @@ import {
   NotificationsOutlined,
 } from '@mui/icons-material';
 import { BackstageTheme } from '@backstage/theme';
+import { FluxIcon } from '@weaveworksoss/backstage-plugin-flux';
 
 const useSidebarLogoStyles = makeStyles<BackstageTheme>(theme => ({
   root: {
@@ -226,6 +227,9 @@ export const Root = ({ children }: PropsWithChildren<{}>) => {
               <Titulos text={'ADMIN'}></Titulos>
               <SidebarSettings showDropDown={showDropDown} setShowDropDown={setShowDropDown}/>
               <SidebarItem icon={HelpIcon} to="/ayuda" text="Help" showDropDown={showDropDown} setShowDropDown={setShowDropDown}/>
+              
+          <SidebarItem icon={FluxIcon} to="flux-runtime" text="Flux" />
+        
               <UserSettingsThemeToggleTema2 />
               {/* <OtroComponente showDropDown={showDropDown}></OtroComponente> */}
             </SidebarGroup>
