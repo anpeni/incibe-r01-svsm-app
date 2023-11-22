@@ -90,6 +90,6 @@ kubernetes:
       clusters:
         - url: ${AWS_K8S_URL}
           name: ${AWS_K8S_NAME}
-          authProvider: ${AWS_K8S_PROVIDER}
+          authProvider: 'serviceAccount'
           caData: ${AWS_K8S_CADATA}
 

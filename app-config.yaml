@@ -172,8 +172,8 @@ kubernetes:
       clusters:
         - url: ${AWS_K8S_URL}
           name: devsecops
-          authProvider: 'aws'
-          caData: '${AWS_K8S_CADATA}'
+          authProvider: 'serviceAccount'
+          caData: ${AWS_K8S_CADATA}
 jenkins:
   baseUrl: ${URL_JENKINS}
   username: ${JENKINS_USERNAME}
