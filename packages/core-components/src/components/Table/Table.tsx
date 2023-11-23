@@ -132,10 +132,13 @@ const StyledMTableToolbar = withStyles(
         fontWeight: theme.typography.fontWeightBold,
       },
     },
+    // ? Filtro tabla
     searchField: {
       paddingRight: theme.spacing(2),
       padding: '0px 0px 0px 1px',
-      background: vars.dark.background.white,
+      background:
+        theme.palette.type === 'dark' ? vars.dark.background.white : 'none',
+      border: theme.palette.type === 'dark' ? 'none' : '1px solid',
       borderRadius: '12px',
       // ? Color del texto y iconos filtro
       '& input': {

@@ -394,6 +394,14 @@ const createCustomThemeOverrides = (
         background: vars.dark.background.card,
       },
     },
+    // ? Tags en Table.tsx (Catlog)
+    MuiChip: {
+      outlined: {
+        border: '1px solid' + vars.dark.fontColor.white,
+        color: vars.dark.fontColor.white,
+        marginTop: '1px',
+      },
+    },
   };
 };
 
