@@ -173,6 +173,8 @@ kubernetes:
         - url: ${AWS_K8S_URL}
           name: devsecops
           authProvider: 'serviceAccount'
+          skipTLSVerify: true
+          skipMetricsLookup: true
           caData: ${AWS_K8S_CADATA}
 jenkins:
   baseUrl: ${URL_JENKINS}
