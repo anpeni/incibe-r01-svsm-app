@@ -379,7 +379,7 @@ const createCustomThemeOverrides = (
     // ? Tags en Table.tsx (Catlog)
     MuiChip: {
       outlined: {
-        border: '1px solid' + vars.light.fontColor.black,
+        border: '0.5px solid' + vars.light.fontColor.black,
         color: vars.light.fontColor.black,
         marginTop: '1px',
       },
