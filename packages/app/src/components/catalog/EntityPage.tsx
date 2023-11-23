@@ -219,32 +219,6 @@ const overviewContent = (
         <Grid item md={12}>
           <EntityFluxImagePoliciesCard />
         </Grid>
-
-    <Grid item md={12}>
-          <EntityFluxHelmReleasesCard />
-        </Grid>
-        <Grid item md={12}>
-          <EntityFluxKustomizationsCard />
-        </Grid>
-        <Grid item md={12}>
-          <EntityFluxHelmRepositoriesCard />
-        </Grid>
-        <Grid item md={12}>
-          <EntityFluxGitRepositoriesCard />
-        </Grid>
-        <Grid item md={12}>
-          <EntityFluxOCIRepositoriesCard />
-        </Grid>
-        <Grid item md={12}>
-          <EntityFluxDeploymentsCard />
-        </Grid>
-        <Grid item md={12}>
-          <EntityFluxSourcesCard />
-        </Grid>
-        <Grid item md={12}>
-          <EntityFluxImagePoliciesCard />
-        </Grid>
-
     <Grid item md={4} xs={12}>
       <EntityLinksCard />
     </Grid>

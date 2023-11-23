@@ -10,9 +10,6 @@ metadata:
     backstage.io/kubernetes-id: dso-backstage
     # backstage.io/kubernetes-label-selector: 'app.kubernetes.io/instance=backstage-stg'
     # backstage.io/kubernetes-namespace: 'backstage'
-    backstage.io/kubernetes-label-selector: 'app.kubernetes.io/instance=backstage-stg'
-    backstage.io/kubernetes-namespace: 'backstage'
-
 spec:
   type: website
   owner: john@example.com
