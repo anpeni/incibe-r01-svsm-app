@@ -9,7 +9,7 @@ metadata:
     backstage.io/techdocs-ref: dir:.
     backstage.io/kubernetes-id: dso-backstage
     # backstage.io/kubernetes-label-selector: 'app.kubernetes.io/instance=backstage-stg'
-    backstage.io/kubernetes-namespace: monitoring
+    backstage.io/kubernetes-namespace: backstage
 spec:
   type: website
   owner: john@example.com
