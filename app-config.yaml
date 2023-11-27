@@ -175,6 +175,7 @@ kubernetes:
           authProvider: 'serviceAccount'
           skipTLSVerify: true
           skipMetricsLookup: true
+          serviceAccountToken: ${SERVICE_ACCOUNT_TOKEN}
           caData: ${AWS_K8S_CADATA}
 jenkins:
   baseUrl: ${URL_JENKINS}
