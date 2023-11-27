@@ -73,10 +73,17 @@ import { TechDocsAddons } from '@backstage/plugin-techdocs-react';
 import { ReportIssue } from '@backstage/plugin-techdocs-module-addons-contrib';
 
 // .--  plugin-sonarqube --
-import { EntitySonarQubeCard, isSonarQubeAvailable } from '@backstage/plugin-sonarqube';
+import {
+  EntitySonarQubeCard,
+  isSonarQubeAvailable,
+} from '@backstage/plugin-sonarqube';
 
 // .--  plugin-grafana --
-import { EntityGrafanaDashboardsCard, isDashboardSelectorAvailable, EntityOverviewDashboardViewer } from '@k-phoen/backstage-plugin-grafana';
+import {
+  EntityGrafanaDashboardsCard,
+  isDashboardSelectorAvailable,
+  EntityOverviewDashboardViewer,
+} from '@k-phoen/backstage-plugin-grafana';
 
 // .--  plugin-prometheus --
 import { EntityPrometheusContent } from '@roadiehq/backstage-plugin-prometheus';
@@ -85,19 +92,32 @@ import { EntityPrometheusContent } from '@roadiehq/backstage-plugin-prometheus';
 import { EntityTodoContent } from '@backstage/plugin-todo';
 
 // .--  plugin-bitbucket --
-import { isBitbucketAvailable, EntityBitbucketContent } from '@internal/backstage-plugin-bitbucket';
+import {
+  isBitbucketAvailable,
+  EntityBitbucketContent,
+} from '@internal/backstage-plugin-bitbucket';
 
 // .--  plugin-kubernete --
 import { EntityKubernetesContent } from '@backstage/plugin-kubernetes';
 
 // plugin-jenkins
-import { EntityJenkinsContent, EntityLatestJenkinsRunCard, isJenkinsAvailable } from '@backstage/plugin-jenkins';
+import {
+  EntityJenkinsContent,
+  EntityLatestJenkinsRunCard,
+  isJenkinsAvailable,
+} from '@backstage/plugin-jenkins';
 
 // .--  plugin-tekton --
-import { EntityTektonPipelinesContent, isTektonCiAvailable } from '@jquad-group/plugin-tekton-pipelines';
+import {
+  EntityTektonPipelinesContent,
+  isTektonCiAvailable,
+} from '@jquad-group/plugin-tekton-pipelines';
 
 // .--  plugin-circleci --
-import { EntityCircleCIContent, isCircleCIAvailable } from '@backstage/plugin-circleci';
+import {
+  EntityCircleCIContent,
+  isCircleCIAvailable,
+} from '@backstage/plugin-circleci';
 
 import {
   EntityFluxGitRepositoriesCard,
@@ -125,7 +145,7 @@ const cicdContent = (
     <EntitySwitch.Case if={isCircleCIAvailable}>
       <EntityCircleCIContent />
     </EntitySwitch.Case>
-    
+
     {/* <EntitySwitch.Case if={isGithubActionsAvailable}>
       <EntityGithubActionsContent />
     </EntitySwitch.Case> */}
@@ -186,39 +206,38 @@ const overviewContent = (
     </EntitySwitch>
 
     {/* Grafana card */}
-    
-        <Grid item md={6}>
-          <EntityOverviewDashboardViewer />
-        </Grid>
 
+    <Grid item md={6}>
+      <EntityOverviewDashboardViewer />
+    </Grid>
 
     <Grid item md={6} xs={12}>
       <EntityCatalogGraphCard variant="gridItem" height={400} />
     </Grid>
     <Grid item md={12}>
-          <EntityFluxHelmReleasesCard />
-        </Grid>
-        <Grid item md={12}>
-          <EntityFluxKustomizationsCard />
-        </Grid>
-        <Grid item md={12}>
-          <EntityFluxHelmRepositoriesCard />
-        </Grid>
-        <Grid item md={12}>
-          <EntityFluxGitRepositoriesCard />
-        </Grid>
-        <Grid item md={12}>
-          <EntityFluxOCIRepositoriesCard />
-        </Grid>
-        <Grid item md={12}>
-          <EntityFluxDeploymentsCard />
-        </Grid>
-        <Grid item md={12}>
-          <EntityFluxSourcesCard />
-        </Grid>
-        <Grid item md={12}>
-          <EntityFluxImagePoliciesCard />
-        </Grid>
+      <EntityFluxHelmReleasesCard />
+    </Grid>
+    <Grid item md={12}>
+      <EntityFluxKustomizationsCard />
+    </Grid>
+    <Grid item md={12}>
+      <EntityFluxHelmRepositoriesCard />
+    </Grid>
+    <Grid item md={12}>
+      <EntityFluxGitRepositoriesCard />
+    </Grid>
+    <Grid item md={12}>
+      <EntityFluxOCIRepositoriesCard />
+    </Grid>
+    <Grid item md={12}>
+      <EntityFluxDeploymentsCard />
+    </Grid>
+    <Grid item md={12}>
+      <EntityFluxSourcesCard />
+    </Grid>
+    <Grid item md={12}>
+      <EntityFluxImagePoliciesCard />
+    </Grid>
     <Grid item md={4} xs={12}>
       <EntityLinksCard />
     </Grid>
@@ -236,17 +255,17 @@ const serviceEntityPage = (
         <EntitySwitch>
           <EntitySwitch.Case if={isJenkinsAvailable}>
             <Grid item sm={6}>
-            <EntityLatestJenkinsRunCard
-                branch=""
-                variant="gridItem"
-              />
+              <EntityLatestJenkinsRunCard branch="" variant="gridItem" />
             </Grid>
           </EntitySwitch.Case>
         </EntitySwitch>
       </React.Fragment>
     </EntityLayout.Route>
 
-    <EntityLayout.Route path="/tekton-pipelines-plugin" title="Tekton Pipelines">  
+    <EntityLayout.Route
+      path="/tekton-pipelines-plugin"
+      title="Tekton Pipelines"
+    >
       <EntitySwitch>
         <EntitySwitch.Case if={e => Boolean(isTektonCiAvailable(e))}>
           <EntityTektonPipelinesContent />
@@ -265,13 +284,16 @@ const serviceEntityPage = (
       {cicdContent}
     </EntityLayout.Route>
 
-
     <EntityLayout.Route if={isJenkinsAvailable} path="/jenkins" title="Jenkins">
-          <EntityJenkinsContent />
+      <EntityJenkinsContent />
     </EntityLayout.Route>
 
-    <EntityLayout.Route if={isBitbucketAvailable} path="/bitbucket" title="Bitbucket">
-       <EntityBitbucketContent />
+    <EntityLayout.Route
+      if={isBitbucketAvailable}
+      path="/bitbucket"
+      title="Bitbucket"
+    >
+      <EntityBitbucketContent />
     </EntityLayout.Route>
 
     <EntityLayout.Route path="/api" title="API">
@@ -285,9 +307,9 @@ const serviceEntityPage = (
       </Grid>
     </EntityLayout.Route>
 
-     <EntityLayout.Route path="/kubernetes" title="Kubernetes">
+    <EntityLayout.Route path="/kubernetes" title="Kubernetes">
       <EntityKubernetesContent refreshIntervalMs={30000} />
-    </EntityLayout.Route> 
+    </EntityLayout.Route>
     <EntityLayout.Route path="/weaveworks-flux" title="Weave Flux">
       <Grid container spacing={3} alignItems="stretch">
         <Grid item md={12}>
@@ -352,13 +374,21 @@ const websiteEntityPage = (
       {cicdContent}
     </EntityLayout.Route>
 
-    <EntityLayout.Route if={isBitbucketAvailable} path="/bitbucket" title="Bitbucket">
-       <EntityBitbucketContent />
+    <EntityLayout.Route if={isJenkinsAvailable} path="/jenkins" title="Jenkins">
+      <EntityJenkinsContent />
     </EntityLayout.Route>
 
-     <EntityLayout.Route path="/kubernetes" title="Kubernetes">
+    <EntityLayout.Route
+      if={isBitbucketAvailable}
+      path="/bitbucket"
+      title="Bitbucket"
+    >
+      <EntityBitbucketContent />
+    </EntityLayout.Route>
+
+    <EntityLayout.Route path="/kubernetes" title="Kubernetes">
       <EntityKubernetesContent refreshIntervalMs={30000} />
-    </EntityLayout.Route> 
+    </EntityLayout.Route>
 
     <EntityLayout.Route path="/prometheus" title="Prometheus">
       <EntityPrometheusContent />
@@ -573,6 +603,4 @@ export const entityPage = (
 
     <EntitySwitch.Case>{defaultEntityPage}</EntitySwitch.Case>
   </EntitySwitch>
-
-
 );
