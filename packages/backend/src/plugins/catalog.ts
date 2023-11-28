@@ -15,7 +15,7 @@ import {
 export default async function createPlugin(
   env: PluginEnvironment,
 ): Promise<Router> {
-  const builder = await CatalogBuilder.create(env);
+  const builder = await CatalogBuilder.create(env as any);
   const integrations = ScmIntegrations.fromConfig(env.config);
   const githubCredentialsProvider =
     DefaultGithubCredentialsProvider.fromIntegrations(integrations);
@@ -34,7 +34,7 @@ export default async function createPlugin(
       logger: env.logger,
       // optional: alternatively, use scheduler with schedule defined in app-config.yaml
       schedule: env.scheduler.createScheduledTaskRunner({
-        frequency: { minutes: 30 },
+        frequency: { hours: 24 },
         timeout: { minutes: 3 },
       }),
       // optional: alternatively, use schedule

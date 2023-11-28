@@ -13,7 +13,7 @@ export default async function createPlugin(
   return await createRouter({
     logger: env.logger,
     config: env.config,
-    database: env.database,
+    database: env.database as any,
     reader: env.reader,
     catalogClient,
     identity: env.identity,
