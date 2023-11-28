@@ -88,7 +88,7 @@ export const DefaultImportPage = () => {
           right: '15px',
         }}
       >
-        <ImportInfoCard />
+        {/* <ImportInfoCard /> */}
       </div>
     </Grid>,
 
