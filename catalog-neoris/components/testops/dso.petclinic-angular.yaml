@@ -14,7 +14,7 @@ metadata:
     # backstage.io/kubernetes-id: dso-backstage
     circleci.com/project-slug: bitbucket/backstage-repos/backstage-dex-image
     grafana/overview-dashboard: 'https://grafana.aws.neoris.cloud/d/cluster-costs/cluster-cost-and-utilization-metrics?orgId=1&refresh=15m&viewPanel=116&kiosk=true'
-    jenkins.io/job-full-name: 'backstage'
+    jenkins.io/job-full-name: 'devtool-seed'
   tags:
     - angular
   links:
