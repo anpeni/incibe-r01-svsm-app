@@ -19,7 +19,7 @@ import { InfoCardSettings } from '@backstage/core-components';
 import { List } from '@material-ui/core';
 import React from 'react';
 import { UserSettingsPinToggle } from './UserSettingsPinToggle';
-import { UserSettingsThemeToggle } from './UserSettingsThemeToggle';
+import { UserSettingsThemeToggleWithoutAuto } from './UserSettingsThemeToggleWithoutAuto';
 import { makeStyles } from '@material-ui/core/styles';
 import { BackstageTheme } from '@backstage/theme';
 import { vars } from '../../../../../packages/app/src/themes/variables';
@@ -68,7 +68,7 @@ export const UserSettingsAppearanceCard = () => {
     title={<span className={classes.titulo}>Appearance</span>} 
     variant="gridItem">
       <List dense>
-        <UserSettingsThemeToggle />
+        <UserSettingsThemeToggleWithoutAuto />
         {!isMobile && <UserSettingsPinToggle />}
       </List>
     </InfoCardSettings>

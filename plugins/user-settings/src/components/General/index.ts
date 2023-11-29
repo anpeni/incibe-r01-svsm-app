@@ -23,6 +23,7 @@ export { UserSettingsSalir } from './UserSettingsSalir';
 export { UserSettingsSignInAvatar } from './UserSettingsSignInAvatar';
 export { UserSettingsAppearanceCard } from './UserSettingsAppearanceCard';
 export { UserSettingsThemeToggle } from './UserSettingsThemeToggle';
+export { UserSettingsThemeToggleWithoutAuto } from './UserSettingsThemeToggleWithoutAuto';
 export { UserSettingsThemeToggleTema2 } from './UserSettingsThemeToggleTema2';
 export { UserSettingsThemeToggleTema } from './UserSettingsThemeToggleTema';
 export { UserSettingsTema } from './UserSettingsTema';

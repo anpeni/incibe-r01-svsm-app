@@ -48,8 +48,8 @@ catalog:
   rules:
     - allow: [Component, System, API, Resource, Location]
   locations:
-    - type: github-discovery
-      target: https://github.com/DDC-NEORIS
+    # - type: github-discovery
+    #   target: https://github.com/DDC-NEORIS  //añadir para importar repositosios GitHub
     - type: file
       target: ${CATALOG_NEORIS_CONTAINER_PATH} # Container path, check dockerfile
     - type: file
