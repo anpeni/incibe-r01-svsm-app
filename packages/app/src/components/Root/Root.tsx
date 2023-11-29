@@ -41,7 +41,7 @@ import {
   SidebarSubmenuItem,
   SidebarExpandButton,
   Titulos,
-  OtroComponente
+  OtroComponente,
 } from '@backstage/core-components';
 import MenuIcon from '@material-ui/icons/Menu';
 import {
@@ -147,8 +147,6 @@ export const Root = ({ children }: PropsWithChildren<{}>) => {
   const { isOpen } = useSidebarOpenState();
   const [showDropDown, setShowDropDown] = useState(false);
 
-
-
   //console.log('Is Sidebar Open:', isOpen);
 
   // ? Para poner imagen de fondo a la Sidebar
@@ -177,7 +175,13 @@ export const Root = ({ children }: PropsWithChildren<{}>) => {
           <Sidebar disableExpandOnHover>
             <SidebarLogo />
             <Titulos text={'MAIN'}></Titulos>
-            <SidebarItem icon={GridView} to="/Catalog" text="Home" showDropDown={showDropDown} setShowDropDown={setShowDropDown} />
+            <SidebarItem
+              icon={GridView}
+              to="/Catalog"
+              text="Home"
+              showDropDown={showDropDown}
+              setShowDropDown={setShowDropDown}
+            />
             <SidebarGroup label="Search" icon={<SearchOutlined />} to="/search">
               <div>
                 <SidebarSearchModal />
@@ -225,11 +229,20 @@ export const Root = ({ children }: PropsWithChildren<{}>) => {
               {/* End global nav */}
               <SidebarDivider className={classes.sidebarDivider} />
               <Titulos text={'ADMIN'}></Titulos>
-              <SidebarSettings showDropDown={showDropDown} setShowDropDown={setShowDropDown}/>
-              <SidebarItem icon={HelpIcon} to="/ayuda" text="Help" showDropDown={showDropDown} setShowDropDown={setShowDropDown}/>
-              
-          <SidebarItem icon={FluxIcon} to="flux-runtime" text="Flux" />
-        
+              <SidebarSettings
+                showDropDown={showDropDown}
+                setShowDropDown={setShowDropDown}
+              />
+              <SidebarItem
+                icon={HelpIcon}
+                to="/ayuda"
+                text="Help"
+                showDropDown={showDropDown}
+                setShowDropDown={setShowDropDown}
+              />
+
+              {/* <SidebarItem icon={FluxIcon} to="flux-runtime" text="Flux" /> */}
+
               <UserSettingsThemeToggleTema2 />
               {/* <OtroComponente showDropDown={showDropDown}></OtroComponente> */}
             </SidebarGroup>

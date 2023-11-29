@@ -215,28 +215,13 @@ const overviewContent = (
       <EntityCatalogGraphCard variant="gridItem" height={400} />
     </Grid>
     <Grid item md={12}>
-      <EntityFluxHelmReleasesCard />
-    </Grid>
-    <Grid item md={12}>
-      <EntityFluxKustomizationsCard />
-    </Grid>
-    <Grid item md={12}>
       <EntityFluxHelmRepositoriesCard />
     </Grid>
     <Grid item md={12}>
       <EntityFluxGitRepositoriesCard />
     </Grid>
     <Grid item md={12}>
-      <EntityFluxOCIRepositoriesCard />
-    </Grid>
-    <Grid item md={12}>
-      <EntityFluxDeploymentsCard />
-    </Grid>
-    <Grid item md={12}>
       <EntityFluxSourcesCard />
-    </Grid>
-    <Grid item md={12}>
-      <EntityFluxImagePoliciesCard />
     </Grid>
     <Grid item md={4} xs={12}>
       <EntityLinksCard />
@@ -295,7 +280,6 @@ const serviceEntityPage = (
     >
       <EntityBitbucketContent />
     </EntityLayout.Route>
-
     <EntityLayout.Route path="/api" title="API">
       <Grid container spacing={3} alignItems="stretch">
         <Grid item md={6}>
@@ -306,18 +290,11 @@ const serviceEntityPage = (
         </Grid>
       </Grid>
     </EntityLayout.Route>
-
     <EntityLayout.Route path="/kubernetes" title="Kubernetes">
       <EntityKubernetesContent refreshIntervalMs={30000} />
     </EntityLayout.Route>
     <EntityLayout.Route path="/weaveworks-flux" title="Weave Flux">
       <Grid container spacing={3} alignItems="stretch">
-        <Grid item md={12}>
-          <EntityFluxHelmReleasesCard />
-        </Grid>
-        <Grid item md={12}>
-          <EntityFluxKustomizationsCard />
-        </Grid>
         <Grid item md={12}>
           <EntityFluxHelmRepositoriesCard />
         </Grid>
@@ -325,42 +302,13 @@ const serviceEntityPage = (
           <EntityFluxGitRepositoriesCard />
         </Grid>
         <Grid item md={12}>
-          <EntityFluxOCIRepositoriesCard />
-        </Grid>
-        <Grid item md={12}>
-          <EntityFluxDeploymentsCard />
-        </Grid>
-        <Grid item md={12}>
           <EntityFluxSourcesCard />
-        </Grid>
-        <Grid item md={12}>
-          <EntityFluxImagePoliciesCard />
         </Grid>
       </Grid>
     </EntityLayout.Route>
-
     <EntityLayout.Route path="/prometheus" title="Prometheus">
       <EntityPrometheusContent />
     </EntityLayout.Route>
-
-    {/* <EntityLayout.Route path="/dependencies" title="Dependencies">
-      <Grid container spacing={3} alignItems="stretch">
-        <Grid item md={6}>
-          <EntityDependsOnComponentsCard variant="gridItem" />
-        </Grid>
-        <Grid item md={6}>
-          <EntityDependsOnResourcesCard variant="gridItem" />
-        </Grid>
-      </Grid>
-    </EntityLayout.Route> */}
-
-    {/* <EntityLayout.Route path="/todo" title="Todo">
-      <EntityTodoContent />
-    </EntityLayout.Route> */}
-
-    {/* <EntityLayout.Route path="/docs" title="Docs">
-      {techdocsContent}
-    </EntityLayout.Route> */}
   </EntityLayout>
 );
 
@@ -373,7 +321,19 @@ const websiteEntityPage = (
     <EntityLayout.Route path="/ci-cd" title="CI/CD">
       {cicdContent}
     </EntityLayout.Route>
-
+    <EntityLayout.Route path="/weaveworks-flux" title="Weave Flux">
+      <Grid container spacing={3} alignItems="stretch">
+        <Grid item md={12}>
+          <EntityFluxHelmRepositoriesCard />
+        </Grid>
+        <Grid item md={12}>
+          <EntityFluxGitRepositoriesCard />
+        </Grid>
+        <Grid item md={12}>
+          <EntityFluxSourcesCard />
+        </Grid>
+      </Grid>
+    </EntityLayout.Route>
     <EntityLayout.Route if={isJenkinsAvailable} path="/jenkins" title="Jenkins">
       <EntityJenkinsContent />
     </EntityLayout.Route>
@@ -393,21 +353,6 @@ const websiteEntityPage = (
     <EntityLayout.Route path="/prometheus" title="Prometheus">
       <EntityPrometheusContent />
     </EntityLayout.Route>
-
-    {/* <EntityLayout.Route path="/dependencies" title="Dependencies">
-      <Grid container spacing={3} alignItems="stretch">
-        <Grid item md={6}>
-          <EntityDependsOnComponentsCard variant="gridItem" />
-        </Grid>
-        <Grid item md={6}>
-          <EntityDependsOnResourcesCard variant="gridItem" />
-        </Grid>
-      </Grid>
-    </EntityLayout.Route> */}
-
-    {/* <EntityLayout.Route path="/docs" title="Docs">
-      {techdocsContent}
-    </EntityLayout.Route> */}
   </EntityLayout>
 );
 
