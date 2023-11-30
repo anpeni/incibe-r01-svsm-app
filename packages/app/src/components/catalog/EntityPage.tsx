@@ -272,11 +272,16 @@ const serviceEntityPage = (
     <EntityLayout.Route if={isJenkinsAvailable} path="/jenkins" title="Jenkins">
       <EntityJenkinsContent />
     </EntityLayout.Route>
-
+    <EntityLayout.Route
+      path="/git"
+      title="Git"
+    >
+      {entityWarningContent}
+    </EntityLayout.Route>
     <EntityLayout.Route
       if={isBitbucketAvailable}
       path="/bitbucket"
-      title="Git"
+      title="Bitbucket"
     >
       <EntityBitbucketContent />
     </EntityLayout.Route>
@@ -337,11 +342,16 @@ const websiteEntityPage = (
     <EntityLayout.Route if={isJenkinsAvailable} path="/jenkins" title="Jenkins">
       <EntityJenkinsContent />
     </EntityLayout.Route>
-
+    <EntityLayout.Route
+      path="/git"
+      title="Git"
+    >
+      {entityWarningContent}
+    </EntityLayout.Route>
     <EntityLayout.Route
       if={isBitbucketAvailable}
       path="/bitbucket"
-      title="Git"
+      title="Bitbucket"
     >
       <EntityBitbucketContent />
     </EntityLayout.Route>
