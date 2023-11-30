@@ -214,7 +214,7 @@ const overviewContent = (
     <Grid item md={6} xs={12}>
       <EntityCatalogGraphCard variant="gridItem" height={400} />
     </Grid>
-    <Grid item md={12}>
+    {/* <Grid item md={12}>
       <EntityFluxHelmRepositoriesCard />
     </Grid>
     <Grid item md={12}>
@@ -222,7 +222,7 @@ const overviewContent = (
     </Grid>
     <Grid item md={12}>
       <EntityFluxSourcesCard />
-    </Grid>
+    </Grid> */}
     <Grid item md={4} xs={12}>
       <EntityLinksCard />
     </Grid>
@@ -265,7 +265,7 @@ const serviceEntityPage = (
       </EntitySwitch>
     </EntityLayout.Route>
 
-    <EntityLayout.Route path="/ci-cd" title="CI/CD">
+    <EntityLayout.Route path="/ci-cd" title="Circle CI">
       {cicdContent}
     </EntityLayout.Route>
 
@@ -276,7 +276,7 @@ const serviceEntityPage = (
     <EntityLayout.Route
       if={isBitbucketAvailable}
       path="/bitbucket"
-      title="Bitbucket"
+      title="Git"
     >
       <EntityBitbucketContent />
     </EntityLayout.Route>
@@ -290,10 +290,10 @@ const serviceEntityPage = (
         </Grid>
       </Grid>
     </EntityLayout.Route>
-    <EntityLayout.Route path="/kubernetes" title="Kubernetes">
+    {/* <EntityLayout.Route path="/kubernetes" title="Kubernetes">
       <EntityKubernetesContent refreshIntervalMs={30000} />
-    </EntityLayout.Route>
-    <EntityLayout.Route path="/weaveworks-flux" title="Weave Flux">
+    </EntityLayout.Route> */}
+    {/* <EntityLayout.Route path="/weaveworks-flux" title="Weave Flux">
       <Grid container spacing={3} alignItems="stretch">
         <Grid item md={12}>
           <EntityFluxHelmRepositoriesCard />
@@ -305,7 +305,7 @@ const serviceEntityPage = (
           <EntityFluxSourcesCard />
         </Grid>
       </Grid>
-    </EntityLayout.Route>
+    </EntityLayout.Route> */}
     <EntityLayout.Route path="/prometheus" title="Prometheus">
       <EntityPrometheusContent />
     </EntityLayout.Route>
@@ -318,10 +318,10 @@ const websiteEntityPage = (
       {overviewContent}
     </EntityLayout.Route>
 
-    <EntityLayout.Route path="/ci-cd" title="CI/CD">
+    <EntityLayout.Route path="/ci-cd" title="Circle CI">
       {cicdContent}
     </EntityLayout.Route>
-    <EntityLayout.Route path="/weaveworks-flux" title="Weave Flux">
+    {/* <EntityLayout.Route path="/weaveworks-flux" title="Weave Flux">
       <Grid container spacing={3} alignItems="stretch">
         <Grid item md={12}>
           <EntityFluxHelmRepositoriesCard />
@@ -333,7 +333,7 @@ const websiteEntityPage = (
           <EntityFluxSourcesCard />
         </Grid>
       </Grid>
-    </EntityLayout.Route>
+    </EntityLayout.Route> */}
     <EntityLayout.Route if={isJenkinsAvailable} path="/jenkins" title="Jenkins">
       <EntityJenkinsContent />
     </EntityLayout.Route>
@@ -341,18 +341,18 @@ const websiteEntityPage = (
     <EntityLayout.Route
       if={isBitbucketAvailable}
       path="/bitbucket"
-      title="Bitbucket"
+      title="Git"
     >
       <EntityBitbucketContent />
     </EntityLayout.Route>
 
-    <EntityLayout.Route path="/kubernetes" title="Kubernetes">
+    {/* <EntityLayout.Route path="/kubernetes" title="Kubernetes">
       <EntityKubernetesContent refreshIntervalMs={30000} />
-    </EntityLayout.Route>
+    </EntityLayout.Route> */}
 
-    <EntityLayout.Route path="/prometheus" title="Prometheus">
+    {/* <EntityLayout.Route path="/prometheus" title="Prometheus">
       <EntityPrometheusContent />
-    </EntityLayout.Route>
+    </EntityLayout.Route> */}
   </EntityLayout>
 );
 
