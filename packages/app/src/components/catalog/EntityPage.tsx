@@ -308,10 +308,10 @@ const serviceEntityPage = (
         </Grid>
       </Grid>
     </EntityLayout.Route>
-    {/* <EntityLayout.Route path="/kubernetes" title="Kubernetes">
+    <EntityLayout.Route path="/kubernetes" title="Kubernetes">
       <EntityKubernetesContent refreshIntervalMs={30000} />
-    </EntityLayout.Route> */}
-    {/* <EntityLayout.Route path="/weaveworks-flux" title="Weave Flux">
+    </EntityLayout.Route>
+    <EntityLayout.Route path="/weaveworks-flux" title="Weave Flux">
       <Grid container spacing={3} alignItems="stretch">
         <Grid item md={12}>
           <EntityFluxHelmRepositoriesCard />
@@ -323,7 +323,7 @@ const serviceEntityPage = (
           <EntityFluxSourcesCard />
         </Grid>
       </Grid>
-    </EntityLayout.Route> */}
+    </EntityLayout.Route>
     <EntityLayout.Route path="/prometheus" title="Prometheus">
       <EntityPrometheusContent />
     </EntityLayout.Route>
@@ -339,7 +339,7 @@ const websiteEntityPage = (
     <EntityLayout.Route path="/ci-cd" title="Circle CI">
       {cicdContent}
     </EntityLayout.Route>
-    {/* <EntityLayout.Route path="/weaveworks-flux" title="Weave Flux">
+    <EntityLayout.Route path="/weaveworks-flux" title="Weave Flux">
       <Grid container spacing={3} alignItems="stretch">
         <Grid item md={12}>
           <EntityFluxHelmRepositoriesCard />
@@ -351,7 +351,7 @@ const websiteEntityPage = (
           <EntityFluxSourcesCard />
         </Grid>
       </Grid>
-    </EntityLayout.Route> */}
+    </EntityLayout.Route>
     <EntityLayout.Route if={isJenkinsAvailable} path="/jenkins" title="Jenkins">
       <EntityJenkinsContent />
     </EntityLayout.Route>
@@ -382,13 +382,13 @@ const websiteEntityPage = (
       <EntityBitbucketContent />
     </EntityLayout.Route>
 
-    {/* <EntityLayout.Route path="/kubernetes" title="Kubernetes">
+    <EntityLayout.Route path="/kubernetes" title="Kubernetes">
       <EntityKubernetesContent refreshIntervalMs={30000} />
-    </EntityLayout.Route> */}
+    </EntityLayout.Route>
 
-    {/* <EntityLayout.Route path="/prometheus" title="Prometheus">
+    <EntityLayout.Route path="/prometheus" title="Prometheus">
       <EntityPrometheusContent />
-    </EntityLayout.Route> */}
+    </EntityLayout.Route>
   </EntityLayout>
 );
 
