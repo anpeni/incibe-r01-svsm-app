@@ -15,7 +15,7 @@
  */
 
 import { createValidator } from './createValidator';
-import { CustomFieldValidator } from '@backstage/plugin-scaffolder-react-antiguo';
+import { CustomFieldValidator } from '@internal/plugin-scaffolder-react-antiguo';
 import { ApiHolder } from '@backstage/core-plugin-api';
 import { FieldValidation, FormValidation } from '@rjsf/utils';
 

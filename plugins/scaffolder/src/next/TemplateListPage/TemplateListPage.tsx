@@ -40,7 +40,7 @@ import {
   TemplateCategoryPicker,
   TemplateGroupFilter,
   TemplateGroups,
-} from '@backstage/plugin-scaffolder-react-antiguo/alpha';
+} from '@internal/plugin-scaffolder-react-antiguo/alpha';
 
 import { RegisterExistingButton } from './RegisterExistingButton';
 import {

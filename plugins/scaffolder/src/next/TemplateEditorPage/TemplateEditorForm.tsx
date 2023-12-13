@@ -26,7 +26,7 @@ import {
 import {
   NextFieldExtensionOptions,
   Stepper,
-} from '@backstage/plugin-scaffolder-react-antiguo/alpha';
+} from '@internal/plugin-scaffolder-react-antiguo/alpha';
 import { useDryRun } from '../../components/TemplateEditorPage/DryRunContext';
 import { useDirectoryEditor } from '../../components/TemplateEditorPage/DirectoryEditorContext';
 

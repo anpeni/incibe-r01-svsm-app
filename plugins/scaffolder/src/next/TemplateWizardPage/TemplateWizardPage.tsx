@@ -31,7 +31,7 @@ import {
   FormProps,
   Workflow,
   NextFieldExtensionOptions,
-} from '@backstage/plugin-scaffolder-react-antiguo/alpha';
+} from '@internal/plugin-scaffolder-react-antiguo/alpha';
 import { JsonValue } from '@backstage/types';
 import { Header, Page } from '@backstage/core-components';
 

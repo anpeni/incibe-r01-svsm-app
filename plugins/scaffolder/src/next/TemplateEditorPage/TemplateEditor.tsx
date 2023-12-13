@@ -16,7 +16,7 @@
 import { makeStyles } from '@material-ui/core';
 import React, { useState } from 'react';
 import type { LayoutOptions } from '@backstage/plugin-scaffolder-react';
-import { NextFieldExtensionOptions } from '@backstage/plugin-scaffolder-react-antiguo/alpha';
+import { NextFieldExtensionOptions } from '@internal/plugin-scaffolder-react-antiguo/alpha';
 import { TemplateDirectoryAccess } from '../../lib/filesystem';
 import { DirectoryEditorProvider } from '../../components/TemplateEditorPage/DirectoryEditorContext';
 import { DryRunProvider } from '../../components/TemplateEditorPage/DryRunContext';
