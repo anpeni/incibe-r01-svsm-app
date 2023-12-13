@@ -38,7 +38,7 @@ import cloneDeep from 'lodash/cloneDeep';
 import * as fieldOverrides from './FieldOverrides';
 import { ReviewStepProps } from '../types';
 import { ReviewStep } from './ReviewStep';
-import { extractSchemaFromStep } from '@backstage/plugin-scaffolder-react/alpha';
+import { extractSchemaFromStep } from '@backstage/plugin-scaffolder-react-antiguo/alpha';
 import { selectedTemplateRouteRef } from '../../routes';
 import { LayoutOptions } from '@backstage/plugin-scaffolder-react';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
