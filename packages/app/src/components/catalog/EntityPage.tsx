@@ -425,7 +425,6 @@ const componentPage = (
     <EntitySwitch.Case>{defaultEntityPage}</EntitySwitch.Case>
   </EntitySwitch>
 );
-
 const apiPage = (
   <EntityLayout>
     <EntityLayout.Route path="/" title="Overview">
