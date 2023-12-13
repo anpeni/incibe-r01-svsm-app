@@ -24,8 +24,7 @@
     "lint:all": "backstage-cli repo lint",
     "prettier:check": "prettier --check .",
     "create-plugin": "backstage-cli create-plugin --scope internal",
-    "new": "backstage-cli new --scope internal",
-    "postinstall": "rimraf node_modules/@backstage/plugin-search/node_modules/@backstage/core-components"
+    "new": "backstage-cli new --scope internal"
   },
   "workspaces": {
     "packages": [

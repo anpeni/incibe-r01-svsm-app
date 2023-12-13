@@ -19,6 +19,7 @@ export const UserSettingsSalir = () => {
       icon={PowerSettingsNewOutlined} // Asegúrate de importar este icono
       text="Log Out" 
       onClick={handleSignOut}
+      
     />
   );
 };

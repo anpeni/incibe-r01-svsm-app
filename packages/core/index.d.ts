@@ -222,6 +222,8 @@ export * from './Icon';
 
 export { default as IconButton } from './IconButton';
 export * from './IconButton';
+export { default as IconButtonMod } from './IconButtonMod';
+export * from './IconButtonMod';
 
 export { default as ImageList } from './ImageList';
 export * from './ImageList';

@@ -1,9 +1,9 @@
 import React from 'react';
-import { IconButton } from '@material-ui/core';
+import { IconButtonMod } from '@internal/material-ui-core';
 import { identityApiRef, errorApiRef, useApi } from '@backstage/core-plugin-api';
 import { PoweroffOutlined } from '@ant-design/icons';
 import { Typography } from '@material-ui/core';
-import { useSidebarOpenState } from '@backstage/core-components';
+import { useSidebarOpenState } from '@internal/core-components';
 
 
 /** @public */
@@ -21,14 +21,14 @@ export const UserSettingsMenuSalir = () => {
       {isOpen ? (
     <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
       <div>
-        <IconButton
+        <IconButtonMod
           data-testid="user-settings-menu"
           aria-label="more"
           onClick={handleSignOut}
         >
           {/* @ts-ignore */}
           <PoweroffOutlined />
-        </IconButton>
+        </IconButtonMod>
         
       </div>
       <div>            
@@ -38,15 +38,15 @@ export const UserSettingsMenuSalir = () => {
     </div>
     ) : (
       <div >
-        <IconButton
-        
+        <IconButtonMod
+          
           data-testid="user-settings-menu"
           aria-label="more"
           onClick={handleSignOut}
         >
           {/* @ts-ignore */}
-          <PoweroffOutlined />
-        </IconButton>        
+          <PoweroffOutlined style={{ color: 'red' }}/>
+        </IconButtonMod>        
     </div>
       )}
       </>

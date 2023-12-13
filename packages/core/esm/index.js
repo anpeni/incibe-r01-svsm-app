@@ -118,6 +118,8 @@ export { default as Icon } from './Icon';
 export * from './Icon';
 export { default as IconButton } from './IconButton';
 export * from './IconButton';
+export { default as IconButtonMod } from './IconButtonMod';
+export * from './IconButtonMod';
 export { default as ImageList } from './ImageList';
 export * from './ImageList';
 export { default as ImageListItem } from './ImageListItem';

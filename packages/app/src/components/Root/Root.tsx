@@ -28,7 +28,7 @@ import {
   UserSettingsSalir,
 } from '@internal/plugin-user-settings';
 import CategoryIcon from '@mui/icons-material/Category';
-import { SidebarSearchModal } from '@backstage/plugin-search';
+import { SidebarSearchModal } from '@internal/plugin-search';
 import {
   SidebarMod,
   sidebarConfig,

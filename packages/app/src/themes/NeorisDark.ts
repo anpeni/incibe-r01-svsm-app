@@ -260,6 +260,7 @@ const createCustomThemeOverrides = (
         textTransform: 'none',
         TextSize: '13px',
         transition: 'none',
+        color: 'none', // added color sidebarItems buttons search and log out
         '&:hover': {
           backgroundColor: 'none !important',
         },

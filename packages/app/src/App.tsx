@@ -12,7 +12,7 @@ import {
 } from '@internal/plugin-catalog-import';
 import { ScaffolderPage, scaffolderPlugin } from '@internal/plugin-scaffolder';
 import { orgPlugin } from '@backstage/plugin-org';
-import { SearchPage } from '@backstage/plugin-search';
+import { SearchPage } from '@internal/plugin-search';
 import { TechRadarPage } from '@backstage/plugin-tech-radar';
 import {
   TechDocsIndexPage,

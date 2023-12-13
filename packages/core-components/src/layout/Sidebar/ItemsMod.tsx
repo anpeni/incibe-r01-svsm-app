@@ -112,7 +112,12 @@ const makeSidebarStyles = (sidebarConfig: SidebarConfig) =>
         width: '48px',
         height: '48px',
         marginLeft:'12px',
-        
+        color: `${
+          theme.palette.type === 'dark'
+            ? 'rgba(255, 255, 255, 0.60)'
+            : 'RGB(6, 11, 40)'
+        }`,
+
         borderRadius: '9px',
         '&:hover': {
           background: `${

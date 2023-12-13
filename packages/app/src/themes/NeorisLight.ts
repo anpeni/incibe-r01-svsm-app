@@ -241,7 +241,7 @@ const createCustomThemeOverrides = (
       root: {
         borderRadius: '12px',
         textTransform: 'none',
-        color: theme.page.fontColor,
+        color: 'none', // added color sidebarItems buttons search and log out
         TextSize: '13px',
         '&:hover': {
           backgroundColor: 'none !important',

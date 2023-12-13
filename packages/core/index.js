@@ -67,6 +67,7 @@ var _exportNames = {
   Hidden: true,
   Icon: true,
   IconButton: true,
+  IconButtonMod: true,
   ImageList: true,
   ImageListItem: true,
   ImageListItemBar: true,
@@ -466,6 +467,12 @@ Object.defineProperty(exports, "IconButton", {
   enumerable: true,
   get: function get() {
     return _IconButton.default;
+  }
+});
+Object.defineProperty(exports, "IconButtonMod", {
+  enumerable: true,
+  get: function get() {
+    return _IconButtonMod.default;
   }
 });
 Object.defineProperty(exports, "ImageList", {
@@ -1623,7 +1630,7 @@ Object.keys(_Icon).forEach(function (key) {
 });
 
 var _IconButton = _interopRequireWildcard(require("./IconButton"));
-
+var _IconButtonMod = _interopRequireWildcard(require("./IconButtonMod"));
 Object.keys(_IconButton).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
   if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
@@ -1631,6 +1638,17 @@ Object.keys(_IconButton).forEach(function (key) {
     enumerable: true,
     get: function get() {
       return _IconButton[key];
+    }
+  });
+});
+
+Object.keys(_IconButtonMod).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _IconButtonMod[key];
     }
   });
 });
