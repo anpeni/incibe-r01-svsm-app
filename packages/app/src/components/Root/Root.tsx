@@ -26,23 +26,23 @@ import {
   UserSettingsProfileNew,
   UserSettingsThemeToggleTema2,
   UserSettingsSalir,
-} from '@backstage/plugin-user-settings';
+} from '@internal/plugin-user-settings';
 import CategoryIcon from '@mui/icons-material/Category';
 import { SidebarSearchModal } from '@backstage/plugin-search';
 import {
-  Sidebar,
+  SidebarMod,
   sidebarConfig,
-  SidebarDivider,
+  SidebarDividerMod,
   SidebarGroup,
-  SidebarItem,
+  SidebarItemMod,
   SidebarPage,
-  SidebarSpace,
+  SidebarSpaceMod,
   useSidebarOpenState,
-  SidebarSubmenuItem,
-  SidebarExpandButton,
+  SidebarSubmenuItemMod,
+  SidebarExpandButtonMod,
   Titulos,
-  OtroComponente,
-} from '@backstage/core-components';
+  OtroComponenteMod,
+} from '@internal/core-components';
 import MenuIcon from '@material-ui/icons/Menu';
 import {
   GridView,
@@ -172,10 +172,10 @@ export const Root = ({ children }: PropsWithChildren<{}>) => {
     <div className={classes.sidebarContainer} style={rootStyle}>
       <SidebarPage>
         <div className={classes.sidebarContainer}>
-          <Sidebar disableExpandOnHover>
+          <SidebarMod disableExpandOnHover>
             <SidebarLogo />
             <Titulos text={'MAIN'}></Titulos>
-            <SidebarItem
+            <SidebarItemMod
               icon={GridView}
               to="/Catalog"
               text="Home"
@@ -189,7 +189,7 @@ export const Root = ({ children }: PropsWithChildren<{}>) => {
             </SidebarGroup>
 
             <SidebarGroup label="Menu" icon={<CategoryIcon />}>
-              <SidebarSubmenuItem
+              <SidebarSubmenuItemMod
                 showDropDown={showDropDown}
                 setShowDropDown={setShowDropDown}
                 icon={CategoryIcon}
@@ -210,14 +210,14 @@ export const Root = ({ children }: PropsWithChildren<{}>) => {
                   },
                 ]}
               />
-              <SidebarItem
+              <SidebarItemMod
                 showDropDown={showDropDown}
                 setShowDropDown={setShowDropDown}
                 icon={CreateComponentIcon}
                 to="create"
                 text="Create"
               />
-              <SidebarItem
+              <SidebarItemMod
                 showDropDown={showDropDown}
                 setShowDropDown={setShowDropDown}
                 icon={NotificationsOutlined}
@@ -225,15 +225,15 @@ export const Root = ({ children }: PropsWithChildren<{}>) => {
                 text="Notification"
               >
                 <CircleBadge count={3} />
-              </SidebarItem>
+              </SidebarItemMod>
               {/* End global nav */}
-              <SidebarDivider className={classes.sidebarDivider} />
+              <SidebarDividerMod className={classes.sidebarDivider} />
               <Titulos text={'ADMIN'}></Titulos>
               <SidebarSettings
                 showDropDown={showDropDown}
                 setShowDropDown={setShowDropDown}
               />
-              <SidebarItem
+              <SidebarItemMod
                 icon={HelpIcon}
                 to="/ayuda"
                 text="Help"
@@ -246,14 +246,14 @@ export const Root = ({ children }: PropsWithChildren<{}>) => {
               <UserSettingsThemeToggleTema2 />
               {/* <OtroComponente showDropDown={showDropDown}></OtroComponente> */}
             </SidebarGroup>
-            <SidebarSpace />
-            <SidebarExpandButton />
-            <SidebarDivider className={classes.sidebarDivider} />
+            <SidebarSpaceMod />
+            <SidebarExpandButtonMod />
+            <SidebarDividerMod className={classes.sidebarDivider} />
             <SidebarGroup>
               <UserSettingsProfileNew />
               <UserSettingsSalir />
             </SidebarGroup>
-          </Sidebar>
+          </SidebarMod>
         </div>
         {children}
       </SidebarPage>

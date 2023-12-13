@@ -22,7 +22,7 @@ import {
   StepLabel,
   TextField,
   Typography,
-} from '@material-ui/core';
+} from '@internal/material-ui-core';
 import React from 'react';
 import { BackButton } from '../Buttons';
 import { asInputRef } from '../helpers';

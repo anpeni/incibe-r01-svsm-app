@@ -1,5 +1,5 @@
 {
-  "name": "@material-ui/core",
+  "name": "@internal/material-ui-core",
   "version": "4.12.4",
   "author": "Material-UI Team",
   "description": "React components that implement Google's Material Design.",

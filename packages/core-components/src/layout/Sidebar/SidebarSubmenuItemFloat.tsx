@@ -79,7 +79,7 @@ export type SidebarSubmenuItemProps = {
 };
 
 
-export const SidebarSubmenuItemModificado = (props: SidebarSubmenuItemProps) => {
+export const SidebarSubmenuItemFloat = (props: SidebarSubmenuItemProps) => {
   const { title, to, icon: Icon, dropdownItems, exact, selectedFromParent } = props;
   const classes = useStyles();
   const [selectedObject, setSelectedObject] = useState(selectedFromParent);

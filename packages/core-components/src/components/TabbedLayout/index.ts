@@ -13,5 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-export { TabbedLayout } from './TabbedLayout';
+export { TabbedLayoutMod } from './TabbedLayoutMod';
+export { RoutedTabsMod } from './RoutedTabsMod';
 export { RoutedTabs } from './RoutedTabs';

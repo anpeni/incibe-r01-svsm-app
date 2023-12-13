@@ -91,7 +91,7 @@ export type BottomLinkProps = {
  * @public
  *
  */
-export function BottomLinkModificado(props: BottomLinkProps) {
+export function BottomLinkMod(props: BottomLinkProps) {
   const { link, title, onClick } = props;
   const classes = useStyles();
 

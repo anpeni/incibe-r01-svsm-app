@@ -18,7 +18,7 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CardHeader from '@material-ui/core/CardHeader';
 import Divider from '@material-ui/core/Divider';
-import { makeStyles, withStyles, Theme } from '@material-ui/core/styles';
+import { makeStyles, withStyles } from '@material-ui/core/styles';
 import Tab, { TabProps } from '@material-ui/core/Tab';
 import Tabs from '@material-ui/core/Tabs';
 import React, {
@@ -29,7 +29,6 @@ import React, {
 } from 'react';
 import { BottomLink, BottomLinkProps } from '../BottomLink';
 import { ErrorBoundary, ErrorBoundaryProps } from '../ErrorBoundary';
-
 
 export type TabbedCardClassKey = 'root' | 'indicator';
 
@@ -87,7 +86,7 @@ export function TabbedCard(props: PropsWithChildren<Props>) {
     ? onChange
     : (_ev: unknown, newSelectedIndex: number) => selectIndex(newSelectedIndex);
 
-  let selectedTabContent; //let selectedTabContent: ReactNode;
+  let selectedTabContent: ReactNode;
   if (!value) {
     React.Children.map(children, (child, index) => {
       if (React.isValidElement(child) && index === selectedIndex) {
@@ -131,7 +130,7 @@ export function TabbedCard(props: PropsWithChildren<Props>) {
 /** @public */
 export type CardTabClassKey = 'root' | 'selected';
 
-const useCardTabStyles = makeStyles<Theme>(
+const useCardTabStyles = makeStyles(
   theme => ({
     root: {
       minWidth: theme.spacing(6),
@@ -142,11 +141,11 @@ const useCardTabStyles = makeStyles<Theme>(
       '&:hover': {
         opacity: 1,
         backgroundColor: 'transparent',
-        color: 'bold',
+        color: theme.palette.text.primary,
       },
     },
     selected: {
-      fontWeight: theme.typography.fontWeightBold as any,
+      fontWeight: theme.typography.fontWeightBold as any, // TSC
     },
   }),
   { name: 'BackstageCardTab' },

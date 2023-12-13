@@ -17,14 +17,18 @@
 import {
   Content,
   ContentHeader,
-  CreateButton,
   PageWithHeader,
-  SupportButton,
-  TableColumn,
-  TableProps,
 } from '@backstage/core-components';
+import {
+  TableColumnMod,
+  TablePropsMod,
+} from '@internal/core-components';
+import {
+  CreateButtonMod,
+  SupportButtonMod,
+} from '@internal/core-components';
 import { configApiRef, useApi, useRouteRef } from '@backstage/core-plugin-api';
-import { CatalogTable, CatalogTableRow } from '@backstage/plugin-catalog';
+import { CatalogTable, CatalogTableRow } from '@internal/plugin-catalog';
 import {
   EntityKindPicker,
   EntityLifecyclePicker,
@@ -35,12 +39,12 @@ import {
   UserListFilterKind,
   UserListPicker,
   CatalogFilterLayout,
-} from '@backstage/plugin-catalog-react-modificado';
+} from '@internal/plugin-catalog-react';
 import React from 'react';
 import { registerComponentRouteRef } from '../../routes';
 import { makeStyles } from '@material-ui/core';
 
-const defaultColumns: TableColumn<CatalogTableRow>[] = [
+const defaultColumns: TableColumnMod<CatalogTableRow>[] = [
   CatalogTable.columns.createTitleColumn({ hidden: true }),
   CatalogTable.columns.createNameColumn({ defaultKind: 'API' }),
   CatalogTable.columns.createSystemColumn(),
@@ -57,8 +61,8 @@ const defaultColumns: TableColumn<CatalogTableRow>[] = [
  */
 export type DefaultApiExplorerPageProps = {
   initiallySelectedFilter?: UserListFilterKind;
-  columns?: TableColumn<CatalogTableRow>[];
-  actions?: TableProps<CatalogTableRow>['actions'];
+  columns?: TableColumnMod<CatalogTableRow>[];
+  actions?: TablePropsMod<CatalogTableRow>['actions'];
 };
 
 const useStyles = makeStyles(theme => ({
@@ -91,11 +95,11 @@ export const DefaultApiExplorerPage = (props: DefaultApiExplorerPageProps) => {
     >
       <Content>
         <ContentHeader title="">
-          <CreateButton
+          <CreateButtonMod
             title="Register Existing API"
             to={registerComponentLink?.()}
           />
-          <SupportButton>All your APIs</SupportButton>
+          <SupportButtonMod>All your APIs</SupportButtonMod>
         </ContentHeader>
         <EntityListProvider>
           <CatalogFilterLayout>

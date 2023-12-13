@@ -19,8 +19,10 @@ import {
   ContentHeader,
   Header,
   Page,
-  SupportButton,
 } from '@backstage/core-components';
+import {
+  SupportButtonMod,
+} from '@internal/core-components';
 import { configApiRef, useApi } from '@backstage/core-plugin-api';
 import { Grid, useMediaQuery, useTheme } from '@material-ui/core';
 import React from 'react';
@@ -149,10 +151,10 @@ export const DefaultImportPage = () => {
             <div
               style={{ right: '15px', marginTop: '15px', position: 'fixed' }}
             >
-              <SupportButton>
+              <SupportButtonMod>
                 Start tracking your component in {appTitle} by adding it to the
                 software catalog.
-              </SupportButton>
+              </SupportButtonMod>
             </div>
           </div>
           <Content>

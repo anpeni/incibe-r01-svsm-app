@@ -22,8 +22,10 @@ import {
   Link,
   Page,
   Progress,
-  Table,
 } from '@backstage/core-components';
+import {
+TableMod,
+} from '@internal/core-components';
 import { useApi, useRouteRef } from '@backstage/core-plugin-api';
 import { CatalogFilterLayout } from '@backstage/plugin-catalog-react';
 import useAsync from 'react-use/lib/useAsync';
@@ -91,7 +93,7 @@ const ListTaskPageContent = (props: MyTaskPageProps) => {
         />
       </CatalogFilterLayout.Filters>
       <CatalogFilterLayout.Content>
-        <Table<ScaffolderTask>
+        <TableMod<ScaffolderTask>
           data={value?.tasks ?? []}
           title="Tasks"
           columns={[

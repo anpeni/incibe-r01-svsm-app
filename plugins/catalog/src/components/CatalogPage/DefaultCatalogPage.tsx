@@ -17,12 +17,14 @@
 import {
   Content,
   ContentHeader,
-  CreateButton,
   PageWithHeader,
-  SupportButton,
   TableColumn,
   TableProps,
 } from '@backstage/core-components';
+import {
+  CreateButtonMod,
+  SupportButtonMod,
+} from '@internal/core-components';
 import { configApiRef, useApi, useRouteRef } from '@backstage/core-plugin-api';
 import {
   CatalogFilterLayout,
@@ -37,7 +39,7 @@ import {
   EntityKindPicker,
   EntityNamespacePicker,
   EntityOwnerPickerProps,
-} from '@backstage/plugin-catalog-react-modificado';
+} from '@internal/plugin-catalog-react';
 import React, { ReactNode } from 'react';
 import { createComponentRouteRef } from '../../routes';
 import { CatalogTable, CatalogTableRow } from '../CatalogTable';
@@ -87,12 +89,12 @@ export function DefaultCatalogPage(props: DefaultCatalogPageProps) {
     <PageWithHeader title={t('catalog_page_title', { orgName })} themeId="home">
       <Content>
         <ContentHeader title="">
-          <CreateButton
+          <CreateButtonMod
             // title={t('catalog_page_create_button_title')}
             title={'ADD'}
             to={createComponentLink && createComponentLink()}
           />
-          <SupportButton>All your software catalog entities</SupportButton>
+          <SupportButtonMod>All your software catalog entities</SupportButtonMod>
         </ContentHeader>
         <EntityListProvider>
           <CatalogFilterLayout>

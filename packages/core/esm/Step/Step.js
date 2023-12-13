@@ -16,15 +16,12 @@ export var styles = {
   },
 
   /* Styles applied to the root element if `orientation="vertical"`. */
-  vertical: {
-    
-  },
+  vertical: {},
 
   /* Styles applied to the root element if `alternativeLabel={true}`. */
   alternativeLabel: {
     flex: 1,
-    position: 'relative',
-    
+    position: 'relative'
   },
 
   /* Pseudo-class applied to the root element if `completed={true}`. */

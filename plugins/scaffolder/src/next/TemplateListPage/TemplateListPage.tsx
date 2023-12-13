@@ -25,8 +25,8 @@ import {
   DocsIcon,
   Header,
   Page,
-  SupportButton,
-} from '@backstage/core-components';
+  SupportButtonMod,
+} from '@internal/core-components';
 import {
   EntityKindPicker,
   EntityListProvider,
@@ -40,7 +40,7 @@ import {
   TemplateCategoryPicker,
   TemplateGroupFilter,
   TemplateGroups,
-} from '@backstage/plugin-scaffolder-react/alpha';
+} from '@backstage/plugin-scaffolder-react-antiguo/alpha';
 
 import { RegisterExistingButton } from './RegisterExistingButton';
 import {
@@ -165,11 +165,11 @@ export const TemplateListPage = (props: TemplateListPageProps) => {
               title="Register Existing Component"
               to={registerComponentLink && registerComponentLink()}
             />
-            <SupportButton>
+            <SupportButtonMod>
               Create new software components using standard templates. Different
               templates create different kinds of components (services,
               websites, documentation, ...).
-            </SupportButton>
+            </SupportButtonMod>
           </ContentHeader>
 
           <CatalogFilterLayout>
@@ -189,7 +189,7 @@ export const TemplateListPage = (props: TemplateListPageProps) => {
                 templateFilter={templateFilter}
                 TemplateCardComponent={TemplateCardComponent}
                 onTemplateSelected={onTemplateSelected}
-                additionalLinksForEntity={additionalLinksForEntity}
+                additionalLinksForEntity={additionalLinksForEntity as any} // TSC
               />
             </CatalogFilterLayout.Content>
           </CatalogFilterLayout>

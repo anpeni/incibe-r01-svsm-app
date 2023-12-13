@@ -40,7 +40,7 @@ const useStyles = makeStyles<BackstageTheme>(
       left: '50%',
       transform: 'translate(-50%, -60%)',
       fontSize: theme.typography.pxToRem(45),
-      fontWeight: theme.typography.fontWeightBold as any,
+      fontWeight: theme.typography.fontWeightBold as any, // TSC
       color: theme.palette.textContrast,
     },
     description: {

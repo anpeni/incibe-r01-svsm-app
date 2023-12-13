@@ -7,8 +7,8 @@ import { Switch, ListItem, ListItemSecondaryAction, makeStyles, Typography } fro
 import { IconComponent, appThemeApiRef, useApi } from '@backstage/core-plugin-api';
 import { MaterialUISwitch } from './UserSettingsAppearanceSwitch';
 import {
-  SidebarItem,
-} from '@backstage/core-components';
+  SidebarItemMod,
+} from '@internal/core-components';
 import ContrastIcon from '@mui/icons-material/Contrast';
 
 
@@ -29,7 +29,7 @@ export const UserSettingsTema = () => {
   return (
     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
       <div style={{ maxWidth: '80%'}}>
-      <SidebarItem 
+      <SidebarItemMod 
         icon={MiIcono}
         to="/" // Asegúrate de importar este icono
         text="Temas"

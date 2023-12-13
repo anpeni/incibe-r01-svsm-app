@@ -16,3 +16,5 @@
 
 export { SupportButton } from './SupportButton';
 export type { SupportButtonClassKey } from './SupportButton';
+export { SupportButtonMod } from './SupportButtonMod';
+export type { SupportButtonClassKeyMod} from './SupportButtonMod';

@@ -14,5 +14,9 @@
  * limitations under the License.
  */
 
+export { CreateButtonMod } from './CreateButtonMod';
+export type { CreateButtonPropsMod } from './CreateButtonMod';
+
 export { CreateButton } from './CreateButton';
+
 export type { CreateButtonProps } from './CreateButton';

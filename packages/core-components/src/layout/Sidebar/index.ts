@@ -15,22 +15,29 @@
  */
 
 export { Sidebar } from './Bar';
+export { SidebarMod } from './BarMod';
 export { MobileSidebar } from './MobileSidebar';
 export type { MobileSidebarProps } from './MobileSidebar';
 export { SidebarGroup } from './SidebarGroup';
 export type { SidebarGroupProps } from './SidebarGroup';
 export { SidebarSubmenuItem } from './SidebarSubmenuItem';
-export { OtroComponente } from './SidebarSubmenuItem';
-
-export { SidebarSubmenuItemModificado } from './SidebarSubmenuItemModificado';
+export { SidebarSubmenuItemMod } from './SidebarSubmenuItemMod';
+export { OtroComponenteMod } from './SidebarSubmenuItemMod';
+export { SidebarSubmenuItemFloat } from './SidebarSubmenuItemFloat';
 export { Titulos } from './Titulos';
 export { SidebarSubmenu } from './SidebarSubmenu';
-export { SidebarSubmenuModificado } from './SidebarSubmenuModificado';
+export { SidebarSubmenuMod } from './SidebarSubmenuMod';
 export type { SidebarSubmenuProps } from './SidebarSubmenu';
+export type { SidebarSubmenuPropsMod } from './SidebarSubmenuMod';
 export type {
   SidebarSubmenuItemProps,
   SidebarSubmenuItemDropdownItem,
 } from './SidebarSubmenuItem';
+export type {
+  SidebarSubmenuItemPropsMod,
+  SidebarSubmenuItemDropdownItemMod,
+} from './SidebarSubmenuItemMod';
+export type { SidebarClassKeyMod, SidebarPropsMod } from './BarMod';
 export type { SidebarClassKey, SidebarProps } from './Bar';
 export { SidebarPage, useContent } from './Page';
 export type { SidebarPageClassKey, SidebarPageProps } from './Page';
@@ -43,12 +50,27 @@ export {
   SidebarScrollWrapper,
   SidebarExpandButton,
 } from './Items';
+export {
+  SidebarDividerMod,
+  SidebarItemMod,
+  SidebarSearchFieldMod,
+  SidebarSpaceMod,
+  SidebarSpacerMod,
+  SidebarScrollWrapperMod,
+  SidebarExpandButtonMod,
+} from './ItemsMod';
 export type {
   SidebarItemClassKey,
   SidebarSpaceClassKey,
   SidebarSpacerClassKey,
   SidebarDividerClassKey,
 } from './Items';
+export type {
+  SidebarItemClassKeyMod,
+  SidebarSpaceClassKeyMod,
+  SidebarSpacerClassKeyMod,
+  SidebarDividerClassKeyMod,
+} from './ItemsMod';
 export { IntroCard, SidebarIntro } from './Intro';
 export type { SidebarIntroClassKey } from './Intro';
 export { SIDEBAR_INTRO_LOCAL_STORAGE, sidebarConfig } from './config';

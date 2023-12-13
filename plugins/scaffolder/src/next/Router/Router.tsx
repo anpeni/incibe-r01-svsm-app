@@ -24,7 +24,7 @@ import {
   NextFieldExtensionOptions,
   FormProps,
   TemplateGroupFilter,
-} from '@backstage/plugin-scaffolder-react/alpha';
+} from '@backstage/plugin-scaffolder-react-antiguo/alpha';
 import {
   ScaffolderTaskOutput,
   SecretsContextProvider,

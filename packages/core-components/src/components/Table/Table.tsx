@@ -35,7 +35,7 @@ import ChevronRight from '@material-ui/icons/ChevronRight';
 import Clear from '@material-ui/icons/Clear';
 import DeleteOutline from '@material-ui/icons/DeleteOutline';
 import Edit from '@material-ui/icons/Edit';
-import FilterAltOutlinedIcon from '@mui/icons-material/FilterAltOutlined';
+import FilterList from '@material-ui/icons/FilterList';
 import FirstPage from '@material-ui/icons/FirstPage';
 import LastPage from '@material-ui/icons/LastPage';
 import Remove from '@material-ui/icons/Remove';
@@ -54,8 +54,6 @@ import React, {
 import { SelectProps } from '../Select/Select';
 import { Filter, Filters, SelectedFilters, Without } from './Filters';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import { Card } from '@material-ui/core';
-import { vars } from '../../../../app/src/themes/variables';
 
 // Material-table is not using the standard icons available in in material-ui. https://github.com/mbrn/material-table/issues/51
 const tableIcons: Icons = {
@@ -68,9 +66,7 @@ const tableIcons: Icons = {
   )),
   Edit: forwardRef((props, ref) => <Edit {...props} ref={ref} />),
   Export: forwardRef((props, ref) => <SaveAlt {...props} ref={ref} />),
-  Filter: forwardRef((props, ref) => (
-    <FilterAltOutlinedIcon {...props} ref={ref} />
-  )),
+  Filter: forwardRef((props, ref) => <FilterList {...props} ref={ref} />),
   FirstPage: forwardRef((props, ref) => <FirstPage {...props} ref={ref} />),
   LastPage: forwardRef((props, ref) => <LastPage {...props} ref={ref} />),
   NextPage: forwardRef((props, ref) => <ChevronRight {...props} ref={ref} />),
@@ -78,9 +74,7 @@ const tableIcons: Icons = {
     <ChevronLeft {...props} ref={ref} />
   )),
   ResetSearch: forwardRef((props, ref) => <Clear {...props} ref={ref} />),
-  Search: forwardRef((props, ref) => (
-    <FilterAltOutlinedIcon {...props} ref={ref} />
-  )), // Filtro
+  Search: forwardRef((props, ref) => <FilterList {...props} ref={ref} />),
   SortArrow: forwardRef((props, ref) => <ArrowUpward {...props} ref={ref} />),
   ThirdStateCheck: forwardRef((props, ref) => <Remove {...props} ref={ref} />),
   ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />),
@@ -112,7 +106,7 @@ const StyledMTableHeader = withStyles(
       borderTop: `1px solid ${theme.palette.grey.A100}`,
       borderBottom: `1px solid ${theme.palette.grey.A100}`,
       // withStyles hasn't a generic overload for theme
-      fontWeight: theme.typography.fontWeightBold as any,
+      fontWeight: theme.typography.fontWeightBold as any, // TSC
       position: 'static',
       wordBreak: 'normal',
     },
@@ -132,21 +126,8 @@ const StyledMTableToolbar = withStyles(
         fontWeight: theme.typography.fontWeightBold,
       },
     },
-    // ? Filtro tabla
     searchField: {
       paddingRight: theme.spacing(2),
-      padding: '0px 0px 0px 1px',
-      background:
-        theme.palette.type === 'dark' ? vars.dark.background.white : 'none',
-      border: theme.palette.type === 'dark' ? 'none' : '1px solid',
-      borderRadius: '12px',
-      // ? Color del texto y iconos filtro
-      '& input': {
-        color: 'black',
-      },
-      '& svg': {
-        fill: 'black',
-      },
     },
   }),
   { name: 'BackstageTableToolbar' },
@@ -163,7 +144,7 @@ const useFilterStyles = makeStyles<BackstageTheme>(
       justifyContent: 'space-between',
     },
     title: {
-      fontWeight: theme.typography.fontWeightBold as any,
+      fontWeight: theme.typography.fontWeightBold as any, // TSC
       fontSize: 18,
       whiteSpace: 'nowrap',
     },
@@ -174,23 +155,10 @@ const useFilterStyles = makeStyles<BackstageTheme>(
 export type TableClassKey = 'root';
 
 const useTableStyles = makeStyles<BackstageTheme>(
-  theme => ({
+  () => ({
     root: {
       display: 'flex',
       alignItems: 'start',
-    },
-    cardContainer: {
-      width: '100%',
-      background: `${
-        theme.palette.type === 'dark'
-          ? vars.dark.background.card
-          : vars.light.background.card
-      }`,
-      borderRadius: 12,
-      paddingLeft: 20,
-      paddingRight: 20,
-      paddingBottom: 20,
-      // backdropFilter: 'blur(120px)',
     },
   }),
   { name: 'BackstageTable' },
@@ -206,7 +174,7 @@ function convertColumns<T extends object>(
     let cellStyle = column.cellStyle || {};
 
     if (column.highlight) {
-      headerStyle.color = theme.palette.text.secondary;
+      headerStyle.color = theme.palette.textContrast;
 
       if (typeof cellStyle === 'object') {
         (cellStyle as React.CSSProperties).fontWeight =
@@ -304,10 +272,10 @@ export function TableToolbar(toolbarProps: {
       <Box className={filtersClasses.root}>
         <Box className={filtersClasses.root}>
           <IconButton onClick={toggleFilters} aria-label="filter list">
-            <FilterAltOutlinedIcon />
+            <FilterList />
           </IconButton>
           <Typography className={filtersClasses.title}>
-            Filte ({selectedFiltersLength})
+            Filters ({selectedFiltersLength})
           </Typography>
         </Box>
         <StyledMTableToolbar
@@ -551,37 +519,35 @@ export function Table<T extends object = {}>(props: TableProps<T>) {
           onChangeFilters={setSelectedFilters}
         />
       )}
-      <Card className={tableClasses.cardContainer}>
-        <MTable<T>
-          components={{
-            Header: StyledMTableHeader,
-            Toolbar,
-            Body,
-            ...components,
-          }}
-          options={{ ...defaultOptions, ...options }}
-          columns={MTColumns}
-          icons={tableIcons}
-          title={
-            <>
-              <Typography variant="h5" component="h2">
-                {title}
+      <MTable<T>
+        components={{
+          Header: StyledMTableHeader,
+          Toolbar,
+          Body,
+          ...components,
+        }}
+        options={{ ...defaultOptions, ...options }}
+        columns={MTColumns}
+        icons={tableIcons}
+        title={
+          <>
+            <Typography variant="h5" component="h2">
+              {title}
+            </Typography>
+            {subtitle && (
+              <Typography color="textSecondary" variant="body1">
+                {subtitle}
               </Typography>
-              {subtitle && (
-                <Typography color="textSecondary" variant="body1">
-                  {subtitle}
-                </Typography>
-              )}
-            </>
-          }
-          data={typeof data === 'function' ? data : tableData}
-          style={{ width: '100%' }}
-          localization={{
-            toolbar: { searchPlaceholder: 'Filter', searchTooltip: 'Filter' },
-          }}
-          {...restProps}
-        />
-      </Card>
+            )}
+          </>
+        }
+        data={typeof data === 'function' ? data : tableData}
+        style={{ width: '100%' }}
+        localization={{
+          toolbar: { searchPlaceholder: 'Filter', searchTooltip: 'Filter' },
+        }}
+        {...restProps}
+      />
     </Box>
   );
 }

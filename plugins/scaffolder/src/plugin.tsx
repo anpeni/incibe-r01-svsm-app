@@ -129,7 +129,7 @@ export const EntityNamePickerFieldExtension = scaffolderPlugin.provide(
   createScaffolderFieldExtension({
     component: EntityNamePicker,
     name: 'EntityNamePicker',
-    validation: entityNamePickerValidation,
+    validation: entityNamePickerValidation as any, // TSC
     schema: EntityNamePickerSchema,
   }),
 );
@@ -144,7 +144,7 @@ export const RepoUrlPickerFieldExtension = scaffolderPlugin.provide(
   createScaffolderFieldExtension({
     component: RepoUrlPicker,
     name: 'RepoUrlPicker',
-    validation: repoPickerValidation,
+    validation: repoPickerValidation as any, // TSC
     schema: RepoUrlPickerSchema,
   }),
 );

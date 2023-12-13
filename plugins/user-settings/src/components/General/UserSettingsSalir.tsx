@@ -1,8 +1,8 @@
 import React from 'react';
 import { identityApiRef, errorApiRef, useApi } from '@backstage/core-plugin-api';
 import {
-  SidebarItem,
-} from '@backstage/core-components';
+  SidebarItemMod,
+} from '@internal/core-components';
 
 import { PowerSettingsNewOutlined } from '@material-ui/icons';
 
@@ -15,7 +15,7 @@ export const UserSettingsSalir = () => {
   };
 
   return (
-    <SidebarItem  
+    <SidebarItemMod  
       icon={PowerSettingsNewOutlined} // Asegúrate de importar este icono
       text="Log Out" 
       onClick={handleSignOut}

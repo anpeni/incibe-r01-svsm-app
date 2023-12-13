@@ -31,7 +31,7 @@ const useStyles = makeStyles(
       color: theme.palette.common.white,
     },
     avatarText: {
-      fontWeight: theme.typography.fontWeightBold as any,
+      fontWeight: theme.typography.fontWeightBold as any, // TSC
       letterSpacing: '1px',
       textTransform: 'uppercase',
     },

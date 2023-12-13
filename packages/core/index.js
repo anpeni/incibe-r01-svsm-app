@@ -108,6 +108,7 @@ var _exportNames = {
   StepConnector: true,
   StepContent: true,
   StepIcon: true,
+  StepIconMod: true,
   StepLabel: true,
   Stepper: true,
   SvgIcon: true,
@@ -711,6 +712,12 @@ Object.defineProperty(exports, "StepIcon", {
   enumerable: true,
   get: function get() {
     return _StepIcon.default;
+  }
+});
+Object.defineProperty(exports, "StepIconMod", {
+  enumerable: true,
+  get: function get() {
+    return _StepIconMod.default;
   }
 });
 Object.defineProperty(exports, "StepLabel", {

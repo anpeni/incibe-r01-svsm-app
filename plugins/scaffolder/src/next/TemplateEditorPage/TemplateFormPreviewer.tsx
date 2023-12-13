@@ -33,7 +33,7 @@ import React, { useCallback, useState } from 'react';
 import useAsync from 'react-use/lib/useAsync';
 import yaml from 'yaml';
 import { type LayoutOptions } from '@backstage/plugin-scaffolder-react';
-import { NextFieldExtensionOptions } from '@backstage/plugin-scaffolder-react/alpha';
+import { NextFieldExtensionOptions } from '@backstage/plugin-scaffolder-react-antiguo/alpha';
 import { TemplateEditorForm } from './TemplateEditorForm';
 import { TemplateEditorTextArea } from '../../components/TemplateEditorPage/TemplateEditorTextArea';
 

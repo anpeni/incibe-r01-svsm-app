@@ -32,6 +32,8 @@ export const createValidator = (
   validators: Record<string, undefined | CustomFieldValidator<unknown>>,
   context: {
     apiHolder: ApiHolder;
+    formData: JsonObject; // TSC
+    schema: JsonObject; // TSC
   },
 ) => {
   function validate(

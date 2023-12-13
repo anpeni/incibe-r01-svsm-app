@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import { InfoCardSettings } from '@backstage/core-components';
+import { InfoCardMod } from '@internal/core-components';
 import { configApiRef, useApi } from '@backstage/core-plugin-api';
 import { Chip, Typography } from '@material-ui/core';
 import React from 'react';
@@ -124,7 +124,7 @@ export const ImportInfoCard = (props: ImportInfoCardProps) => {
   const classes = useStyles();
 
   return (
-    <InfoCardSettings className={classes.card}
+    <InfoCardMod className={classes.card}
       title=""
       //titleTypographyProps={{ component: 'h3' }}
       deepLink={{
@@ -176,6 +176,6 @@ export const ImportInfoCard = (props: ImportInfoCardProps) => {
           )}
         </>
       )}
-    </InfoCardSettings>
+    </InfoCardMod>
   );
 };

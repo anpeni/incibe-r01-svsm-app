@@ -15,7 +15,7 @@
  */
 
 import { ConfigReader } from '@backstage/core-app-api';
-import { TableColumn, TableProps } from '@backstage/core-components';
+import { TableColumnMod, TablePropsMod } from '@internal/core-components';
 import {
   ConfigApi,
   configApiRef,
@@ -24,7 +24,7 @@ import {
 import {
   CatalogTableRow,
   DefaultStarredEntitiesApi,
-} from '@backstage/plugin-catalog';
+} from '@internal/plugin-catalog';
 import {
   CatalogApi,
   catalogApiRef,
@@ -133,7 +133,7 @@ describe('DefaultApiExplorerPage', () => {
   });
 
   it('should render the custom column passed as prop', async () => {
-    const columns: TableColumn<CatalogTableRow>[] = [
+    const columns: TableColumnMod<CatalogTableRow>[] = [
       { title: 'Foo', field: 'entity.foo' },
       { title: 'Bar', field: 'entity.bar' },
       { title: 'Baz', field: 'entity.spec.lifecycle' },
@@ -164,7 +164,7 @@ describe('DefaultApiExplorerPage', () => {
   });
 
   it('should render the custom actions of an item passed as prop', async () => {
-    const actions: TableProps<CatalogTableRow>['actions'] = [
+    const actions: TablePropsMod<CatalogTableRow>['actions'] = [
       () => {
         return {
           icon: () => <DashboardIcon fontSize="small" />,

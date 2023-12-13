@@ -50,7 +50,7 @@ type HeaderTabsProps = {
  * @public
  *
  */
-export function HeaderTabsSettings(props: HeaderTabsProps) {
+export function HeaderTabsMod(props: HeaderTabsProps) {
   const { tabs, onChange, selectedIndex } = props;
   const [selectedTab, setSelectedTab] = useState<number>(selectedIndex ?? 0);
   const useStyles = makeStyles(

@@ -13,8 +13,7 @@ export var styles = {
     width: '100%',
     padding: '24px 16px',
     margin: '-24px -16px',
-    boxSizing: 'content-box',
-    
+    boxSizing: 'content-box'
   },
 
   /* Styles applied to the root element if `orientation="horizontal"`. */
@@ -24,8 +23,7 @@ export var styles = {
   vertical: {
     justifyContent: 'flex-start',
     padding: '8px',
-    margin: '-8px',
-    
+    margin: '-8px'
   },
 
   /* Styles applied to the `ButtonBase` touch-ripple. */

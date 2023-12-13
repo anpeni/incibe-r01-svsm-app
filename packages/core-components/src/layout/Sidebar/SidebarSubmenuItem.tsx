@@ -1,3 +1,18 @@
+/*
+ * Copyright 2021 The Backstage Authors
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 import React, { useContext, useState } from 'react';
 import { resolvePath, useLocation, useResolvedPath } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
@@ -13,296 +28,118 @@ import { SidebarItemWithSubmenuContext } from './config';
 import { isLocationMatch } from './utils';
 import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
-import { OverridableComponent } from '@mui/material/OverridableComponent';
-import { SvgIconTypeMap } from '@mui/material';
-import { useSidebarOpenState } from './SidebarOpenStateContext';
-import { ExpandLess, ExpandLessOutlined, Height } from '@material-ui/icons';
-import { ExpandMore, ExpandMoreOutlined } from '@material-ui/icons';
-import { SidebarSubmenu } from './SidebarSubmenu';
-import { SidebarSubmenuItemModificado } from './SidebarSubmenuItemModificado';
-import { vars } from '../../../../app/src/themes/variables';
+
 const useStyles = makeStyles<BackstageTheme>(
   theme => ({
     item: {
-      fontSize: '16px',//16px
-      fontFamily: 'Inter, sans-serif',//inter
-      lineHeight: '1.57',
-      height: 48,
-      display: 'flex',
-      alignItems: 'center',
-      color: theme.palette.navigation.color,
-      padding: theme.spacing(2.5),
-      cursor: 'pointer',
-      position: 'relative',
-      border: 'none',
-      margingLeft: '-16px'
-    },
-    sombreado: {
-      marginLeft: '18px',
-      borderRadius: '12px',
-      paddingLeft: '0px',
-      width: '185px',
-      '&:hover': {
-        background: `${theme.palette.type === 'dark'
-          ? vars.dark.background.highlight
-          : vars.light.background.white
-          }`,
-      },
-    },
-    sombreado2: {
-      '&:hover': {
-        background: `${theme.palette.type === 'dark'
-          ? vars.dark.background.highlight
-          : vars.light.background.white
-          }`,
-        borderRadius: '12px',
-      },
-      marginLeft: '13px',
-      width: '48px',
-    },
-    itemIcono: {
-      fontSize: '16px',//16px
-      fontFamily: 'Inter, sans-serif',//inter
-      lineHeight: '1.57',
       height: 48,
       width: '100%',
+      '&:hover': {
+        background:
+          theme.palette.navigation.navItem?.hoverBackground || '#6f6f6f',
+        color: theme.palette.navigation.selectedColor,
+      },
       display: 'flex',
       alignItems: 'center',
       color: theme.palette.navigation.color,
       padding: theme.spacing(2.5),
       cursor: 'pointer',
       position: 'relative',
+      background: 'none',
       border: 'none',
     },
-
     itemContainer: {
       width: '100%',
     },
     selected: {
-      background: `${theme.palette.type === 'dark'
-        ? vars.dark.background.highlight
-        : vars.light.background.white
-        }`,
-      color: `${theme.palette.type === 'dark' ? '#FFF ' : 'rgba(6, 11, 40, 0.8)'
-        }`,
-      borderRadius: '9px',
-      width: '185px',
-      marginLeft: '0px',
-      borderLeft: `solid 9px ${vars.light.background.accent}`,
-    },
-    selectedCerrado: {
-      background: `${theme.palette.type === 'dark'
-        ? vars.dark.background.highlight
-        : vars.light.background.white
-        }`,
-      width: 1,
-      marginLeft: '-2px',
-      minWidth: '50px',
-      widht: '20px',
-      
+      background: '#6f6f6f',
+      color: theme.palette.common.white,
     },
     label: {
       margin: theme.spacing(1.75),
-      marginLeft: theme.spacing(1.5),
-      fontSize: 16,
-      fontWeight: 'lighter',
+      marginLeft: theme.spacing(1),
+      fontSize: theme.typography.body2.fontSize,
       whiteSpace: 'nowrap',
-      //overflow: 'hidden',
-      fontFamily: 'Inter, sans-serif !important',
+      overflow: 'hidden',
       'text-overflow': 'ellipsis',
       lineHeight: 1,
-      color: `${theme.palette.type === 'dark' ? 'rgba(255, 255, 255, 0.60)' : 'RGB(6, 11, 40)'
-        }`,
-    },
-    labelSelected: {
-      margin: theme.spacing(1.75),
-      marginLeft: theme.spacing(1.5),
-      fontSize: 16,
-      fontWeight: "lighter",
-      whiteSpace: 'nowrap',
-      //overflow: 'hidden',
-      fontFamily: 'Inter, sans-serif !important',
-      'text-overflow': 'ellipsis',
-      lineHeight: 1,
-      color: `${theme.palette.type === 'dark'
-        ? vars.dark.background.white
-        : vars.light.background.accent
-        }`,
     },
     subtitle: {
       fontSize: 10,
-      color: 'white',
       whiteSpace: 'nowrap',
       overflow: 'hidden',
       'text-overflow': 'ellipsis',
     },
     dropdownArrow: {
       position: 'absolute',
-      right: 51,
-    },
-    expandClose: {
-      position: 'absolute',
-      fontWeight: 'bold',
-      right: -33,
-      color: `${theme.palette.type === 'dark' ? 'rgba(255, 255, 255, 0.60)' : 'rgba(6, 11, 40)'
-        }`,
-    },
-    expandOpen: {
-      position: 'absolute',
-      right: 6,
-      color: `${theme.palette.type === 'dark'
-        ? vars.dark.background.white
-        : vars.light.background.accent
-        }`,
+      right: 21,
     },
     dropdown: {
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'end',
-      marginLeft: '-5px',
     },
     dropdownItem: {
       width: '100%',
       padding: '10px 0 10px 0',
+      '&:hover': {
+        background:
+          theme.palette.navigation.navItem?.hoverBackground || '#6f6f6f',
+        color: theme.palette.navigation.selectedColor,
+      },
     },
-    dropdownItemSeleccionado: {
-      width: '100%',
-      padding: '10px 20px 10px 0',
-    },
-    icono: {
-      color: `${theme.palette.type === 'dark' ? 'rgba(255, 255, 255, 0.60)' : 'rgba(6, 11, 40)'
-        }`,
-      marginLeft: '5px',
-    },
-    iconoSelect: {
-      color: vars.dark.background.accent,
-      marginLeft: '-4px',
-    },
-    iconoSelectCerrado: {
-      color: vars.dark.background.accent,
-      marginLeft: '-5px',
-
-    },
-    iconocentrado: {
-    },
-    iconocentradoCerrado: {
-      marginLeft: '-7px',
-    },
-
     textContent: {
-      color: `${theme.palette.type === 'dark' ? 'rgba(255, 255, 255, 0.60)' : 'rgba(6, 11, 40, 0.80)'
-        }`,
+      color: theme.palette.navigation.color,
       paddingLeft: theme.spacing(4),
       paddingRight: theme.spacing(1),
-      fontSize: '13px',//16px
-      fontFamily: 'Inter, sans-serif',//inter
+      fontSize: theme.typography.body2.fontSize,
       whiteSpace: 'nowrap',
       overflow: 'hidden',
       'text-overflow': 'ellipsis',
-      marginLeft: '-18px',
     },
-    textContentOscuro: {
-      color: 'rgba(255, 255, 255, 0.60)',
-      paddingLeft: theme.spacing(4),
-      paddingRight: theme.spacing(1),
-      fontSize: '13px',//16px
-      fontFamily: 'Inter, sans-serif',//inter
-      whiteSpace: 'nowrap',
-      overflow: 'hidden',
-      'text-overflow': 'ellipsis',
-      marginLeft: '-18px',
-      '&:hover': {
-        background: vars.dark.background.highlight,
-        borderRadius: '12px',
-        padding: '10px 80px 10px 15px',
-        marginLeft: '-1px',
-      },
-    },
-    textContentClaro: {
-      color: 'rgba(6, 11, 40, 0.8)',
-      paddingLeft: theme.spacing(4),
-      paddingRight: theme.spacing(1),
-      fontSize: '13px',//16px
-      fontFamily: 'Inter, sans-serif',//inter
-      whiteSpace: 'nowrap',
-      overflow: 'hidden',
-      'text-overflow': 'ellipsis',
-      marginLeft: '-18px',
-      '&:hover': {
-        borderRadius: '12px',
-        padding: '10px 80px 10px 15px',
-        marginLeft: '-1px',
-      },
-    },
-    textContentSelected: {
-      color: `${theme.palette.type === 'dark' ? '#FFF' : 'rgba(6, 11, 40)'
-        }`,
-      fontSize: '13px',//16px
-      fontFamily: 'Inter, sans-serif',//inter
-      whiteSpace: 'nowrap',
-      overflow: 'hidden',
-      'text-overflow': 'ellipsis',
-      marginLeft: '-1px',
-      background: `${theme.palette.type === 'dark'
-          ? vars.dark.background.highlight
-          : vars.light.background.white
-        }`,
-      padding: '10px 80px 10px 15px',
-      borderRadius: '12px',
-    },
-    divMenu: {
-      height: 'auto',
-      padding: '0',
-      position: 'relative',
-      marginLeft: '53px'
-    },
-    divMenuCerrado: {
-      height: 'auto',
-      padding: '0',
-      position: 'relative',
-      marginLeft: '35px'
-    },
-    lineaVertical: {
-      height: 'calc(100% - 20px)',  // 20px menos que el contenedor
-      borderLeft: `${theme.palette.type === 'dark' ? '2px solid rgba(255, 255, 255, 0.30)' : '2px solid black'
-        }`,
-      position: 'absolute',  // Posicionado de manera absoluta dentro del div padre
-      top: '0'  // Alineado con la parte superior del div padre
-    },
-    lineaHorizontal: {
-      width: '10px',
-      borderBottom: `${theme.palette.type === 'dark' ? '2px solid rgba(255, 255, 255, 0.30)' : '2px solid black'
-        }`,
-      marginLeft: '6.5px'
-    },
-    divLineaHorizontalItem: {
-      display: 'flex',
-      flexDirection: 'row',
-      alignItems: 'center',
-    }
   }),
   { name: 'BackstageSidebarSubmenuItem' },
 );
 
-
+/**
+ * Clickable item displayed when submenu item is clicked.
+ * title: Text content of item
+ * to: Path to navigate to when item is clicked
+ *
+ * @public
+ */
 export type SidebarSubmenuItemDropdownItem = {
   title: string;
   to: string;
 };
-
+/**
+ * Holds submenu item content.
+ *
+ * @remarks
+ * title: Text content of submenu item
+ * subtitle: A subtitle displayed under the main title
+ * to: Path to navigate to when item is clicked
+ * icon: Icon displayed on the left of text content
+ * dropdownItems: Optional array of dropdown items displayed when submenu item is clicked.
+ *
+ * @public
+ */
 export type SidebarSubmenuItemProps = {
   title: string;
   subtitle?: string;
   to?: string;
-  icon?: IconComponent | OverridableComponent<SvgIconTypeMap>;
+  icon?: IconComponent;
   dropdownItems?: SidebarSubmenuItemDropdownItem[];
   exact?: boolean;
-  selectedObject?: any;
-  showDropDown: boolean;
-  setShowDropDown: (show: boolean) => void; // Actualizado para especificar el tipo de función
 };
+
+/**
+ * Item used inside a submenu within the sidebar.
+ *
+ * @public
+ */
 export const SidebarSubmenuItem = (props: SidebarSubmenuItemProps) => {
-  const { title, subtitle, to, icon: Icon, dropdownItems, exact, showDropDown, setShowDropDown } = props;
+  const { title, subtitle, to, icon: Icon, dropdownItems, exact } = props;
   const classes = useStyles();
   const { setIsHoveredOn } = useContext(SidebarItemWithSubmenuContext);
   const closeSubmenu = () => {
@@ -310,170 +147,83 @@ export const SidebarSubmenuItem = (props: SidebarSubmenuItemProps) => {
   };
   const toLocation = useResolvedPath(to ?? '');
   const currentLocation = useLocation();
-  const [selectedObject, setSelectedObject] = useState(null);
   let isActive = isLocationMatch(currentLocation, toLocation, exact);
 
-  //const [showDropDown, setShowDropDown] = useState(false);
+  const [showDropDown, setShowDropDown] = useState(false);
   const handleClickDropdown = () => {
     setShowDropDown(!showDropDown);
   };
-
-  const handleObjectClick = (object: { title: any; to?: string; }) => {
-    setSelectedObject(object.title);
-  };
-
-  const handleSelectedObjectChange = (newSelectedObject: any) => {
-    console.log("newSelectedObject.title: " + newSelectedObject.title);
-    setSelectedObject(newSelectedObject.title);
-
-  };
-
   if (dropdownItems !== undefined) {
     dropdownItems.some(item => {
       const resolvedPath = resolvePath(item.to);
       isActive = isLocationMatch(currentLocation, resolvedPath, exact);
       return isActive;
     });
-
-    const { isOpen } = useSidebarOpenState();
     return (
-      <>
-        {isOpen ? (
-          // <Box className={classes.itemContainer}>
-          <>
-            <Box className={classes.itemContainer}>
-              <div className={classes.sombreado}>
-                <Button
-                  role="button"
-                  onClick={handleClickDropdown}
-                  onTouchStart={e => e.stopPropagation()}
-                  className={classnames(
-                    classes.item,
-                    (showDropDown ? classes.selected : undefined)
-                  )}>
-                  {Icon &&
-                    <Icon
-                      fontSize="small"
-                      className={classnames(
-                        showDropDown ? classes.iconoSelect : classes.icono,
-                      )} />
-                  }
-                  <Typography
-                    component="span"
-                    className={classnames(
-                      showDropDown ? classes.labelSelected : classes.label,
-                    )}>
-                    {title}
-                    <br />
-                  </Typography>
-                  {showDropDown ? (
-                    <ExpandLess className={classes.expandOpen} />
-                  ) : (
-                    <ExpandMore className={classes.expandClose} />
-                  )}
-                </Button>
-              </div>
-              {dropdownItems && showDropDown && (
-                <div className={classes.divMenu}>
-                  {showDropDown && (<div className={classes.lineaVertical}></div>)}
-                  <Box className={classes.dropdown}>
-                    {dropdownItems.map((object, key) => (
-                      <Link
-                        to={object.to}
-                        underline="none"
-                        className={
-                          location.pathname === object.to
-                            ? classes.dropdownItemSeleccionado
-                            : classes.dropdownItem
-                        }
-                        onClick={() => handleObjectClick(object)}
-                        onTouchStart={e => e.stopPropagation()}
-                      >
-                        <div className={classes.divLineaHorizontalItem}>
-                          {showDropDown &&
-                            (<div className={classes.lineaHorizontal}></div>)}
-                          <div className={classnames(classes.sombreadoItem)}>
-                            <Typography component="span"
-                              className={
-                                location.pathname === object.to  // Comprobar si el objeto está seleccionado
-                                  ? classes.textContentSelected
-                                  : classes.textContent
-                              }>
-                              {object.title}
-                            </Typography>
-                          </div>
-                        </div>
-                      </Link>
-                    ))}
-                  </Box>
-                </div>
-              )}
-            </Box>
-            {/* <div>{showDropDown ? 'Abierto' : 'Cerrado'}</div> */}
-          </>
-        ) : (
-          <Box >
-            <div className={classes.sombreado2}>
-              <Button
-                role="button"
-                onClick={handleClickDropdown}
-                onTouchStart={e => e.stopPropagation()}
-                className={classnames(
-                  (showDropDown ? `${classes.selectedCerrado} ${classes.itemIcono}` : classes.itemIcono)
-                )}
-              >
-                {Icon &&
-                  <Icon
-                    fontSize="small"
-                    className={classnames(
-                      (showDropDown ? `${classes.iconoSelectCerrado}` : `${classes.icono} ${classes.iconocentradoCerrado}`)
-                    )} />}
-              </Button>
-            </div>
-            {dropdownItems && showDropDown && (
-              <div className={classes.divMenuCerrado}>
-                {showDropDown && (<div className={classes.lineaVertical}></div>)}
-                <Box className={classes.dropdown}>
-                  {dropdownItems.map((object, key) => (
-                    <Link
-                      to={object.to}
-                      underline="none"
-                      className={classes.dropdownItem}
-                      onClick={closeSubmenu}
-                      onTouchStart={e => e.stopPropagation()}
-                    >
-                      <div className={classes.divLineaHorizontalItem}>
-                        {showDropDown &&
-                          (<div className={classes.lineaHorizontal}>
-                          </div>)}
-                        <div className={classnames(classes.sombreadoItem)}>
-                          <Typography component="span"
-                            className={classnames(
-                              classes.textContentOscuro
-                            )}
-                          >
-                          </Typography>
-                        </div>
-                      </div>
-                    </Link>
-                  ))}
-                </Box>
-                <div className={classnames(classes.contenedorSubmenuFlotante)}>
-                  <SidebarSubmenu >
-                    <SidebarSubmenuItemModificado
-                      selectedFromParent={selectedObject}
-                      dropdownItems={dropdownItems}
-                      onSelectedObjectChange={handleSelectedObjectChange}
-                    />
-                  </SidebarSubmenu>
-                </div>
-              </div>
+      <Box className={classes.itemContainer}>
+        <Tooltip title={title} enterDelay={500} enterNextDelay={500}>
+          <Button
+            role="button"
+            onClick={handleClickDropdown}
+            onTouchStart={e => e.stopPropagation()}
+            className={classnames(
+              classes.item,
+              isActive ? classes.selected : undefined,
             )}
+          >
+            {Icon && <Icon fontSize="small" />}
+            <Typography
+              variant="subtitle1"
+              component="span"
+              className={classes.label}
+            >
+              {title}
+              <br />
+              {subtitle && (
+                <Typography
+                  variant="caption"
+                  component="span"
+                  className={classes.subtitle}
+                >
+                  {subtitle}
+                </Typography>
+              )}
+            </Typography>
+            {showDropDown ? (
+              <ArrowDropUpIcon className={classes.dropdownArrow} />
+            ) : (
+              <ArrowDropDownIcon className={classes.dropdownArrow} />
+            )}
+          </Button>
+        </Tooltip>
+        {dropdownItems && showDropDown && (
+          <Box className={classes.dropdown}>
+            {dropdownItems.map((object, key) => (
+              <Tooltip
+                key={key}
+                title={object.title}
+                enterDelay={500}
+                enterNextDelay={500}
+              >
+                <Link
+                  to={object.to}
+                  underline="none"
+                  className={classes.dropdownItem}
+                  onClick={closeSubmenu}
+                  onTouchStart={e => e.stopPropagation()}
+                >
+                  <Typography component="span" className={classes.textContent}>
+                    {object.title}
+                  </Typography>
+                </Link>
+              </Tooltip>
+            ))}
           </Box>
         )}
-      </>
+      </Box>
     );
   }
+
   return (
     <Box className={classes.itemContainer}>
       <Tooltip title={title} enterDelay={500} enterNextDelay={500}>
@@ -508,18 +258,5 @@ export const SidebarSubmenuItem = (props: SidebarSubmenuItemProps) => {
         </Link>
       </Tooltip>
     </Box>
-  );
-};
-
-type OtroComponenteProps = {
-  showDropDown: boolean;
-};
-
-// Usa el tipo en la definición del componente
-export const OtroComponente: React.FC<OtroComponenteProps> = ({ showDropDown }) => {
-  return (
-    <div>
-      {showDropDown ? 'Abierto' : 'Cerrado'}
-    </div>
   );
 };

@@ -19,7 +19,7 @@ import React from 'react';
 import { UserSettingsSignInAvatar } from './UserSettingsSignInAvatar';
 import { UserSettingsMenu } from './UserSettingsMenu';
 import { useUserProfile } from '../useUserProfileInfo';
-import { InfoCardSettings } from '@backstage/core-components';
+import { InfoCardMod } from '@internal/core-components';
 import { makeStyles } from '@material-ui/core/styles';
 import { BackstageTheme } from '@backstage/theme';
 import { vars } from '../../../../../packages/app/src/themes/variables';
@@ -86,7 +86,7 @@ export const UserSettingsProfileCard = () => {
   const classes = useStyles();
 
   return (
-    <InfoCardSettings className={classes.card} variant="gridItem" title={<span className={classes.titulo}>Profile</span>}>
+    <InfoCardMod className={classes.card} variant="gridItem" title={<span className={classes.titulo}>Profile</span>}>
       <Grid container spacing={6} style={{ marginTop: '-8px' }}>
         <Grid item style={{ marginLeft: '28px' }}>
           <UserSettingsSignInAvatar size={96} />
@@ -115,6 +115,6 @@ export const UserSettingsProfileCard = () => {
           </Grid>
         </Grid>
       </Grid>
-    </InfoCardSettings>
+    </InfoCardMod>
   );
 };

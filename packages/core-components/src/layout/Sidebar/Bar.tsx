@@ -36,15 +36,11 @@ import { useContent } from './Page';
 import { SidebarOpenStateProvider } from './SidebarOpenStateContext';
 import { useSidebarPinState } from './SidebarPinStateContext';
 
-
 /** @public */
 export type SidebarClassKey = 'drawer' | 'drawerOpen';
 const useStyles = makeStyles<BackstageTheme, { sidebarConfig: SidebarConfig }>(
   theme => ({
     drawer: {
-      boxShadow: '0px 4.00525px 13.01708px 0px #000',
-      borderRadius: '12px',
-      backdropFilter: 'blur(120px)',
       display: 'flex',
       flexFlow: 'column nowrap',
       alignItems: 'flex-start',
@@ -53,8 +49,8 @@ const useStyles = makeStyles<BackstageTheme, { sidebarConfig: SidebarConfig }>(
       top: 0,
       bottom: 0,
       zIndex: theme.zIndex.appBar,
-      overflowX: 'visible',
-      overflowY: 'visible',
+      background: theme.palette.navigation.background,
+      overflowX: 'hidden',
       msOverflowStyle: 'none',
       scrollbarWidth: 'none',
       transition: theme.transitions.create('width', {
@@ -72,11 +68,9 @@ const useStyles = makeStyles<BackstageTheme, { sidebarConfig: SidebarConfig }>(
       },
     },
     drawerWidth: props => ({
-      //width: '134px',
       width: props.sidebarConfig.drawerWidthClosed,
     }),
     drawerOpen: props => ({
-      //width: '286px',
       width: props.sidebarConfig.drawerWidthOpen,
       transition: theme.transitions.create('width', {
         easing: theme.transitions.easing.sharp,

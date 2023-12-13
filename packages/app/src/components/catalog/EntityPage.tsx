@@ -23,7 +23,7 @@ import {
   EntityHasApisCard,
   EntityProvidedApisCard,
   EntityProvidingComponentsCard,
-} from '@backstage/plugin-api-docs';
+} from '@internal/plugin-api-docs';
 import {
   EntityAboutCard,
   EntityDependsOnComponentsCard,
@@ -41,7 +41,7 @@ import {
   isKind,
   hasCatalogProcessingErrors,
   isOrphan,
-} from '@backstage/plugin-catalog';
+} from '@internal/plugin-catalog';
 import {
   isGithubActionsAvailable,
   EntityGithubActionsContent,
@@ -119,6 +119,7 @@ import {
   isCircleCIAvailable,
 } from '@backstage/plugin-circleci';
 
+// .--  plugin-weave-flux --
 import {
   EntityFluxGitRepositoriesCard,
   EntityFluxHelmReleasesCard,
@@ -272,7 +273,7 @@ const serviceEntityPage = (
     <EntityLayout.Route if={isJenkinsAvailable} path="/jenkins" title="Jenkins">
       <EntityJenkinsContent />
     </EntityLayout.Route>
-    <EntityLayout.Route
+    {/* <EntityLayout.Route
       path="/git"
       title="Git"
     >
@@ -290,7 +291,7 @@ const serviceEntityPage = (
           </Button>
         }
       />
-    </EntityLayout.Route>
+    </EntityLayout.Route> */}
     <EntityLayout.Route
       if={isBitbucketAvailable}
       path="/bitbucket"
@@ -355,7 +356,7 @@ const websiteEntityPage = (
     <EntityLayout.Route if={isJenkinsAvailable} path="/jenkins" title="Jenkins">
       <EntityJenkinsContent />
     </EntityLayout.Route>
-    <EntityLayout.Route
+    {/* <EntityLayout.Route
       path="/git"
       title="Git"
     >
@@ -373,7 +374,7 @@ const websiteEntityPage = (
           </Button>
         }
       />
-    </EntityLayout.Route>
+    </EntityLayout.Route> */}
     <EntityLayout.Route
       if={isBitbucketAvailable}
       path="/bitbucket"

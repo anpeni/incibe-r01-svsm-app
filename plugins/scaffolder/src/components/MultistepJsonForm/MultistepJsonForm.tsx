@@ -20,7 +20,7 @@ import {
   StepLabel,
   Stepper,
   Typography,
-} from '@material-ui/core';
+} from '@internal/material-ui-core';
 import { JsonObject } from '@backstage/types';
 import {
   errorApiRef,

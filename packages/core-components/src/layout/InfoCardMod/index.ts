@@ -14,9 +14,9 @@
  * limitations under the License.
  */
 
-export { InfoCardSettings } from './InfoCardSettings';
+export { InfoCardMod } from './InfoCardMod';
 export type {
-  InfoCardVariantsSettings,
-  InfoCardClassKeySettings,
-  CardActionsTopRightClassKeySettings,
-} from './InfoCardSettings';
+  InfoCardVariantsMod,
+  InfoCardClassKeyMod,
+  CardActionsTopRightClassKeyMod,
+} from './InfoCardMod';

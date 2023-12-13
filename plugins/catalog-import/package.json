@@ -1,5 +1,5 @@
 {
-  "name": "@backstage/plugin-catalog-import-modificado",
+  "name": "@internal/plugin-catalog-import",
   "description": "A Backstage plugin the helps you import entities into your catalog",
   "version": "0.9.14-next.1",
   "main": "src/index.ts",
@@ -33,15 +33,15 @@
     "clean": "backstage-cli package clean"
   },
   "dependencies": {
-    "@backstage/catalog-client": "^1.4.5",
+    "@backstage/catalog-client": "^1.4.6",
     "@backstage/catalog-model": "^1.4.3",
     "@backstage/config": "^1.1.1",
-    "@backstage/core-plugin-api": "^1.7.0",
+    "@backstage/core-plugin-api": "^1.8.0",
     "@backstage/errors": "^1.2.3",
-    "@backstage/integration": "^1.7.1",
-    "@backstage/integration-react": "^1.1.20",
-    "@backstage/plugin-catalog-common": "^1.0.17",
-    "@backstage/plugin-catalog-react": "^1.8.5",
+    "@backstage/integration": "^1.7.2",
+    "@backstage/integration-react": "^1.1.21",
+    "@backstage/plugin-catalog-common": "^1.0.18",
+    "@backstage/plugin-catalog-react": "^1.9.1",
     "@material-ui/core": "^4.12.2",
     "@material-ui/icons": "^4.9.1",
     "@material-ui/lab": "4.0.0-alpha.61",
@@ -60,10 +60,10 @@
     "react-router-dom": "6.0.0-beta.0 || ^6.3.0"
   },
   "devDependencies": {
-    "@backstage/cli": "^0.23.0",
-    "@backstage/core-app-api": "^1.11.0",
-    "@backstage/dev-utils": "^1.0.22",
-    "@backstage/test-utils": "^1.4.4",
+    "@backstage/cli": "^0.24.0",
+    "@backstage/core-app-api": "^1.11.1",
+    "@backstage/dev-utils": "^1.0.24",
+    "@backstage/test-utils": "^1.4.5",
     "@testing-library/dom": "^8.0.0",
     "@testing-library/jest-dom": "^5.10.1",
     "@testing-library/react": "^12.1.3",

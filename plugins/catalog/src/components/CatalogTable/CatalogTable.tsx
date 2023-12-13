@@ -22,17 +22,19 @@ import {
 } from '@backstage/catalog-model';
 import {
   CodeSnippet,
-  Table,
-  TableColumn,
-  TableProps,
   WarningPanel,
 } from '@backstage/core-components';
+import {
+  TableMod,
+  TableColumnMod,
+  TablePropsMod,
+} from '@internal/core-components';
 import {
   getEntityRelations,
   humanizeEntityRef,
   useEntityList,
   useStarredEntities,
-} from '@backstage/plugin-catalog-react-modificado';
+} from '@internal/plugin-catalog-react';
 import { Typography } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
@@ -51,9 +53,9 @@ import pluralize from 'pluralize';
  * @public
  */
 export interface CatalogTableProps {
-  columns?: TableColumn<CatalogTableRow>[];
-  actions?: TableProps<CatalogTableRow>['actions'];
-  tableOptions?: TableProps<CatalogTableRow>['options'];
+  columns?: TableColumnMod<CatalogTableRow>[];
+  actions?: TablePropsMod<CatalogTableRow>['actions'];
+  tableOptions?: TablePropsMod<CatalogTableRow>['options'];
   emptyContent?: ReactNode;
   subtitle?: string;
 }
@@ -80,7 +82,7 @@ export const CatalogTable = (props: CatalogTableProps) => {
   const { isStarredEntity, toggleStarredEntity } = useStarredEntities();
   const { loading, error, entities, filters } = useEntityList();
 
-  const defaultColumns: TableColumn<CatalogTableRow>[] = useMemo(() => {
+  const defaultColumns: TableColumnMod<CatalogTableRow>[] = useMemo(() => {
     return [
       columnFactories.createTitleColumn({ hidden: true }),
       columnFactories.createNameColumn({ defaultKind: filters.kind?.value }),
@@ -89,7 +91,7 @@ export const CatalogTable = (props: CatalogTableProps) => {
       columnFactories.createTagsColumn(),
     ];
 
-    function createEntitySpecificColumns(): TableColumn<CatalogTableRow>[] {
+    function createEntitySpecificColumns(): TableColumnMod<CatalogTableRow>[] {
       const baseColumns = [
         columnFactories.createSystemColumn(),
         columnFactories.createOwnerColumn(),
@@ -137,7 +139,7 @@ export const CatalogTable = (props: CatalogTableProps) => {
     );
   }
 
-  const defaultActions: TableProps<CatalogTableRow>['actions'] = [
+  const defaultActions: TablePropsMod<CatalogTableRow>['actions'] = [
     ({ entity }) => {
       const url = entity.metadata.annotations?.[ANNOTATION_VIEW_URL];
       const title = 'View';
@@ -234,7 +236,7 @@ export const CatalogTable = (props: CatalogTableProps) => {
     .join(' ');
 
   return (
-    <Table<CatalogTableRow>
+    <TableMod<CatalogTableRow>
       isLoading={loading}
       columns={columns || defaultColumns}
       options={{

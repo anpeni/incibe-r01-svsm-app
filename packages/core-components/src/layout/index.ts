@@ -24,7 +24,7 @@ export * from './HeaderActionMenu';
 export * from './HeaderLabel';
 export * from './HeaderTabs';
 export * from './InfoCard';
-export * from './InfoCardSettings';
+export * from './InfoCardMod';
 export * from './ItemCard';
 export * from './Page';
 export * from './ProxiedSignInPage';

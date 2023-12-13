@@ -19,9 +19,11 @@ import React from 'react';
 import {
   InfoCard,
   InfoCardVariants,
-  Table,
-  TableColumn,
 } from '@backstage/core-components';
+import {
+  TableMod,
+  TableColumnMod,
+} from '@internal/core-components';
 import { EntityLabelsEmptyState } from './EntityLabelsEmptyState';
 import { makeStyles, Typography } from '@material-ui/core';
 
@@ -42,7 +44,7 @@ export const EntityLabelsCard = (props: EntityLabelsCardProps) => {
   const { entity } = useEntity();
   const classes = useStyles();
 
-  const columns: TableColumn<{ key: string; value: string }>[] = [
+  const columns: TableColumnMod<{ key: string; value: string }>[] = [
     {
       render: row => {
         return (
@@ -64,7 +66,7 @@ export const EntityLabelsCard = (props: EntityLabelsCardProps) => {
       {!labels || Object.keys(labels).length === 0 ? (
         <EntityLabelsEmptyState />
       ) : (
-        <Table
+        <TableMod
           columns={columns}
           data={Object.keys(labels).map(labelKey => ({
             key: labelKey,

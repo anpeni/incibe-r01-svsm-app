@@ -19,9 +19,9 @@ import { TabProps } from '@material-ui/core';
 import {
   Header,
   Page,
-  RoutedTabs,
+  RoutedTabsMod,
   useSidebarPinState,
-} from '@backstage/core-components';
+} from '@internal/core-components';
 import {
   attachComponentData,
   useElementFilter,
@@ -83,7 +83,7 @@ export const SettingsLayout = (props: SettingsLayoutProps) => {
         />
       )}
 
-      <RoutedTabs routes={routes} />
+      <RoutedTabsMod routes={routes} />
 
 
 

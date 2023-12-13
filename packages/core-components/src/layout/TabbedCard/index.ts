@@ -14,6 +14,12 @@
  * limitations under the License.
  */
 
+export { CardTabMod, TabbedCardMod } from './TabbedCardMod';
+export type {
+  CardTabClassKeyMod,
+  TabbedCardClassKeyMod,
+  BoldHeaderClassKeyMod,
+} from './TabbedCardMod';
 export { CardTab, TabbedCard } from './TabbedCard';
 export type {
   CardTabClassKey,

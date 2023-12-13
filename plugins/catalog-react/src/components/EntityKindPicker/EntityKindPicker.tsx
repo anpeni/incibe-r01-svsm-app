@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import { Select } from '@backstage/core-components';
+import { SelectMod } from '@internal/core-components';
 import { alertApiRef, useApi } from '@backstage/core-plugin-api';
 import { Box } from '@material-ui/core';
 import React, { useEffect, useMemo, useState } from 'react';
@@ -123,7 +123,7 @@ export const EntityKindPicker = (props: EntityKindPickerProps) => {
 
   return hidden ? null : (
     <Box>
-      <Select
+      <SelectMod
         label="Kind"
         items={items}
         selected={selectedKind.toLocaleLowerCase('en-US')}

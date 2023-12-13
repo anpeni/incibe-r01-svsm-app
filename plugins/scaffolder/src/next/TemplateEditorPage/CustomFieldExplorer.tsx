@@ -34,7 +34,7 @@ import yaml from 'yaml';
 import {
   NextFieldExtensionOptions,
   Form,
-} from '@backstage/plugin-scaffolder-react/alpha';
+} from '@backstage/plugin-scaffolder-react-antiguo/alpha';
 import { TemplateEditorForm } from './TemplateEditorForm';
 import validator from '@rjsf/validator-ajv8';
 

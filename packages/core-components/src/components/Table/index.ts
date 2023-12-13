@@ -14,10 +14,23 @@
  * limitations under the License.
  */
 
+export type { TableFiltersClassKeyMod } from './FiltersMod';
 export type { TableFiltersClassKey } from './Filters';
 export { SubvalueCell } from './SubvalueCell';
 export type { SubvalueCellClassKey } from './SubvalueCell';
+export { TableMod } from './TableMod';
 export { Table } from './Table';
+export type {
+  TableColumnMod,
+  TableFilterMod,
+  TablePropsMod,
+  TableOptionsMod,
+  TableStateMod,
+  TableClassKeyMod,
+  FiltersContainerClassKeyMod,
+  TableHeaderClassKeyMod,
+  TableToolbarClassKeyMod,
+} from './TableMod';
 export type {
   TableColumn,
   TableFilter,

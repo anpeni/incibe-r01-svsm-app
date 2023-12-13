@@ -17,6 +17,7 @@
 import { CatalogClient } from '@backstage/catalog-client';
 import { createDevApp } from '@backstage/dev-utils';
 import { scmIntegrationsApiRef } from '@backstage/integration-react';
+import { Entity } from '@backstage/catalog-model';
 import {
   catalogApiRef,
   starredEntitiesApiRef,
@@ -98,11 +99,11 @@ createDevApp()
       <NextScaffolderPage
         groups={[
           {
-            filter: e => e.metadata.tags?.includes('techdocs') || false,
+            filter: (e: Entity) => e.metadata.tags?.includes('techdocs') || false, // TSC
             title: 'Techdocs',
           },
           {
-            filter: e => e.metadata.tags?.includes('react') || false,
+            filter: (e: Entity) => e.metadata.tags?.includes('react') || false, // TSC
             title: 'React',
           },
         ]}

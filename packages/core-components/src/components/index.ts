@@ -42,6 +42,7 @@ export * from './SimpleStepper';
 export * from './Status';
 export * from './StructuredMetadataTable';
 export * from './SupportButton';
+export * from './SupportButton';
 export * from './TabbedLayout';
 export * from './Table';
 export * from './TrendLine';

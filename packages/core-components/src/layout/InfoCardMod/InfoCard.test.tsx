@@ -17,7 +17,7 @@
 import React from 'react';
 import { renderInTestApp } from '@backstage/test-utils';
 import { within } from '@testing-library/react';
-import { InfoCardSettings } from './InfoCardSettings';
+import { InfoCardMod } from './InfoCardMod';
 
 const minProps = {
   title: 'Some title',
@@ -29,19 +29,19 @@ const minProps = {
 
 describe('<InfoCard />', () => {
   it('renders without exploding', async () => {
-    const rendered = await renderInTestApp(<InfoCardSettings {...minProps} />);
+    const rendered = await renderInTestApp(<InfoCardMod {...minProps} />);
     expect(rendered.getByText('Some title')).toBeInTheDocument();
   });
 
   it('renders a deepLink when prop is set', async () => {
-    const rendered = await renderInTestApp(<InfoCardSettings {...minProps} />);
+    const rendered = await renderInTestApp(<InfoCardMod {...minProps} />);
     expect(rendered.getByText('A deepLink title')).toBeInTheDocument();
   });
 
   describe('Subheader', () => {
     it('shows the subheader passed in via the subheader prop', async () => {
       const { getByTestId } = await renderInTestApp(
-        <InfoCardSettings {...minProps} subheader="example subheader" />,
+        <InfoCardMod {...minProps} subheader="example subheader" />,
       );
 
       const subheaderContainer = getByTestId('info-card-subheader');
@@ -53,7 +53,7 @@ describe('<InfoCard />', () => {
 
     it('shows the icon passed in via the icon prop', async () => {
       const { getByTestId } = await renderInTestApp(
-        <InfoCardSettings {...minProps} icon={<span data-testid="mock-icon" />} />,
+        <InfoCardMod {...minProps} icon={<span data-testid="mock-icon" />} />,
       );
 
       const subheaderContainer = getByTestId('info-card-subheader');
@@ -65,7 +65,7 @@ describe('<InfoCard />', () => {
 
     it('is not rendered where there is not an icon or subheading', async () => {
       const { queryByTestId } = await renderInTestApp(
-        <InfoCardSettings {...minProps} />,
+        <InfoCardMod {...minProps} />,
       );
 
       expect(queryByTestId('info-card-subheader')).not.toBeInTheDocument();

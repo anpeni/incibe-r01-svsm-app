@@ -162,7 +162,7 @@ export const TemplatePage = ({
               <MultistepJsonForm
                 ReviewStepComponent={ReviewStepComponent}
                 formData={formState}
-                fields={customFieldComponents}
+                fields={customFieldComponents as any} // TSC
                 onChange={handleChange}
                 onReset={handleFormReset}
                 onFinish={handleCreate}
@@ -173,7 +173,7 @@ export const TemplatePage = ({
                     validate: createValidator(
                       step.schema,
                       customFieldValidators,
-                      { apiHolder },
+                      { apiHolder } as any, // TSC
                     ),
                   };
                 })}

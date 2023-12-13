@@ -1,0 +1,5 @@
+{
+  "sideEffects": false,
+  "module": "../esm/StepIconMod/index.js",
+  "typings": "./index.d.ts"
+}

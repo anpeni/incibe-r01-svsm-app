@@ -92,7 +92,7 @@ const useStyles = makeStyles<BackstageTheme>(
           severity as NonNullable<WarningProps['severity']>,
           theme,
         ),
-      fontWeight: theme.typography.fontWeightBold as any,
+      fontWeight: theme.typography.fontWeightBold as any, // TSC
     },
     message: {
       width: '100%',

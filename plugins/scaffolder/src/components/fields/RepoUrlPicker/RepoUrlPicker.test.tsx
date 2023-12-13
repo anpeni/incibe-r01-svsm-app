@@ -75,7 +75,7 @@ describe('RepoUrlPicker', () => {
             <Form
               schema={{ type: 'string' }}
               uiSchema={{ 'ui:field': 'RepoUrlPicker' }}
-              fields={{ RepoUrlPicker: RepoUrlPicker }}
+              fields={{ RepoUrlPicker: RepoUrlPicker } as any} // TSC
               onSubmit={onSubmit}
             />
           </SecretsContextProvider>
@@ -114,7 +114,7 @@ describe('RepoUrlPicker', () => {
                 'ui:field': 'RepoUrlPicker',
                 'ui:options': { allowedHosts: ['dev.azure.com'] },
               }}
-              fields={{ RepoUrlPicker: RepoUrlPicker }}
+              fields={{ RepoUrlPicker: RepoUrlPicker } as any} // TSC
             />
           </SecretsContextProvider>
         </TestApiProvider>,
@@ -154,7 +154,7 @@ describe('RepoUrlPicker', () => {
                   },
                 },
               }}
-              fields={{ RepoUrlPicker: RepoUrlPicker }}
+              fields={{ RepoUrlPicker: RepoUrlPicker }as any} // TSC
             />
             <SecretsComponent />
           </SecretsContextProvider>
@@ -216,7 +216,7 @@ describe('RepoUrlPicker', () => {
                   },
                 },
               }}
-              fields={{ RepoUrlPicker: RepoUrlPicker }}
+              fields={{ RepoUrlPicker: RepoUrlPicker }as any} // TSC
             />
             <SecretsComponent />
           </SecretsContextProvider>
@@ -269,7 +269,7 @@ describe('RepoUrlPicker', () => {
                   },
                 },
               }}
-              fields={{ RepoUrlPicker: RepoUrlPicker }}
+              fields={{ RepoUrlPicker: RepoUrlPicker }as any} // TSC
             />
             <SecretsComponent />
           </SecretsContextProvider>

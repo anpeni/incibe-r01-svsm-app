@@ -20,12 +20,13 @@ import React, { ReactNode } from 'react';
 import { columnFactories } from './columns';
 import { componentEntityColumns, systemEntityColumns } from './presets';
 import {
+  TableMod,
+  TableColumnMod,
+  TableOptionsMod,
+} from '@internal/core-components';
+import {
   InfoCardVariants,
-  Table,
-  TableColumn,
-  TableOptions,
 } from '@backstage/core-components';
-
 /**
  * Props for {@link EntityTable}.
  *
@@ -36,8 +37,8 @@ export interface EntityTableProps<T extends Entity> {
   variant?: InfoCardVariants;
   entities: T[];
   emptyContent?: ReactNode;
-  columns: TableColumn<T>[];
-  tableOptions?: TableOptions;
+  columns: TableColumnMod<T>[];
+  tableOptions?: TableOptionsMod;
 }
 
 const useStyles = makeStyles(theme => ({
@@ -75,7 +76,7 @@ export const EntityTable = <T extends Entity>(props: EntityTableProps<T>) => {
   }
 
   return (
-    <Table<T>
+    <TableMod<T>
       columns={columns}
       title={title}
       style={tableStyle}

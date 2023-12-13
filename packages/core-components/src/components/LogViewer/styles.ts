@@ -101,7 +101,7 @@ export const useStyles = makeStyles(
       background: alpha(theme.palette.info.main, 0.4),
     },
     modifierBold: {
-      fontWeight: theme.typography.fontWeightBold as any,
+      fontWeight: theme.typography.fontWeightBold as any, // TSC
     },
     modifierItalic: {
       fontStyle: 'italic',

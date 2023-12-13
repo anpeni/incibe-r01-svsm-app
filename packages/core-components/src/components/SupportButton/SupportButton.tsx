@@ -29,10 +29,8 @@ import Typography from '@material-ui/core/Typography';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import React, { MouseEventHandler, useState } from 'react';
 import { SupportItem, SupportItemLink, useSupportConfig } from '../../hooks';
-import HelpIcon from '@mui/icons-material/HelpOutline';
+import { HelpIcon } from '../../icons';
 import { Link } from '../Link';
-import { vars } from '../../../../app/src/themes/variables';
-import { useTheme } from '@material-ui/core/styles';
 
 type SupportButtonProps = {
   title?: string;
@@ -103,8 +101,6 @@ export function SupportButton(props: SupportButtonProps) {
     setPopoverOpen(false);
   };
 
-  const theme = useTheme();
-
   return (
     <>
       <Box display="flex" ml={1}>
@@ -115,13 +111,6 @@ export function SupportButton(props: SupportButtonProps) {
             onClick={onClickHandler}
             data-testid="support-button"
             aria-label="Support"
-            style={{
-              fontWeight: 'bold',
-              color:
-                theme.palette.type === 'dark'
-                  ? vars.dark.fontColor.white
-                  : vars.light.fontColor.black,
-            }}
           >
             <HelpIcon />
           </IconButton>
@@ -129,17 +118,11 @@ export function SupportButton(props: SupportButtonProps) {
           <Button
             data-testid="support-button"
             aria-label="Support"
+            color="primary"
             onClick={onClickHandler}
             startIcon={<HelpIcon />}
-            style={{
-              fontWeight: 'bold',
-              color:
-                theme.palette.type === 'dark'
-                  ? vars.dark.fontColor.white
-                  : vars.light.fontColor.black,
-            }}
           >
-            SUPPORT {/* Support Text */}
+            Support
           </Button>
         )}
       </Box>

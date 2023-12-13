@@ -3,8 +3,9 @@ import React from 'react';
 import { useAsync } from 'react-use';
 
 // .-- backstage --
-import { Table, TableColumn, Progress } from '@backstage/core-components';
+import { TableMod, TableColumnMod } from '@internal/core-components';
 import { useApi } from '@backstage/core-plugin-api';
+import { Progress } from '@backstage/core-components';
 
 // .-- material --
 import Alert from '@material-ui/lab/Alert';
@@ -19,7 +20,7 @@ import { getElapsedTime, getDuration } from '../../utils';
 import { createTitleColumn } from './columns';
 
 export const DenseTable = ({ mergeRequests }: any) => {
-	const columns: TableColumn[] = [
+	const columns: TableColumnMod[] = [
 		{ title: 'ID', field: 'id' },
 		createTitleColumn(),
 		{ title: 'Creator', field: 'author' },
@@ -41,7 +42,7 @@ export const DenseTable = ({ mergeRequests }: any) => {
 	});
 
 	return (
-		<Table
+		<TableMod
 			title={title}
 			options={{ search: true, paging: true }}
 			columns={columns}

@@ -7,8 +7,10 @@ import {
   Content,
   ContentHeader,
   HeaderLabel,
-  SupportButton,
 } from '@backstage/core-components';
+import {
+  SupportButtonMod,
+} from '@internal/core-components';
 import { ExampleFetchComponent } from '../ExampleFetchComponent';
 
 export const ExampleComponent = () => (
@@ -19,7 +21,7 @@ export const ExampleComponent = () => (
     </Header>
     <Content>
       <ContentHeader title="Plugin title">
-        <SupportButton>A description of your plugin goes here.</SupportButton>
+        <SupportButtonMod>A description of your plugin goes here.</SupportButtonMod>
       </ContentHeader>
       <Grid container spacing={3} direction="column">
         <Grid item>

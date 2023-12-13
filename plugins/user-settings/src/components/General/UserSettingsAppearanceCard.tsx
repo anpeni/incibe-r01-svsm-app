@@ -15,7 +15,7 @@
  */
 
 import { InfoCard, useSidebarPinState } from '@backstage/core-components';
-import { InfoCardSettings } from '@backstage/core-components';
+import { InfoCardMod } from '@internal/core-components';
 import { List } from '@material-ui/core';
 import React from 'react';
 import { UserSettingsPinToggle } from './UserSettingsPinToggle';
@@ -64,13 +64,13 @@ export const UserSettingsAppearanceCard = () => {
   const classes = useStyles();
 
   return (
-    <InfoCardSettings className={classes.card} 
+    <InfoCardMod className={classes.card} 
     title={<span className={classes.titulo}>Appearance</span>} 
     variant="gridItem">
       <List dense>
         <UserSettingsThemeToggleWithoutAuto />
         {!isMobile && <UserSettingsPinToggle />}
       </List>
-    </InfoCardSettings>
+    </InfoCardMod>
   );
 };

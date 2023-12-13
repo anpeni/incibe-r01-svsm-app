@@ -15,9 +15,9 @@
  */
 
 import { createValidator } from './createValidator';
-import { CustomFieldValidator } from '@backstage/plugin-scaffolder-react';
+import { CustomFieldValidator } from '@backstage/plugin-scaffolder-react-antiguo';
 import { ApiHolder } from '@backstage/core-plugin-api';
-import { FieldValidation, FormValidation } from '@rjsf/core';
+import { FieldValidation, FormValidation } from '@rjsf/utils';
 
 type CustomLinkType = {
   url: string;
@@ -92,7 +92,7 @@ describe('createValidator', () => {
         },
       },
     };
-    const validator = createValidator(rootSchema, validators, context);
+    const validator = createValidator(rootSchema, validators as any, context as any); // TSC
 
     const formData = {
       p1: {},
@@ -105,7 +105,7 @@ describe('createValidator', () => {
     } as unknown as FormValidation;
 
     /* WHEN */
-    const result = validator(formData, errors);
+    const result = validator(formData, errors as any); // TSC
 
     /* THEN */
     expect(result).not.toBeNull();
@@ -127,7 +127,7 @@ describe('createValidator', () => {
         },
       },
     };
-    const validator = createValidator(rootSchema, validators, context);
+    const validator = createValidator(rootSchema, validators as any, context as any); // TSC
 
     const formData = {
       tags: ['invalid-tag$$'],
@@ -140,7 +140,7 @@ describe('createValidator', () => {
     } as unknown as FormValidation;
 
     /* WHEN */
-    const result = validator(formData, errors);
+    const result = validator(formData, errors as any); // TSC
 
     /* THEN */
     expect(result).not.toBeNull();
@@ -170,7 +170,7 @@ describe('createValidator', () => {
         },
       },
     };
-    const validator = createValidator(rootSchema, validators, context);
+    const validator = createValidator(rootSchema, validators as any, context as any); // TSC
 
     const formData = {
       links: [
@@ -189,7 +189,7 @@ describe('createValidator', () => {
     } as unknown as FormValidation;
 
     /* WHEN */
-    const result = validator(formData, errors);
+    const result = validator(formData, errors as any); // TSC
 
     /* THEN */
     expect(result).not.toBeNull();

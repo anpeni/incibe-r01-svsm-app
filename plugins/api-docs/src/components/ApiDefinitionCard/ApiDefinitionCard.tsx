@@ -21,7 +21,7 @@ import React from 'react';
 import { apiDocsConfigRef } from '../../config';
 import { PlainApiDefinitionWidget } from '../PlainApiDefinitionWidget';
 
-import { CardTab, TabbedCard } from '@backstage/core-components';
+import { CardTabMod, TabbedCardMod } from '@internal/core-components';
 import { useApi } from '@backstage/core-plugin-api';
 
 /** @public */
@@ -39,31 +39,31 @@ export const ApiDefinitionCard = () => {
 
   if (definitionWidget) {
     return (
-      <TabbedCard title={entityTitle}>
-        <CardTab label={definitionWidget.title} key="widget">
+      <TabbedCardMod title={entityTitle}>
+        <CardTabMod label={definitionWidget.title} key="widget">
           {definitionWidget.component(entity.spec.definition)}
-        </CardTab>
-        <CardTab label="Raw" key="raw">
+        </CardTabMod>
+        <CardTabMod label="Raw" key="raw">
           <PlainApiDefinitionWidget
             definition={entity.spec.definition}
             language={definitionWidget.rawLanguage || entity.spec.type}
           />
-        </CardTab>
-      </TabbedCard>
+        </CardTabMod>
+      </TabbedCardMod>
     );
   }
 
   return (
-    <TabbedCard
+    <TabbedCardMod
       title={entityTitle}
       children={[
         // Has to be an array, otherwise typescript doesn't like that this has only a single child
-        <CardTab label={entity.spec.type} key="raw">
+        <CardTabMod label={entity.spec.type} key="raw">
           <PlainApiDefinitionWidget
             definition={entity.spec.definition}
             language={entity.spec.type}
           />
-        </CardTab>,
+        </CardTabMod>,
       ]}
     />
   );

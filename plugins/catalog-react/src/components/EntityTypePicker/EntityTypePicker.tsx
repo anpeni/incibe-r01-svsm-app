@@ -19,7 +19,7 @@ import { Box } from '@material-ui/core';
 import { useEntityTypeFilter } from '../../hooks/useEntityTypeFilter';
 
 import { alertApiRef, useApi } from '@backstage/core-plugin-api';
-import { Select } from '@backstage/core-components';
+import { SelectMod } from '@internal/core-components';
 
 /**
  * Props for {@link EntityTypePicker}.
@@ -62,7 +62,7 @@ export const EntityTypePicker = (props: EntityTypePickerProps) => {
 
   return hidden ? null : (
     <Box>
-      <Select
+      <SelectMod
         label="Type"
         items={items}
         selected={(items.length > 1 ? selectedTypes[0] : undefined) ?? 'all'}

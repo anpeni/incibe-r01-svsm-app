@@ -164,7 +164,7 @@ export function TemplateEditorForm(props: TemplateEditorFormProps) {
                     schema: param,
                     validate: createValidator(param, fieldValidators, {
                       apiHolder,
-                    }),
+                    }as any), // TSC
                   },
                 ]
               : [],
@@ -188,7 +188,7 @@ export function TemplateEditorForm(props: TemplateEditorFormProps) {
         <ErrorBoundary invalidator={steps} setErrorText={setErrorText}>
           <MultistepJsonForm
             steps={steps}
-            fields={fields}
+            fields={fields as any} // TSC
             formData={data}
             onChange={e => onUpdate(e.formData)}
             onReset={() => onUpdate({})}

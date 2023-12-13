@@ -60,15 +60,14 @@ import {
   SidebarConfigContext,
   SidebarItemWithSubmenuContext,
 } from './config';
+import DoubleArrowLeft from './icons/DoubleArrowLeft';
+import DoubleArrowRight from './icons/DoubleArrowRight';
 import { useSidebarOpenState } from './SidebarOpenStateContext';
 import { SidebarSubmenu, SidebarSubmenuProps } from './SidebarSubmenu';
 import { SidebarSubmenuItemProps } from './SidebarSubmenuItem';
 import { isLocationMatch } from './utils';
 import Button from '@material-ui/core/Button';
-import { OverridableComponent } from '@mui/material/OverridableComponent';
-import { SvgIconTypeMap } from '@mui/material';
-import { ChevronLeftOutlined, ChevronRightOutlined } from '@material-ui/icons';
-import { vars } from '../../../../app/src/themes/variables';
+
 /** @public */
 export type SidebarItemClassKey =
   | 'root'
@@ -94,45 +93,13 @@ const makeSidebarStyles = (sidebarConfig: SidebarConfig) =>
   makeStyles<BackstageTheme>(
     theme => ({
       root: {
-        color: `${
-          theme.palette.type === 'dark'
-            ? 'rgba(255, 255, 255, 0.60)'
-            : 'RGB(6, 11, 40)'
-        }`,
+        color: theme.palette.navigation.color,
         display: 'flex',
         flexFlow: 'row nowrap',
         alignItems: 'center',
         height: 48,
         cursor: 'pointer',
       },
-      divCloseNoButton:{
-        display: 'flex',        
-        justifyContent: 'center', 
-        alignItems: 'center', 
-        width: '48px',
-        height: '48px',
-        marginLeft:'12px',
-        
-        borderRadius: '9px',
-        '&:hover': {
-          background: `${
-            theme.palette.type === 'dark'
-              ? vars.dark.background.highlight
-              : vars.light.background.white + '!important'
-          }`,
-      },
-    },
-    buttonSearchNull:{
-      position: 'relative',
-
-      '&:hover': {
-        background: `${
-          theme.palette.type === 'dark'
-            ? 'none !important'
-            : 'none !important'
-        }`,
-    },
-  },
       buttonItem: {
         background: 'none',
         border: 'none',
@@ -142,8 +109,6 @@ const makeSidebarStyles = (sidebarConfig: SidebarConfig) =>
         textAlign: 'inherit',
         font: 'inherit',
         textTransform: 'none',
-        
-        
       },
       closed: {
         width: sidebarConfig.drawerWidthClosed,
@@ -155,105 +120,34 @@ const makeSidebarStyles = (sidebarConfig: SidebarConfig) =>
         },
       },
       highlightable: {
-        '&$root': {
-          borderRadius: '9px',
-          width: '185px ',
-          position: 'relative',
-          left: '20px',
-
-          '&:hover': {
-            background: `${
-              theme.palette.type === 'dark'
-                ? vars.dark.background.highlight
-                : vars.light.background.white + '!important'
-            }`,
-            borderadius: '12px !important',
-            marginLeft:'0px'
-          
-          },        
-          
+        '&:hover': {
+          background:
+            theme.palette.navigation.navItem?.hoverBackground ?? '#404040',
         },
-        '&$closed': {
-          borderLeft: `none`,
-          width: '50px',
-          marginLeft: '-8px',
-          
-        },
-        '& $closedItemIcon': {
-          paddingRight: sidebarConfig.selectedIndicatorWidth,
-        },
-        '& $iconContainer': {
-          marginLeft: '5px',        
-        },
-        '& $label': {
-          marginLeft: '-5px',         
-        },
-        },
-        highlightableCerrado: {
-          '&$root': {
-            borderRadius: '9px',
-            width: '185px ',
-            position: 'relative',
-            left: '20px'           
-          },
-          '&$closed': {
-            borderLeft: `none`,
-            width: '50px',
-            marginLeft: '-8px',
-            '&:hover': {
-              background: `${
-                theme.palette.type === 'dark'
-                  ? vars.dark.background.highlight
-                  : vars.light.background.white + '!important'
-              }`,
-              borderadius: '12px !important',
-              marginLeft:'-8px'         
-            },  
-            
-          },
-          '& $closedItemIcon': {
-            paddingRight: sidebarConfig.selectedIndicatorWidth,
-            
-          },
-          '& $iconContainer': {
-            marginLeft: '5px',
-  
-            
-          },
-          '& $label': {
-            marginLeft: '-5px',
-            
-          },
-          },
-
+      },
       highlighted: {
-        
-
+        background:
+          theme.palette.navigation.navItem?.hoverBackground ?? '#404040',
       },
       label: {
         // XXX (@koroeskohr): I can't seem to achieve the desired font-weight from the designs
-        fontWeight: 'lighter',
+        fontWeight: 'bold',
         whiteSpace: 'nowrap',
         lineHeight: 'auto',
         flex: '3 1 auto',
         width: '110px',
-        marginLeft: '-10px',
         overflow: 'hidden',
         'text-overflow': 'ellipsis',
-        
       },
       iconContainer: {
         boxSizing: 'border-box',
         height: '100%',
         width: sidebarConfig.iconContainerWidth,
-        marginLeft: '21px',
+        marginRight: -theme.spacing(2),
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
         lineHeight: '0',
-
-        
-        
       },
       searchRoot: {
         marginBottom: 12,
@@ -277,9 +171,6 @@ const makeSidebarStyles = (sidebarConfig: SidebarConfig) =>
       closedItemIcon: {
         width: '100%',
         justifyContent: 'center',
-        
-        
-
       },
       submenuArrow: {
         display: 'flex',
@@ -287,127 +178,29 @@ const makeSidebarStyles = (sidebarConfig: SidebarConfig) =>
       expandButton: {
         background: 'none',
         border: 'none',
+        color: theme.palette.navigation.color,
         width: '100%',
+        cursor: 'pointer',
         position: 'relative',
         height: 48,
-        '&:hover': {
-          background: 'none',
-        },
       },
       arrows: {
-        position: 'relative',
-        color: vars.light.fontColor.white,
-      },
-      circuloarrow: {
         position: 'absolute',
-        right: -7,
-        width: '25px',  
-        height: '25px', 
-        backgroundColor: vars.dark.background.accent, 
-        borderRadius: '50%', 
+        right: 10,
       },
       selected: {
         '&$root': {
-          borderRadius: '9px',
-          borderLeft: `solid 9px ${vars.light.background.accent}`,
-          width: '185px ',
-          position: 'relative',
-          left: '20px',
-          color: `${
-            theme.palette.type === 'dark'
-              ? vars.dark.background.white + '!important'
-              : vars.light.background.accent + ' !important'
-          }`,
-          background: `${
-            theme.palette.type === 'dark'
-              ? vars.dark.background.highlight
-              : vars.light.background.white + '!important'
-          }`,
-          '&:hover': {
-            background: `${
-              theme.palette.type === 'dark'
-                ? vars.dark.background.highlight
-                : vars.light.background.white + '!important'
-            }`,
-            borderadius: '12px !important',
-            marginLeft:'0px'
-          },
-          
-          
+          borderLeft: `solid ${sidebarConfig.selectedIndicatorWidth}px ${theme.palette.navigation.indicator}`,
+          color: theme.palette.navigation.selectedColor,
         },
         '&$closed': {
-          borderLeft: `none`,
-          width: '50px',
-          marginLeft: '-8px',
+          width: sidebarConfig.drawerWidthClosed,
         },
         '& $closedItemIcon': {
           paddingRight: sidebarConfig.selectedIndicatorWidth,
-          color:vars.light.background.accent,
-          
-
         },
         '& $iconContainer': {
-          marginLeft: '-4px',
-          color:vars.light.background.accent,
-          
-        },
-        '& $label': {
-          marginLeft: '-5px',
-          
-        },
-      },
-      selectedCerrado: {
-        '&$root': {
-          borderRadius: '9px',
-          borderLeft: `solid 9px ${vars.light.background.accent}`,
-          width: '185px ',
-          position: 'relative',
-          left: '20px',
-          color: `${
-            theme.palette.type === 'dark'
-              ? vars.dark.background.white + '!important'
-              : vars.light.background.accent + ' !important'
-          }`,
-          background: `${
-            theme.palette.type === 'dark'
-              ? vars.dark.background.highlight
-              : vars.light.background.white + '!important'
-          }`,
-          '&:hover': {
-            background: `${
-              theme.palette.type === 'dark'
-                ? vars.dark.background.highlight
-                : vars.light.background.white + '!important'
-            }`,
-            borderadius: '12px !important',
-            marginLeft:'-8px'
-            //width: '185px '
-          },
-          
-          
-        },
-        '&$closed': {
-          borderLeft: `none`,
-          width: '50px',
-          marginLeft: '-8px',
-        },
-        '& $closedItemIcon': {
-          paddingRight: sidebarConfig.selectedIndicatorWidth,
-          color:vars.light.background.accent,
-          
-
-        },
-        '& $iconContainer': {
-          marginLeft: '-4px',
-          color:vars.light.background.accent,
-          //background:'red'
-          
-        },
-        '& $label': {
-          marginLeft: '-5px',
-          //color:accentColorLight,
-          //background:'blue'
-          
+          marginLeft: -sidebarConfig.selectedIndicatorWidth,
         },
       },
     }),
@@ -470,7 +263,7 @@ const useLocationMatch = (
   );
 
 type SidebarItemBaseProps = {
-  icon: IconComponent | OverridableComponent<SvgIconTypeMap>;
+  icon: IconComponent;
   text?: string;
   hasNotifications?: boolean;
   hasSubmenu?: boolean;
@@ -478,8 +271,6 @@ type SidebarItemBaseProps = {
   className?: string;
   noTrack?: boolean;
   onClick?: (ev: React.MouseEvent) => void;
-  showDropDown?: boolean;
-  setShowDropDown?: (showDropDown: boolean) => void;
 };
 
 type SidebarItemButtonProps = SidebarItemBaseProps & {
@@ -560,7 +351,7 @@ export const WorkaroundNavLink = React.forwardRef<
       aria-current={ariaCurrent}
       style={{ ...style, ...(isActive ? activeStyle : undefined) }}
       className={classnames([
-        className as string,
+        className,
         isActive ? activeClassName : undefined,
       ])}
     />
@@ -581,8 +372,6 @@ const SidebarItemBase = forwardRef<any, SidebarItemProps>((props, ref) => {
     noTrack,
     children,
     className,
-    showDropDown,
-    setShowDropDown,
     ...navLinkProps
   } = props;
   const { sidebarConfig } = useContext(SidebarConfigContext);
@@ -600,11 +389,7 @@ const SidebarItemBase = forwardRef<any, SidebarItemProps>((props, ref) => {
   const displayItemIcon = (
     <Box style={divStyle}>
       <Icon fontSize="small" />
-      {!isOpen && hasSubmenu ? (
-        <ChevronRightOutlined fontSize="small" />
-      ) : (
-        <></>
-      )}
+      {!isOpen && hasSubmenu ? <ArrowRightIcon fontSize="small" /> : <></>}
     </Box>
   );
 
@@ -634,11 +419,7 @@ const SidebarItemBase = forwardRef<any, SidebarItemProps>((props, ref) => {
           {text}
         </Typography>
       )}
-
       <div className={classes.secondaryAction}>{children}</div>
-      {/* <div>
-      {showDropDown ? 'Abierto' : 'Cerrado'}
-    </div> */}
     </>
   );
 
@@ -651,7 +432,7 @@ const SidebarItemBase = forwardRef<any, SidebarItemProps>((props, ref) => {
       classes.root,
       isOpen ? classes.open : classes.closed,
       isButtonItem(props) && classes.buttonItem,
-      isOpen ? { [classes.highlightable]: !disableHighlight } : { [classes.highlightableCerrado]: !disableHighlight }
+      { [classes.highlightable]: !disableHighlight },
     ),
   };
 
@@ -673,60 +454,31 @@ const SidebarItemBase = forwardRef<any, SidebarItemProps>((props, ref) => {
     [analyticsApi, text, to, noTrack, onClick],
   );
 
-  const handleClickDropdown = () => {
-    if (setShowDropDown) {
-      setShowDropDown(false);
-    }
-    
-  };
-
-const handleCombinedClick = (event: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>) => {
-  handleClick(event);
-  handleClickDropdown();
-};
-
   if (isButtonItem(props)) {
     return (
-
-      isOpen ?
-      <Button 
+      <Button
         role="button"
         aria-label={text}
         {...childProps}
-        //className={classes.selected}
         ref={ref}
-        onClick={handleCombinedClick}
+        onClick={handleClick}
       >
         {content}
       </Button>
-      :
-      <div className={classes.divCloseNoButton} >
-      <Button 
-        role="button"
-        aria-label={text}
-        {...childProps}
-        className={classes.buttonSearchNull}
-        ref={ref}
-        onClick={handleCombinedClick}
-      >
-        {content}
-      </Button>
-      </div>
     );
   }
 
   return (
     <WorkaroundNavLink
       {...childProps}
-      activeClassName={isOpen? classes.selected : classes.selectedCerrado }
+      activeClassName={classes.selected}
       to={props.to ? props.to : ''}
       ref={ref}
       aria-label={text ? text : props.to}
       {...navLinkProps}
-      onClick={handleCombinedClick}
+      onClick={handleClick}
     >
       {content}
-      
     </WorkaroundNavLink>
   );
 });
@@ -869,8 +621,6 @@ export function SidebarSearchField(props: SidebarSearchFieldProps) {
         to={props.to}
         onClick={handleItemClick}
         disableHighlight
-        showDropDown// Asegúrate de que showDropDown tenga un valor booleano
-        
       >
         <TextField
           placeholder="Search"
@@ -886,9 +636,9 @@ export function SidebarSearchField(props: SidebarSearchFieldProps) {
           inputProps={{
             className: classes.searchFieldHTMLInput,
           }}
-                  />
+        />
       </SidebarItem>
-          </Box>
+    </Box>
   );
 }
 
@@ -941,7 +691,10 @@ export const SidebarScrollWrapper = styled('div')(({ theme }) => {
   return {
     flex: '0 1 auto',
     overflowX: 'hidden',
+    // 5px space to the right of the scrollbar
     width: 'calc(100% - 5px)',
+    // Display at least one item in the container
+    // Question: Can this be a config/theme variable - if so, which? :/
     minHeight: '48px',
     overflowY: 'hidden',
     '@media (hover: none)': scrollbarStyles,
@@ -963,7 +716,6 @@ export const SidebarExpandButton = () => {
   const { sidebarConfig } = useContext(SidebarConfigContext);
   const classes = useMemoStyles(sidebarConfig);
   const { isOpen, setOpen } = useSidebarOpenState();
-  const isDarkMode = localStorage.getItem('theme') === 'neoris-dark';
   const isSmallScreen = useMediaQuery<BackstageTheme>(
     theme => theme.breakpoints.down('md'),
     { noSsr: true },
@@ -978,22 +730,16 @@ export const SidebarExpandButton = () => {
   };
 
   return (
-    <>
-      <Button
-        role="button"
-        onClick={handleClick}
-        className={classes.expandButton}
-        aria-label="Expand Sidebar"
-        data-testid="sidebar-expand-button"
-      >
-
-          <div className={classes.circuloarrow}>
-            <Box className={classes.arrows}>
-              {isOpen ? <ChevronLeftOutlined /> : <ChevronRightOutlined />}
-            </Box>
-          </div>
-      </Button>
-
-    </>
+    <Button
+      role="button"
+      onClick={handleClick}
+      className={classes.expandButton}
+      aria-label="Expand Sidebar"
+      data-testid="sidebar-expand-button"
+    >
+      <Box className={classes.arrows}>
+        {isOpen ? <DoubleArrowLeft /> : <DoubleArrowRight />}
+      </Box>
+    </Button>
   );
 };

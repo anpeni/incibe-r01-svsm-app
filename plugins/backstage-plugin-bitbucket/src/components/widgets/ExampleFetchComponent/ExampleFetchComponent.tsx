@@ -1,6 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Table, TableColumn, Progress } from '@backstage/core-components';
+import { Progress } from '@backstage/core-components';
+import { TableMod, TableColumnMod } from '@internal/core-components';
 import Alert from '@material-ui/lab/Alert';
 import useAsync from 'react-use/lib/useAsync';
 
@@ -41,7 +42,7 @@ type DenseTableProps = {
 export const DenseTable = ({ users }: DenseTableProps) => {
   const classes = useStyles();
 
-  const columns: TableColumn[] = [
+  const columns: TableColumnMod[] = [
     { title: 'Avatar', field: 'avatar' },
     { title: 'Name', field: 'name' },
     { title: 'Email', field: 'email' },
@@ -64,7 +65,7 @@ export const DenseTable = ({ users }: DenseTableProps) => {
   });
 
   return (
-    <Table
+    <TableMod
       title="Example User List (fetching data from randomuser.me)"
       options={{ search: false, paging: false }}
       columns={columns}

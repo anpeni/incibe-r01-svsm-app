@@ -17,11 +17,13 @@
 import {
   Content,
   ContentHeader,
-  CreateButton,
   Header,
   Page,
-  SupportButton,
 } from '@backstage/core-components';
+import {
+  CreateButtonMod,
+  SupportButtonMod,
+} from '@internal/core-components';
 import { TemplateEntityV1beta3 } from '@backstage/plugin-scaffolder-common';
 import { useRouteRef } from '@backstage/core-plugin-api';
 import {
@@ -107,16 +109,16 @@ export const ScaffolderPageContents = ({
       <Content>
         <ContentHeader title="Available Templates">
           {allowed && (
-            <CreateButton
+            <CreateButtonMod
               title="Register Existing Component"
               to={registerComponentLink && registerComponentLink()}
             />
           )}
-          <SupportButton>
+          <SupportButtonMod>
             Create new software components using standard templates. Different
             templates create different kinds of components (services, websites,
             documentation, ...).
-          </SupportButton>
+          </SupportButtonMod>
         </ContentHeader>
 
         <CatalogFilterLayout>

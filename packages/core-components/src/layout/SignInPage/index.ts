@@ -15,6 +15,7 @@
  */
 
 export type { IdentityProviders, SignInProviderConfig } from './types';
+export { SignInPageMod } from './SignInPageMod';
 export { SignInPage } from './SignInPage';
 export type { SignInPageClassKey } from './styles';
 export type { CustomProviderClassKey } from './customProvider';

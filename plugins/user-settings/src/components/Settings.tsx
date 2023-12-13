@@ -16,7 +16,7 @@
 
 import React from 'react';
 import { settingsRouteRef } from '../plugin';
-import { SidebarItem } from '@backstage/core-components';
+import { SidebarItemMod } from '@internal/core-components';
 import { useRouteRef, IconComponent } from '@backstage/core-plugin-api';
 import { SettingsOutlined } from '@material-ui/icons';
 
@@ -29,6 +29,6 @@ export const Settings = (props: {
 }) => {
   const routePath = useRouteRef(settingsRouteRef);
   const Icon = props.icon ? props.icon : SettingsOutlined;
-  return <SidebarItem text="Settings" to={routePath()} icon={Icon} showDropDown={props.showDropDown}
+  return <SidebarItemMod text="Settings" to={routePath()} icon={Icon} showDropDown={props.showDropDown}
   setShowDropDown={props.setShowDropDown}/>;
 };

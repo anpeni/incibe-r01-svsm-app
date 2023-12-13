@@ -14,6 +14,13 @@
  * limitations under the License.
  */
 
+export { SelectComponentMod as SelectMod } from './SelectMod';
+export type {
+  SelectClassKeyMod,
+  SelectedItemsMod,
+  SelectInputBaseClassKeyMod,
+  SelectItemMod,
+} from './SelectMod';
 export { SelectComponent as Select } from './Select';
 export type {
   SelectClassKey,

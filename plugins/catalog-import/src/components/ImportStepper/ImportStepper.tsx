@@ -46,7 +46,7 @@ const useStyles = makeStyles(() => ({
   },
   stepContentRoot: {
   },
-  muiStepIcon: {
+  muiStepIconMod: {
   },
 }));
 
@@ -109,7 +109,7 @@ export const ImportStepper = (props: ImportStepperProps) => {
   return (
     
       <Stepper
-        classes={{ root: classes.muiStepIcon }}
+        classes={{ root: classes.muiStepIconMod }}
         activeStep={state.activeStepNumber}
         orientation="vertical"
       >
@@ -176,7 +176,7 @@ export const ImportStepperClaro = (props: ImportStepperPropsClaro) => {
   return (
     
       <Stepper
-        classes={{ root: classes.muiStepIcon }}
+        classes={{ root: classes.muiStepIconMod }}
         activeStep={state.activeStepNumber}
         orientation="vertical"
       >

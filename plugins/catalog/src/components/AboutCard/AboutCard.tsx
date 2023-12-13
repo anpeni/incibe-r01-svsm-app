@@ -205,7 +205,7 @@ export function AboutCard(props: AboutCardProps) {
         display: 'transient',
       });
     } catch (e) {
-      errorApi.post(e as Error);
+      errorApi.post(e as Error); // TSC
     }
   }, [catalogApi, alertApi, errorApi, entity]);
 

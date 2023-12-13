@@ -9,12 +9,12 @@ import { makeStyles, withStyles } from '@material-ui/core/styles';
 import classNames from 'classnames';
 import React, { ReactNode } from 'react';
 
-import { BottomLinkModificado, BottomLinkProps } from '../BottomLink';
+import { BottomLinkMod, BottomLinkProps } from '../BottomLink';
 import { ErrorBoundary, ErrorBoundaryProps } from '../ErrorBoundary';
 import { Height } from '@material-ui/icons';
 
 /** @public */
-export type InfoCardClassKeySettings =
+export type InfoCardClassKeyMod =
   | 'noPadding'
   | 'header'
   | 'headerTitle'
@@ -59,11 +59,11 @@ subheader: {
   display: 'flex',
     },
   }),
-{ name: 'BackstageInfoCardSettings' },
+{ name: 'BackstageInfoCardMod' },
 );
 
 /** @public */
-export type CardActionsTopRightClassKeySettings = 'root';
+export type CardActionsTopRightClassKeyMod = 'root';
 
 const CardActionsTopRight = withStyles(
   theme => ({
@@ -73,7 +73,7 @@ const CardActionsTopRight = withStyles(
       float: 'right',
     },
   }),
-  { name: 'BackstageInfoCardCardSettingsActionsTopRight' },
+  { name: 'BackstageInfoCardCardModActionsTopRight' },
 )(CardActions);
 
 const VARIANT_STYLES = {
@@ -109,7 +109,7 @@ const VARIANT_STYLES = {
 };
 
 /** @public */
-export type InfoCardVariantsSettings = 'flex' | 'fullHeight' | 'gridItem';
+export type InfoCardVariantsMod = 'flex' | 'fullHeight' | 'gridItem';
 
 /**
  * InfoCard is used to display a paper-styled block on the screen, similar to a panel.
@@ -137,7 +137,7 @@ export type Props = {
   /** @deprecated Use errorBoundaryProps instead */
   slackChannel?: string;
   errorBoundaryProps?: ErrorBoundaryProps;
-  variant?: InfoCardVariantsSettings;
+  variant?: InfoCardVariantsMod;
   children?: ReactNode;
   headerStyle?: object;
   headerProps?: CardHeaderProps;
@@ -158,7 +158,7 @@ export type Props = {
  * @public
  *
  */
-export function InfoCardSettings(props: Props): JSX.Element {
+export function InfoCardMod(props: Props): JSX.Element {
   const {
     title,
     subheader,
@@ -258,7 +258,7 @@ export function InfoCardSettings(props: Props): JSX.Element {
         {actions && (
           <CardActions className={actionsClassName}>{actions}</CardActions>
         )}
-        {deepLink && <BottomLinkModificado {...deepLink} />}
+        {deepLink && <BottomLinkMod {...deepLink} />}
       </ErrorBoundary>
     </Card>
   );

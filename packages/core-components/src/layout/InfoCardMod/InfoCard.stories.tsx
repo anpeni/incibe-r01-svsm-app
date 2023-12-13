@@ -18,11 +18,11 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import React, { PropsWithChildren } from 'react';
 import { MemoryRouter } from 'react-router-dom';
-import { InfoCardSettings, Props } from './InfoCardSettings';
+import { InfoCardMod, Props } from './InfoCardMod';
 
 export default {
-  title: 'Layout/Information Card Settings',
-  component: InfoCardSettings,
+  title: 'Layout/Information Card Mod',
+  component: InfoCardMod,
 };
 
 const text = (
@@ -37,7 +37,7 @@ const text = (
 );
 
 const defaultProps = {
-  title: 'Information Card Settings',
+  title: 'Information Card Mod',
   subheader: 'Subheader',
 };
 
@@ -53,7 +53,7 @@ const Wrapper = ({ children }: PropsWithChildren<{}>) => (
 
 export const Default = (args: Props) => (
   <Wrapper>
-    <InfoCardSettings {...args}>{text}</InfoCardSettings>
+    <InfoCardMod {...args}>{text}</InfoCardMod>
   </Wrapper>
 );
 
@@ -61,7 +61,7 @@ Default.args = defaultProps;
 
 export const LinkInFooter = (args: Props) => (
   <Wrapper>
-    <InfoCardSettings {...args}>{text}</InfoCardSettings>
+    <InfoCardMod {...args}>{text}</InfoCardMod>
   </Wrapper>
 );
 

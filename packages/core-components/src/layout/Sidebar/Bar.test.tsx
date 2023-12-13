@@ -21,7 +21,7 @@ import BuildRoundedIcon from '@material-ui/icons/BuildRounded';
 import MenuBookIcon from '@material-ui/icons/MenuBook';
 import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import React, { useState } from 'react';
+import React from 'react';
 import { Sidebar } from './Bar';
 import { SidebarExpandButton, SidebarItem, SidebarSearchField } from './Items';
 import { SidebarPinStateProvider } from './SidebarPinStateContext';
@@ -29,7 +29,6 @@ import { SidebarSubmenu } from './SidebarSubmenu';
 import { SidebarSubmenuItem } from './SidebarSubmenuItem';
 
 async function renderScalableSidebar() {
-  const [showDropDown, setShowDropDown] = useState(false);
   await renderInTestApp(
     <SidebarPinStateProvider
       value={{
@@ -42,15 +41,11 @@ async function renderScalableSidebar() {
         <SidebarSearchField onSearch={() => {}} to="/search" />
         <SidebarItem icon={MenuBookIcon} onClick={() => {}} text="Catalog">
           <SidebarSubmenu title="Catalog">
-            <SidebarSubmenuItem title="Tools" to="/1" icon={BuildRoundedIcon} 
-              showDropDown={showDropDown}
-              setShowDropDown={setShowDropDown}/>
+            <SidebarSubmenuItem title="Tools" to="/1" icon={BuildRoundedIcon} />
             <SidebarSubmenuItem
               title="External Link"
               to="https://backstage.io/"
               icon={BuildRoundedIcon}
-              showDropDown={showDropDown}
-              setShowDropDown={setShowDropDown}
             />
             <SidebarSubmenuItem
               title="Misc"
@@ -70,8 +65,6 @@ async function renderScalableSidebar() {
                   to: 'https://backstage.io/',
                 },
               ]}
-              showDropDown={showDropDown}
-              setShowDropDown={setShowDropDown}
             />
           </SidebarSubmenu>
         </SidebarItem>

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import { InfoCardSettings } from '@backstage/core-components';
+import { InfoCardMod } from '@internal/core-components';
 import { EntityRefLinks } from '@backstage/plugin-catalog-react';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
@@ -139,7 +139,7 @@ export const UserSettingsIdentityCard = () => {
   const classes = useStyles();
 
   return (
-    <InfoCardSettings className={classes.card}
+    <InfoCardMod className={classes.card}
       title={
         <span className={classes.titulo}>
           Backstage Identity
@@ -147,6 +147,6 @@ export const UserSettingsIdentityCard = () => {
       }
     >
       <Contents />
-    </InfoCardSettings>
+    </InfoCardMod>
   );
 };

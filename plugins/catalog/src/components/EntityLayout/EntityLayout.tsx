@@ -26,9 +26,11 @@ import {
   Link,
   Page,
   Progress,
-  RoutedTabs,
   WarningPanel,
 } from '@backstage/core-components';
+import {
+RoutedTabsMod,
+} from '@internal/core-components';
 import {
   attachComponentData,
   IconComponent,
@@ -263,7 +265,7 @@ export const EntityLayout = (props: EntityLayoutProps) => {
 
       {loading && <Progress />}
 
-      {entity && <RoutedTabs routes={routes} />}
+      {entity && <RoutedTabsMod routes={routes} />}
 
       {error && (
         <Content>

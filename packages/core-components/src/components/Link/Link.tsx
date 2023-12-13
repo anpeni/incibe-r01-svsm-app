@@ -31,7 +31,7 @@ import {
 } from 'react-router-dom';
 
 export function isReactRouterBeta(): boolean {
-  const [obj] = createRoutesFromChildren(<Route caseSensitive element={<div />} />);
+  const [obj] = createRoutesFromChildren(<Route caseSensitive element={<div />} />); // TSC
   return !obj.caseSensitive;
 }
 
