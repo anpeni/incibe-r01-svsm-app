@@ -61,7 +61,7 @@ jobs:
         run: node scripts/set-release-name.js
       - name: 'Configure git'
         run: |
-          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --global user.email "svsm+github-actions[bot]@users.noreply.github.com"
           git config --global user.name "github-actions[bot]"
       - name: 'Create topic branch'
         run: |
