@@ -8,12 +8,12 @@ on:
         default: next
         type: choice
         options:
-        - next
-        - main
-  
+          - next
+          - main
+
   # Run Weekly on Wednesday at 10:00 UTC time
   schedule:
-    - cron: "0 10 * * 3"
+    - cron: '0 10 * * 3'
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -93,11 +93,17 @@ jobs:
           git add -A -- :!.npmrc
           git commit -m "v${{ steps.set_release_name.outputs.release_version }} version bump"
           git push origin topic/v${{ steps.set_release_name.outputs.release_version }}
+      - name: Generate token
+        uses: tibdex/github-app-token@v2
+        id: generate-token
+        with:
+          app_id: ${{ secrets.BOT_APP_ID }}
+          private_key: ${{ secrets.BOT_APP_PRIVATE_KEY }}
       - name: 'Create Pull Request'
         if: ${{ steps.check_for_changes.outputs.HAS_CHANGES == 1 }}
         uses: actions/github-script@v6
         with:
-          github-token: ${{steps.generate-token.outputs.token}}
+          github-token: '${{ steps.generate-token.outputs.token }}'
           script: |
             await github.rest.pulls.create({
               title: 'v${{ steps.set_release_name.outputs.release_version }} version bump',
