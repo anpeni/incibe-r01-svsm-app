@@ -32,6 +32,9 @@ auth:
   session:
     secret: ${SESSION_SECRET}
   providers:
+    bitbucketCloud:
+        catalogPath: /catalog-info.yaml # default value
+        workspace: 22701727 - DevSecOps
     dex:
       development:
         metadataUrl: ${URL_DEX}/.well-known/openid-configuration # https://dex.aws.neoris.cloud/.well-known/openid-configuration

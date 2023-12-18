@@ -3694,6 +3694,37 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@backstage/plugin-bitbucket-cloud-common@npm:^0.2.14":
+  version: 0.2.14
+  resolution: "@backstage/plugin-bitbucket-cloud-common@npm:0.2.14"
+  dependencies:
+    "@backstage/integration": ^1.7.2
+    cross-fetch: ^4.0.0
+  checksum: bb3106546d2e6212d8bcc14273a2514390f5edf275f4d6b3b0f9a3feb2e119be86aa0c5510f9a8c0747b541bbfbb71ddd95964d3643f8377a5a1938ef2ea3a61
+  languageName: node
+  linkType: hard
+
+"@backstage/plugin-catalog-backend-module-bitbucket-cloud@npm:^0.1.22":
+  version: 0.1.22
+  resolution: "@backstage/plugin-catalog-backend-module-bitbucket-cloud@npm:0.1.22"
+  dependencies:
+    "@backstage/backend-common": ^0.19.9
+    "@backstage/backend-plugin-api": ^0.6.7
+    "@backstage/backend-tasks": ^0.5.12
+    "@backstage/catalog-client": ^1.4.6
+    "@backstage/catalog-model": ^1.4.3
+    "@backstage/config": ^1.1.1
+    "@backstage/integration": ^1.7.2
+    "@backstage/plugin-bitbucket-cloud-common": ^0.2.14
+    "@backstage/plugin-catalog-common": ^1.0.18
+    "@backstage/plugin-catalog-node": ^1.5.0
+    "@backstage/plugin-events-node": ^0.2.16
+    uuid: ^8.0.0
+    winston: ^3.2.1
+  checksum: ea65b253f616ad1bbb8271955a819ffa9de38f328920eb5326407388be35d93409507e5e0e0eebbc864c2c9fababc09b389a28d7fb63075ae3fc67d966d36121
+  languageName: node
+  linkType: hard
+
 "@backstage/plugin-catalog-backend-module-github@npm:^0.4.5":
   version: 0.4.5
   resolution: "@backstage/plugin-catalog-backend-module-github@npm:0.4.5"
@@ -14129,6 +14160,7 @@ __metadata:
     "@backstage/plugin-auth-backend": ^0.20.0
     "@backstage/plugin-auth-node": ^0.4.1
     "@backstage/plugin-catalog-backend": ^1.15.0
+    "@backstage/plugin-catalog-backend-module-bitbucket-cloud": ^0.1.22
     "@backstage/plugin-catalog-backend-module-github": ^0.4.5
     "@backstage/plugin-jenkins-backend": ^0.3.1
     "@backstage/plugin-kubernetes-backend": ^0.13.1
