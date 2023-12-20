@@ -11,27 +11,27 @@ import {
   ScmIntegrations,
   DefaultGithubCredentialsProvider,
 } from '@backstage/integration';
-import { BitbucketCloudEntityProvider } from '@backstage/plugin-catalog-backend-module-bitbucket-cloud';
+//import { BitbucketCloudEntityProvider } from '@backstage/plugin-catalog-backend-module-bitbucket-cloud';
 
 export default async function createPlugin(
   env: PluginEnvironment,
 ): Promise<Router> {
   const builder = await CatalogBuilder.create(env as any);
-  // const integrations = ScmIntegrations.fromConfig(env.config);
-  // const githubCredentialsProvider =
-  //   DefaultGithubCredentialsProvider.fromIntegrations(integrations);
-  // builder.addProcessor(
-  //   GithubDiscoveryProcessor.fromConfig(env.config, {
-  //     logger: env.logger,
-  //     githubCredentialsProvider,
-  //   }),
-  //   GithubOrgReaderProcessor.fromConfig(env.config, {
-  //     logger: env.logger,
-  //     githubCredentialsProvider,
-  //   }),
-  // );
+  const integrations = ScmIntegrations.fromConfig(env.config);
+  const githubCredentialsProvider =
+    DefaultGithubCredentialsProvider.fromIntegrations(integrations);
+  builder.addProcessor(
+    GithubDiscoveryProcessor.fromConfig(env.config, {
+      logger: env.logger,
+      githubCredentialsProvider,
+    }),
+    GithubOrgReaderProcessor.fromConfig(env.config, {
+      logger: env.logger,
+      githubCredentialsProvider,
+    }),
+  );
   builder.addEntityProvider(
-    BitbucketCloudEntityProvider.fromConfig(env.config, {
+    GithubEntityProvider.fromConfig(env.config, {
       logger: env.logger,
       schedule: env.scheduler.createScheduledTaskRunner({
         frequency: { hours: 24 },
