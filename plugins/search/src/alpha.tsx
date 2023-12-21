@@ -42,7 +42,7 @@ import {
   createExtensionInput,
   createNavItemExtension,
   createSchemaFromZod,
-} from '@backstage/frontend-plugin-api';
+} from '@internal/frontend-plugin-api';
 
 import {
   catalogApiRef,
@@ -61,13 +61,13 @@ import {
 } from '@backstage/plugin-search-react';
 import { SearchResult } from '@backstage/plugin-search-common';
 import { searchApiRef } from '@backstage/plugin-search-react';
-import { searchResultItemExtensionData } from '@backstage/plugin-search-react/alpha';
+import { searchResultItemExtensionData } from '@internal/plugin-search-react/alpha';
 
 import { rootRouteRef } from './plugin';
 import { SearchClient } from './apis';
 import { SearchType } from './components/SearchType';
 import { UrlUpdater } from './components/SearchPage/SearchPage';
-import { convertLegacyRouteRef } from '@backstage/core-plugin-api/alpha';
+import { convertLegacyRouteRef } from '@internal/core-plugin-api/alpha';
 
 /** @alpha */
 export const SearchApi = createApiExtension({

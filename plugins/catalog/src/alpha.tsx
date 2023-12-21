@@ -24,12 +24,12 @@ import { CatalogClient } from '@backstage/catalog-client';
 import {
   createApiExtension,
   createPlugin,
-} from '@backstage/frontend-plugin-api';
+} from '@internal/frontend-plugin-api';
 import {
   catalogApiRef,
   starredEntitiesApiRef,
 } from '@backstage/plugin-catalog-react';
-import { createSearchResultListItemExtension } from '@backstage/plugin-search-react/alpha';
+import { createSearchResultListItemExtension } from '@internal/plugin-search-react/alpha';
 import { DefaultStarredEntitiesApi } from './apis';
 
 /** @alpha */
