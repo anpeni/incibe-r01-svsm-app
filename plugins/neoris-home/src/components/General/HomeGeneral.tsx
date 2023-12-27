@@ -54,6 +54,19 @@ const dataNetwork = [
   { name: '08:00', uv: 22 },
 ];
 
+
+const data = [
+  { name: '1Q20', uv: 65, color: '#06B08B' },
+  { name: '2Q20', uv: 59, color:  '#EE3131'},
+  { name: '3Q20', uv: 80, color: '#CCCA5F' },
+  { name: '4Q20', uv: 81, color: '#F48E45' },
+  { name: '1Q21', uv: 56, color: '#79CB77' },
+  { name: '2Q21', uv: 55, color: '#F04736' },
+  { name: '3Q21', uv: 40, color: '#3CACF3' },
+  // ... otros datos
+];
+
+
 const useStyles = makeStyles<BackstageTheme>(
   theme => ({
   barStyle: {
@@ -105,7 +118,8 @@ export const HomeGeneral = () => {
         <Grid item lg={8} xs={12} sm={12}
         className={ classes.barStyle }        
         >
-          <DatastoresBarCard simbolo="%"/>
+
+          <DatastoresBarCard simbolo="%" data={data} title='Datastores -  Usage Capacity'/>
         </Grid>
 
         <Grid item lg={6} xs={12} sm={12}

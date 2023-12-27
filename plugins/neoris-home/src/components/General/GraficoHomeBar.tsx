@@ -13,20 +13,17 @@ import { useTheme, useMediaQuery } from '@material-ui/core';
 
 
 
+interface DataPoint {
+  name: string;
+  color: string;
+  uv: number;
+}
+interface GraficoHomeBarProps {
+  data: DataPoint[];
+  simbolo: string;
+}
 
-const data = [
-  { name: '1Q20', uv: 65, color: '#06B08B' },
-  { name: '2Q20', uv: 59, color:  '#EE3131'},
-  { name: '3Q20', uv: 80, color: '#CCCA5F' },
-  { name: '4Q20', uv: 81, color: '#F48E45' },
-  { name: '1Q21', uv: 56, color: '#79CB77' },
-  { name: '2Q21', uv: 55, color: '#F04736' },
-  { name: '3Q21', uv: 40, color: '#3CACF3' },
-  // ... otros datos
-];
-
-
-function GraficoHomeBar({ simbolo }: { simbolo: string }) {
+function GraficoHomeBar({ data, simbolo }: GraficoHomeBarProps) {
 
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down(800));
@@ -48,18 +45,19 @@ function GraficoHomeBar({ simbolo }: { simbolo: string }) {
           top: 20, 
           right: isMobile ? 1 : isLaptop ? 5 : 30, 
           left: isMobile ? -25 : 20, 
-          bottom: isMobile ? -10 : 5, }}
+          bottom: isMobile ? -10 : -10, }}
+
       >
         <XAxis
           dataKey="name"
           tick={{ 
             fill: `${theme.palette.type === 'dark' ? '#FFF' : '#333'
           }`, 
-          fontSize: isMobile ? 10 : 20 }}
+          fontSize: isMobile ? 10 : 15 }}
           axisLine={false}
           padding={{ 
-            left: isMobile ? 1 : 10, 
-            right: isMobile ? 1 : 20 
+            left: isMobile ? 1 : -15, 
+            right: isMobile ? 1 : -20 
           }}
           tickLine={false}
           label=""
@@ -68,11 +66,11 @@ function GraficoHomeBar({ simbolo }: { simbolo: string }) {
               tick={{ 
                 fill: `${theme.palette.type === 'dark' ? '#FFF' : '#333'
               }`,  
-              fontSize: isMobile ? 10 : 20, 
+              fontSize: isMobile ? 10 : 15, 
             }} 
               axisLine={false}
               padding={{ 
-                top: isMobile ? 1 : 30,
+                top: isMobile ? 1 : 0,
                 bottom: isMobile ? 1 : 10}}
               tickLine={false}
               tickFormatter={formatYAxis}

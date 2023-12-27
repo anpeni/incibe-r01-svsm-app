@@ -14,7 +14,7 @@ const useStyles = makeStyles<BackstageTheme>(
         ? vars.dark.background.card
         : vars.light.background.card
     }`,
-    padding: '10px 30px 30px 10px',
+    padding: '0px 0px 0px 10px',
     height: '100%', 
     borderRadius: '20px',
     [theme.breakpoints.down(1500)]: {

@@ -6,6 +6,21 @@ import { BackstageTheme } from '@backstage/theme';
 import { vars } from '../../../../../packages/app/src/themes/variables';
 import GraficoHomeBar from './GraficoHomeBar';
 
+
+
+interface DataPoint {
+  name: string;
+  color: string;
+  uv: number;
+  
+}
+interface DatastoresAreaCardProps {
+  title: string;
+  data: DataPoint[];
+  simbolo: string;
+  
+}
+
 const useStyles = makeStyles<BackstageTheme>(theme => ({
   card: {
     backgroundColor: `${
@@ -13,7 +28,7 @@ const useStyles = makeStyles<BackstageTheme>(theme => ({
         ? vars.dark.background.card
         : vars.light.background.card
     }`,
-    padding: '10px 30px 30px 10px',
+    padding: '0px 30px 0px 20px',
     [theme.breakpoints.down(800)]: {
       padding: '0px 0px 0px 0px', 
     },
@@ -36,14 +51,16 @@ const useStyles = makeStyles<BackstageTheme>(theme => ({
   },
 }));
 
-export function DatastoresBarCard({ simbolo }: { simbolo: string }) {
+
+export function DatastoresBarCard({ data, simbolo, title}: DatastoresAreaCardProps) {
+
   const classes = useStyles();
 
   return (
     <Card className={classes.card}>
       <CardContent>
-        <div className={classes.titleBar}>Datastores- Usage Capacity</div>
-        <GraficoHomeBar simbolo={ simbolo } />
+        <div className={classes.titleBar}>{title}</div>
+        <GraficoHomeBar simbolo={ simbolo } data={ data } />
       </CardContent>
     </Card>
   );

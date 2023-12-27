@@ -27,7 +27,7 @@ export function GraficoHomeArea({ label, data, simbolo }: GraficoHomeAreaProps) 
   height={isMobile ? 125 : isLaptop ? 160 : 200}
   
   >
-    <AreaChart data={data} margin={{ top: isMobile ? 20 : 0, right: 0, left: isMobile ? -10 : isLaptop ? 50 : 60, bottom: isMobile ? -10 : isLaptop ? -5: 0 }}>
+    <AreaChart data={data} margin={{ top: isMobile ? 20 : 0, right: 5, left: isMobile ? -10 : isLaptop ? 50 : 50, bottom: isMobile ? -10 : isLaptop ? -5: 0 }}>
       <defs>
         <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
           <stop offset="5%" stopColor="#4FD1C5" stopOpacity={1.8}/>
@@ -38,27 +38,27 @@ export function GraficoHomeArea({ label, data, simbolo }: GraficoHomeAreaProps) 
       dataKey="name" 
       tick={{ fill: `${theme.palette.type === 'dark' ? '#FFF' : 'black'
     }`,  
-      fontSize: isMobile ? 10 : isLaptop ? 15  : 20 }} 
+      fontSize: isMobile ? 10 : isLaptop ? 15  : 15 }} 
       axisLine={false}
-      padding={{ left: isMobile ? 10 : isLaptop ? 15 : 50, right: isMobile ? 10 : isLaptop ? 15 : 40 }}
+      padding={{ left: isMobile ? 10 : isLaptop ? 15 : 15, right: isMobile ? 10 : isLaptop ? 15 : 20 }}
       tickLine={false}
       
       label={{
         value: label,//'Usage Avg. MHz'
         angle: -90,
         position: 'insideLeft',
-        dx: -110,
+        dx: -90,
         dy: -15,
         style: { fill: `${theme.palette.type === 'dark' ? '#FFF' : 'black'
       }`, 
-        fontSize: isLaptop ? 15 :17 } // Puedes ajustar los valores según sea necesario
+        fontSize: isLaptop ? 15 : 15 } // Puedes ajustar los valores según sea necesario
       }}
 
       />
       <YAxis 
       tick={{ fill: `${theme.palette.type === 'dark' ? '#FFF' : '#333'
     }`,  
-      fontSize: isMobile ? 10 : 20, padding: isMobile ? 5 : 10 }} 
+      fontSize: isMobile ? 10 : 15, padding: isMobile ? 5 : 10 }} 
       axisLine={false}
       padding={{ top: isMobile ? 1 : isLaptop ? 15 : 30, bottom: isMobile ? 1 : isLaptop ? 5 : 10}}
       tickLine={false}
