@@ -13,7 +13,6 @@
   "backstage": {
     "role": "frontend-plugin"
   },
-
   "keywords": [
     "backstage"
   ],
@@ -63,5 +62,4 @@
   "files": [
     "dist"
   ]
-
 }
