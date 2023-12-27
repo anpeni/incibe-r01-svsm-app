@@ -177,7 +177,7 @@ export const Root = ({ children }: PropsWithChildren<{}>) => {
             <Titulos text={'MAIN'}></Titulos>
             <SidebarItemMod
               icon={GridView}
-              to="/Catalog"
+              to="/neoris-home"
               text="Home"
               showDropDown={showDropDown}
               setShowDropDown={setShowDropDown}

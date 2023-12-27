@@ -57,6 +57,7 @@ import { neorisDarkTheme } from './themes/NeorisDark';
 import { neorisLightTheme } from './themes/NeorisLight';
 
 import { FluxRuntimePage } from '@weaveworksoss/backstage-plugin-flux';
+import { NeorisHomePage } from '@internal/plugin-neoris-home';
 
 const isProduction = process.env.NODE_ENV === 'production';
 const app = createApp({
@@ -179,7 +180,8 @@ const routes = (
     {/* <Route path="/" element={<HomepageCompositionRoot />}>
       <HomePage />
     </Route> */}
-    <Route path="/" element={<CatalogIndexPage />} />
+    <Route path="/" element={<NeorisHomePage />} />
+    <Route path="/neoris-home" element={<NeorisHomePage />} />
     <Route path="/catalog" element={<CatalogIndexPage />} />
     <Route
       path="/catalog/:namespace/:kind/:name"

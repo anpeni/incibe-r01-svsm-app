@@ -16,7 +16,7 @@
 import Box from '@material-ui/core/Box';
 import { makeStyles } from '@material-ui/core/styles';
 import TabUI, { TabProps } from '@material-ui/core/Tab';
-import Tabs from '@material-ui/core/Tabs';
+import Tabs from '@internal/material-ui-core/Tabs';
 import React, { useCallback, useEffect, useState } from 'react';
 
 // TODO(blam): Remove this implementation when the Tabs are ready
@@ -61,18 +61,26 @@ export function HeaderTabsMod(props: HeaderTabsProps) {
           //backgroundColor: 'red',
           paddingLeft: theme.spacing(8),
           minWidth: 0,
+          [theme.breakpoints.down(1500)]: {
+            paddingLeft: theme.spacing(3),
+          },
+          [theme.breakpoints.down(800)]: {
+            paddingLeft: theme.spacing(1),
+          },
+
         },
         defaultTabb: {
           //...theme.typography.caption,
           //paddingLeft: theme.spacing(3, 3),
-          // backgroundColor: bgColor,
-          //backdropFilter: 'blur(120px)',
           textTransform: 'none',
           fontWeight: 400,
           fontfamily: 'Inter, sans-serif',
           fontStyle: 'normal',
           color: `${theme.palette.type === 'dark' ? '#fff' : '#000'}`,
           fontSize: '16px',
+          [theme.breakpoints.down('xs')]: {
+            fontSize: '12px',
+          },
         },
         selectedd: {
           color: `${theme.palette.type === 'dark' ? '#fff' : '#000'}`,

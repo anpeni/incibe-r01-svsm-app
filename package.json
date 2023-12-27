@@ -71,8 +71,9 @@
     "@mui/icons-material": "^5.14.8",
     "@mui/material": "^5.14.8",
     "@types/zen-observable": "^0.8.4",
+    "chart.js": "^4.4.0",
     "material-symbols": "^0.11.0",
-    "rimraf": "^5.0.5",
+    "react-chartjs-2": "^5.2.0",
     "zen-observable": "^0.10.0"
   },
   "packageManager": "yarn@3.6.4"
