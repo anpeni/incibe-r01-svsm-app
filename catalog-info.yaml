@@ -5,7 +5,7 @@ metadata:
   description: Neoris applications.
   # Example for optional annotations
   annotations:
-    github.com/project-slug: DDC-NEORIS/incibe-r01-svsm-app
+    github.com/project-slug: backstage/backstage
     backstage.io/techdocs-ref: dir:.
     backstage.io/kubernetes-id: dso-backstage
     dev.azure.com/project-repo: 'antonioperezn/antonioperezn'
