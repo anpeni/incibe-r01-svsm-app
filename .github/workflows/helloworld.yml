@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+  workflow_dispatch: # Esto permite ejecutar manualmente el flujo de trabajo
 
 jobs:
   build:
@@ -12,3 +13,4 @@ jobs:
     steps:
       - name: Say Hello World
         run: echo "Hello, World!"
+
