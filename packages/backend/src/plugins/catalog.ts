@@ -12,11 +12,14 @@ import {
   DefaultGithubCredentialsProvider,
 } from '@backstage/integration';
 //import { BitbucketCloudEntityProvider } from '@backstage/plugin-catalog-backend-module-bitbucket-cloud';
+import { AzureDevOpsAnnotatorProcessor } from '@backstage/plugin-azure-devops-backend';
+
 
 export default async function createPlugin(
   env: PluginEnvironment,
 ): Promise<Router> {
   const builder = await CatalogBuilder.create(env as any);
+  builder.addProcessor(AzureDevOpsAnnotatorProcessor.fromConfig(env.config));
   const integrations = ScmIntegrations.fromConfig(env.config);
   const githubCredentialsProvider =
     DefaultGithubCredentialsProvider.fromIntegrations(integrations);

@@ -92,7 +92,10 @@ export const HomeGeneral = () => {
   return (
     <Container 
     style={{ 
-      paddingTop: isMobile ? '5px' : '50px' 
+      paddingTop: isMobile ? '5px' : '50px',
+      //background:'red',
+      //width: '95%',
+     
     }}
     >
       <Grid container direction="row" spacing={4} 
@@ -145,3 +148,5 @@ export const HomeGeneral = () => {
   );
 };
 
+
+//curl -u antonio.perezn [:${AZURE_PERSONAL_TOKEN}] https://dev.azure.com/antonioperezn/_apis/projects?api-version=2.0

@@ -130,6 +130,15 @@ import {
   EntityFluxSourcesCard,
   EntityFluxImagePoliciesCard,
 } from '@weaveworksoss/backstage-plugin-flux';
+import {
+  EntityAzurePipelinesContent,
+  isAzurePipelinesAvailable,
+  isAzureDevOpsAvailable,
+  EntityAzurePullRequestsContent,
+  EntityAzureGitTagsContent,
+  EntityAzureReadmeCard
+} from '@backstage/plugin-azure-devops';
+
 
 const techdocsContent = (
   <EntityTechdocsContent>
@@ -140,16 +149,64 @@ const techdocsContent = (
 );
 
 const cicdContent = (
-  // This is an example of how you can implement your company's logic in entity page.
-  // You can for example enforce that all components of type 'service' should use GitHubActions
+  
   <EntitySwitch>
     <EntitySwitch.Case if={isCircleCIAvailable}>
       <EntityCircleCIContent />
     </EntitySwitch.Case>
 
-    {/* <EntitySwitch.Case if={isGithubActionsAvailable}>
+    <EntitySwitch.Case>
+      <EmptyState
+        title="No CI/CD available for this entity"
+        missing="info"
+        description="You need to add an annotation to your component if you want to enable CI/CD for it. You can read more about annotations in Backstage by clicking the button below."
+        action={
+          <Button
+            variant="contained"
+            color="primary"
+            href="https://backstage.io/docs/features/software-catalog/well-known-annotations"
+          >
+            Read more
+          </Button>
+        }
+      />
+    </EntitySwitch.Case>
+  </EntitySwitch>
+);
+
+const GithubActionsContent = (
+  <EntitySwitch>
+     <EntitySwitch.Case 
+     //if={isGithubActionsAvailable}
+     >
       <EntityGithubActionsContent />
-    </EntitySwitch.Case> */}
+    </EntitySwitch.Case> 
+
+    <EntitySwitch.Case>
+      <EmptyState
+        title="No CI/CD available for this entity"
+        missing="info"
+        description="You need to add an annotation to your component if you want to enable CI/CD for it. You can read more about annotations in Backstage by clicking the button below."
+        action={
+          <Button
+            variant="contained"
+            color="primary"
+            href="https://backstage.io/docs/features/software-catalog/well-known-annotations"
+          >
+            Read more
+          </Button>
+        }
+      />
+    </EntitySwitch.Case>
+  </EntitySwitch>
+);
+
+const AzurePipelinesContent = (
+  
+  <EntitySwitch>
+    <EntitySwitch.Case if={isAzureDevOpsAvailable}>
+        <EntityAzurePipelinesContent defaultLimit={25} />
+    </EntitySwitch.Case>
 
     <EntitySwitch.Case>
       <EmptyState
@@ -227,6 +284,16 @@ const overviewContent = (
     <Grid item md={4} xs={12}>
       <EntityLinksCard />
     </Grid>
+
+    <Grid container spacing={3} alignItems="stretch">
+    <EntitySwitch>
+      <EntitySwitch.Case if={isAzureDevOpsAvailable}>
+        <Grid item md={6}>
+          <EntityAzureReadmeCard maxHeight={350} />
+        </Grid>
+      </EntitySwitch.Case>
+    </EntitySwitch>
+  </Grid>
     {/* <Grid item md={8} xs={12}>
       <EntityHasSubcomponentsCard variant="gridItem" />
     </Grid> */}
@@ -269,10 +336,22 @@ const serviceEntityPage = (
     <EntityLayout.Route path="/ci-cd" title="Circle CI">
       {cicdContent}
     </EntityLayout.Route>
+    <EntityLayout.Route path="/azure-pipelines" title="Azure Pipelines">
+      {AzurePipelinesContent}
+    </EntityLayout.Route>
+    <EntityLayout.Route path="/github-content" title="Github Discovery">
+      {GithubActionsContent}
+    </EntityLayout.Route>
 
     <EntityLayout.Route if={isJenkinsAvailable} path="/jenkins" title="Jenkins">
       <EntityJenkinsContent />
     </EntityLayout.Route>
+    <EntityLayout.Route if={isAzureDevOpsAvailable} path="/pull-requests" title="Azure PR">
+      <EntityAzurePullRequestsContent defaultLimit={25} />
+    </EntityLayout.Route>
+    {/* <EntityLayout.Route if={isAzureDevOpsAvailable} path="/git-tags" title="Git Tags">
+      <EntityAzureGitTagsContent />
+    </EntityLayout.Route> */}
     {/* <EntityLayout.Route
       path="/git"
       title="Git"
@@ -340,6 +419,12 @@ const websiteEntityPage = (
     <EntityLayout.Route path="/ci-cd" title="Circle CI">
       {cicdContent}
     </EntityLayout.Route>
+    <EntityLayout.Route path="/azure-pipelines" title="Azure Pipelines">
+      {AzurePipelinesContent}
+    </EntityLayout.Route>
+    <EntityLayout.Route path="/github-content" title="Github Discovery">
+      {GithubActionsContent}
+    </EntityLayout.Route>
     {/* <EntityLayout.Route path="/weaveworks-flux" title="Weave Flux">
       <Grid container spacing={3} alignItems="stretch">
         <Grid item md={12}>
@@ -356,6 +441,12 @@ const websiteEntityPage = (
     <EntityLayout.Route if={isJenkinsAvailable} path="/jenkins" title="Jenkins">
       <EntityJenkinsContent />
     </EntityLayout.Route>
+    <EntityLayout.Route if={isAzureDevOpsAvailable} path="/pull-requests" title="Azure PR">
+      <EntityAzurePullRequestsContent defaultLimit={25} />
+    </EntityLayout.Route>
+    {/* <EntityLayout.Route if={isAzureDevOpsAvailable} path="/git-tags" title="Git Tags">
+      <EntityAzureGitTagsContent />
+    </EntityLayout.Route> */}
     {/* <EntityLayout.Route
       path="/git"
       title="Git"

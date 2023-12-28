@@ -37,6 +37,7 @@ import { ServerPermissionClient } from '@backstage/plugin-permission-node';
 import { DefaultIdentityClient } from '@backstage/plugin-auth-node';
 import jenkins from './plugins/jenkins';
 import tekton from './plugins/tekton-pipelines';
+import azureDevOps from './plugins/azure-devops';
 
 function makeCreateEnv(config: Config) {
   const root = getRootLogger();
@@ -97,7 +98,7 @@ async function main() {
   const todoEnv = useHotMemoize(module, () => createEnv('todo'));
   const kubernetesEnv = useHotMemoize(module, () => createEnv('kubernetes'));
   const tektonEnv = useHotMemoize(module, () => createEnv('tekton'))
-  
+  const azureDevOpsEnv = useHotMemoize(module, () => createEnv('azure-devops'));
   const apiRouter = Router();
   apiRouter.use('/catalog', await catalog(catalogEnv));
   apiRouter.use('/jenkins', await jenkins(jenkinsEnv));
@@ -111,7 +112,7 @@ async function main() {
   apiRouter.use('/todo', await todo(todoEnv));
   apiRouter.use('/kubernetes', await kubernetes(kubernetesEnv));
   apiRouter.use('/tekton-pipelines', await tekton(tektonEnv) )
-
+  apiRouter.use('/azure-devops', await azureDevOps(azureDevOpsEnv));
   // Add backends ABOVE this line; this 404 handler is the catch-all fallback
   apiRouter.use(notFoundHandler());
 

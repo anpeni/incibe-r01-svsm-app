@@ -75,6 +75,10 @@ auth:
         metadataUrl: https://dex.aws.neoris.cloud/.well-known/openid-configuration
         clientId: backstage
         clientSecret: ${SECRET_BACKSTAGE_OAUTH_CLIENT_SECRET}
+    github:
+      development:
+        clientId: ${AUTH_GITHUB_CLIENT_ID}
+        clientSecret: ${AUTH_GITHUB_CLIENT_SECRET}
 
 scaffolder:
   # see https://backstage.io/docs/features/software-templates/configuration for software template options
@@ -94,8 +98,8 @@ catalog:
   rules:
     - allow: [Component, System, API, Resource, Location]
   locations:
-    # - type: github-discovery
-    #   target: https://github.com/anpeni
+    - type: github-discovery
+      target: https://github.com/anpeni
     - type: file
       target: ../../catalog-neoris/catalog-info.yaml
     # - type: file
@@ -138,9 +142,12 @@ integrations:
   github:
     - host: github.com
       token: ${GITHUB_TOKEN}
-  bitbucketCloud:
-    - username: ${BITBUCKET_CLOUD_USERNAME}
-      appPassword: ${BITBUCKET_CLOUD_APP_PASSWORD}
+  azure:
+    - host: dev.azure.com
+      credentials:
+        - organizations:
+            - ${AZURE_ORGANIZATION} 
+          personalAccessToken: ${AZURE_PERSONAL_TOKEN}
 grafana:
   # Publicly accessible domain
   domain: https://grafana.aws.neoris.cloud/
@@ -181,3 +188,8 @@ jenkins:
   baseUrl: ${URL_JENKINS}
   username: ${JENKINS_USERNAME}
   apiKey: ${JENKINS_APIKEY}
+
+azureDevOps:
+  host: dev.azure.com
+  token: ${AZURE_PERSONAL_TOKEN}
+  organization: ${AZURE_ORGANIZATION}  

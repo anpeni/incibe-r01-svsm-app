@@ -13,6 +13,7 @@
     "@backstage/core-app-api": "^1.11.2",
     "@backstage/core-plugin-api": "^1.8.1",
     "@backstage/integration-react": "^1.1.22",
+    "@backstage/plugin-azure-devops": "^0.3.10",
     "@backstage/plugin-catalog-common": "^1.0.19",
     "@backstage/plugin-catalog-graph": "^0.3.2",
     "@backstage/plugin-catalog-import": "^0.10.4",
