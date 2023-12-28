@@ -4,7 +4,7 @@ metadata:
   name: dso-backstage
   description: Neoris applications.
   annotations:
-    github.com/project-slug: backstage/backstage
+    github.com/project-slug: anpeni/incibe-r01-svsm-app
     backstage.io/techdocs-ref: dir:.
     backstage.io/kubernetes-id: dso-backstage
     dev.azure.com/project-repo: 'antonioperezn/antonioperezn'
