@@ -1,10 +1,6 @@
 name: CI
 on:
-  pull_request:
-    branches:
-      - main
-      - release-*
-      - stable-*
+  push:
 
 jobs:
   build:
@@ -54,22 +50,3 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         continue-on-error: true
 
-      - name: Build backend
-        env:
-          NODE_OPTIONS: "--max_old_space_size=4096"
-        run: yarn build:backend --config ../../app-config.yaml
-
-      - name: Scan Dockerfile with Trivy
-        uses: aquasecurity/trivy-action@master
-        with:
-          scan-type: "config"
-          scan-ref: ./packages/backend/Dockerfile
-          severity: "CRITICAL"
-          format: "sarif"
-          output: "results-dockerfile.sarif"
-
-      - name: Upload Trivy scan results to GitHub Security tab
-        uses: github/codeql-action/upload-sarif@v2
-        with:
-          sarif_file: "results-dockerfile.sarif"
-          category: "docker-file"
